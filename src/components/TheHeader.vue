@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a href="#" class="navbar-brand">hello</a>
-    <button class="navbar-toggler hidden-sm-up float-xs-right" type="button">
+    <button class="navbar-toggler hidden-sm-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
     </button>
-    <div class="navbar-toggleable-xs">
+    <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
       <ul class="nav navbar-nav float-xs-right text-xs-right">
         <li class="nav-item">
           <a href="#" class="nav-link">Search</a>
@@ -20,7 +20,17 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "top-menu"
-  }
+export default {
+  name: "TheHeader"
+}
 </script>
+
+<style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
+
+@include media-breakpoint-down("xs") {
+  .navbar-toggleable-xs {
+    clear: both;
+  }
+}
+</style>

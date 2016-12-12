@@ -1,9 +1,9 @@
 <template>
-  <div>foo</div>
+  <div>category</div>
 </template>
 
 <script lang="ts">
   export default {
-    name: 'foo'
+    name: 'Category'
   }
 </script>

@@ -1,24 +1,24 @@
 <template>
-  <div id="content">
-    <TopMenu></TopMenu>
-    <router-view></router-view>
-    <footer>Footer</footer>
+  <div>
+    <TheHeader></TheHeader>
+
+    <div class="content-wrapper">
+      <router-view></router-view>
+    </div>
+
+    <TheFooter></TheFooter>
   </div>
 </template>
 
 <script lang="ts">
-import TopMenu from './TopMenu'
+import TheHeader from './TheHeader'
+import TheFooter from './TheFooter'
 
 export default {
   name: 'app',
   components: {
-    TopMenu
+    TheHeader,
+    TheFooter
   }
 }
 </script>
-
-<style lang="scss">
-#content {
-  padding-top: 54px;
-}
-</style>
