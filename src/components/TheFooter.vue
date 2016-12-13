@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="the-footer">
     <div class="container">
       <p class="text-muted">Reactivesw.</p>
     </div>

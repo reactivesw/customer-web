@@ -1,6 +1,6 @@
 @import "variables";
 
-.navbar {
+.the-header {
   min-height: $header-height;
 
   // Float layout for drop menu.
@@ -22,7 +22,7 @@
   margin-bottom: -$footer-height;
 }
 
-.footer {
+.the-footer {
   // Match the padding-bottom
   line-height: $footer-height;
 
@@ -31,4 +31,9 @@
   p {
     margin: 0;
   }
+}
+
+$gap-between-nav-and-categories-menu: 2rem;
+.categories-menu {
+  margin-top: $gap-between-nav-and-categories-menu;
 }

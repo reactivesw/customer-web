@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <nav class="the-header navbar navbar-fixed-top navbar-dark bg-inverse">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
