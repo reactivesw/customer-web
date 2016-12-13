@@ -1,3 +1,5 @@
+@import "variables";
+
 .navbar {
   min-height: 3.5rem;
 
@@ -10,14 +12,20 @@
 
 .content-wrapper {
   padding-top: 3.5rem;
-  padding-bottom: 4rem;
+
+  // to make the footer float to bottom, work with .footer line-height
+  // 1. set content occupy whole height
+  // 2. set bottom padding and margin to leave space for footer
   min-height: 100vh;
-  margin-bottom: -4rem;
+  padding-bottom: $footer-height;
+  margin-bottom: -$footer-height;
 }
 
 .footer {
-  line-height: 4rem;
-  background-color: #f5f5f5;
+  // match the padding-bottom
+  line-height: $footer-height;
+
+  background-color: $footer-background-color;
 
   p {
     margin: 0;
