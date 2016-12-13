@@ -24,13 +24,3 @@ export default {
   name: "TheHeader"
 }
 </script>
-
-<style lang="scss" scoped>
-@import "~bootstrap/scss/bootstrap";
-
-@include media-breakpoint-down("xs") {
-  .navbar-toggleable-xs {
-    clear: both;
-  }
-}
-</style>

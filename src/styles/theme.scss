@@ -1,5 +1,11 @@
 .navbar {
   min-height: 3.5rem;
+
+  @include media-breakpoint-down("xs") {
+    .navbar-toggleable-xs {
+      clear: both;
+    }
+  }
 }
 
 .content-wrapper {
