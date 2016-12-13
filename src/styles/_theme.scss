@@ -1,8 +1,9 @@
 @import "variables";
 
 .navbar {
-  min-height: 3.5rem;
+  min-height: $header-height;
 
+  // Float layout for drop menu.
   @include media-breakpoint-down("xs") {
     .navbar-toggleable-xs {
       clear: both;
@@ -11,9 +12,9 @@
 }
 
 .content-wrapper {
-  padding-top: 3.5rem;
+  padding-top: $header-height;
 
-  // to make the footer float to bottom, work with .footer line-height
+  // To make the footer float to bottom, work with .footer line-height
   // 1. set content occupy whole height
   // 2. set bottom padding and margin to leave space for footer
   min-height: 100vh;
@@ -22,7 +23,7 @@
 }
 
 .footer {
-  // match the padding-bottom
+  // Match the padding-bottom
   line-height: $footer-height;
 
   background-color: $footer-background-color;
