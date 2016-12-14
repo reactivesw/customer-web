@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import * as VueRouter from 'vue-router'
-import Category from './components/category/Category'
+import Category from './components/Category'
 
 Vue.use(VueRouter)
 
