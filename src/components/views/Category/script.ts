@@ -1,4 +1,4 @@
-import CategoriesMenu from './CategoriesMenu'
+import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import * as categoriesType from 'src/store/categories-types'
 import { mapGetters, mapActions } from 'vuex'
 

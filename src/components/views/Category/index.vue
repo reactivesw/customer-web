@@ -3,6 +3,6 @@
 
 <script lang="ts">
 // 1. cannot use "src" 2. to export default from default
-import d from './script'
-export default d
+import s from './script'
+export default s
 </script>
