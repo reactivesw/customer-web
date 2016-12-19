@@ -11,14 +11,6 @@
 </template>
 
 <script lang="ts">
-import TheHeader from './TheHeader'
-import TheFooter from './TheFooter'
-
-export default {
-  name: 'app',
-  components: {
-    TheHeader,
-    TheFooter
-  }
-}
+import s from './script'
+export default s
 </script>

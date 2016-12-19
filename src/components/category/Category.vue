@@ -6,21 +6,24 @@
 
 <script lang="ts">
 import CategoriesMenu from './CategoriesMenu'
+import * as categoriesType from 'src/store/categories-types'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Category',
 
-  data() {
-    return {
-      categories: [
-        { name: 'All' },
-        { name: 'Cate1' },
-        { name: 'Cate2' },
-        { name: 'Cate3' },
-        { name: 'Cate4' },
-        { name: 'Cate5' }
-      ]
-    }
+  computed: mapGetters({
+    categories: categoriesType.GET_CATEGORIES
+  }),
+
+  methods: {
+    ...mapActions({
+      fetchCategories: categoriesType.FETCH_CATEGORIES
+    })
+  },
+
+  created () {
+    this.fetchCategories()
   },
 
   components: {

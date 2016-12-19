@@ -33,6 +33,12 @@ module.exports = {
     fallback: [path.join(__dirname, '../node_modules')]
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.ts$/,
+        loader: 'tslint'
+      }
+    ],
     loaders: [
       {
         test: /\.vue$/,
@@ -83,5 +89,9 @@ module.exports = {
   },
   ts: {
     appendTsSuffixTo: [/\.vue$/]
+  },
+  tslint: {
+    emitErrors: true,
+    failOnHint: true
   }
 }

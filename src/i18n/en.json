@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "brand": "Hello",
+    "copyright": "Reactivesw."
+  },
+  "header": {
+    "search": "Search",
+    "login": "Log In",
+    "cart": "Cart",
+    "language": "Lang"
+  },
+  "product": {
+    "product_id": "Product ID",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price"
+  }
+}

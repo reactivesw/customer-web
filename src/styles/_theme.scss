@@ -1,39 +1,8 @@
 @import "variables";
 
-.the-header {
-  min-height: $header-height;
+// app structure
+@import "header";
+@import "footer";
 
-  // Float layout for drop menu.
-  @include media-breakpoint-down("xs") {
-    .navbar-toggleable-xs {
-      clear: both;
-    }
-  }
-}
-
-.content-wrapper {
-  padding-top: $header-height;
-
-  // To make the footer float to bottom, work with .footer line-height
-  // 1. set content occupy whole height
-  // 2. set bottom padding and margin to leave space for footer
-  min-height: 100vh;
-  padding-bottom: $footer-height;
-  margin-bottom: -$footer-height;
-}
-
-.the-footer {
-  // Match the padding-bottom
-  line-height: $footer-height;
-
-  background-color: $footer-background-color;
-
-  p {
-    margin: 0;
-  }
-}
-
-$gap-between-nav-and-categories-menu: 2rem;
-.categories-menu {
-  margin-top: $gap-between-nav-and-categories-menu;
-}
+// components
+@import "components/categories-menu";
