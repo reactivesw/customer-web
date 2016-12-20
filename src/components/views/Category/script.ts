@@ -1,6 +1,7 @@
-import CategoriesMenu from 'src/components/category/CategoriesMenu'
-import * as categoriesType from 'src/store/categories-types'
 import { mapGetters, mapActions } from 'vuex'
+import CategoriesMenu from 'src/components/category/CategoriesMenu'
+import ProductCardList from 'src/components/category/ProductCardList'
+import * as categoriesType from 'src/libs/store/categories-types'
 
 export default {
   name: 'Category',
@@ -20,6 +21,7 @@ export default {
   },
 
   components: {
-    CategoriesMenu
+    CategoriesMenu,
+    ProductCardList
   }
 }

@@ -1,4 +1,4 @@
-import api from 'src/store/api'
+import api from 'src/libs/store/api'
 import { FETCH_CATEGORIES, SET_CATEGORIES } from '../../categories-types'
 
 export default {

@@ -1,11 +1,27 @@
 declare function require(moduleName: string): any
 
+import * as Vue from 'vue'
 import * as VueI18n from 'vue-i18n'
+import Cookies = require('js-cookie')
 
 export default function (Vue) {
   Vue.use(VueI18n)
   loadLocales(Vue)
   customizeTranslate(Vue)
+  initLang()
+}
+
+export function changeLang (newLang) {
+  Vue.config['lang'] = newLang
+  Cookies.set('lang', newLang, { expires: 365 })
+}
+
+/**
+ * change lang according to cookie
+ */
+function initLang() {
+  const lang = Cookies.get('lang')
+  if (lang) changeLang(lang)
 }
 
 function loadLocales(Vue) {

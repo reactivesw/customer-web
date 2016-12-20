@@ -2,6 +2,6 @@
 </template>
 
 <script lang="ts">
-import s from './script'
-export default s
+  import s from './script.ts'
+  export default s
 </script>
