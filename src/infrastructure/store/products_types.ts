@@ -1,0 +1,4 @@
+// Products associated with current category
+export const FETCH_CURRENT_CATEGORY_PRODUCTS = 'categories/FETCH_CURRENT_CATEGORY_PRODUCTS'
+export const SET_CURRENT_CATEGORY_PRODUCTS = 'categories/SET_CURRENT_CATEGORY_PRODUCTS'
+export const GET_CURRENT_CATEGORY_PRODUCTS = 'categories/GET_CURRENT_CATEGORY_PRODUCTS'
