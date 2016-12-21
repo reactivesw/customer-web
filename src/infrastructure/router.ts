@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     name: 'category',
-    path: '/category/:id',
+    path: '/category/:catid',
     component: Category
   }
 ]

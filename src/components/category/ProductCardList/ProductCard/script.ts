@@ -1,4 +1,4 @@
-import { MoneyToString } from 'src/libs/utils'
+import { MoneyToString } from 'src/infrastructure/utils'
 
 export default {
   name: 'ProductCard',

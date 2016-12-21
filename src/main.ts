@@ -1,14 +1,17 @@
 import * as Vue from 'vue'
 import * as VueRouter from 'vue-router'
-import router from './libs/router'
+import router from './infrastructure/router'
+import store from './infrastructure/store'
 import App from './components/views/App'
 import 'bootstrap/dist/js/bootstrap'
 import './styles/style.scss'
 
-import setLocales from './libs/i18n'
+import setLocales from './infrastructure/i18n'
 setLocales(Vue)
 
-import store from './libs/store'
+// setup vuex-router-sync so that route state are sync with vuex
+import { sync } from 'vuex-router-sync'
+sync(store, router) // done.
 
 let a = null
 if (a == null) a = 1

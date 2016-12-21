@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="btn btn-link btn-block btn-lg"
-    :to="{ name: 'category', params: { id: category.id }}">
+    :to="{ name: 'category', params: { 'catid': category.id }}">
     {{ $t(category.name) }}
   </router-link>
 </template>

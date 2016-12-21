@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import { changeLang } from 'src/libs/i18n'
+import { changeLang } from 'src/infrastructure/i18n'
 
 export default {
   name: "LanguageSelector",
