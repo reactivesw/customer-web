@@ -1,9 +1,9 @@
-import api from 'src/libs/store/api'
-import { FETCH_CATEGORIES, SET_CATEGORIES } from '../../categories-types'
+import restCall from 'src/libs/store/api_client'
+import { FETCH_CATEGORIES, SET_CATEGORIES } from '../../categories_types'
 
 export default {
   [FETCH_CATEGORIES] ({ commit }) {
-    return api.get('/categories')
+    return restCall.get('/categories')
     .then((response) => {
       commit(SET_CATEGORIES, response.data.results)
     })

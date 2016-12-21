@@ -7,7 +7,7 @@ import Cookies = require('js-cookie')
 export default function (Vue) {
   Vue.use(VueI18n)
   loadLocales(Vue)
-  customizeTranslate(Vue)
+  customizeTranslation(Vue)
   initLang()
 }
 
@@ -35,7 +35,7 @@ function loadLocales(Vue) {
   })
 }
 
-function customizeTranslate(Vue) {
+function customizeTranslation(Vue) {
   let oldT = Vue.prototype['$t']
 
   Vue.prototype['$t'] = function (key, ...args) {

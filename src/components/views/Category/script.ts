@@ -1,7 +1,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import ProductCardList from 'src/components/category/ProductCardList'
-import * as categoriesType from 'src/libs/store/categories-types'
+import * as categoriesType from 'src/libs/store/categories_types'
 
 export default {
   name: 'Category',
@@ -14,10 +14,6 @@ export default {
     ...mapActions({
       fetchCategories: categoriesType.FETCH_CATEGORIES
     })
-  },
-
-  created () {
-    this.fetchCategories()
   },
 
   components: {

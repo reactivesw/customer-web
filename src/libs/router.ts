@@ -5,7 +5,11 @@ import Category from 'src/components/views/Category'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '', component: Category }
+  {
+    name: 'category',
+    path: '/category/:id',
+    component: Category
+  }
 ]
 
 export default new VueRouter({
