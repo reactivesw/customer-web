@@ -38,7 +38,7 @@ function loadLocales(Vue) {
 function customizeTranslation(Vue) {
   let oldT = Vue.prototype['$t']
 
-  Vue.prototype['$t'] = function (key, ...args) {
+  Vue.prototype['$t'] = function (this: Vue.Component, key, ...args) {
     let result = 'Locale String Not Found'
     if (typeof key === 'object') {
       result = key[Vue.config['lang']]

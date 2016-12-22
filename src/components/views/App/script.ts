@@ -1,3 +1,4 @@
+import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import TheHeader from 'src/components/frame/TheHeader'
 import TheFooter from 'src/components/frame/TheFooter'
@@ -16,17 +17,17 @@ export default {
     })
   },
 
-  created() {
-    this.fetchCategories()
+  created(this: Component) {
+    this['fetchCategories']()
   },
 
   watch: {
-    featureCategory (featureCategory) {
+    featureCategory (this: Component, featureCategory) {
       if (featureCategory) {
-        this.$router.replace({
+        this['$router'].replace({
           name: 'category',
           params: {
-            catid: this.featureCategory.id
+            catid: this['featureCategory'].id
           }
         })
       }

@@ -1,3 +1,4 @@
+import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import ProductCardList from 'src/components/category/ProductCardList'
@@ -19,13 +20,13 @@ export default {
     })
   },
 
-  created () {
-    this.fetchCurrentProducts()
+  created (this: Component) {
+    this['fetchCurrentProducts']()
   },
 
   watch: {
-    $route () {
-      this.fetchCurrentProducts()
+    $route (this: Component) {
+      this['fetchCurrentProducts']()
     }
   },
 

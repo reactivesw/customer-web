@@ -13,9 +13,6 @@ setLocales(Vue)
 import { sync } from 'vuex-router-sync'
 sync(store, router)
 
-let a = null
-if (a == null) a = 1
-
 new Vue({
   el: '#app',
   router,
