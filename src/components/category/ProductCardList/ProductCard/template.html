@@ -1,5 +1,5 @@
 <div class="card product-card">
-  <img class="card-img-top" src="http://placehold.it/250x250">
+  <img class="card-img-top" :src="product.masterVariant.images[0].url">
   <div class="card-block">
     <h4 class="card-title">{{ $t(product.name) }}</h4>
     <p class="card-text">{{ MoneyToString(product.masterVariant.prices[0].value) }}</p>

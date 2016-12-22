@@ -1,8 +1,9 @@
 <div class="row text-xs-center">
 
   <div class="col-sm-6 col-lg-4 col-xl-3" v-for="product in products">
-    <!-- TODO: url structure -->
-    <ProductCard :product="product"></ProductCard>
+    <router-link :to="{ name:'product', params:{ productId:1 } }">
+      <ProductCard :product="product"></ProductCard>
+    </router-link>
   </div>
 
 </div>
