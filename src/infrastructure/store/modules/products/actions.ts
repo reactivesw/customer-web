@@ -9,7 +9,6 @@ export default {
       }
     })
     .then((response) => {
-      console.log(response)
       commit(SET_CURRENT_CATEGORY_PRODUCTS, response.data.results)
     })
   }

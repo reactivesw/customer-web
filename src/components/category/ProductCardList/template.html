@@ -1,7 +1,8 @@
 <div class="row text-xs-center">
 
-  <div class="col-sm-6 col-lg-4 col-xl-3" v-for="n in 10">
-    <ProductCard :product="products" @click="routeToProduct"></ProductCard>
+  <div class="col-sm-6 col-lg-4 col-xl-3" v-for="product in products">
+    <!-- TODO: url structure -->
+    <ProductCard :product="product"></ProductCard>
   </div>
 
 </div>

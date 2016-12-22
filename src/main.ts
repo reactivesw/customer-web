@@ -11,7 +11,7 @@ setLocales(Vue)
 
 // setup vuex-router-sync so that route state are sync with vuex
 import { sync } from 'vuex-router-sync'
-sync(store, router) // done.
+sync(store, router)
 
 let a = null
 if (a == null) a = 1
