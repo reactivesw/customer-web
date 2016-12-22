@@ -8,12 +8,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     name: 'category',
-    path: '/category/:catId',
+    path: '/categories/:catId',
     component: Category
   },
   {
     name: 'product',
-    path: '/product/:productId',
+    path: '/products/:productId',
     component: Product
   }
 ]
