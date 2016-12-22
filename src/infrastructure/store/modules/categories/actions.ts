@@ -1,11 +1,9 @@
-import restCall from 'src/infrastructure/store/api_client'
+import { getCategories } from 'src/infrastructure/api_client'
 import { FETCH_CATEGORIES, SET_CATEGORIES } from '../../categories_types'
 
 export default {
-  [FETCH_CATEGORIES] ({ commit }) {
-    return restCall.get('/categories')
-    .then((response) => {
-      commit(SET_CATEGORIES, response.data.results)
-    })
+  async [FETCH_CATEGORIES] ({ commit }) {
+    const categories = await getCategories()
+    commit(SET_CATEGORIES, categories)
   }
 }

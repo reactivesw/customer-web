@@ -21,13 +21,16 @@ export default {
     await this['fetchCategories']()
 
     // The '/' path points to the feature category
+    const params = {
+      name: 'category',
+      params: {
+        catid: this['featureCategory'].id
+      }
+    }
+
+    // use replace to not remember the history
     if (this['$route'].path === '/') {
-      this['$router'].replace({
-        name: 'category',
-        params: {
-          catid: this['featureCategory'].id
-        }
-      })
+      this['$router'].replace(params)
     }
   },
 
