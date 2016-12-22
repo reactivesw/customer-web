@@ -8,4 +8,14 @@ const instance = axios.create({
   timeout: 1000
 })
 
+export async function getProductProjections(categoryId: string) {
+  const params = {
+    where: `categoryId:${categoryId}`
+  }
+
+  return await instance.get('/product-projections', {
+    params
+  })
+}
+
 export default instance

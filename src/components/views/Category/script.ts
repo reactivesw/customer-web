@@ -17,16 +17,23 @@ export default {
     ...mapActions({
       fetchCategories: categoriesType.FETCH_CATEGORIES,
       fetchCurrentProducts: productsType.FETCH_CURRENT_CATEGORY_PRODUCTS
-    })
+    }),
+    fetchData (this: Component) {
+      try {
+        return this['fetchCurrentProducts']()
+      } catch (err) {
+        console.log(err)
+      }
+    }
   },
 
   created (this: Component) {
-    this['fetchCurrentProducts']()
+    this['fetchData']()
   },
 
   watch: {
     $route (this: Component) {
-      this['fetchCurrentProducts']()
+      this['fetchData']()
     }
   },
 

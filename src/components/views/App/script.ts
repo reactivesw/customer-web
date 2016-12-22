@@ -17,20 +17,17 @@ export default {
     })
   },
 
-  created(this: Component) {
-    this['fetchCategories']()
-  },
+  async created(this: Component) {
+    await this['fetchCategories']()
 
-  watch: {
-    featureCategory (this: Component, featureCategory) {
-      if (featureCategory) {
-        this['$router'].replace({
-          name: 'category',
-          params: {
-            catid: this['featureCategory'].id
-          }
-        })
-      }
+    // The '/' path points to the feature category
+    if (this['$route'].path === '/') {
+      this['$router'].replace({
+        name: 'category',
+        params: {
+          catid: this['featureCategory'].id
+        }
+      })
     }
   },
 
