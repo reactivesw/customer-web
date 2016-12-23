@@ -9,8 +9,7 @@ export default {
   name: 'app',
 
   computed: mapGetters({
-    categories: categoriesType.GET_CATEGORIES,
-    featureCategory: categoriesType.GET_FEATURE_CATEGORY
+    categories: categoriesType.GET_CATEGORIES
   }),
 
   methods: {
@@ -21,19 +20,6 @@ export default {
 
   async created(this: Component) {
     await this['fetchCategories']()
-
-    // The '/' path points to the feature category
-    const params = {
-      name: 'category',
-      params: {
-        catId: this['featureCategory'].id
-      }
-    }
-
-    // use replace to not remember the history
-    if (this['$route'].path === '/') {
-      this['$router'].replace(params)
-    }
   },
 
   components: {

@@ -6,15 +6,27 @@ import Product from 'src/components/views/Product'
 Vue.use(VueRouter)
 
 const routes = [
+  // map '/categories' to Category to dismiss vue-router warning
   {
-    name: 'category',
+    name: 'featureCategory',
+    path: '/categories',
+    component: Category
+  },
+  {
+    name: 'categories',
     path: '/categories/:catId',
     component: Category
   },
   {
-    name: 'product',
-    path: '/products/:productId',
+    name: 'products',
+    path: '/products/:productId/:sku',
     component: Product
+  },
+  {
+    path: '*',
+    redirect: {
+      name: 'featureCategory'
+    }
   }
 ]
 
