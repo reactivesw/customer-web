@@ -1,9 +1,14 @@
 @import "variables";
 
+html, body {
+  overflow-x: hidden;
+}
+
 // app structure
 @import "header";
 @import "footer";
 
 // components
 @import "components/categories-menu";
-@import "components/product-card"
+@import "components/product-card";
+@import "components/product-gallery";
