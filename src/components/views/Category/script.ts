@@ -23,12 +23,8 @@ export default {
       if (!this['$route'].params.catSlug) {
         await this['fetchCategories']()
         this['$router'].replace({ name: 'categories', params: { catSlug: this['featureCategory'].slug } })
-      }
-
-      try {
-        return this['fetchCurrentProducts']()
-      } catch (err) {
-        console.log(err)
+      } else {
+        this['fetchCurrentProducts']()
       }
     }
   },

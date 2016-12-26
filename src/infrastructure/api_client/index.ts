@@ -20,6 +20,11 @@ export async function getProduct(productSlug: string) {
   return response.data
 }
 
+export async function getProductType(productTypeId: string) {
+  const response = await instance.get(`${endpoints.PRODUCT_TYPES}/${productTypeId}`)
+  return response.data
+}
+
 
 /**
  * fetch product projections of current category (determined by route) by category slug

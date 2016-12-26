@@ -1,6 +1,7 @@
 import {
   getProductProjections,
-  getProduct } from 'src/infrastructure/api_client'
+  getProduct,
+  getProductType } from 'src/infrastructure/api_client'
 import {
   FETCH_CURRENT_CATEGORY_PRODUCTS,
   SET_CURRENT_CATEGORY_PRODUCTS,
@@ -35,8 +36,8 @@ export default {
    */
   async [FETCH_CURRENT_PRODUCT]({ rootState, commit }) {
     const slug = rootState.route.params.productSlug
-    const sku = rootState.route.params.sku
     const product = await getProduct(slug)
-    commit(SET_CURRENT_PRODUCT, product)
+    const productType = await getProductType(product.productType.id)
+    commit(SET_CURRENT_PRODUCT, { product, productType })
   }
 }

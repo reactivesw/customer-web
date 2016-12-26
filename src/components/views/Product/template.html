@@ -8,7 +8,11 @@
     <div class="col-md-6">
       <ProductInfo v-if="product && variant" :product="product" :variant="variant"></ProductInfo>
 
-      <VariantSelector v-if="product && variant" :product="product" :variant="variant"></VariantSelector>
+      <VariantSelector
+        v-if="product && variant"
+        :product="product"
+        :variant="variant"
+        :productType="productType"></VariantSelector>
 
       <!-- TODO: implement this after cart finished. -->
       <button class="btn btn-lg btn-lg btn-block">{{ $t('product.addToCart') }}</button>

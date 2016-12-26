@@ -10,7 +10,8 @@ export default {
   computed: {
     ...mapGetters({
       product: productsTypes.GET_CURRENT_PRODUCT,
-      variant: productsTypes.GET_CURRENT_VARIANT
+      variant: productsTypes.GET_CURRENT_VARIANT,
+      productType: productsTypes.GET_CURRENT_PRODUCT_TYPE
     })
   },
 
@@ -21,7 +22,7 @@ export default {
   methods: {
     ...mapActions({
       fetchProduct: productsTypes.FETCH_CURRENT_PRODUCT,
-    }),
+    })
   },
 
   components: {
