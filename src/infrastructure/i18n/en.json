@@ -13,6 +13,7 @@
     "product_id": "Product ID",
     "name": "Name",
     "description": "Description",
-    "price": "Price"
+    "price": "Price",
+    "addToCart": "ADD TO CART"
   }
 }

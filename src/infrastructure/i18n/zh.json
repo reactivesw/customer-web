@@ -12,6 +12,8 @@
   "product": {
     "product_id": "产品ID",
     "name": "名称",
-    "price": "价格"
+    "description": "描述",
+    "price": "价格",
+    "addToCart": "加入购物车"
   }
 }
