@@ -1,7 +1,12 @@
-import { SET_CURRENT_CATEGORY_PRODUCTS } from '../../products_types'
+import { SET_CURRENT_CATEGORY_PRODUCTS,
+  SET_CURRENT_PRODUCT } from '../../products_types'
 
 export default {
   [SET_CURRENT_CATEGORY_PRODUCTS] (state, products) {
     state.currentCategoryProducts = products
+  },
+
+  [SET_CURRENT_PRODUCT] (state, product) {
+    state.currentProduct = product
   }
 }

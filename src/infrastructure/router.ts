@@ -14,12 +14,12 @@ const routes = [
   },
   {
     name: 'categories',
-    path: '/categories/:catId',
+    path: '/categories/:catSlug',
     component: Category
   },
   {
     name: 'products',
-    path: '/products/:productId/:sku',
+    path: '/products/:productSlug/:sku',
     component: Product
   },
   {

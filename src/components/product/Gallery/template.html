@@ -1,11 +1,15 @@
 <div>
   <!-- Full size images-->
   <div class="product-gallery-fullsizes" ref="fullsizes">
-    <div v-for="slide in slides"><img :src="slide.href"/></div>
+    <div v-for="slide in slides">
+      <img :src="slide.href"/>
+    </div>
   </div>
 
   <!-- Thumbnails -->
   <div class="product-gallery-thumbnails" ref="thumbnails">
-    <div v-for="slide in slides"><img :src="slide.thumbnail"/></div>
+    <div v-for="slide in slides">
+      <img :src="slide.thumbnail"/>
+    </div>
   </div>
 </div>

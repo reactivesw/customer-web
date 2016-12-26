@@ -34,14 +34,14 @@ export default {
     const fullsizes = $(this['$refs'].fullsizes)
     const thumbnails = $(this['$refs'].thumbnails)
 
-    // setup fullsize images slider
-    fullsizes['slick']({
+    // setup fullsizes images slider
+    let fullsizesInstance = fullsizes['slick']({
       asNavFor: '.product-gallery-thumbnails',
       slidesToShow: 1,
       fade: true,
       arrows: false,
-      adaptiveHeight: true,
 
+      // turn animation to slide in small screen for better experience
       responsive: [
         {
           breakpoint: 768,
@@ -53,14 +53,20 @@ export default {
     })
 
     // setup thumbnails images slider
-    thumbnails['slick']({
+    let thumbnailsInstance = thumbnails['slick']({
       asNavFor: '.product-gallery-fullsizes',
       slidesToShow: 3,
       variableWidth: true,
       centerMode: true,
-      centerPadding: '60px',
+      // centerPadding: '60px',
       infinite: true,
       focusOnSelect: true
     })
+
+    // slide to slide 0 manually to avoid position bug.
+    setTimeout(() => {
+      thumbnailsInstance['slick']('slickGoTo', 0, true)
+      fullsizesInstance['slick']('slickGoTo', 0, true)
+    }, 100)
   }
 }

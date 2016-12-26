@@ -19,10 +19,10 @@ export default {
     }),
 
     async fetchData (this: Component) {
-      // if catId is undefined then find the featureCategory and redirect to it.
-      if (!this['$route'].params.catId) {
+      // if catSlug is undefined then find the featureCategory and redirect to it.
+      if (!this['$route'].params.catSlug) {
         await this['fetchCategories']()
-        this['$router'].replace({ name: 'categories', params: { catId: this['featureCategory'].id } })
+        this['$router'].replace({ name: 'categories', params: { catSlug: this['featureCategory'].slug } })
       }
 
       try {

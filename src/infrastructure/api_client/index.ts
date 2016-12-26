@@ -9,13 +9,38 @@ const instance = axios.create({
   timeout: 1000
 })
 
-export async function getProductProjections(categoryId: string) {
+/**
+ * fetch product by product slug
+ *
+ * @export
+ * @param {string} productSlug
+ */
+export async function getProduct(productSlug: string) {
+  const response = await instance.get(`${endpoints.PRODUCTS}/${productSlug}`)
+  return response.data
+}
+
+
+/**
+ * fetch product projections of current category (determined by route) by category slug
+ *
+ * @export
+ * @param {string} categorySlug
+ * @returns
+ */
+export async function getProductProjections(categorySlug: string) {
   const params = {
-    where: `categoryId:${categoryId}`
+    where: `slug:${categorySlug}`
   }
   return await getApiResult(endpoints.PRODUCT_PROJECTION, { params })
 }
 
+/**
+ * fetch all categories
+ *
+ * @export
+ * @returns
+ */
 export async function getCategories() {
   return await getApiResult(endpoints.CATEGORIES)
 }
