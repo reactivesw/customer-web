@@ -9,6 +9,12 @@ import {
 import { FETCH_CATEGORIES } from '../../categories_types'
 
 export default {
+
+  /**
+   * Fetch products of current category (determined by route)
+   *
+   * @param {any} { rootState, dispatch, commit }
+   */
   async [FETCH_CURRENT_CATEGORY_PRODUCTS]({ rootState, dispatch, commit }) {
     // make sure we already have categories data
     await dispatch(FETCH_CATEGORIES)
@@ -22,6 +28,11 @@ export default {
     commit(SET_CURRENT_CATEGORY_PRODUCTS, products)
   },
 
+  /**
+   * Fetch current product (determined by route) info
+   *
+   * @param {any} { rootState, commit }
+   */
   async [FETCH_CURRENT_PRODUCT]({ rootState, commit }) {
     const slug = rootState.route.params.productSlug
     const sku = rootState.route.params.sku
