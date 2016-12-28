@@ -39,6 +39,7 @@ export default {
       asNavFor: '.product-gallery-thumbnails',
       slidesToShow: 1,
       fade: true,
+      infinite: false,
       arrows: false,
 
       // turn animation to slide in small screen for better experience

@@ -1,3 +1,13 @@
 <div>
-  variant selector
+  <div v-for="(attrValue, attrName) of computedAttributes">
+    <label>{{ $t(attrValue.label) }}: </label>
+    <div>
+      <div
+        class="btn btn-sm"
+        v-for="option of attrValue.options"
+        :class="checkState(option)"
+        @click="$emit('selectVariant', option.sku)"
+        >{{ option.value }}</div>
+    </div>
+  </div>
 </div>
