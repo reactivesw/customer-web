@@ -1,13 +1,13 @@
 <div>
-  <div v-for="(attrValue, attrName) of computedAttributes">
-    <label>{{ $t(attrValue.label) }}: </label>
+  <div v-for="attrValues of computedAttributes.attributesValues">
+    <label>{{ $t(attrValues.label) }}: </label>
     <div>
       <div
         class="btn btn-sm"
-        v-for="option of attrValue.options"
-        :class="checkState(option)"
-        @click="$emit('selectVariant', option.sku)"
-        >{{ option.value }}</div>
+        v-for="value of attrValues.values"
+        :class="checkState(attrValues.name, value)"
+        @click="handleAttributeClick(attrValues.name, value)"
+        >{{ value }}</div>
     </div>
   </div>
 </div>

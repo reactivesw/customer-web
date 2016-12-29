@@ -23,9 +23,9 @@ export default {
 
     const variants = getCurrentVariants(state)
 
-    const currentVariant = variants.filter((variant) => {
+    const currentVariant = variants.find((variant) => {
       return variant.sku === sku
-    })[0]
+    })
     return currentVariant
   },
 

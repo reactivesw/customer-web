@@ -10,7 +10,8 @@
 
       <VariantSelector
         v-if="computedAttributes"
-        :computedAttributes="computedAttributes"></VariantSelector>
+        :computedAttributes="computedAttributes"
+        @selectSku="handleSelectSku"></VariantSelector>
 
       <!-- TODO: implement this after cart finished. -->
       <button class="btn btn-lg btn-lg btn-block">{{ $t('product.addToCart') }}</button>
