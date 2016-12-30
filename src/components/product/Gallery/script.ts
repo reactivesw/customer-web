@@ -6,28 +6,8 @@ import 'slick-carousel/slick/slick-theme.scss'
 export default {
   name: 'Gallery',
 
-  // TODO: use actual images instead of placeholders
-  data () {
-    return {
-      slides: [
-        {
-          href: 'http://placehold.it/500/EF9A9A?text=pic1',
-          thumbnail: 'http://placehold.it/100/EF9A9A?text=pic1'
-        },
-        {
-          href: 'http://placehold.it/500/F48FB1?text=pic2',
-          thumbnail: 'http://placehold.it/100/F48FB1?text=pic2'
-        },
-        {
-          href: 'http://placehold.it/500/CE93D8?text=pic3',
-          thumbnail: 'http://placehold.it/100/CE93D8?text=pic3'
-        },
-        {
-          href: 'http://placehold.it/500/B39DDB?text=pic4',
-          thumbnail: 'http://placehold.it/100/B39DDB?text=pic4'
-        }
-      ]
-    }
+  props: {
+    slides: Array
   },
 
   mounted (this: Component) {
@@ -59,7 +39,12 @@ export default {
       slidesToShow: 3,
       variableWidth: true,
       infinite: false,
-      focusOnSelect: true
+      focusOnSelect: true,
+      arrows: true
     })
+  },
+
+  updated (this: Component) {
+
   }
 }

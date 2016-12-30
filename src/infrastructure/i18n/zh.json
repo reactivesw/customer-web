@@ -14,6 +14,8 @@
     "name": "名称",
     "description": "描述",
     "price": "价格",
-    "addToCart": "加入购物车"
+    "no_price": "暂无价格",
+    "addToCart": "加入购物车",
+    "attributes": "属性"
   }
 }

@@ -43,8 +43,8 @@ export default {
 function getCurrentVariants (state) {
   if (state.currentProduct) {
     return [
-      ...state.currentProduct.masterData.current.variants,
-      state.currentProduct.masterData.current.masterVariant
+      state.currentProduct.masterData.current.masterVariant,
+      ...state.currentProduct.masterData.current.variants
     ]
   } else {
     return []

@@ -2,20 +2,35 @@
   <div class="row">
     <div class="col-md-6">
 
-      <Gallery></Gallery>
+      <Gallery v-if="images" :slides="images"></Gallery>
 
     </div>
     <div class="col-md-6">
       <ProductInfo v-if="product && variant" :product="product" :variant="variant"></ProductInfo>
 
-      <VariantSelector
-        v-if="variantsAttributes"
-        :variantsAttributes="variantsAttributes"
-        :currentSku="currentSku"
+      <VariantSelector v-if="variantsAttributes && currentSku" :variantsAttributes="variantsAttributes" :currentSku="currentSku"
         @selectSku="handleSelectSku"></VariantSelector>
 
       <!-- TODO: implement this after cart finished. -->
       <button class="btn btn-lg btn-lg btn-block">{{ $t('product.addToCart') }}</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="2">{{ $t('product.attributes') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="attr of attributes">
+            <th scope="row">{{ $t(attr.label) }}</th>
+            <td>{{ attr.value }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
