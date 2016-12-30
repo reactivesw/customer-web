@@ -14,8 +14,8 @@ export default function computeVariantsAttributes(variants, productType) {
 }
 
 /**
- * get all combination attribute definitions from the Product Type definitin 
- * an extra 'values' field has all 'combination attribute' values of the current product. 
+ * get all combination attribute definitions from the Product Type definitin
+ * an extra 'values' field has all 'combination attribute' values of the current product.
  * The 'combination attribute' could be only one or nothing
  */
 function getCombinationAttributes(productType) {
@@ -37,7 +37,7 @@ function getCombinationAttributes(productType) {
 
 /**
  * get combination attributes and their values
- * create a map for variant's sku and its attributes 
+ * create a map for variant's sku and its attributes
  */
 function getValuesAndSku(variants, attributesValues) {
   const skuAttributeMap = {}
@@ -60,7 +60,8 @@ function getVariantAttributes(variant, attributesValues) {
   attributesValues.forEach(attributeValues => {
     const variantAttribute = getVariantAttribute(variant, attributeValues)
     const currentValue = variantAttribute.value
-    variantAttributes[variantAttribute.name] = variantAttribute.value
+
+    variantAttributes[variantAttribute.name] = currentValue
     addNewValue(attributeValues, currentValue)
   })
   return variantAttributes
