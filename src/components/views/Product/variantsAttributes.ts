@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 
 const COMBINATION_UNIQUE = 'CombinationUnique'
 
-export default function computeAttributes(variants, productType) {
+export default function computeVariantsAttributes(variants, productType) {
   let result: any = false
   if (variants && productType) {
     const combinationAttributes = getCombinationAttributes(productType)

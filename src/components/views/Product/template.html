@@ -9,8 +9,9 @@
       <ProductInfo v-if="product && variant" :product="product" :variant="variant"></ProductInfo>
 
       <VariantSelector
-        v-if="computedAttributes"
-        :computedAttributes="computedAttributes"
+        v-if="variantsAttributes"
+        :variantsAttributes="variantsAttributes"
+        :currentSku="currentSku"
         @selectSku="handleSelectSku"></VariantSelector>
 
       <!-- TODO: implement this after cart finished. -->

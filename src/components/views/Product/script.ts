@@ -11,7 +11,7 @@ import VariantSelector from 'src/components/product/VariantSelector'
 import * as productsTypes from 'src/infrastructure/store/products_types'
 
 // help funciton
-import computeAttributes from './computeAttributes'
+import computeVariantsAttributes from './variantsAttributes'
 
 export default {
   name: 'Product',
@@ -23,16 +23,17 @@ export default {
       productType: productsTypes.GET_CURRENT_PRODUCT_TYPE
     }),
 
-    // the data passed to VariantSelector. It has three parts:
+    // The 'variantsAttributes' is used by VariantSelector. 
+    // It only depends on 'variants' and 'productType'. It has two parts:
     // 1. attributesValues: has all combination attributees and their values, used to render variant selector
     // 2. skuAttributeMap: an object that has all skus and their combination attributes 
-    // 3. selectedSku: the currently selected sku 
-    computedAttributes: function(this: Component) {
-      const valuesAndSku = computeAttributes(this['variants'], this['productType'])
-      return  {
-        ...valuesAndSku,
-        selectedSku: this['variant'].sku
-      }
+    variantsAttributes(this: Component) {
+      return computeVariantsAttributes(this['variants'], this['productType'])
+    },
+
+    // also passed to VariantSelector to compute visual states
+    currentSku(this: Component) {
+      return this['variant'].sku
     }
   },
 
