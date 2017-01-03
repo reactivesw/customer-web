@@ -3,6 +3,32 @@ import 'slick-carousel'
 import 'slick-carousel/slick/slick.scss'
 import 'slick-carousel/slick/slick-theme.scss'
 
+const fullsizeOptions = {
+  asNavFor: '.product-gallery-thumbnails',
+  infinite: false,
+  arrows: false,
+}
+
+const thumbnailOptions = {
+  asNavFor: '.product-gallery-fullsizes',
+  centerMode: true,  // put selected slide to the middle
+  variableWidth: true, // no gap between slides
+  infinite: false,  // no cyclic sliding
+  focusOnSelect: true,  // allwo click to select
+}
+
+function initGallery(vm: Component) {
+  const fullsizes = $(vm['$refs'].fullsizes)
+  const thumbnails = $(vm['$refs'].thumbnails)
+
+  // setup fullsizes images slider
+  // slick-carousel docuemnt url https://github.com/kenwheeler/slick/
+  let fullsizesInstance = fullsizes['slick'](fullsizeOptions)
+
+  // setup thumbnails images slider
+  let thumbnailsInstance = thumbnails['slick'](thumbnailOptions)
+}
+
 export default {
   name: 'Gallery',
 
@@ -10,42 +36,19 @@ export default {
     slides: Array
   },
 
-  mounted (this: Component) {
-    const fullsizes = $(this['$refs'].fullsizes)
-    const thumbnails = $(this['$refs'].thumbnails)
-
-    // setup fullsizes images slider
-    let fullsizesInstance = fullsizes['slick']({
-      asNavFor: '.product-gallery-thumbnails',
-      slidesToShow: 1,
-      fade: true,
-      infinite: false,
-      arrows: false,
-
-      // turn animation to slide in small screen for better experience
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            fade: false
-          }
-        }
-      ]
-    })
-
-    // setup thumbnails images slider
-    let thumbnailsInstance = thumbnails['slick']({
-      asNavFor: '.product-gallery-fullsizes',
-      slidesToShow: 1,
-      centerMode: true,
-      variableWidth: true,
-      infinite: false,
-      focusOnSelect: true,
-      arrows: true
-    })
+  mounted(this: Component) {
+    initGallery(this)
   },
 
-  updated (this: Component) {
+  // need to undo existing jQuery initialization when data changes
+  beforeUpdate(this: Component) {
+    $(this['$refs'].fullsizes)['slick']('unslick')
+    $(this['$refs'].thumbnails)['slick']('unslick')
+  },
 
+  // need to initialize gallery when data changes
+  // jQuery operation happens after Vue rendering
+  updated(this: Component) {
+    initGallery(this)
   }
 }
