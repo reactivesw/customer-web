@@ -17,5 +17,8 @@
     "no_price": "暂无价格",
     "addToCart": "加入购物车",
     "attributes": "产品参数"
+  },
+  "cart": {
+    "order_summary": "订单概览"
   }
 }

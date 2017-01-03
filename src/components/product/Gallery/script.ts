@@ -36,18 +36,20 @@ export default {
     slides: Array
   },
 
+  // to make the jQuery operatoin work, perform three steps
+  // 1. initialize in mounted
+  // 2. undo initialization in beforeUpdate
+  // 3. initialize in updated
+  // 2 and 3 happen whenever there is a prop data change
   mounted(this: Component) {
     initGallery(this)
   },
 
-  // need to undo existing jQuery initialization when data changes
   beforeUpdate(this: Component) {
     $(this['$refs'].fullsizes)['slick']('unslick')
     $(this['$refs'].thumbnails)['slick']('unslick')
   },
 
-  // need to initialize gallery when data changes
-  // jQuery operation happens after Vue rendering
   updated(this: Component) {
     initGallery(this)
   }

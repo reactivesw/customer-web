@@ -1,0 +1,36 @@
+.lineitem-card {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+
+  .card-img {
+    order: -1;
+    height: 100%;
+    padding: 5px;
+  }
+
+  .card-block {
+    order: 0;
+    flex: 0 0 calc(100% - 100);
+
+    input[type="number"] {
+      width: 2rem;
+      text-align: center;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
+    }
+  }
+
+  .lineitem-cart-remove {
+    margin-left: auto;
+    color: $gray-light;
+    background-color: $gray-lighter;
+    border: none;
+  }
+}

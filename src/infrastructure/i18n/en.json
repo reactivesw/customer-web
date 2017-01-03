@@ -17,5 +17,8 @@
     "no_price": "No Price",
     "addToCart": "ADD TO CART",
     "attributes": "Attributes"
+  },
+  "cart": {
+    "order_summary": "Order Summary"
   }
 }
