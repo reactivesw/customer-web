@@ -36,7 +36,8 @@ export default {
     // setup thumbnails images slider
     let thumbnailsInstance = thumbnails['slick']({
       asNavFor: '.product-gallery-fullsizes',
-      slidesToShow: 3,
+      slidesToShow: 1,
+      centerMode: true,
       variableWidth: true,
       infinite: false,
       focusOnSelect: true,
