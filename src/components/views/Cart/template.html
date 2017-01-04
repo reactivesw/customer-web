@@ -1,14 +1,17 @@
 <div class="container">
-  <div class="row">
+  <div class="row flex-items-middle">
     <div class="col-md-8">
-      <BackToShopping></BackToShopping>
+      <a href="javascript:void(0)" @click="$router.back()">&lt; {{$t('cart.back_to_shopping')}}</a>
+      <hr>
 
       <Lineitem v-for="item of 3" :lineitem="{id: item}"></Lineitem>
-    </div>
 
+    </div>
     <div class="col-md-4">
 
       <OrderSummary></OrderSummary>
+
+      <div class="btn btn-block btn-success">{{ $t('cart.checkout') }}</div>
 
     </div>
   </div>

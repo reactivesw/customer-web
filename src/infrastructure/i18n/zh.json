@@ -19,6 +19,9 @@
     "attributes": "产品参数"
   },
   "cart": {
-    "order_summary": "订单概览"
+    "order_summary": "订单概览",
+    "back_to_shopping": "继续购物",
+    "checkout": "去结算",
+    "subtotal": "小结"
   }
 }
