@@ -22,5 +22,22 @@ export default {
         return noImagePlaceHolder
       }
     }
+  },
+
+  methods: {
+    handleChangeQuantity(this: Component, event) {
+      const MAX_LIMIT = 99
+
+      const input = event.target
+      let newQuantity = event.target.valueAsNumber
+
+      if (newQuantity && newQuantity > 0 && newQuantity <= MAX_LIMIT) { // only emit event if the new quantity is legal
+        this['$emit']('changeQuantity', { lineItemId: this['lineItem'].id, quantity: newQuantity })
+      } else if (newQuantity === NaN || newQuantity <= 0) {
+        input.value = 1
+      } else if (newQuantity > MAX_LIMIT) {
+        input.value = MAX_LIMIT
+      }
+    }
   }
 }

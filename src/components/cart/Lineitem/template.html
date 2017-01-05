@@ -13,7 +13,8 @@
             name="quantity"
             class="form-control form-control-sm lineitem-quantity"
             type="number"
-            :value="lineItem.quantity">
+            :value="lineItem.quantity"
+            @input="handleChangeQuantity">
         </div>
       </div>
 

@@ -1,9 +1,10 @@
-import { getCart, addToCart } from 'src/infrastructure/api_client'
+import { getCart, addToCart, changeLineItemQuantity } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
 import {
   ADD_TO_CART,
   FETCH_CART,
-  SET_CART } from '../../carts_types'
+  SET_CART,
+  SET_LINE_ITEM_QUANTITY } from '../../carts_types'
 
 export default {
   async [FETCH_CART]({ commit }) {
@@ -12,20 +13,30 @@ export default {
     commit(SET_CART, cart)
   },
 
-  async [ADD_TO_CART]({ state, commit }, { productId, variantId, quantity }) {
-    const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
-    const cartId = state.cart.id
-    const cartVersion = state.cart.version
-    const lineitemDraft = {
-      productId,
-      variantId,
-      quantity: quantity || 1
-    }
-    const cart = await addToCart({
-      cartId,
-      lineitemDraft,
-      cartVersion
-    })
+  /**
+   * payload has following fields:
+   * - productId
+   * - variantId
+   * - quantity
+   *
+   * @param {any} { state, commit }
+   * @param {any} payload
+   */
+  async [ADD_TO_CART]({ state, commit }, payload) {
+    const cart = await addToCart(state.cart.id, state.cart.version, payload)
+    commit(SET_CART, cart)
+  },
+
+  /**
+   * payload has following fields:
+   * - lineItemId
+   * - quantity
+   *
+   * @param {any} { state, commit }
+   * @param {any} payload
+   */
+  async [SET_LINE_ITEM_QUANTITY]({ state, commit }, payload) {
+    const cart = await changeLineItemQuantity(state.cart.id, state.cart.version, payload)
     commit(SET_CART, cart)
   }
 }

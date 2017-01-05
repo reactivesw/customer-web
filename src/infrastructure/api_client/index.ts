@@ -35,11 +35,20 @@ export async function getCart({ customerId, anonymousId }: any) {
  * @param {any} { cartId, lineitemDraft, version }
  * @returns
  */
-export async function addToCart({ cartId, lineitemDraft, cartVersion }) {
-  const addLineItemAction = buildAddLineItemAction(lineitemDraft)
+export async function addToCart(cartId, cartVersion, options) {
+  const addLineItemAction = buildAction(CARTS_ACTIONS.ADD_LINE_ITEM, options)
+  return updateCart(cartId, cartVersion, [addLineItemAction])
+}
+
+export async function changeLineItemQuantity(cartId, cartVersion, options) {
+  const changeLineItemQuantityAction = buildAction(CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, options)
+  return updateCart(cartId, cartVersion, [changeLineItemQuantityAction])
+}
+
+async function updateCart(cartId, version, actions) {
   const updateRequest = {
-    actions: [ addLineItemAction ],
-    version: cartVersion
+    actions,
+    version
   }
   const response = await instance.put(`${endpoints.CARTS}/${cartId}`, updateRequest)
   return response.data
@@ -102,11 +111,9 @@ async function getApiResult(url: string, params?) {
   return response.data.results
 }
 
-function buildAddLineItemAction(options) {
+function buildAction(actionType, options) {
   return {
-    action: CARTS_ACTIONS.ADD_LINE_ITEM,
-    productId: options.productId,
-    variantId: options.variantId,
-    quantity: options.quantity
+    action: actionType,
+    ...options
   }
 }

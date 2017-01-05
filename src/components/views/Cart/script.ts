@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import { GET_CART } from 'src/infrastructure/store/carts_types'
+import { GET_CART, SET_LINE_ITEM_QUANTITY } from 'src/infrastructure/store/carts_types'
 
 import LineItem from 'src/components/cart/LineItem'
 import OrderSummary from 'src/components/cart/OrderSummary'
@@ -28,6 +28,17 @@ export default {
         currencyCode: this['cart'].currencyCode,
         centAmount: subTotalCentAmount
       }
+    }
+  },
+
+  methods: {
+    ...mapActions({
+      changeQuantitya: SET_LINE_ITEM_QUANTITY
+    }),
+
+    changeQuantity(e) {
+      console.log(e)
+      this['changeQuantitya'](e)
     }
   },
 
