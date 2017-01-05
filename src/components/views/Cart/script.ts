@@ -12,9 +12,20 @@ export default {
     ...mapGetters({
       cart: GET_CART
     }),
+
     isEmpty(this: Vue.Component) {
       const lineItems = this['cart'].lineItems
       return (!lineItems) || (lineItems.length === 0)
+    },
+
+    subTotal(this: Vue.Component) {
+      const subTotalCentAmount = this['cart'].lineItems.reduce((sum, lineItem) => {
+        return sum += lineItem.price.value.centAmount * lineItem.quantity
+      }, 0)
+      return {
+        currencyCode: this['cart'].currencyCode,
+        centAmount: subTotalCentAmount
+      }
     }
   },
 

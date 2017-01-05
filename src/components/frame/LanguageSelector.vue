@@ -2,7 +2,7 @@
   <select class="form-control language-selector" @change="changeLang" id="exampleSelect1">
     <option value="select" selected>{{ $t('header.language') }}</option>
     <option value="en">English</option>
-    <option value="zh">中文(简体)</option>
+    <option value="zh_cn">中文(简体)</option>
   </select>
 </template>
 

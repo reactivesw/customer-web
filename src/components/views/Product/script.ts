@@ -10,6 +10,7 @@ import VariantSelector from 'src/components/product/VariantSelector'
 
 // store method names
 import * as productsTypes from 'src/infrastructure/store/products_types'
+import * as cartsTypes from 'src/infrastructure/store/carts_types'
 
 // help funciton
 import computeVariantsAttributes from './variantsAttributes'
@@ -98,6 +99,7 @@ export default {
   methods: {
     ...mapActions({
       fetchProduct: productsTypes.FETCH_CURRENT_PRODUCT,
+      addToCart: cartsTypes.ADD_TO_CART
     }),
 
     handleSelectSku(this: Component, sku) {

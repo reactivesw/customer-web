@@ -37,15 +37,11 @@ export async function getCart({ customerId, anonymousId }: any) {
  */
 export async function addToCart({ cartId, lineitemDraft, cartVersion }) {
   const addLineItemAction = buildAddLineItemAction(lineitemDraft)
-  const updateRequest = JSON.stringify({
+  const updateRequest = {
     actions: [ addLineItemAction ],
     version: cartVersion
-  })
-  const params = {
-    cartId,
-    updateRequest
   }
-  const response = await instance.put(endpoints.CARTS, params)
+  const response = await instance.put(`${endpoints.CARTS}/${cartId}`, updateRequest)
   return response.data
 }
 

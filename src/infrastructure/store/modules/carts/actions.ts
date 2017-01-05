@@ -7,19 +7,19 @@ import {
 
 export default {
   async [FETCH_CART]({ commit }) {
-    const anonymousId = 'anonymousId' // TODO: Cookies.get('anonymousId')
+    const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
     const cart = await getCart({ anonymousId })
     commit(SET_CART, cart)
   },
 
   async [ADD_TO_CART]({ state, commit }, { productId, variantId, quantity }) {
-    const anonymousId = 'anonymousId' // TODO: Cookies.get('anonymousId')
+    const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
     const cartId = state.cart.id
     const cartVersion = state.cart.version
     const lineitemDraft = {
       productId,
       variantId,
-      quantity
+      quantity: quantity || 1
     }
     const cart = await addToCart({
       cartId,

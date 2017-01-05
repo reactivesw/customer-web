@@ -24,8 +24,8 @@ function initLang() {
 
 function loadLocales(Vue) {
   let en = require(`./en.json`)
-  let zh = require(`./zh.json`)
-  let locales = { en, zh }
+  let zh_cn = require(`./zh_cn.json`)
+  let locales = { en, zh_cn }
 
   // set lang context
   Object.keys(locales).forEach(key => {

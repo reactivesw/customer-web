@@ -12,7 +12,9 @@
         @selectSku="handleSelectSku"></VariantSelector>
 
       <!-- TODO: implement this after cart finished. -->
-      <button class="btn btn-lg btn-lg btn-block">{{ $t('product.addToCart') }}</button>
+      <button
+        class="btn btn-lg btn-lg btn-block"
+        @click="addToCart({productId: product.id, variantId: variant.id})">{{ $t('product.addToCart') }}</button>
     </div>
   </div>
 
