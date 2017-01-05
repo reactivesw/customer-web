@@ -19,6 +19,8 @@ export default {
     },
 
     subTotal(this: Vue.Component) {
+      if (typeof this['cart'].lineItems === 'undefined') return
+
       const subTotalCentAmount = this['cart'].lineItems.reduce((sum, lineItem) => {
         return sum += lineItem.price.value.centAmount * lineItem.quantity
       }, 0)
