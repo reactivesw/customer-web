@@ -9,7 +9,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@types/jquery": "^2.0.34",
     "axios": "^0.15.3",
     "bootstrap": "^4.0.0-alpha.5",
     "jquery": "^3.1.1",
@@ -24,6 +23,7 @@
     "vuex-router-sync": "^4.0.1"
   },
   "devDependencies": {
+    "@types/jquery": "^2.0.34",
     "@types/es6-shim": "^0.31.32",
     "@types/lodash": "^4.14.44",
     "autoprefixer": "^6.4.0",

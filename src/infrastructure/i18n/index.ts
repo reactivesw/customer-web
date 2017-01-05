@@ -1,8 +1,6 @@
-declare function require(moduleName: string): any
-
 import * as Vue from 'vue'
 import * as VueI18n from 'vue-i18n'
-import Cookies = require('js-cookie')
+import * as Cookies from 'js-cookie'
 
 export default function (Vue) {
   Vue.use(VueI18n)
@@ -39,7 +37,7 @@ function customizeTranslation(Vue) {
   let oldT = Vue.prototype['$t']
 
   Vue.prototype['$t'] = function (this: Vue.Component, key, ...args) {
-    let result = 'Locale String Not Found'
+    let result
     if (typeof key === 'object') {
       result = key[Vue.config['lang']]
       if (!result) {

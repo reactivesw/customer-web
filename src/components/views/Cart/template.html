@@ -4,7 +4,7 @@
       <a href="javascript:void(0)" @click="$router.back()">&lt; {{$t('cart.back_to_shopping')}}</a>
       <hr>
 
-      <Lineitem v-for="item of 3" :lineitem="{id: item}"></Lineitem>
+      <Lineitem v-for="lineitem of cart.lineitems" :lineitem="lineitem"></Lineitem>
 
     </div>
     <div class="col-md-4">
