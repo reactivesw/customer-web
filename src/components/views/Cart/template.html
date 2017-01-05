@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row flex-items-middle">
-    <div class="col-md-8">
+    <div :class="isEmpty ? 'col-md-12' : 'col-md-8'">
       <a href="javascript:void(0)" @click="$router.back()">&lt; {{$t('cart.back_to_shopping')}}</a>
       <hr>
 
-      <Lineitem v-for="lineitem of cart.lineitems" :lineitem="lineitem"></Lineitem>
+      <LineItem v-if="!isEmpty" v-for="lineItem of cart.lineItems" :lineItem="lineItem"></LineItem>
+
+      <h5 v-if="isEmpty">{{ $t('cart.empty') }}</h5>
 
     </div>
-    <div class="col-md-4">
+    <div v-if="!isEmpty" class="col-md-4">
 
       <OrderSummary></OrderSummary>
 

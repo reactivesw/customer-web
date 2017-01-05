@@ -22,6 +22,7 @@
     "order_summary": "订单概览",
     "back_to_shopping": "继续购物",
     "checkout": "去结算",
-    "subtotal": "小结"
+    "subtotal": "小结",
+    "empty": "购物车为空"
   }
 }

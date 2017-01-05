@@ -1,9 +1,9 @@
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
 export default {
-  name: 'Lineitem',
+  name: 'LineItem',
 
   props: {
-    lineitem: Object
+    lineItem: Object
   }
 }

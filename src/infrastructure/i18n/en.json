@@ -22,6 +22,7 @@
     "order_summary": "Order Summary",
     "back_to_shopping": "Back To Shopping",
     "checkout": "CHECKOUT",
-    "subtotal": "Sub Total"
+    "subtotal": "Sub Total",
+    "empty": "Empty Cart"
   }
 }
