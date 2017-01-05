@@ -10,5 +10,5 @@ export function currencyNameToSymbol (currencyName) {
 }
 
 export function MoneyToString (priceObj) {
-  return priceObj ? `${currencyNameToSymbol(priceObj.currencyCode)} ${priceObj.centAmount / 100}` : ''
+  return priceObj ? `${currencyNameToSymbol(priceObj.currencyCode)} ${priceObj.centAmount / 100}` : 'NULL price'
 }

@@ -18,11 +18,7 @@ export default {
     },
 
     money(this: Component) {
-      if (this['product'].masterVariant.prices.length === 0) {
-        return this['$t']('product.no_price')
-      } else {
-        return MoneyToString(this['product'].masterVariant.prices[0].value)
-      }
+      return MoneyToString(this['product'].masterVariant.prices[0].value)
     }
   },
 
