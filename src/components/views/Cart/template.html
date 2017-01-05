@@ -8,7 +8,8 @@
         v-if="!isEmpty"
         v-for="lineItem of cart.lineItems"
         :lineItem="lineItem"
-        @changeQuantity="changeQuantity"></LineItem>
+        @changeQuantity="changeQuantity"
+        @removeLineItem="removeLineItem"></LineItem>
 
       <h5 v-if="isEmpty">{{ $t('cart.empty') }}</h5>
 

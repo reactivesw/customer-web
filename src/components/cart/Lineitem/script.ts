@@ -31,9 +31,9 @@ export default {
       const input = event.target
       let newQuantity = event.target.valueAsNumber
 
-      if (newQuantity && newQuantity > 0 && newQuantity <= MAX_LIMIT) { // only emit event if the new quantity is legal
+      if (newQuantity > 0 && newQuantity <= MAX_LIMIT) { // only emit event if the new quantity is legal
         this['$emit']('changeQuantity', { lineItemId: this['lineItem'].id, quantity: newQuantity })
-      } else if (newQuantity === NaN || newQuantity <= 0) {
+      } else if (newQuantity === NaN || newQuantity <= 0) { // to remove, need to click the remove button
         input.value = 1
       } else if (newQuantity > MAX_LIMIT) {
         input.value = MAX_LIMIT

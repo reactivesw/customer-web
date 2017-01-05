@@ -19,7 +19,9 @@
       </div>
 
       <div class="col-xs-3">
-        <button class="btn lineitem-cart-remove">&times;</button>
+        <button
+          class="btn lineitem-cart-remove"
+          @click="$emit('removeLineItem', { lineItemId: lineItem.id })">&times;</button>
       </div>
     </div>
 

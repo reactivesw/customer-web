@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import { GET_CART, SET_LINE_ITEM_QUANTITY } from 'src/infrastructure/store/carts_types'
+import { GET_CART, SET_LINE_ITEM_QUANTITY, REMOVE_LINE_ITEM } from 'src/infrastructure/store/carts_types'
 
 import LineItem from 'src/components/cart/LineItem'
 import OrderSummary from 'src/components/cart/OrderSummary'
@@ -19,8 +19,6 @@ export default {
     },
 
     subTotal(this: Vue.Component) {
-      if (typeof this['cart'].lineItems === 'undefined') return
-
       const subTotalCentAmount = this['cart'].lineItems.reduce((sum, lineItem) => {
         return sum += lineItem.price.value.centAmount * lineItem.quantity
       }, 0)
@@ -33,13 +31,9 @@ export default {
 
   methods: {
     ...mapActions({
-      changeQuantitya: SET_LINE_ITEM_QUANTITY
-    }),
-
-    changeQuantity(e) {
-      console.log(e)
-      this['changeQuantitya'](e)
-    }
+      changeQuantity: SET_LINE_ITEM_QUANTITY,
+      removeLineItem: REMOVE_LINE_ITEM
+    })
   },
 
   components: {

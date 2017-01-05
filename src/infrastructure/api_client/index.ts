@@ -29,10 +29,12 @@ export async function getCart({ customerId, anonymousId }: any) {
 }
 
 /**
- * send a addLineItem update request,
+ * send a addLineItem update action.
  *
  * @export
- * @param {any} { cartId, lineitemDraft, version }
+ * @param {any} cartId
+ * @param {any} cartVersion
+ * @param {any} options
  * @returns
  */
 export async function addToCart(cartId, cartVersion, options) {
@@ -40,18 +42,32 @@ export async function addToCart(cartId, cartVersion, options) {
   return updateCart(cartId, cartVersion, [addLineItemAction])
 }
 
+/**
+ * send a removeLineItem update action.
+ *
+ * @export
+ * @param {any} cartId
+ * @param {any} cartVersion
+ * @param {any} options
+ * @returns
+ */
+export async function removeLineItem(cartId, cartVersion, options) {
+  const removeLineItemAction = buildAction(CARTS_ACTIONS.REMOVE_LINE_ITEM, options)
+  return updateCart(cartId, cartVersion, [removeLineItemAction])
+}
+
+/**
+ * change lineitem quantity in cart.
+ *
+ * @export
+ * @param {any} cartId
+ * @param {any} cartVersion
+ * @param {any} options
+ * @returns
+ */
 export async function changeLineItemQuantity(cartId, cartVersion, options) {
   const changeLineItemQuantityAction = buildAction(CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, options)
   return updateCart(cartId, cartVersion, [changeLineItemQuantityAction])
-}
-
-async function updateCart(cartId, version, actions) {
-  const updateRequest = {
-    actions,
-    version
-  }
-  const response = await instance.put(`${endpoints.CARTS}/${cartId}`, updateRequest)
-  return response.data
 }
 
 /**
@@ -116,4 +132,13 @@ function buildAction(actionType, options) {
     action: actionType,
     ...options
   }
+}
+
+async function updateCart(cartId, version, actions) {
+  const updateRequest = {
+    actions,
+    version
+  }
+  const response = await instance.put(`${endpoints.CARTS}/${cartId}`, updateRequest)
+  return response.data
 }
