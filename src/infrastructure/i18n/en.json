@@ -6,6 +6,7 @@
   "header": {
     "search": "Search",
     "login": "Log In",
+    "signup": "Sign Up",
     "cart": "Cart",
     "language": "Lang"
   },
@@ -24,5 +25,9 @@
     "checkout": "CHECKOUT",
     "subtotal": "Sub Total",
     "empty": "Empty Cart"
+  },
+  "form": {
+    "email_address": "Email Address",
+    "password": "Password"
   }
 }

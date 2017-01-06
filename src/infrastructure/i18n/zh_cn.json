@@ -6,6 +6,7 @@
   "header": {
     "search": "搜索",
     "login": "登陆",
+    "signup": "注册",
     "cart": "购物车",
     "language": "语言"
   },
@@ -24,5 +25,9 @@
     "checkout": "去结算",
     "subtotal": "小结",
     "empty": "购物车为空"
+  },
+  "form": {
+    "email_address": "邮件地址",
+    "password": "密码"
   }
 }

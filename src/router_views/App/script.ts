@@ -3,15 +3,18 @@ import { mapGetters, mapActions } from 'vuex'
 import TheHeader from 'src/components/frame/TheHeader'
 import TheFooter from 'src/components/frame/TheFooter'
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
+import LoginModal from 'src/components/Login'
 import * as categoriesType from 'src/infrastructure/store/categories_types'
 import * as cartType from 'src/infrastructure/store/carts_types'
 
 export default {
   name: 'app',
 
-  computed: mapGetters({
-    categories: categoriesType.GET_CATEGORIES
-  }),
+  computed: {
+    ...mapGetters({
+      categories: categoriesType.GET_CATEGORIES
+    })
+  },
 
   methods: {
     ...mapActions({
@@ -28,6 +31,7 @@ export default {
   components: {
     TheHeader,
     TheFooter,
-    CategoriesMenu
+    CategoriesMenu,
+    LoginModal
   }
 }

@@ -6,6 +6,7 @@ import * as Vuex from 'vuex'
 import categories from './modules/categories'
 import products from './modules/products'
 import carts from './modules/carts'
+import modal_dialogs from './modules/modal_dialogs'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
   modules: {
     categories,
     products,
-    carts
+    carts,
+    modal_dialogs
   },
   strict: debug
 })
