@@ -28,6 +28,8 @@
   },
   "form": {
     "email_address": "Email Address",
-    "password": "Password"
+    "password": "Password",
+    "forgot_pwd": "Forgot Password?",
+    "repeat_pwd": "Repeat Password"
   }
 }

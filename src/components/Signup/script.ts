@@ -4,21 +4,21 @@ import ModalDialog from 'src/components/frame/ModalDialog'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 
 export default {
-  name: 'Login',
+  name: 'Signup',
 
   computed: {
-    showLogin(this: Component) { return this['$store'].state.modal_dialogs.showLogin }
+    showSignup(this: Component) { return this['$store'].state.modal_dialogs.showSignup }
   },
 
   methods: {
     ...mapActions({
-      hideLogin: modalDialogsTypes.HIDE_LOGIN,
-      showSignup: modalDialogsTypes.SHOW_SIGNUP
+      hideSignup: modalDialogsTypes.HIDE_SIGNUP,
+      showLogin: modalDialogsTypes.SHOW_LOGIN
     }),
 
-    goSignup(this: Component) {
-      this['hideLogin']()
-      this['showSignup']()
+    goLogin(this: Component) {
+      this['hideSignup']()
+      this['showLogin']()
     }
   },
 

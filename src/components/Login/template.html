@@ -1,4 +1,4 @@
-<form v-if="showLogin">
+<form>
   <ModalDialog :title="$t('header.login')" :show="showLogin" @hide="hideLogin()">
 
     <div slot="body">
@@ -16,7 +16,8 @@
     </div>
 
     <div slot="footer">
-      <button class="btn btn-link">{{ $t('header.signup') }}</button>
+      <button class="btn btn-link text-muted">{{ $t('form.forgot_pwd') }}</button>
+      <button class="btn btn-link" @click="goSignup">{{ $t('header.signup') }}</button>
       <button type="submit" class="btn btn-primary">{{ $t('header.login') }}</button>
     </div>
 

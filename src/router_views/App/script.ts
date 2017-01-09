@@ -3,7 +3,8 @@ import { mapGetters, mapActions } from 'vuex'
 import TheHeader from 'src/components/frame/TheHeader'
 import TheFooter from 'src/components/frame/TheFooter'
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
-import LoginModal from 'src/components/Login'
+import Login from 'src/components/Login'
+import Signup from 'src/components/Signup'
 import * as categoriesType from 'src/infrastructure/store/categories_types'
 import * as cartType from 'src/infrastructure/store/carts_types'
 
@@ -32,6 +33,7 @@ export default {
     TheHeader,
     TheFooter,
     CategoriesMenu,
-    LoginModal
+    Login,
+    Signup
   }
 }
