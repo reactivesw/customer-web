@@ -16,9 +16,18 @@ export default {
       showSignup: modalDialogsTypes.SHOW_SIGNUP
     }),
 
+    submitLogin() {
+      // TODO: check form field validity, this['$refs'].signupForm.checkValidity()
+    },
+
     goSignup(this: Component) {
       this['hideLogin']()
       this['showSignup']()
+    },
+
+    goForgotPwd(this: Component) {
+      this['hideLogin']()
+      // TODO: redirect to forgot password page
     }
   },
 

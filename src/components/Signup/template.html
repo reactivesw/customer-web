@@ -1,27 +1,27 @@
-<form>
+<form ref="signupForm" @submit.prevent="submitSignup">
   <ModalDialog :title="$t('header.signup')" :show="showSignup" @hide="hideSignup()">
 
     <div slot="body">
 
       <div class="form-group">
         <label for="signup-email">{{ $t('form.email_address') }}</label>
-        <input type="email" class="form-control" id="signup-email">
+        <input type="email" class="form-control" id="signup-email" required>
       </div>
 
       <div class="form-group">
         <label for="signup-pwd">{{ $t('form.password') }}</label>
-        <input type="password" class="form-control" id="signup-pwd">
+        <input type="password" class="form-control" id="signup-pwd" required>
       </div>
 
       <div class="form-group">
         <label for="signup-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
-        <input type="password" class="form-control" id="signup-repeat-pwd">
+        <input type="password" class="form-control" id="signup-repeat-pwd" required>
       </div>
 
     </div>
 
     <div slot="footer">
-      <button class="btn btn-link" @click="goLogin">{{ $t('header.login') }}</button>
+      <button type="button" class="btn btn-link" @click="goLogin">{{ $t('header.login') }}</button>
       <button type="submit" class="btn btn-primary">{{ $t('header.signup') }}</button>
     </div>
 
