@@ -23,7 +23,6 @@ export default {
       return category.slug === slug
     })
     const products = await productApi.getProductProjections(category.id)
-    console.log(products)
     commit(SET_CURRENT_CATEGORY_PRODUCTS, products)
   },
 

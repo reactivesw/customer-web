@@ -2,6 +2,7 @@ import * as Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/frame/ModalDialog'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
+import * as authTypes from 'src/infrastructure/store/auth_types'
 
 import * as GSignInButton from 'vue-google-signin-button'
 Vue.use(GSignInButton)
@@ -24,7 +25,8 @@ export default {
   methods: {
     ...mapActions({
       hideLogin: modalDialogsTypes.HIDE_LOGIN,
-      showSignup: modalDialogsTypes.SHOW_SIGNUP
+      showSignup: modalDialogsTypes.SHOW_SIGNUP,
+      signIn: authTypes.SIGN_IN
     }),
 
     submitLogin() {
@@ -41,21 +43,14 @@ export default {
       // TODO: redirect to forgot password page
     },
 
-    onGoogleSignIn(googleUser) {
+    onGoogleSignIn(this: Vue.Component, googleUser) {
       const profile = googleUser.getBasicProfile()
       const id_token = googleUser.getAuthResponse().id_token
-      console.log(id_token) // TODO: send id_token to backend
+      this['signIn']({type: 'google', id_token})
     },
 
     onGoogleSignInError(error) {
       console.log('sign in error: ', error) // TODO: tell user their is a error happend
-    },
-
-    signout() {
-      const auth2 = gapi.auth2.getAuthInstance()
-      auth2.signOut().then(function () {
-        console.log('User signed out.')
-      })
     }
   },
 

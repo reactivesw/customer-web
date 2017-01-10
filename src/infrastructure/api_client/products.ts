@@ -1,5 +1,8 @@
 import http from './http'
-import * as endpoints from './endpoints'
+
+const PRODUCTS = '/products'
+const PRODUCT_TYPES = '/product-types'
+const PRODUCT_PROJECTION = '/product-projections'
 
 /**
  * fetch product by product slug
@@ -8,7 +11,7 @@ import * as endpoints from './endpoints'
  * @param {string} productSlug
  */
 export async function getProduct(productSlug: string) {
-  const response = await http.get(endpoints.PRODUCTS, {
+  const response = await http.get(PRODUCTS, {
     params: {
       slug: productSlug
     }
@@ -24,7 +27,7 @@ export async function getProduct(productSlug: string) {
  * @returns
  */
 export async function getProductType(productTypeId: string) {
-  const response = await http.get(`${endpoints.PRODUCT_TYPES}/${productTypeId}`)
+  const response = await http.get(`${PRODUCT_TYPES}/${productTypeId}`)
   return response.data
 }
 
@@ -39,6 +42,6 @@ export async function getProductProjections(categorySlug: string) {
   const params = {
     where: `slug:${categorySlug}`
   }
-  const response = await http.get(endpoints.PRODUCT_PROJECTION, { params })
+  const response = await http.get(PRODUCT_PROJECTION, { params })
   return response.data.results
 }

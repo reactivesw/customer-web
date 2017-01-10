@@ -1,6 +1,7 @@
 import http from './http'
-import * as endpoints from './endpoints'
 import * as CARTS_ACTIONS from './carts_actions'
+
+const CARTS = '/carts'
 
 /**
  * fetch cart by customerId or anonymousId(if not logged in)
@@ -18,7 +19,7 @@ export async function getCart({ customerId, anonymousId }: any) {
   } else {
     return
   }
-  const response = await http.get(endpoints.CARTS, { params })
+  const response = await http.get(CARTS, { params })
   return response.data
 }
 
@@ -76,6 +77,6 @@ async function updateCart(cartId, version, actions) {
     actions,
     version
   }
-  const response = await http.put(`${endpoints.CARTS}/${cartId}`, updateRequest)
+  const response = await http.put(`${CARTS}/${cartId}`, updateRequest)
   return response.data
 }

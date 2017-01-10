@@ -1,5 +1,6 @@
 import http from './http'
-import * as endpoints from './endpoints'
+
+export const CATEGORIES = '/categories'
 
 /**
  * fetch all categories
@@ -8,6 +9,6 @@ import * as endpoints from './endpoints'
  * @returns
  */
 export async function getCategories() {
-  const response = await http.get(endpoints.CATEGORIES)
+  const response = await http.get(CATEGORIES)
   return response.data.results
 }
