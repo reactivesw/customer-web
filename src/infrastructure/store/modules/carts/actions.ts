@@ -1,4 +1,4 @@
-import { getCart, addToCart, removeLineItem, changeLineItemQuantity } from 'src/infrastructure/api_client'
+import { carts as cartsApi } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
 import {
   ADD_TO_CART,
@@ -10,7 +10,7 @@ import {
 export default {
   async [FETCH_CART]({ commit }) {
     const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
-    const cart = await getCart({ anonymousId })
+    const cart = await cartsApi.getCart({ anonymousId })
     commit(SET_CART, cart)
   },
 
@@ -24,7 +24,7 @@ export default {
    * @param {any} payload
    */
   async [ADD_TO_CART]({ state, commit }, payload) {
-    const cart = await addToCart(state.cart.id, state.cart.version, payload)
+    const cart = await cartsApi.addToCart(state.cart.id, state.cart.version, payload)
     commit(SET_CART, cart)
   },
 
@@ -36,7 +36,7 @@ export default {
    * @param {any} payload
    */
   async [REMOVE_LINE_ITEM]({ state, commit }, payload) {
-    const cart = await removeLineItem(state.cart.id, state.cart.version, payload)
+    const cart = await cartsApi.removeLineItem(state.cart.id, state.cart.version, payload)
     commit(SET_CART, cart)
   },
 
@@ -49,7 +49,7 @@ export default {
    * @param {any} payload
    */
   async [SET_LINE_ITEM_QUANTITY]({ state, commit }, payload) {
-    const cart = await changeLineItemQuantity(state.cart.id, state.cart.version, payload)
+    const cart = await cartsApi.changeLineItemQuantity(state.cart.id, state.cart.version, payload)
     commit(SET_CART, cart)
   }
 }
