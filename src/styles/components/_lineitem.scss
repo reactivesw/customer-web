@@ -1,13 +1,21 @@
+// lineitem-card is a horizontal card
 .lineitem-card {
-  padding: 5px;
-  display: flex;
   flex-direction: row;
 
   img {
-    width: 100%; // .card-img height will fill parent's height, it's width will keep orginal ratio
+    height: 5rem;
   }
 
   .lineitem-quantity {
     width: 3rem;
+  }
+
+  // change card-footer border style to match horizontal card.
+  .card-footer {
+    border-top: none;
+    border-left: $card-border-width solid $card-border-color;
+    &:last-child {
+      @include border-radius(0 $card-border-radius-inner $card-border-radius-inner 0);
+    }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <nav class="the-header navbar navbar-fixed-top navbar-dark bg-inverse">
+  <nav class="the-header navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
     <div class="container">
 
       <router-link
@@ -8,11 +8,12 @@
         {{ $t('meta.brand') }}
       </router-link>
 
-      <button class="navbar-toggler hidden-sm-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
-        <ul class="nav navbar-nav float-xs-right text-xs-right">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a href="#" class="nav-link">{{ $t('header.search') }}</a>
           </li>

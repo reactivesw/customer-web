@@ -25,9 +25,7 @@ export default {
     })
   },
 
-  watch: {
-    show(this: Component) {
-      this['updateState']()
-    }
+  updated(this: Component) {
+    this['updateState']()
   }
 }
