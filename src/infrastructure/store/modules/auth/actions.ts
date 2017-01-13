@@ -14,10 +14,10 @@ export default {
    * @param {any} authInfo
    */
   async [SIGN_IN]({ commit }, authInfo) {
-    console.log(authInfo)
     if (authInfo.type === 'google') {
-      const idToken = authApi.googleSignIn(authInfo.id_token)
-      commit(SET_CUSTOMER, idToken)
+      const customer = await authApi.googleSignIn(authInfo.id_token)
+      Cookies.set('customer', JSON.stringify(customer))
+      commit(SET_CUSTOMER, customer)
     }
   }
 

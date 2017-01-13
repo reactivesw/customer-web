@@ -18,14 +18,18 @@
             <a href="#" class="nav-link">{{ $t('header.search') }}</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" @click="showLogin">{{ $t('header.login') }}</a>
-          </li>
-          <li class="nav-item">
             <router-link
               class="nav-link"
               :to="{ name: 'cart' }">
               {{ $t('header.cart') }}
             </router-link>
+          </li>
+          <li class="nav-item">
+
+            <a v-if="!customer.id" href="#" class="nav-link" @click="showLogin">{{ $t('header.login') }}</a>
+
+            <a v-if="customer.id" href="#" class="nav-link">{{ customer.firstName + customer.lastName }}</a>
+
           </li>
           <li class="nav-item">
             <LanguageSelector></LanguageSelector>
@@ -38,12 +42,19 @@
 </template>
 
 <script lang="ts">
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from './LanguageSelector'
 import { SHOW_LOGIN } from 'src/infrastructure/store/modal_dialogs_types'
+import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
 
 export default {
   name: "TheHeader",
+
+  computed: {
+    ...mapGetters({
+      customer: GET_CUSTOMER
+    })
+  },
 
   methods: {
     ...mapActions({

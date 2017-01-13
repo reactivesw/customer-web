@@ -7,13 +7,15 @@ import Login from 'src/components/Login'
 import Signup from 'src/components/Signup'
 import * as categoriesType from 'src/infrastructure/store/categories_types'
 import * as cartType from 'src/infrastructure/store/carts_types'
+import * as authType from 'src/infrastructure/store/auth_types'
 
 export default {
   name: 'app',
 
   computed: {
     ...mapGetters({
-      categories: categoriesType.GET_CATEGORIES
+      categories: categoriesType.GET_CATEGORIES,
+      customer: authType.GET_CUSTOMER
     })
   },
 
