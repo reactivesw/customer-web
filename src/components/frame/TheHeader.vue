@@ -28,7 +28,10 @@
 
             <a v-if="!customer.id" href="#" class="nav-link" @click="showLogin">{{ $t('header.login') }}</a>
 
-            <a v-if="customer.id" href="#" class="nav-link">{{ customer.firstName + customer.lastName }}</a>
+            <router-link
+              v-if="customer.id"
+              class="nav-link"
+              :to="{ name: 'customer' }">{{ customer.firstName + customer.lastName }}</router-link>
 
           </li>
           <li class="nav-item">
