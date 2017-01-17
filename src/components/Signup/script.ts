@@ -19,10 +19,6 @@ export default {
     goLogin(this: Component) {
       this['hideSignup']()
       this['showLogin']()
-    },
-
-    submitSignup(this: Component) {
-      // TODO: check form field validity, this['$refs'].signupForm.checkValidity()
     }
   },
 
