@@ -26,6 +26,12 @@
     "subtotal": "Sub Total",
     "empty": "Empty Cart"
   },
+  "customer": {
+    "info": "Info",
+    "addresses": "Addresses",
+    "orders": "Orders",
+    "logout": "Log Out"
+  },
   "form": {
     "email_address": "Email Address",
     "password": "Password",

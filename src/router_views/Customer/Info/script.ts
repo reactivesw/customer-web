@@ -1,13 +1,24 @@
 import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import { LOG_OUT } from 'src/infrastructure/store/auth_types'
 
 export default {
-  name: 'Product',
+  name: 'Info',
+  computed: {
+    ...mapGetters({
+    })
+  },
+
+  created(this: Component) {
+  },
+
+  watch: {
+  },
 
   methods: {
     ...mapActions({
-      logout: LOG_OUT
     })
+  },
+
+  components: {
   }
 }

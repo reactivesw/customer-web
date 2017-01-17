@@ -1,7 +1,8 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
-import { SIGN_IN, SET_CUSTOMER } from '../../auth_types'
+import { SIGN_IN, SET_CUSTOMER, LOG_OUT } from '../../auth_types'
 import { HIDE_LOGIN, HIDE_SIGNUP } from '../../modal_dialogs_types'
+import router from 'src/infrastructure/router'
 
 export default {
 
@@ -26,6 +27,12 @@ export default {
         commit(SET_CUSTOMER, customer)
       }
     }
+  },
+
+  async [LOG_OUT]({ commit }) {
+    Cookies.remove('customer')
+    commit(SET_CUSTOMER, {})
+    router.push({ name: 'featureCategory' })
   }
 
 }

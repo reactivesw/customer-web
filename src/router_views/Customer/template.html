@@ -4,24 +4,23 @@
 
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="#">Info</a>
-          <!-- TODO: use i18n text -->
+          <router-link class="nav-link" :to="{ name: 'customer_info' }">{{ $t('customer.info') }}</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Addresses</a>
+          <a class="nav-link" href="#">{{ $t('customer.addresses') }}</a> <!-- replace <a>s with <router-link>s -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Orders</a>
+          <a class="nav-link" href="#">{{ $t('customer.orders') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Log Out</a>
+          <a class="nav-link" href="javascript:void(0)" @click="logout">{{ $t('customer.logout') }}</a> <!-- call customer logout api? -->
         </li>
       </ul>
 
     </div>
     <div class="col-md-6">
 
-      content <!-- TODO: change this area into a router-view for child customer info views -->
+      <router-view></router-view>
 
     </div>
   </div>

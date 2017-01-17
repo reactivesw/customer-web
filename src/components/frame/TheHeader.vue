@@ -31,7 +31,7 @@
             <router-link
               v-if="customer.id"
               class="nav-link"
-              :to="{ name: 'customer' }">{{ customer.firstName + customer.lastName }}</router-link>
+              :to="{ name: 'customer_info' }">{{ customer.firstName + customer.lastName }}</router-link>
 
           </li>
           <li class="nav-item">
