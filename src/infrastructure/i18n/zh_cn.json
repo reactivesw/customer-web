@@ -28,6 +28,11 @@
   },
   "customer": {
     "info": "个人资料",
+    "first_name": "名",
+    "last_name": "姓",
+    "password": "密码",
+    "new_password": "输入新密码",
+    "save": "保存",
     "addresses": "地址管理",
     "orders": "订单",
     "logout": "登出"
