@@ -1,6 +1,7 @@
 import * as Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/frame/ModalDialog'
+import FacebookBtn from 'src/components/Login/FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 import * as authTypes from 'src/infrastructure/store/auth_types'
 
@@ -58,17 +59,21 @@ export default {
     },
 
     onGoogleSignIn(this: Vue.Component, googleUser) {
-      const profile = googleUser.getBasicProfile()
       const id_token = googleUser.getAuthResponse().id_token
       this['signIn']({type: 'google', id_token})
     },
 
     onGoogleSignInError(error) {
       console.log('sign in error: ', error) // TODO: tell user their is a error happend
+    },
+
+    onFacebookSignIn(this: Vue.Component, facebookUser) {
+      this['signIn']({type: 'facebook', facebookUser})
     }
   },
 
   components: {
-    ModalDialog
+    ModalDialog,
+    FacebookBtn
   }
 }

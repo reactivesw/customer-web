@@ -29,16 +29,21 @@ export default {
    * @param {any} authInfo
    */
   async [SIGN_IN]({ rootState, commit, dispatch }, authInfo) {
-    if (authInfo.type === 'google') {
-      const customer = await authApi.googleSignIn(authInfo.id_token)
+    let customer
+    if (authInfo.type === 'email') {
+      customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
+    } else if (authInfo.type === 'google') {
+      customer = await authApi.googleSignIn(authInfo.id_token)
+    } else if (authInfo.type === 'facebook') {
+      // TODO: wait for login api
+    }
 
-      if (customer) {
-        dispatch(HIDE_LOGIN)
-        dispatch(HIDE_SIGNUP)
+    if (customer) {
+      dispatch(HIDE_LOGIN)
+      dispatch(HIDE_SIGNUP)
 
-        Cookies.set('customer', JSON.stringify(customer))
-        commit(SET_CUSTOMER, customer)
-      }
+      Cookies.set('customer', JSON.stringify(customer))
+      commit(SET_CUSTOMER, customer)
     }
   },
 
