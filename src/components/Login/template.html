@@ -24,12 +24,12 @@
 
       <div class="form-group">
         <label for="login-email">{{ $t('form.email_address') }}</label>
-        <input type="email" class="form-control" id="login-email" required>
+        <input type="email" class="form-control" id="login-email" v-model="email" required>
       </div>
 
       <div class="form-group">
         <label for="login-pwd">{{ $t('form.password') }}</label>
-        <input type="password" class="form-control" id="login-pwd" required>
+        <input type="password" class="form-control" id="login-pwd" v-model="pwd" required>
       </div>
 
     </div>

@@ -5,17 +5,17 @@
 
       <div class="form-group">
         <label for="signup-email">{{ $t('form.email_address') }}</label>
-        <input type="email" class="form-control" id="signup-email" required>
+        <input type="email" class="form-control" id="signup-email" v-model="email" required>
       </div>
 
       <div class="form-group">
         <label for="signup-pwd">{{ $t('form.password') }}</label>
-        <input type="password" class="form-control" id="signup-pwd" required>
+        <input type="password" class="form-control" id="signup-pwd" v-model="pwd" required>
       </div>
 
       <div class="form-group">
         <label for="signup-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
-        <input type="password" class="form-control" id="signup-repeat-pwd" required>
+        <input type="password" class="form-control" id="signup-repeat-pwd" v-model="repeatPwd" required>
       </div>
 
     </div>

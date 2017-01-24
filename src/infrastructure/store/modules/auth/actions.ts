@@ -1,10 +1,23 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
-import { SIGN_IN, SET_CUSTOMER, LOG_OUT } from '../../auth_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, LOG_OUT } from '../../auth_types'
 import { HIDE_LOGIN, HIDE_SIGNUP } from '../../modal_dialogs_types'
 import router from 'src/infrastructure/router'
 
 export default {
+
+  async [SIGN_UP]({ commit, dispatch }, { email, password }) {
+    const customer = await authApi.signUp(email, password)
+
+    if (customer) {
+      dispatch(HIDE_LOGIN)
+      dispatch(HIDE_SIGNUP)
+
+      Cookies.set('customer', JSON.stringify(customer))
+      commit(SET_CUSTOMER, customer)
+    }
+    // TODO: make sure this works after api repaired
+  },
 
   /**
    * Sign in to backend, authInfo should be a object.

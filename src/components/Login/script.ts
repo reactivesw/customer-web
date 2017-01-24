@@ -14,7 +14,9 @@ export default {
     return {
       googleSignInParams: {
         client_id: process.env.GOOGLE_CLIENT_ID
-      }
+      },
+      email: '',
+      pwd: ''
     }
   },
 
@@ -29,8 +31,20 @@ export default {
       signIn: authTypes.SIGN_IN
     }),
 
-    submitLogin() {
-      // TODO: check form field validity, this['$refs'].signupForm.checkValidity()
+    async submitLogin(this: Vue.Component) {
+      // form is validate and password is the same as repeat password.
+      if (this['$refs'].loginForm.checkValidity() &&
+          this['pwd'].length >= 6) {
+        try {
+          await this['signIn']({
+            type: 'email',
+            email: this['email'],
+            pwd: this['pwd']
+          })
+        } catch (e) {
+          // TODO: handle login error like password not match.
+        }
+      }
     },
 
     goSignup(this: Vue.Component) {
