@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
     categories,
     products,
@@ -23,3 +23,10 @@ export default new Vuex.Store({
   },
   strict: debug
 })
+
+// Handle all request error like network down
+// window.addEventListener('error', function (e) {
+//     console.log('errrrrrrrrrrr')
+// })
+
+export default store
