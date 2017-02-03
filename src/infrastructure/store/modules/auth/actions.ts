@@ -1,6 +1,6 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, LOG_OUT } from '../../auth_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, LOG_OUT } from '../../auth_types'
 import { HIDE_LOGIN, HIDE_SIGNUP } from '../../modal_dialogs_types'
 import router from 'src/infrastructure/router'
 
@@ -42,15 +42,18 @@ export default {
       dispatch(HIDE_LOGIN)
       dispatch(HIDE_SIGNUP)
 
-      Cookies.set('customer', JSON.stringify(customer))
-      commit(SET_CUSTOMER, customer)
+      Cookies.set('customer', JSON.stringify(customer.customer))
+      Cookies.set('token', JSON.stringify(customer.token))
+      commit(SET_CUSTOMER, customer.customer)
+      commit(SET_TOKEN, customer.token)
     }
   },
 
   async [LOG_OUT]({ commit }) {
     Cookies.remove('customer')
+    Cookies.remove('token')
     commit(SET_CUSTOMER, {})
+    commit(SET_TOKEN, '')
     router.push({ name: 'featureCategory' })
   }
-
 }
