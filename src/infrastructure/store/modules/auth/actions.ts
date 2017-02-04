@@ -68,6 +68,7 @@ export default {
   async [LOG_OUT]({ commit }) {
     Cookies.remove('customer')
     Cookies.remove('token')
+    authApi.signOut()
     commit(SET_CUSTOMER, {})
     commit(SET_TOKEN, '')
     router.push({ name: 'featureCategory' })

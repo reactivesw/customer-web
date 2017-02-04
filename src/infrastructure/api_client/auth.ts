@@ -7,6 +7,14 @@ export async function signUp(email, password) {
   return response.data
 }
 
+export function signOut() {
+  // sign out google api if google is signed in
+  const gauth2 = gapi.auth2.getAuthInstance()
+  if (gauth2.isSignedIn.get()) {
+    gauth2.signOut()
+  }
+}
+
 const SIGN_IN = '/auth/login'
 
 export async function emailSignIn(email, password) {
