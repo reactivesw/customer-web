@@ -1,6 +1,6 @@
 import http from './http'
 
-const SIGN_UP = '/auth/signup'
+const SIGN_UP = '/auth/signUp'
 export async function signUp(email, password) {
   const data = { email, password }
   const response = await http.post(SIGN_UP, data)
@@ -15,7 +15,7 @@ export function signOut() {
   }
 }
 
-const SIGN_IN = '/auth/login'
+const SIGN_IN = '/auth/signin'
 
 export async function emailSignIn(email, password) {
   // TODO: make sure it works after api ready
@@ -30,8 +30,8 @@ export async function googleSignIn(id_token) {
   return response.data
 }
 
-// TODO: wait for facebook login api
-// const SIGN_IN = '/auth/login'
+// TODO: wait for facebook sign in api
+// const SIGN_IN = '/auth/signin'
 // export async function facebookSignIn(id_token) {
 //   const params = { gToken: id_token }
 //   const response = await http.post(SIGN_IN, {}, { params })

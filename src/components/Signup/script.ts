@@ -5,7 +5,7 @@ import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types
 import * as authTypes from 'src/infrastructure/store/auth_types'
 
 export default {
-  name: 'Signup',
+  name: 'SignUp',
 
   data() {
     return {
@@ -16,14 +16,14 @@ export default {
   },
 
   computed: {
-    showSignup(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignup }
+    showSignUp(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignUp }
   },
 
   methods: {
     ...mapActions({
-      hideSignup: modalDialogsTypes.HIDE_SIGNUP,
-      showLogin: modalDialogsTypes.SHOW_LOGIN,
-      signup: authTypes.SIGN_UP
+      hideSignUp: modalDialogsTypes.HIDE_SIGN_UP,
+      showSignIn: modalDialogsTypes.SHOW_SIGN_IN,
+      signUp: authTypes.SIGN_UP
     }),
 
     checkFormValidity(this: Vue.Component) {
@@ -40,17 +40,17 @@ export default {
       }
 
       // Validate required fields, email format and other predefined rules
-      this['$refs'].signupForm.checkValidity()
+      this['$refs'].signUpForm.checkValidity()
     },
 
-    async submitSignup(this: Vue.Component) {
+    async submitSignUp(this: Vue.Component) {
       // it has already passed all validation when enter this function
-      await this['signup']({ email: this['email'], password: this['pwd'] })
+      await this['signUp']({ email: this['email'], password: this['pwd'] })
     },
 
-    goLogin(this: Vue.Component) {
-      this['hideSignup']()
-      this['showLogin']()
+    goSignIn(this: Vue.Component) {
+      this['hideSignUp']()
+      this['showSignIn']()
     }
   },
 

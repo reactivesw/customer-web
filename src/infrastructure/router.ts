@@ -6,7 +6,7 @@ import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
 import Customer from 'src/router_views/Customer'
 import CustomerInfo from 'src/router_views/Customer/Info'
-import { SHOW_LOGIN } from 'src/infrastructure/store/modal_dialogs_types'
+import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
 
 Vue.use(VueRouter)
 
@@ -61,8 +61,8 @@ const router = new VueRouter({
 
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(record => record.meta.requiresAuth) && !store.state.auth.customer.id) {
-    // if route requires auth and user isn't authenticated, show login modal and abort current navigation.
-    store.dispatch(SHOW_LOGIN)
+    // if route requires auth and user isn't authenticated, show sign in modal and abort current navigation.
+    store.dispatch(SHOW_SIGN_IN)
     // seems like a router bug, navigation triggered by next(false) is not going to redirect properly.
     // to solve it, redirect navigation to featureCategory if the from url is '\'.
     if (from.fullPath === '/') {

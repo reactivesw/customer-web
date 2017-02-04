@@ -2,8 +2,8 @@ import mutations from './mutations'
 import actions from './actions'
 
 const initialState = {
-  showLogin: false,
-  showSignup: false
+  showSignIn: false,
+  showSignUp: false
 }
 
 export default {

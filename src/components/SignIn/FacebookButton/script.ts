@@ -8,13 +8,13 @@ export default {
     }
   },
   methods: {
-    doLogin: function (this: Component) {
+    doSignIn: function (this: Component) {
       FB.login((response) => {
         if (response.status === 'connected') {
           const data = { userId: response.authResponse.userID, userName: '' }
           FB.api('/me', (response) => {
             data.userName = response.name
-            this['$emit']('login', data)
+            this['$emit']('signIn', data)
           })
         }
       })

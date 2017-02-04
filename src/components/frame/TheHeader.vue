@@ -26,7 +26,7 @@
           </li>
           <li class="nav-item">
 
-            <a v-if="!customer.id" href="#" class="nav-link" @click="showLogin">{{ $t('header.login') }}</a>
+            <a v-if="!customer.id" href="#" class="nav-link" @click="showSignIn">{{ $t('header.sign_in') }}</a>
 
             <router-link
               v-if="customer.id"
@@ -47,7 +47,7 @@
 <script lang="ts">
 import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from './LanguageSelector'
-import { SHOW_LOGIN } from 'src/infrastructure/store/modal_dialogs_types'
+import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
 import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
 
 export default {
@@ -61,7 +61,7 @@ export default {
 
   methods: {
     ...mapActions({
-      showLogin: SHOW_LOGIN
+      showSignIn: SHOW_SIGN_IN
     })
   },
 

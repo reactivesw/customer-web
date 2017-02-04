@@ -1,7 +1,7 @@
 import * as Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/frame/ModalDialog'
-import FacebookBtn from 'src/components/Login/FacebookButton'
+import FacebookBtn from 'src/components/SignIn/FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 import * as authTypes from 'src/infrastructure/store/auth_types'
 
@@ -9,7 +9,7 @@ import * as GSignInButton from 'vue-google-signin-button'
 Vue.use(GSignInButton)
 
 export default {
-  name: 'Login',
+  name: 'SignIn',
 
   data () {
     return {
@@ -22,19 +22,19 @@ export default {
   },
 
   computed: {
-    showLogin(this: Vue.Component) { return this['$store'].state.modal_dialogs.showLogin }
+    showSignIn(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignIn }
   },
 
   methods: {
     ...mapActions({
-      hideLogin: modalDialogsTypes.HIDE_LOGIN,
-      showSignup: modalDialogsTypes.SHOW_SIGNUP,
+      hideSignIn: modalDialogsTypes.HIDE_SIGN_IN,
+      showSignUp: modalDialogsTypes.SHOW_SIGN_UP,
       signIn: authTypes.SIGN_IN
     }),
 
-    async submitLogin(this: Vue.Component) {
+    async submitSignIn(this: Vue.Component) {
       // form is validate and password is the same as repeat password.
-      if (this['$refs'].loginForm.checkValidity() &&
+      if (this['$refs'].SignInForm.checkValidity() &&
           this['pwd'].length >= 6) {
         try {
           await this['signIn']({
@@ -43,18 +43,18 @@ export default {
             pwd: this['pwd']
           })
         } catch (e) {
-          // TODO: handle login error like password not match.
+          // TODO: handle sign in error like password not match.
         }
       }
     },
 
-    goSignup(this: Vue.Component) {
-      this['hideLogin']()
-      this['showSignup']()
+    goSignUp(this: Vue.Component) {
+      this['hideSignIn']()
+      this['showSignUp']()
     },
 
     goForgotPwd(this: Vue.Component) {
-      this['hideLogin']()
+      this['hideSignIn']()
       // TODO: redirect to forgot password page
     },
 

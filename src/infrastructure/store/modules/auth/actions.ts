@@ -1,7 +1,7 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
 import Cookies = require('js-cookie')
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, LOG_OUT } from '../../auth_types'
-import { HIDE_LOGIN, HIDE_SIGNUP } from '../../modal_dialogs_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from '../../auth_types'
+import { HIDE_SIGN_IN, HIDE_SIGN_UP } from '../../modal_dialogs_types'
 import router from 'src/infrastructure/router'
 import * as Vue from 'vue'
 
@@ -12,8 +12,8 @@ export default {
       const customer = await authApi.signUp(email, password)
 
       if (customer) {
-        dispatch(HIDE_LOGIN)
-        dispatch(HIDE_SIGNUP)
+        dispatch(HIDE_SIGN_IN)
+        dispatch(HIDE_SIGN_UP)
 
         Cookies.set('customer', JSON.stringify(customer))
         commit(SET_CUSTOMER, customer)
@@ -51,12 +51,12 @@ export default {
     } else if (authInfo.type === 'google') {
       customer = await authApi.googleSignIn(authInfo.id_token)
     } else if (authInfo.type === 'facebook') {
-      // TODO: wait for login api
+      // TODO: wait for sign in api
     }
 
     if (customer) {
-      dispatch(HIDE_LOGIN)
-      dispatch(HIDE_SIGNUP)
+      dispatch(HIDE_SIGN_IN)
+      dispatch(HIDE_SIGN_UP)
 
       Cookies.set('customer', JSON.stringify(customer.customer))
       Cookies.set('token', JSON.stringify(customer.token))
@@ -65,7 +65,7 @@ export default {
     }
   },
 
-  async [LOG_OUT]({ commit }) {
+  async [SIGN_OUT]({ commit }) {
     Cookies.remove('customer')
     Cookies.remove('token')
     authApi.signOut()

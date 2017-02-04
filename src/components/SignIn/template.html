@@ -1,0 +1,42 @@
+<form ref="signInForm" @submit.prevent="submitSignIn">
+  <ModalDialog :title="$t('header.sign_in')" :show="showSignIn" @hide="hideSignIn()">
+
+    <div slot="body">
+
+      <div class="row">
+        <div class="col-md-6">
+          <g-signin-button
+            class="btn btn-lg btn-block btn-danger"
+            :params="googleSignInParams"
+            @success="onGoogleSignIn"
+            @error="onGoogleSignInError">
+            Google
+          </g-signin-button>
+        </div>
+        <div class="col-md-6">
+          <FacebookBtn @signIn="onFacebookSignIn"></FacebookBtn>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <label for="sign-in-email">{{ $t('form.email_address') }}</label>
+        <input type="email" class="form-control" id="sign-in-email" v-model="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="sign-in-pwd">{{ $t('form.password') }}</label>
+        <input type="password" class="form-control" id="sign-in-pwd" v-model="pwd" required>
+      </div>
+
+    </div>
+
+    <div slot="footer">
+      <button type="button" class="btn btn-link text-muted" @click="goForgotPwd">{{ $t('form.forgot_pwd') }}</button>
+      <button type="button" class="btn btn-link" @click="goSignUp">{{ $t('header.sign_up') }}</button>
+      <button type="submit" class="btn btn-primary">{{ $t('header.sign_in') }}</button>
+    </div>
+
+  </ModalDialog>
+</form>

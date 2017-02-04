@@ -1,25 +1,25 @@
 import {
-  SHOW_LOGIN,
-  HIDE_LOGIN,
-  SET_LOGIN,
-  SHOW_SIGNUP,
-  HIDE_SIGNUP,
-  SET_SIGNUP } from '../../modal_dialogs_types'
+  SHOW_SIGN_IN,
+  HIDE_SIGN_IN,
+  SET_SIGN_IN,
+  SHOW_SIGN_UP,
+  HIDE_SIGN_UP,
+  SET_SIGN_UP } from '../../modal_dialogs_types'
 
 export default {
-  [SHOW_LOGIN]({ state, commit }) {
-    commit(SET_LOGIN, true)
+  [SHOW_SIGN_IN]({ state, commit }) {
+    commit(SET_SIGN_IN, true)
   },
 
-  [HIDE_LOGIN]({ state, commit }) {
-    commit(SET_LOGIN, false)
+  [HIDE_SIGN_IN]({ state, commit }) {
+    commit(SET_SIGN_IN, false)
   },
 
-  [SHOW_SIGNUP]({ state, commit }, ) {
-    commit(SET_SIGNUP, true)
+  [SHOW_SIGN_UP]({ state, commit }, ) {
+    commit(SET_SIGN_UP, true)
   },
 
-  [HIDE_SIGNUP]({ state, commit }) {
-    commit(SET_SIGNUP, false)
+  [HIDE_SIGN_UP]({ state, commit }) {
+    commit(SET_SIGN_UP, false)
   }
 }

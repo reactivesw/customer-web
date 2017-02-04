@@ -11,8 +11,8 @@
   },
   "header": {
     "search": "Search",
-    "login": "Log In",
-    "signup": "Sign Up",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
     "cart": "Cart",
     "language": "Lang"
   },
@@ -41,7 +41,7 @@
     "save": "SAVE",
     "addresses": "Addresses",
     "orders": "Orders",
-    "logout": "Log Out"
+    "sign_out": "Sign Out"
   },
   "form": {
     "email_address": "Email Address",

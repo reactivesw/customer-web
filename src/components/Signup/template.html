@@ -1,26 +1,26 @@
-<form ref="signupForm" @submit.prevent="submitSignup">
-  <ModalDialog :title="$t('header.signup')" :show="showSignup" @hide="hideSignup()">
+<form ref="signUpForm" @submit.prevent="submitSignUp">
+  <ModalDialog :title="$t('header.sign_up')" :show="showSignUp" @hide="hideSignUp()">
 
     <div slot="body">
       <div class="form-group">
-        <label for="signup-email">{{ $t('form.email_address') }}</label>
-        <input ref="email" @change="checkFormValidity()" type="email" class="form-control" id="signup-email" v-model="email" required>
+        <label for="signUp-email">{{ $t('form.email_address') }}</label>
+        <input ref="email" @change="checkFormValidity()" type="email" class="form-control" id="signUp-email" v-model="email" required>
       </div>
 
       <div class="form-group">
-        <label for="signup-pwd">{{ $t('form.password') }}</label>
-        <input ref="pwd" @change="checkFormValidity()" type="password" class="form-control" id="signup-pwd" v-model="pwd" required>
+        <label for="signUp-pwd">{{ $t('form.password') }}</label>
+        <input ref="pwd" @change="checkFormValidity()" type="password" class="form-control" id="signUp-pwd" v-model="pwd" required>
       </div>
 
       <div class="form-group">
-        <label for="signup-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
-        <input ref="rpwd" @change="checkFormValidity()" type="password" class="form-control" id="signup-repeat-pwd" v-model="repeatPwd" required>
+        <label for="signUp-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
+        <input ref="rpwd" @change="checkFormValidity()" type="password" class="form-control" id="signUp-repeat-pwd" v-model="repeatPwd" required>
       </div>
     </div>
 
     <div slot="footer">
-      <button type="button" class="btn btn-link" @click="goLogin">{{ $t('header.login') }}</button>
-      <button type="submit" class="btn btn-primary">{{ $t('header.signup') }}</button>
+      <button type="button" class="btn btn-link" @click="goSignIn">{{ $t('header.sign_in') }}</button>
+      <button type="submit" class="btn btn-primary">{{ $t('header.sign_up') }}</button>
     </div>
 
   </ModalDialog>
