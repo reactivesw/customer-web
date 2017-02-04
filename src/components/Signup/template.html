@@ -2,22 +2,20 @@
   <ModalDialog :title="$t('header.signup')" :show="showSignup" @hide="hideSignup()">
 
     <div slot="body">
-
       <div class="form-group">
         <label for="signup-email">{{ $t('form.email_address') }}</label>
-        <input type="email" class="form-control" id="signup-email" v-model="email" required>
+        <input ref="email" @change="checkFormValidity()" type="email" class="form-control" id="signup-email" v-model="email" required>
       </div>
 
       <div class="form-group">
         <label for="signup-pwd">{{ $t('form.password') }}</label>
-        <input type="password" class="form-control" id="signup-pwd" v-model="pwd" required>
+        <input ref="pwd" @change="checkFormValidity()" type="password" class="form-control" id="signup-pwd" v-model="pwd" required>
       </div>
 
       <div class="form-group">
         <label for="signup-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
-        <input type="password" class="form-control" id="signup-repeat-pwd" v-model="repeatPwd" required>
+        <input ref="rpwd" @change="checkFormValidity()" type="password" class="form-control" id="signup-repeat-pwd" v-model="repeatPwd" required>
       </div>
-
     </div>
 
     <div slot="footer">

@@ -3,6 +3,12 @@
     "brand": "Hello",
     "copyright": "Reactivesw."
   },
+  "alert": {
+    "network_error": "Request failed, please check your network.",
+    "email_taken": "This email has been taken, please choose another one.",
+    "password_not_secure": "Passwords must be at least 6 characters.",
+    "confirm_password_not_match": "Confirm password not matching."
+  },
   "header": {
     "search": "Search",
     "login": "Log In",

@@ -3,6 +3,12 @@
     "brand": "Hello",
     "copyright": "Reactivesw."
   },
+  "alert": {
+    "network_error": "请求失败，请检查网络连接",
+    "email_taken": "该邮箱已被注册，请尝试其它邮箱",
+    "password_not_secure": "密码至少6位",
+    "confirm_password_not_match": "两次密码输入不一致"
+  },
   "header": {
     "search": "搜索",
     "login": "登录",

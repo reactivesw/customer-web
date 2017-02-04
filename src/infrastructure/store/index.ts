@@ -24,9 +24,4 @@ const store = new Vuex.Store({
   strict: debug
 })
 
-// Handle all request error like network down
-// window.addEventListener('error', function (e) {
-//     console.log('errrrrrrrrrrr')
-// })
-
 export default store
