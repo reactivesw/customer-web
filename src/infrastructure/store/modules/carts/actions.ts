@@ -1,5 +1,4 @@
 import { carts as cartsApi } from 'src/infrastructure/api_client'
-import Cookies = require('js-cookie')
 import {
   ADD_TO_CART,
   REMOVE_LINE_ITEM,

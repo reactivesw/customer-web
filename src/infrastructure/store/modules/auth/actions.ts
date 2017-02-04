@@ -1,5 +1,4 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import Cookies = require('js-cookie')
 import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from '../../auth_types'
 import { HIDE_SIGN_IN, HIDE_SIGN_UP } from '../../modal_dialogs_types'
 import router from 'src/infrastructure/router'
@@ -15,7 +14,7 @@ export default {
         dispatch(HIDE_SIGN_IN)
         dispatch(HIDE_SIGN_UP)
 
-        Cookies.set('customer', JSON.stringify(customer))
+        localStorage.setItem('customer', JSON.stringify(customer))
         commit(SET_CUSTOMER, customer)
       }
     } catch (error) {
@@ -58,16 +57,16 @@ export default {
       dispatch(HIDE_SIGN_IN)
       dispatch(HIDE_SIGN_UP)
 
-      Cookies.set('customer', JSON.stringify(customer.customer))
-      Cookies.set('token', JSON.stringify(customer.token))
+      localStorage.setItem('customer', JSON.stringify(customer.customer))
+      localStorage.setItem('token', JSON.stringify(customer.token))
       commit(SET_CUSTOMER, customer.customer)
       commit(SET_TOKEN, customer.token)
     }
   },
 
   async [SIGN_OUT]({ commit }) {
-    Cookies.remove('customer')
-    Cookies.remove('token')
+    localStorage.removeItem('customer')
+    localStorage.removeItem('token')
     authApi.signOut()
     commit(SET_CUSTOMER, {})
     commit(SET_TOKEN, '')

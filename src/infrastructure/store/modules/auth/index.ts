@@ -1,10 +1,9 @@
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-import Cookies = require('js-cookie')
 
 const initialState = {
-  customer: JSON.parse(Cookies.get('customer') || '{}')
+  customer: JSON.parse(localStorage.getItem('customer') || '{}')
 }
 
 export default {

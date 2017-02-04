@@ -1,6 +1,5 @@
 import * as Vue from 'vue'
 import * as VueI18n from 'vue-i18n'
-import * as Cookies from 'js-cookie'
 
 export default function (Vue) {
   Vue.use(VueI18n)
@@ -11,14 +10,14 @@ export default function (Vue) {
 
 export function changeLang (newLang) {
   Vue.config['lang'] = newLang
-  Cookies.set('lang', newLang, { expires: 365 })
+  localStorage.setItem('lang', newLang)
 }
 
 /**
- * change lang according to cookie
+ * change lang according to localStorage
  */
 function initLang() {
-  const lang = Cookies.get('lang')
+  const lang = localStorage.getItem('lang')
   if (lang) changeLang(lang)
 }
 

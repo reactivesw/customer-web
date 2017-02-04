@@ -1,6 +1,6 @@
 import http from './http'
 
-const SIGN_UP = '/auth/signUp'
+const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
   const data = { email, password }
   const response = await http.post(SIGN_UP, data)
