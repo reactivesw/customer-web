@@ -58,18 +58,14 @@ export default {
       dispatch(HIDE_SIGN_UP)
 
       localStorage.setItem('customer', JSON.stringify(customer.customer))
-      localStorage.setItem('token', JSON.stringify(customer.token))
       commit(SET_CUSTOMER, customer.customer)
-      commit(SET_TOKEN, customer.token)
     }
   },
 
   async [SIGN_OUT]({ commit }) {
     localStorage.removeItem('customer')
-    localStorage.removeItem('token')
     authApi.signOut()
     commit(SET_CUSTOMER, {})
-    commit(SET_TOKEN, '')
     router.push({ name: 'featureCategory' })
   }
 }
