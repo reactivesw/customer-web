@@ -33,18 +33,14 @@ export default {
     }),
 
     async submitSignIn(this: Vue.Component) {
-      // form is validate and password is the same as repeat password.
-      if (this['$refs'].SignInForm.checkValidity() &&
-          this['pwd'].length >= 6) {
-        try {
-          await this['signIn']({
-            type: 'email',
-            email: this['email'],
-            pwd: this['pwd']
-          })
-        } catch (e) {
-          // TODO: handle sign in error like password not match.
-        }
+      try {
+        await this['signIn']({
+          type: 'email',
+          email: this['email'],
+          pwd: this['pwd']
+        })
+      } catch (e) {
+        // TODO: handle sign in error like password not match.
       }
     },
 
