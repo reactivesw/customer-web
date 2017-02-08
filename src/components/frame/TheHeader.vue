@@ -31,7 +31,7 @@
             <router-link
               v-if="customer.id"
               class="nav-link"
-              :to="{ name: 'customer_info' }">{{ customer.firstName + customer.lastName }}</router-link>
+              :to="{ name: 'customer_info' }">{{ username }}</router-link>
 
           </li>
           <li class="nav-item">
@@ -45,6 +45,7 @@
 </template>
 
 <script lang="ts">
+import { Component } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from './LanguageSelector'
 import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
@@ -56,7 +57,18 @@ export default {
   computed: {
     ...mapGetters({
       customer: GET_CUSTOMER
-    })
+    }),
+
+    username(this: Component) {
+      if (this['customer']) {
+        if (this['customer'].firstName && this['customer'].lastName) {
+          return (this['customer'].firstName + this['customer'].lastName)
+        } else {
+          return this['customer'].email
+        }
+      }
+      return ''
+    }
   },
 
   methods: {
