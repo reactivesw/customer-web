@@ -1,7 +1,7 @@
 import * as Vue from 'vue'
 import { mapActions } from 'vuex'
-import ModalDialog from 'src/components/frame/ModalDialog'
-import FacebookBtn from 'src/components/SignIn/FacebookButton'
+import ModalDialog from 'src/components/utility/ModalDialog'
+import FacebookBtn from './FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 import * as authTypes from 'src/infrastructure/store/auth_types'
 

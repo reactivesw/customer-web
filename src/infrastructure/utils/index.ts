@@ -9,12 +9,19 @@ export function currencyNameToSymbol (currencyName) {
   return ''
 }
 
+/**
+ * turn price object to price string
+ *
+ * {
+ *   currencyCode: xxx,
+ *   centAmount: xxx
+ * }
+ *
+ * @export
+ * @param {any} priceObj
+ * @returns
+ */
 export function MoneyToString (priceObj) {
+  // TODO: turn centAmount to human readable money amount according to iso 4217 standard
   return priceObj ? `${currencyNameToSymbol(priceObj.currencyCode)} ${priceObj.centAmount / 100}` : 'NULL price'
-}
-
-export function parseJwt(token) {
-  const base64Url = token.split('.')[1]
-  const base64 = base64Url.replace('-', '+').replace('_', '/')
-  return JSON.parse(atob(base64))
 }
