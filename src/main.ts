@@ -13,6 +13,13 @@ setLocales(Vue)
 import { sync } from 'vuex-router-sync'
 sync(store, router)
 
+import { setNetworkErrorHandler } from './infrastructure/api_client'
+setNetworkErrorHandler(function(error){
+  debugger
+  console.log(error)
+  console.log('global network error detacted!!!!')
+})
+
 new Vue({
   el: '#app',
   router,

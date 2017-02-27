@@ -16,7 +16,16 @@ const functionsWithData = ['post', 'put', 'patch']
 functionsWithoutData.forEach((method) => {
   instanceWithToken[method] = async function (url, config) {
     const configWithToken = await appendToken(config)
-    return instance[method](url, configWithToken)
+    let result
+    try {
+      return await instance[method](url, configWithToken)
+    } catch (error) {
+      if (!error.response) {
+        networkErrorHandler && networkErrorHandler(error)
+      } else {
+        throw error
+      }
+    }
   }
 })
 
@@ -24,7 +33,16 @@ functionsWithData.forEach((method) => {
   instanceWithToken[method] = async function (url, data, config) {
     const configWithToken = await appendToken(config)
     await appendToken(configWithToken)
-    return instance[method](url, data, configWithToken)
+    let result
+    try {
+      return await instance[method](url, data, configWithToken)
+    } catch (error) {
+      if (!error.response) {
+        networkErrorHandler && networkErrorHandler(error)
+      } else {
+        throw error
+      }
+    }
   }
 })
 
@@ -36,15 +54,21 @@ let fetchAnonymousTokenPromise
  *
  * @returns
  */
-function fetchAnonymousToken() {
+async function fetchAnonymousToken() {
   const GET_ANONYMOUS_TOKEN = '/auth/anonymous'
   fetchAnonymousTokenPromise = axios.get(GET_ANONYMOUS_TOKEN, {
     baseURL: process.env.RS_API_URL,
   })
-  .then((res) => {
-    return res.data
-  })
-  return fetchAnonymousTokenPromise
+  try {
+    const response = await fetchAnonymousTokenPromise
+    return response.data
+  } catch (error) {
+    if (!error.response) {
+      networkErrorHandler && networkErrorHandler(error)
+    } else {
+      throw error
+    }
+  }
 }
 
 /**
@@ -71,6 +95,11 @@ async function appendToken(config) {
     configWithToken.headers = {'Authorization': 'Bearer ' + tokenStorage.token}
   }
   return configWithToken
+}
+
+let networkErrorHandler
+export function setNetworkErrorHandler(handler) {
+  networkErrorHandler = handler
 }
 
 export default instanceWithToken

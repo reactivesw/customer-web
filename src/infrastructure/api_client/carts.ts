@@ -20,7 +20,7 @@ export async function getCart({ customerId, anonymousId }: any) {
     return
   }
   const response = await http.get(CARTS, { params })
-  return response.data
+  return response && response.data
 }
 
 /**
@@ -78,5 +78,5 @@ async function updateCart(cartId, version, actions) {
     version
   }
   const response = await http.put(`${CARTS}/${cartId}`, updateRequest)
-  return response.data
+  return response && response.data
 }

@@ -10,5 +10,5 @@ export const CATEGORIES = '/categories'
  */
 export async function getCategories() {
   const response = await http.get(CATEGORIES)
-  return response.data.results
+  return response && response.data.results
 }

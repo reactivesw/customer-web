@@ -16,7 +16,7 @@ export async function getProduct(productSlug: string) {
       slug: productSlug
     }
   })
-  return response.data
+  return response && response.data
 }
 
 /**
@@ -28,7 +28,7 @@ export async function getProduct(productSlug: string) {
  */
 export async function getProductType(productTypeId: string) {
   const response = await http.get(`${PRODUCT_TYPES}/${productTypeId}`)
-  return response.data
+  return response && response.data
 }
 
 /**
@@ -43,5 +43,5 @@ export async function getProductProjections(categorySlug: string) {
     where: `slug:${categorySlug}`
   }
   const response = await http.get(PRODUCT_PROJECTION, { params })
-  return response.data.results
+  return response && response.data.results
 }

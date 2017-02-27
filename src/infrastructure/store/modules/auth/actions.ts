@@ -18,18 +18,8 @@ export default {
         commit(SET_CUSTOMER, customer)
       }
     } catch (error) {
-      if (error.response) {
-        // The request was made, but the server responded with a status code
-        // that falls out of the range of 2xx
-        // like 401 for requesting unauthorized resource
-        switch (error.response.status) {
-          case 409:
-            alert(Vue['t']('alert.email_taken'))
-            break
-        }
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        alert(Vue['t']('alert.network_error'))
+      if (error.message === authApi.ERRORES.EMAIL_TAKEN) {
+        // TODO: tell user email has been taken
       }
     }
   },
@@ -44,21 +34,27 @@ export default {
    * @param {any} authInfo
    */
   async [SIGN_IN]({ rootState, commit, dispatch }, authInfo) {
-    let customer
-    if (authInfo.type === 'email') {
-      customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
-    } else if (authInfo.type === 'google') {
-      customer = await authApi.googleSignIn(authInfo.id_token)
-    } else if (authInfo.type === 'facebook') {
-      // TODO: wait for sign in api
-    }
+    try {
+      let customer
+      if (authInfo.type === 'email') {
+        customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
+      } else if (authInfo.type === 'google') {
+        customer = await authApi.googleSignIn(authInfo.id_token)
+      } else if (authInfo.type === 'facebook') {
+        // TODO: wait for sign in api
+      }
 
-    if (customer) {
-      dispatch(HIDE_SIGN_IN)
-      dispatch(HIDE_SIGN_UP)
+      if (customer) {
+        dispatch(HIDE_SIGN_IN)
+        dispatch(HIDE_SIGN_UP)
 
-      localStorage.setItem('customer', JSON.stringify(customer.customer))
-      commit(SET_CUSTOMER, customer.customer)
+        localStorage.setItem('customer', JSON.stringify(customer.customer))
+        commit(SET_CUSTOMER, customer.customer)
+      }
+    } catch (error) {
+      if (error.message === authApi.ERRORES.USER_NOT_FOUND) {
+        // TODO: tell user username typed is not found.
+      }
     }
   },
 

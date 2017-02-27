@@ -1,12 +1,30 @@
 import http from './http'
 import tokenStorage from './tokenStorage'
 
+// Error codes
+export const ERRORES = {
+  EMAIL_TAKEN: 'EMAIL_TAKEN',
+  USER_NOT_FOUND: 'USER_NOT_FOUND'
+}
+
 const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
   const data = { email, password }
-  const response = await http.post(SIGN_UP, data)
-  tokenStorage.token = response.data.token
-  return response.data
+  try {
+    const response = await http.post(SIGN_UP, data)
+    if (response) {
+      tokenStorage.token = response.data.token
+      return response.data
+    }
+  } catch (error) {
+    switch (error.response.status) {
+      case 409:
+        throw new Error(ERRORES.EMAIL_TAKEN)
+      // TODO: password not secure
+      default:
+        throw error
+    }
+  }
 }
 
 export function signOut() {
@@ -36,7 +54,17 @@ export async function googleSignIn(id_token) {
 // }
 
 async function signIn(params) {
-  const response = await http.post(SIGN_IN, {}, { params })
-  tokenStorage.token = response.data.token
-  return response.data
+  try {
+    const response = await http.post(SIGN_IN, {}, { params })
+
+    if (response) {
+      tokenStorage.token = response.data.token
+      return response.data
+    }
+  } catch (error) {
+    switch (error.response.status) {
+      case '404':
+        throw new Error(ERRORES.USER_NOT_FOUND)
+    }
+  }
 }

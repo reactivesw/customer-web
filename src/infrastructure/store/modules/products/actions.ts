@@ -15,15 +15,17 @@ export default {
    */
   async [FETCH_CURRENT_CATEGORY_PRODUCTS]({ rootState, dispatch, commit }) {
     // make sure we already have categories data
-    await dispatch(FETCH_CATEGORIES)
+    const categories = await dispatch(FETCH_CATEGORIES)
 
-    // find the current category and search for it's products
-    const slug = rootState.route.params.catSlug
-    const category = rootState.categories.categories.find((category) => {
-      return category.slug === slug
-    })
-    const products = await productApi.getProductProjections(category.id)
-    commit(SET_CURRENT_CATEGORY_PRODUCTS, products)
+    if (categories) {
+      // find the current category and search for it's products
+      const slug = rootState.route.params.catSlug
+      const category = rootState.categories.categories.find((category) => {
+        return category.slug === slug
+      })
+      const products = await productApi.getProductProjections(category.id)
+      commit(SET_CURRENT_CATEGORY_PRODUCTS, products)
+    }
   },
 
   /**
