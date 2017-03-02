@@ -63,5 +63,8 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-# vscode project meta file
+# Vscode project meta file
 .vscode
+
+# Docker build file
+docker/client/

@@ -1,9 +1,20 @@
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Alan Zhang @zcfan
+
+  Build docker image
+*/
+
 import axios from 'axios'
 import tokenStorage from './tokenStorage'
 
+// if there is a apiServerAddr global variable setted, use it as baseURL instead of bundle one.
+const baseURL = (<any>window).apiServerAddr || process.env.RS_API_URL
+
 // Create a http client instance with some common settings
 const instance = axios.create({
-  baseURL: process.env.RS_API_URL,
+  // baseURL: process.env.RS_API_URL,
+  baseURL: baseURL,
   timeout: 3000
 })
 
@@ -57,7 +68,7 @@ let fetchAnonymousTokenPromise
 async function fetchAnonymousToken() {
   const GET_ANONYMOUS_TOKEN = '/auth/anonymous'
   fetchAnonymousTokenPromise = axios.get(GET_ANONYMOUS_TOKEN, {
-    baseURL: process.env.RS_API_URL,
+    baseURL: baseURL,
   })
   try {
     const response = await fetchAnonymousTokenPromise
