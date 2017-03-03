@@ -47,6 +47,9 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts',
+        options: {
+          transpileOnly: true
+        },
         include: projectRoot,
         exclude: /node_modules/
       },

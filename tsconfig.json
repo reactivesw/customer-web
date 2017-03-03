@@ -5,7 +5,6 @@
     "strictNullChecks": true,
     "noImplicitThis": true,
     "sourceMap": true,
-    "transpileOnly": true,
     "typeRoots": [
       "./typings",
       "./node_modules/@types"
