@@ -27,7 +27,7 @@ cp('-R', 'static/*', assetsPath)
 webpack(webpackConfig, function (err, stats) {
   // build docker image after bundled
   var exec = require('child_process').exec;
-  exec("docker build -t customer_web .", {
+  exec(`docker build -t ${config.build.dockerImageName}:${require('../package.json').version} .`, {
     cwd: path.resolve(config.build.assetsRoot, '../')
   }, (error, stdout, stderr) => {
     // docker logs
