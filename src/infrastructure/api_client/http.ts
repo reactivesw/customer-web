@@ -31,11 +31,7 @@ functionsWithoutData.forEach((method) => {
     try {
       return await instance[method](url, configWithToken)
     } catch (error) {
-      if (!error.response) {
-        networkErrorHandler && networkErrorHandler(error)
-      } else {
-        throw error
-      }
+      handleError(error)
     }
   }
 })
@@ -48,11 +44,7 @@ functionsWithData.forEach((method) => {
     try {
       return await instance[method](url, data, configWithToken)
     } catch (error) {
-      if (!error.response) {
-        networkErrorHandler && networkErrorHandler(error)
-      } else {
-        throw error
-      }
+      handleError(error)
     }
   }
 })
@@ -74,11 +66,7 @@ async function fetchAnonymousToken() {
     const response = await fetchAnonymousTokenPromise
     return response.data
   } catch (error) {
-    if (!error.response) {
-      networkErrorHandler && networkErrorHandler(error)
-    } else {
-      throw error
-    }
+    handleError(error)
   }
 }
 
@@ -108,6 +96,20 @@ async function appendToken(config) {
   return configWithToken
 }
 
+/**
+ * Handle network error
+ */
+function handleError(error) {
+    if (!error.response) {
+      networkErrorHandler && networkErrorHandler(error)
+    } else {
+      throw error
+    }
+}
+
+/**
+ * Set global network error handler
+ */
 let networkErrorHandler
 export function setNetworkErrorHandler(handler) {
   networkErrorHandler = handler

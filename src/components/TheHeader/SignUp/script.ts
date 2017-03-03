@@ -3,6 +3,7 @@ import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 import * as authTypes from 'src/infrastructure/store/auth_types'
+import { ERRORES as AUTH_ERRORES } from 'src/infrastructure/api_client/auth'
 
 export default {
   name: 'SignUp',
@@ -11,7 +12,8 @@ export default {
     return {
       email: '',
       pwd: '',
-      repeatPwd: ''
+      repeatPwd: '',
+      usernameFeedback: null
     }
   },
 
@@ -46,8 +48,18 @@ export default {
     },
 
     async submitSignUp(this: Vue.Component) {
-      // it has already passed all validation when enter this function
-      await this['signUp']({ email: this['email'], password: this['pwd'] })
+      try {
+        // it has already passed all validation when enter this function
+        await this['signUp']({ email: this['email'], password: this['pwd'] })
+      } catch (e) {
+        switch (e.message) {
+          case AUTH_ERRORES.EMAIL_TAKEN:
+            this['usernameFeedback'] = 'user name has been taken'
+            break
+          default:
+            throw e
+        }
+      }
     },
 
     goSignIn(this: Vue.Component) {

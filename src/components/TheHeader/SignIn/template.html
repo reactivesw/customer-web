@@ -20,14 +20,16 @@
 
       <hr>
 
-      <div class="form-group">
+      <div class="form-group" :class="{ 'has-danger': usernameFeedback }">
         <label for="sign-in-email">{{ $t('form.email_address') }}</label>
         <input type="email" class="form-control" id="sign-in-email" v-model="email" required>
+        <div class="form-control-feedback" v-if="usernameFeedback">{{ usernameFeedback }}</div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" :class="{ 'has-danger': passwordFeedback }">
         <label for="sign-in-pwd">{{ $t('form.password') }}</label>
         <input type="password" class="form-control" id="sign-in-pwd" v-model="pwd" required>
+        <div class="form-control-feedback" v-if="passwordFeedback">{{ passwordFeedback }}</div>
       </div>
 
     </div>

@@ -7,20 +7,14 @@ import * as Vue from 'vue'
 export default {
 
   async [SIGN_UP]({ commit, dispatch }, { email, password }) {
-    try {
-      const customer = await authApi.signUp(email, password)
+    const customer = await authApi.signUp(email, password)
 
-      if (customer) {
-        dispatch(HIDE_SIGN_IN)
-        dispatch(HIDE_SIGN_UP)
+    if (customer) {
+      dispatch(HIDE_SIGN_IN)
+      dispatch(HIDE_SIGN_UP)
 
-        localStorage.setItem('customer', JSON.stringify(customer))
-        commit(SET_CUSTOMER, customer)
-      }
-    } catch (error) {
-      if (error.message === authApi.ERRORES.EMAIL_TAKEN) {
-        // TODO: tell user email has been taken
-      }
+      localStorage.setItem('customer', JSON.stringify(customer))
+      commit(SET_CUSTOMER, customer)
     }
   },
 
@@ -34,27 +28,21 @@ export default {
    * @param {any} authInfo
    */
   async [SIGN_IN]({ rootState, commit, dispatch }, authInfo) {
-    try {
-      let customer
-      if (authInfo.type === 'email') {
-        customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
-      } else if (authInfo.type === 'google') {
-        customer = await authApi.googleSignIn(authInfo.id_token)
-      } else if (authInfo.type === 'facebook') {
-        // TODO: wait for sign in api
-      }
+    let customer
+    if (authInfo.type === 'email') {
+      customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
+    } else if (authInfo.type === 'google') {
+      customer = await authApi.googleSignIn(authInfo.id_token)
+    } else if (authInfo.type === 'facebook') {
+      // TODO: wait for sign in api
+    }
 
-      if (customer) {
-        dispatch(HIDE_SIGN_IN)
-        dispatch(HIDE_SIGN_UP)
+    if (customer) {
+      dispatch(HIDE_SIGN_IN)
+      dispatch(HIDE_SIGN_UP)
 
-        localStorage.setItem('customer', JSON.stringify(customer.customer))
-        commit(SET_CUSTOMER, customer.customer)
-      }
-    } catch (error) {
-      if (error.message === authApi.ERRORES.USER_NOT_FOUND) {
-        // TODO: tell user username typed is not found.
-      }
+      localStorage.setItem('customer', JSON.stringify(customer.customer))
+      commit(SET_CUSTOMER, customer.customer)
     }
   },
 

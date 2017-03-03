@@ -36,8 +36,17 @@ const SIGN_IN = '/auth/signin'
 
 export async function emailSignIn(email, password) {
   // TODO: make sure it works after api ready
-  const params = { email, password }
-  return await signIn(params)
+  try {
+    const params = { email, password }
+    return await signIn(params)
+  } catch (error) {
+    switch (error.response.status) {
+      case 500:
+        throw new Error(ERRORES.USER_NOT_FOUND)
+      default:
+        throw error
+    }
+  }
 }
 
 export async function googleSignIn(id_token) {
@@ -54,17 +63,10 @@ export async function googleSignIn(id_token) {
 // }
 
 async function signIn(params) {
-  try {
-    const response = await http.post(SIGN_IN, {}, { params })
+  const response = await http.post(SIGN_IN, {}, { params })
 
-    if (response) {
-      tokenStorage.token = response.data.token
-      return response.data
-    }
-  } catch (error) {
-    switch (error.response.status) {
-      case '404':
-        throw new Error(ERRORES.USER_NOT_FOUND)
-    }
+  if (response) {
+    tokenStorage.token = response.data.token
+    return response.data
   }
 }
