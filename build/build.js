@@ -30,6 +30,8 @@ webpack(webpackConfig, function (err, stats) {
   exec(`docker build -t ${config.build.dockerImageName}:${require('../package.json').version} .`, {
     cwd: path.resolve(config.build.assetsRoot, '../')
   }, (error, stdout, stderr) => {
+    spinner.stop()
+
     // docker logs
     console.log('\n\n=========== Docker image building output ===========')
     if (error) {
@@ -41,7 +43,6 @@ webpack(webpackConfig, function (err, stats) {
     console.log('====================================================\n')
 
     // webpack logs
-    spinner.stop()
     if (err) throw err
     process.stdout.write(stats.toString({
       colors: true,
