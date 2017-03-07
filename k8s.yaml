@@ -1,0 +1,37 @@
+kind: List
+apiVersion: v1
+items:
+- kind: Deployment
+  apiVersion: extensions/v1beta1
+  metadata:
+    name: customer-web
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          name: customer-web
+      spec:
+        containers:
+        - name: customer-web
+          image: reactivesw/customer-web:1.0.0
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+          env:
+          - name: API_SERVER_ADDR
+            value: http://api-gateway/
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: customer-web
+    labels:
+      name: customer-web
+  spec:
+    type: LoadBalance
+    ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30011
+    selector:
+      name: customer-web
