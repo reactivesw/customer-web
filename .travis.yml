@@ -33,7 +33,7 @@ before_deploy:
 # 执行部署脚本，deploy-staging.sh参考4.2的模版
 deploy:
   - provider: script
-    script: sh deploy-staging.sh
+    script: sh deploy.sh
     skip_cleanup: true
     on:
       all_branches: true
