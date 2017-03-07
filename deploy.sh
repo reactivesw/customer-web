@@ -27,7 +27,7 @@ echo '=============================finish gcloud config project=================
 #${CLUSTER_NAME} come from travis setting
 echo '=============================gcloud config container cluster======================='
 echo ${CLUSTER_NAME}
-gcloud --quiet config set container/cluster ${CLUSTER_NAME_STG}
+gcloud --quiet config set container/cluster ${CLUSTER_NAME}
 echo '=============================finish config container cluster======================='
 
 #gcloud config compute zone
