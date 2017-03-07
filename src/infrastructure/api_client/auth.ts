@@ -3,10 +3,14 @@ import tokenStorage from './tokenStorage'
 
 // Error codes
 export const ERRORES = {
-  EMAIL_TAKEN: 'EMAIL_TAKEN',
+  USER_EXIST: 'USER_EXIST',
   USER_NOT_FOUND: 'USER_NOT_FOUND'
 }
 
+/**
+ * Server responses:
+ * {"code":10002,"message":"customer already exist."}
+ */
 const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
   const data = { email, password }
@@ -17,9 +21,9 @@ export async function signUp(email, password) {
       return response.data
     }
   } catch (error) {
-    switch (error.response.status) {
-      case 409:
-        throw new Error(ERRORES.EMAIL_TAKEN)
+    switch (error.response.body.code) {
+      case 10002:
+        throw new Error(ERRORES.USER_EXIST)
       // TODO: password not secure
       default:
         throw error

@@ -53,8 +53,8 @@ export default {
         await this['signUp']({ email: this['email'], password: this['pwd'] })
       } catch (e) {
         switch (e.message) {
-          case AUTH_ERRORES.EMAIL_TAKEN:
-            this['usernameFeedback'] = 'user name has been taken'
+          case AUTH_ERRORES.USER_EXIST:
+            this['usernameFeedback'] = this['$t']('alert.user_exist')
             break
           default:
             throw e
