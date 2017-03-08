@@ -15,9 +15,7 @@ sync(store, router)
 
 import { setNetworkErrorHandler } from './infrastructure/api_client'
 setNetworkErrorHandler(function(error){
-  debugger
-  console.log(error)
-  console.log('global network error detacted!!!!')
+  console.log('NETWORK ERROR: ', error)
 })
 
 new Vue({

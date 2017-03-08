@@ -1,6 +1,6 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
 import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from '../../auth_types'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP } from '../../modal_dialogs_types'
+import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from '../../modal_dialogs_types'
 import router from 'src/infrastructure/router'
 import * as Vue from 'vue'
 
@@ -10,11 +10,8 @@ export default {
     const customer = await authApi.signUp(email, password)
 
     if (customer) {
-      dispatch(HIDE_SIGN_IN)
       dispatch(HIDE_SIGN_UP)
-
-      localStorage.setItem('customer', JSON.stringify(customer))
-      commit(SET_CUSTOMER, customer)
+      dispatch(SHOW_SIGN_IN)
     }
   },
 
