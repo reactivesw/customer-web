@@ -15,7 +15,7 @@ module.exports = {
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
-    dockerImageName: 'reactivesw/customer_web'
+    dockerImageName: 'reactivesw/customer-web'
   },
   dev: {
     env: require('./dev.env'),
