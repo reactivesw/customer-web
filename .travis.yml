@@ -17,7 +17,7 @@ script:
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
-  docker push reactivesw/customer_web;
+  docker push reactivesw/customer-web;
 
 # deploy之前，安装gcloud和kubectl
 before_deploy:
