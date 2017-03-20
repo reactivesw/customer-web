@@ -24,7 +24,10 @@ The `main.ts` file performs a number of following tasks:
  The `infrastructure/router.ts` file maps url paths to components in the `router_views/` folder. 
 
 ## 4. Components
-A component usually has four files: an `index.vue` file is a container for the two types of elements (template and script) of a component;  the `script.ts` is the script that defines the behavior and state of the component; the `template.html` defines the DOM elements; the `style.scss` defines style. 
+## 4.1. File Structures
+A component usually has four files: an `index.vue` file is a container for the two types of elements (template and script) of a component;  the `script.ts` is the script that defines the behavior and state of the component; the `template.html` defines the DOM elements; the `style.scss` defines style. Currently we put all style files in the central `styles/` folder. 
+
+The `index.vue` uses `import`, not `src` attribute, to import script file to make webpack typscript loader happy. Also the `import` and `export` uses two statement to re-export the imported default. 
 
 The path hierarch is the structure of the view: a sub component is in a sub folder. 
 
@@ -34,3 +37,4 @@ The root component and page views are in the `router_views/` folder. The compone
 This is the root component. It has header, footer, categories menu, signin, and signup components. It fetches categories and cart in `created` event handler. It has two computed props of cateroies and customer. 
 
 ## 4.2. The `components/TheHeader/` folder
+The header has the site's logo, search, cart, signin and language selector. 
