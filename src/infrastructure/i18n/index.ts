@@ -18,7 +18,7 @@ export function changeLang (newLang) {
  */
 function initLang() {
   const lang = localStorage.getItem('lang')
-  if (lang) changeLang(lang)
+  if (lang) changeLang(lang.toLowerCase())
 }
 
 function loadLocales(Vue) {

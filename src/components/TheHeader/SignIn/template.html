@@ -2,8 +2,12 @@
   <ModalDialog :title="$t('header.sign_in')" :show="showSignIn" @hide="hideSignIn()">
 
     <div slot="body">
-
       <div class="row">
+
+        <div class="col-xs-12" v-if="signinFeedback">
+          <div class="alert alert-danger" role="alert">{{ signinFeedback }}</div>
+        </div>
+
         <div class="col-md-6">
           <g-signin-button
             class="btn btn-lg btn-block btn-danger"
@@ -13,17 +17,17 @@
             Google
           </g-signin-button>
         </div>
+
         <div class="col-md-6">
           <FacebookBtn @signIn="onFacebookSignIn"></FacebookBtn>
         </div>
-      </div>
 
+      </div>
       <hr>
 
-      <div class="form-group" :class="{ 'has-danger': usernameFeedback }">
+      <div class="form-group" :class="{ 'has-danger': passwordFeedback }">
         <label for="sign-in-email">{{ $t('form.email_address') }}</label>
         <input type="email" class="form-control" id="sign-in-email" v-model="email" required>
-        <div class="form-control-feedback" v-if="usernameFeedback">{{ usernameFeedback }}</div>
       </div>
 
       <div class="form-group" :class="{ 'has-danger': passwordFeedback }">

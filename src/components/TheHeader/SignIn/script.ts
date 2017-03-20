@@ -19,8 +19,8 @@ export default {
       },
       email: '',
       pwd: '',
-      usernameFeedback: null,
-      passwordFeedback: null
+      passwordFeedback: null,
+      signinFeedback: null
     }
   },
 
@@ -38,7 +38,6 @@ export default {
     async submitSignIn(this: Vue.Component) {
       try {
         // clean feedbacks
-        this['usernameFeedback'] = null
         this['passwordFeedback'] = null
 
         await this['signIn']({
@@ -51,10 +50,16 @@ export default {
         // server response is not correct.
         switch (e.message) {
           case AUTH_ERRORES.USER_NOT_FOUND:
-            this['usernameFeedback'] = 'user name not found'
+            this['passwordFeedback'] = Vue['t']('alert.credential_error')
+            break
+          case AUTH_ERRORES.PASSWORD_NOT_SECURE:
+            this['passwordFeedback'] = Vue['t']('alert.credential_error')
+            break
+          case AUTH_ERRORES.PASSWORD_NOT_MATCH:
+            this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
           default:
-            throw e
+            this['signinFeedback'] = Vue['t']('alert.signin_error')
         }
       }
     },
@@ -74,8 +79,9 @@ export default {
       this['signIn']({type: 'google', id_token})
     },
 
-    onGoogleSignInError(error) {
-      console.log('sign in error: ', error) // TODO: tell user their is a error happend
+    onGoogleSignInError(this: Vue.Component, error) {
+      // this['signinFeedback'] = Vue['t']('alert.social_signin_error')
+      // console.log('sign in error: ', error) // TODO: tell user their is a error happend
     },
 
     onFacebookSignIn(this: Vue.Component, facebookUser) {

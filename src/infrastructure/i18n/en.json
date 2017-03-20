@@ -4,10 +4,12 @@
     "copyright": "Reactivesw."
   },
   "alert": {
-    "network_error": "Request failed, please check your network.",
+    "network_error": "Some request failed, website might not work properly, please check your network.",
     "user_exist": "This email has been taken, please choose another one.",
-    "password_not_secure": "Passwords must be at least 6 characters.",
-    "confirm_password_not_match": "Confirm password not matching."
+    "password_not_secure": "Passwords must be at least 8 characters, has digital, lower case character and upper case character inside.",
+    "confirm_password_not_match": "Confirm password not matching.",
+    "credential_error": "Password is not match.",
+    "signin_error": "Login failed, please try again later."
   },
   "header": {
     "search": "Search",

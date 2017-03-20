@@ -38,8 +38,8 @@ export default {
       dispatch(HIDE_SIGN_IN)
       dispatch(HIDE_SIGN_UP)
 
-      localStorage.setItem('customer', JSON.stringify(customer.customer))
-      commit(SET_CUSTOMER, customer.customer)
+      localStorage.setItem('customer', JSON.stringify(customer))
+      commit(SET_CUSTOMER, customer)
     }
   },
 

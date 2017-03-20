@@ -13,7 +13,8 @@ export default {
       email: '',
       pwd: '',
       repeatPwd: '',
-      usernameFeedback: null
+      usernameFeedback: null,
+      passwordFeedback: null
     }
   },
 
@@ -49,13 +50,24 @@ export default {
 
     async submitSignUp(this: Vue.Component) {
       try {
+        // clean error messages
+        this['usernameFeedback'] = null
+        this['passwordFeedback'] = null
+
         // it has already passed all validation when enter this function
         await this['signUp']({ email: this['email'], password: this['pwd'] })
       } catch (e) {
         switch (e.message) {
+
           case AUTH_ERRORES.USER_EXIST:
             this['usernameFeedback'] = this['$t']('alert.user_exist')
             break
+
+          case AUTH_ERRORES.PASSWORD_NOT_SECURE:
+            this['passwordFeedback'] = this['$t']('alert.password_not_secure')
+            break
+
+          // if error can't handled here, pop it up.
           default:
             throw e
         }

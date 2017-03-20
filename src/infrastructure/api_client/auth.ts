@@ -5,7 +5,8 @@ import tokenStorage from './tokenStorage'
 export const ERRORES = {
   USER_EXIST: 'USER_EXIST',
   USER_NOT_FOUND: 'USER_NOT_FOUND',
-  PASSWORD_NOT_SECURE: 'PASSWORD_NOT_SECURE'
+  PASSWORD_NOT_SECURE: 'PASSWORD_NOT_SECURE',
+  PASSWORD_NOT_MATCH: 'PASSWORD_NOT_MATCH'
 }
 
 /**
@@ -14,6 +15,10 @@ export const ERRORES = {
  */
 const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
+  if (!isPasswordSecure(password)) {
+    throw new Error(ERRORES.PASSWORD_NOT_SECURE)
+  }
+
   const data = { email, password }
   try {
     const response = await http.post(SIGN_UP, data)
@@ -22,11 +27,15 @@ export async function signUp(email, password) {
       return true
     }
   } catch (error) {
-    switch (error.response.body.code) {
-      case 10002:
-        throw new Error(ERRORES.USER_EXIST)
-      default:
-        throw error
+    if (error.response.data) {
+      switch (error.response.data.code) {
+        case 10002:
+          throw new Error(ERRORES.USER_EXIST)
+        default:
+          throw error
+      }
+    } else {
+
     }
   }
 }
@@ -50,9 +59,11 @@ export async function emailSignIn(email, password) {
   } catch (error) {
     // server response error
     if (error.response) {
-      switch (error.response.status) {
-        case 500:
+      switch (error.response.data.code) {
+        case 10001:
           throw new Error(ERRORES.USER_NOT_FOUND)
+        case 10003:
+          throw new Error(ERRORES.PASSWORD_NOT_MATCH)
         default:
           throw error
       }
@@ -75,14 +86,13 @@ export async function googleSignIn(id_token) {
 
 async function signIn(params) {
   const response = await http.post(SIGN_IN, params)
-
   if (response) {
     tokenStorage.token = response.data.token
-    return response.data
+    return response.data.customerView
   }
 }
 
-function isPasswordSecure(password) {
+function isPasswordSecure(password: string) {
   const re = /^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,}$/
   return re.test(password)
 }

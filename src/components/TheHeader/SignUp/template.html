@@ -13,9 +13,10 @@
         <input ref="pwd" @change="checkFormValidity()" type="password" class="form-control" id="signUp-pwd" v-model="pwd" required>
       </div>
 
-      <div class="form-group">
+      <div class="form-group"  :class="{ 'has-danger': passwordFeedback }">
         <label for="signUp-repeat-pwd">{{ $t('form.repeat_pwd') }}</label>
         <input ref="rpwd" @change="checkFormValidity()" type="password" class="form-control" id="signUp-repeat-pwd" v-model="repeatPwd" required>
+        <div class="form-control-feedback" v-if="passwordFeedback">{{ passwordFeedback }}</div>
       </div>
     </div>
 
