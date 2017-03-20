@@ -2,7 +2,7 @@ import http from './http'
 
 const PRODUCTS = '/products'
 const PRODUCT_TYPES = '/product-types'
-const PRODUCT_PROJECTION = '/product-projections'
+const PRODUCT_PROJECTION = '/products/projections'
 
 /**
  * fetch product by product slug
