@@ -1,2 +1,6 @@
+// import from node_module
 @import "~bootstrap/scss/bootstrap";
+
+// import ./_theme.scss. 
+// files with a "_" prefix is not compiled by scss
 @import "./theme";
