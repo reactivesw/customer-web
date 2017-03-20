@@ -2,8 +2,10 @@ import * as _ from 'lodash'
 import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
+import * as categoriesType from 'src/infrastructure/store/categories_types'
 
 // components
+import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import Gallery from 'src/components/product/Gallery'
 import ProductInfo from 'src/components/product/ProductInfo'
 import VariantSelector from 'src/components/product/VariantSelector'
@@ -19,6 +21,7 @@ export default {
   name: 'Product',
   computed: {
     ...mapGetters({
+      categories: categoriesType.GET_CATEGORIES,
       product: productsTypes.GET_CURRENT_PRODUCT,
       variant: productsTypes.GET_CURRENT_PRODUCT_VARIANT,
       variants: productsTypes.GET_CURRENT_PRODUCT_VARIANTS,
@@ -108,6 +111,7 @@ export default {
   },
 
   components: {
+    CategoriesMenu,
     Gallery,
     ProductInfo,
     VariantSelector

@@ -2,7 +2,6 @@ import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import TheHeader from 'src/components/TheHeader'
 import TheFooter from 'src/components/TheFooter'
-import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import SignIn from 'src/components/TheHeader/SignIn'
 import SignUp from 'src/components/TheHeader/SignUp'
 import * as categoriesType from 'src/infrastructure/store/categories_types'
@@ -14,7 +13,6 @@ export default {
 
   computed: {
     ...mapGetters({
-      categories: categoriesType.GET_CATEGORIES,
       customer: authType.GET_CUSTOMER
     })
   },
@@ -34,7 +32,6 @@ export default {
   components: {
     TheHeader,
     TheFooter,
-    CategoriesMenu,
     SignIn,
     SignUp
   }
