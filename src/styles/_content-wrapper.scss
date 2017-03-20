@@ -1,0 +1,11 @@
+.content-wrapper {
+  padding-top: $header-height;
+  margin-top: 1rem;
+
+  // To make the footer float to bottom, work with .footer line-height
+  // 1. set content occupy whole height
+  // 2. set bottom padding and margin to leave space for footer
+  min-height: 100vh;
+  padding-bottom: $footer-height;
+  margin-bottom: -$footer-height;
+}
