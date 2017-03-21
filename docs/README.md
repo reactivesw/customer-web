@@ -43,7 +43,7 @@ The header has the site's logo, search, cart, signin and language selector.
 ## 5.1. Setup Bootstrap
 
 ### 5.1.1. `package.json`
-Install `bootstrap`, `tether` in `dependencies`.
+Install `bootstrap`, `jquery` and `tether` in `dependencies`.
 Install `node-sass`, `sass-loader` in `devDependencies. 
 
 ### 5.1.2. `webpack.base.conf.js`

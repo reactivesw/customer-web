@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
 
       <ul class="nav flex-column">
         <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'customer_info' }">{{ $t('customer.info') }}</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ $t('customer.addresses') }}</a> <!-- replace <a>s with <router-link>s -->
+          <router-link class="nav-link" :to="{ name: 'customer_addresses' }">{{ $t('customer.addresses') }}</router-link>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">{{ $t('customer.orders') }}</a>
@@ -18,7 +18,7 @@
       </ul>
 
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10">
 
       <router-view></router-view>
 
