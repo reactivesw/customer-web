@@ -3,7 +3,11 @@
     <b>+</b> Add new address
   </button>
 
-  <AddressList v-if="customerInfo" :addresses="customerInfo.addresses" :defaultAddressId="customerInfo.defaultAddressId"></AddressList>
+  <AddressList v-if="customerInfo" 
+  :addresses="customerInfo.addresses" 
+  :defaultAddressId="customerInfo.defaultAddressId"
+  @defaultChanged="changeDefaultAddress">
+  </AddressList>
 
   <AddressDetail></AddressDetail>
   

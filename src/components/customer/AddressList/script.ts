@@ -1,3 +1,5 @@
+import { Component } from 'vue'
+
 export default {
   name: 'AddressList',
 
@@ -5,7 +7,6 @@ export default {
     addresses: Array,
     defaultAddressId: String
   },
-
   methods: {
     buildAddressStr(addr) {
       return [
@@ -13,6 +14,9 @@ export default {
         addr.city, addr.state,
         addr.zip, addr.country]
         .join(',')
+    },
+    changeDefault(this: Component, addrId) {
+      this['$emit']('defaultChanged', addrId)
     }
   }
 }

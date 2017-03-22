@@ -14,8 +14,8 @@
       <td>{{ addr.fullName }}</td>
       <td>{{ buildAddressStr(addr) }}</td>
       <td>
-        <div class="radio"> <input type="radio" name="defaultAddress"
-          :value="defaultAddressId"></div>
+        <input type="radio" name="isDefault" :id="addr.id"
+          :checked="addr.id == defaultAddressId" @click.once.stop="changeDefault(addr.id)">
       </td>
       <td><button type="button" class="btn btn-primary btn-sm">Update</button></td>
       <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
