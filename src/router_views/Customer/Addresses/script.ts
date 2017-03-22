@@ -2,7 +2,7 @@ import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import AddressList from 'src/components/customer/AddressList'
 import AddressDetail from 'src/components/customer/AddressDetail'
-import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
+import { GET_CUSTOMER_INFO } from 'src/infrastructure/store/customer_info_types'
 
 export default {
   name: 'Addresses',
@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      customer: GET_CUSTOMER
+      customerInfo: GET_CUSTOMER_INFO
     })
   },
   components: {

@@ -1,3 +1,6 @@
 export default {
-  name: 'AddressDetail'
+  name: 'AddressDetail',
+  props: {
+    addressDetail: Object
+  }
 }

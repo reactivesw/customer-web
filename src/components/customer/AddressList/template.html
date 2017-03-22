@@ -10,27 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>old dog</td>
-      <td>News a lot of lajkdfla jflkdas jlfdjslafj adflkadhj gjlkjhjkhklhlk hlhklhkllfjdlak </td>
+    <tr v-for="addr in addresses">
+      <td>{{ addr.fullName }}</td>
+      <td>{{ buildAddressStr(addr) }}</td>
       <td>
-        <div class="radio"> <input type="radio" name="defaultAddress"></div>
+        <div class="radio"> <input type="radio" name="defaultAddress"
+          :value="defaultAddressId"></div>
       </td>
       <td><button type="button" class="btn btn-primary btn-sm">Update</button></td>
-      <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
-    </tr>
-    <tr>
-      <td>cat all</td>
-      <td>Products</td>
-      <td><input class="radio" type="radio" name="defaultAddress"></td>
-      <td><button type="button" class='btn btn-primary btn-sm'>Update</button></td>
-      <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
-    </tr>
-    <tr>
-      <td>nothing todo</td>
-      <td>Blogs</td>
-      <td><input class="radio" type="radio" name="defaultAddress"></td>
-      <td><button type="button" class='btn btn-primary btn-sm'>Update</button></td>
       <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
     </tr>
   </tbody>
