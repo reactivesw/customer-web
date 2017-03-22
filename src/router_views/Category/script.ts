@@ -35,6 +35,7 @@ export default {
     this['fetchData']()
   },
 
+  // when route changes, fetch new category data
   watch: {
     $route (this: Component) {
       this['fetchData']()

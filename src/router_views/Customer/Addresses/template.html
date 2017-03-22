@@ -1,97 +1,10 @@
 <div>
-  <p class="text-right"><button class="btn btn-outline-primary">
+  <button class="btn btn-primary my-3">
     <b>+</b> Add new address
   </button>
-  </p>
-  <table id="customerAddresses" class="table table-striped table-bordered table-hover table-responsive">
-    <thead>
-      <tr>
-        <!-- the col-xx-y doesn't work here, use width style -->
-        <th style="width:15%">Full Name</th>
-        <th style="width:60%">Address</th>
-        <th style="width:5%">Default</th>
-        <th style="width:10%">Update</th>
-        <th style="width:10%">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- use form to enable radio button -->
 
-      <tr>
-        <td>old dog</td>
-        <td>News a lot of lajkdfla jflkdas jlfdjslafj adflkadhj gjlkjhjkhklhlk hlhklhkllfjdlak </td>
-        <td>
-          <div class="radio"> <input type="radio" name="defaultAddress"></div>
-        </td>
-        <td><button type="button" class="btn btn-outline-primary btn-sm align-middle">Update</button></td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm align-middle">Delete</button></td>
-      </tr>
-      <tr>
-        <td>cat all</td>
-        <td>Products</td>
-        <td><input class="radio" type="radio" name="defaultAddress"></td>
-        <td><button type="button" class='btn btn-outline-primary btn-sm'>Update</button></td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
-      </tr>
-      <tr>
-        <td>nothing todo</td>
-        <td>Blogs</td>
-        <td><input class="radio" type="radio" name="defaultAddress"></td>
-        <td><button type="button" class='btn btn-outline-primary btn-sm'>Update</button></td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
-      </tr>
+  <AddressList></AddressList>
 
-    </tbody>
-  </table>
-
-  <div id="newAddress" class="form-horizontal">
-    <hr />
-    <h3> Address Details </h3>
-    <div class="form-group row">
-      <label for="full-name" class="col-2 col-form-label">Full Name</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="Firstname Lastname" id="full-name">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="address-line1" class="col-2 col-form-label">Address Line 1</label>
-      <div class="col-8">
-        <input class="form-control" type="text" placeholder="address line 1" id="address-line1" name="address-line1">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="address-line2" class="col-2 col-form-label">Address Line 2</label>
-      <div class="col-8">
-        <input class="form-control" type="text" placeholder="address line 2" id="address-line2" name="address-line2">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="city" class="col-2 col-form-label">City</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="city" id="city" name="city">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="state" class="col-2 col-form-label">State / Province </label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="state / province" id="state" name="state">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="country" class="col-2 col-form-label">Country </label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="United States" id="country" name="country">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <button type="button" class="btn btn-outline-info">Cancel</button>
-      <button type="button" class="btn btn-outline-primary">Save</button>
-    </div>
-  </div>
+  <AddressDetail></AddressDetail>
+  
 </div>
