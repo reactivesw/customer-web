@@ -13,6 +13,7 @@ Under the `src/` folder, there are two files and several folders.
 * `sytles`: the folder has scss style files. 
 
 # 3. App Entry and Router
+## 3.1. The Entry
 The `main.ts` file performs a number of following tasks:  
 
 * create and render the root component (`router_views/App`).
@@ -21,7 +22,12 @@ The `main.ts` file performs a number of following tasks:
 * enable i18n functions. 
 * set network error handler to a console logger.
 
- The `infrastructure/router.ts` file maps url paths to components in the `router_views/` folder. 
+## 3.2. The Router
+ The `infrastructure/router` folder has router files mapping url paths to components in the `router_views/` folder.
+ 
+ The `index.ts` defines the top level components such as category, product, cart etc. Each router item has a name, a URL path, the corresponding component and some optional meta data. 
+
+ The `cusotmer.ts` defines the routers for customer component and its children. 
 
 # 4. Components
 ## 4.1. File Structures

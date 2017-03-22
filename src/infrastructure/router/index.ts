@@ -4,9 +4,7 @@ import store from 'src/infrastructure/store'
 import Category from 'src/router_views/Category'
 import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
-import Customer from 'src/router_views/Customer'
-import CustomerInfo from 'src/router_views/Customer/Info'
-import CustomerAddresses from 'src/router_views/Customer/Addresses'
+import customer from './customer'
 import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
 
 Vue.use(VueRouter)
@@ -34,23 +32,7 @@ const routes = [
     component: Cart
   },
   {
-    name: 'customer',
-    path: '/customer',
-    component: Customer,
-    children: [
-      {
-        name: 'customer_info',
-        path: 'info',
-        component: CustomerInfo
-      },
-      {
-        name: 'customer_addresses',
-        path: 'addresses',
-        component: CustomerAddresses
-      },
-      { path: '*', redirect: { name: 'customer_info' } } // redirect to customer info when visit /customer
-    ],
-    meta: { requiresAuth: true }
+    ...customer
   },
   {
     path: '*',
