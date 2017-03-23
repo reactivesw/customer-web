@@ -6,7 +6,7 @@
   <AddressList v-if="customerInfo" 
   :addresses="customerInfo.addresses" 
   :defaultAddressId="customerInfo.defaultAddressId"
-  @defaultChanged="changeDefaultAddress">
+  @defaultChanged="defaultChangedEventHandler">
   </AddressList>
 
   <AddressDetail></AddressDetail>
