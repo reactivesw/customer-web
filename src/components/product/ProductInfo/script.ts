@@ -6,13 +6,13 @@ export default {
 
   computed: {
     name (this: Component) {
-      return this['product'].masterData.current.name
+      return this['product'].name
     },
     price (this: Component) {
       return this['variant'].prices[0].value
     },
     description (this: Component) {
-      return this['product'].masterData.current.description
+      return this['product'].description
     }
   },
 

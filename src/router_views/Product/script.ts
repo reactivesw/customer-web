@@ -68,7 +68,7 @@ export default {
       if (!(this['variant'] && this['product'])) return
 
       const thisVariantImages = this['variant'].images
-      const masterVariantImages = this['product'].masterData.current.masterVariant.images
+      const masterVariantImages = this['product'].masterVariant.images
 
       let images
       if (thisVariantImages.length > 0) {
@@ -106,7 +106,7 @@ export default {
     }),
 
     handleSelectSku(this: Component, sku) {
-      this['$router'].push({ name: 'products', params: { productSlug: this['$route'].params.productSlug, sku } })
+      this['$router'].push({ name: 'products', params: { sku } })
     }
   },
 

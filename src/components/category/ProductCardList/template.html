@@ -1,7 +1,6 @@
 <div class="row text-center">
-
   <div class="col-sm-6 col-lg-4 col-xl-3" v-for="product in products">
-    <router-link :to="{ name:'products', params:{ productSlug: product.slug, sku: product.masterVariant.sku } }">
+    <router-link :to="{ name:'products', params:{ sku: product.sku } }">
       <ProductCard :product="product"></ProductCard>
     </router-link>
   </div>
