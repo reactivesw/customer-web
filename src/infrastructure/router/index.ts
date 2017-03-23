@@ -23,7 +23,7 @@ const routes = [
   },
   {
     name: 'products',
-    path: '/products/:productSlug/:sku',
+    path: '/products/:sku',
     component: Product
   },
   {

@@ -14,6 +14,9 @@ export default {
    * @param {any} { rootState, dispatch, commit }
    */
   async [FETCH_CURRENT_CATEGORY_PRODUCTS]({ rootState, dispatch, commit }) {
+    // clean previous category products
+    commit(SET_CURRENT_CATEGORY_PRODUCTS, [])
+
     // make sure we already have categories data
     const categories = await dispatch(FETCH_CATEGORIES)
 
@@ -34,9 +37,8 @@ export default {
    * @param {any} { rootState, commit }
    */
   async [FETCH_CURRENT_PRODUCT]({ rootState, commit }) {
-    const slug = rootState.route.params.productSlug
-    const product = await productApi.getProduct(slug)
-    const productType = await productApi.getProductType(product.productType.id)
-    commit(SET_CURRENT_PRODUCT, { product, productType })
+    const sku = rootState.route.params.sku
+    const product = await productApi.getProduct(sku)
+    commit(SET_CURRENT_PRODUCT, { product, productType: product.productType })
   }
 }

@@ -9,9 +9,10 @@ export default {
 
   [SET_CURRENT_PRODUCT] (state, { product, productType }) {
     // sort variants of product by their sku string before store
-    product.masterData.current.variants.sort((variant, anotherVariant) => {
-      return variant.sku < anotherVariant.sku
-    })
+    // debugger
+    // product.variants.sort((variant, anotherVariant) => {
+    //   return variant.sku < anotherVariant.sku
+    // })
 
     state.currentProduct = product
     state.currentProductType = productType

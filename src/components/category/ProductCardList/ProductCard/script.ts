@@ -10,15 +10,15 @@ export default {
 
   computed: {
     imageUrl(this: Component) {
-      if (this['product'].masterVariant.images.length === 0) {
+      if (!this['product'].imageUrl) {
         return noImagePlaceHolder
       } else {
-        return this['product'].masterVariant.images[0].url
+        return this['product'].imageUrl
       }
     },
 
     money(this: Component) {
-      return MoneyToString(this['product'].masterVariant.prices[0].value)
+      return MoneyToString(this['product'].price.value)
     }
   },
 
