@@ -4,7 +4,7 @@ import {
   SET_SIGN_IN,
   SHOW_SIGN_UP,
   HIDE_SIGN_UP,
-  SET_SIGN_UP } from '../../modal_dialogs_types'
+  SET_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
 
 export default {
   [SHOW_SIGN_IN]({ state, commit }) {

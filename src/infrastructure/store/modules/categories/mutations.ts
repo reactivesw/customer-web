@@ -1,4 +1,4 @@
-import { SET_CATEGORIES } from '../../categories_types'
+import { SET_CATEGORIES } from 'src/infrastructure/store/categories_types'
 
 export default {
   [SET_CATEGORIES] (state, categories) {

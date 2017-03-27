@@ -1,9 +1,10 @@
-import { SET_CUSTOMER_INFO,
+import {
+  SET_CUSTOMER_INFO,
   SET_DEFAULT_ADDRESS
-} from '../../customer_info_types'
+} from 'src/infrastructure/store/customer_info_types'
 
-import CustomerInfo from '../../../../models/customer/CustomerInfo'
-import SetDefaultRequest from '../../../../models/customer/SetDefaultRequest'
+import CustomerInfo from 'src/models/customer/CustomerInfo'
+import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
 export default {
   [SET_CUSTOMER_INFO](state, customerInfo) {

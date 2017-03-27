@@ -4,8 +4,8 @@ import AddressList from 'src/components/customer/AddressList'
 import AddressDetail from 'src/components/customer/AddressDetail'
 import { GET_CUSTOMER_INFO, PUT_DEFAULT_ADDRESS } from 'src/infrastructure/store/customer_info_types'
 
-import CustomerInfo from '../../../models/customer/CustomerInfo'
-import SetDefaultRequest from '../../../models/customer/SetDefaultRequest'
+import CustomerInfo from 'src/models/customer/CustomerInfo'
+import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
 export default {
   name: 'Addresses',

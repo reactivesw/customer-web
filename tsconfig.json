@@ -5,6 +5,10 @@
     "strictNullChecks": true,
     "noImplicitThis": true,
     "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "src": ["./src"]
+    },
     "typeRoots": [
       "./typings",
       "./node_modules/@types"

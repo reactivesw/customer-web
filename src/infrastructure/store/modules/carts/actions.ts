@@ -4,7 +4,7 @@ import {
   REMOVE_LINE_ITEM,
   FETCH_CART,
   SET_CART,
-  SET_LINE_ITEM_QUANTITY } from '../../carts_types'
+  SET_LINE_ITEM_QUANTITY } from 'src/infrastructure/store/carts_types'
 
 export default {
   async [FETCH_CART]({ commit }) {

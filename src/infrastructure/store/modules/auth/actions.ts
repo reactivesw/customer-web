@@ -1,6 +1,6 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from '../../auth_types'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from '../../modal_dialogs_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from 'src/infrastructure/store/auth_types'
+import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
 import router from 'src/infrastructure/router'
 import * as Vue from 'vue'
 

@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_FEATURE_CATEGORY } from '../../categories_types'
+import { GET_CATEGORIES, GET_FEATURE_CATEGORY } from 'src/infrastructure/store/categories_types'
 
 export default {
   [GET_CATEGORIES](state) {
