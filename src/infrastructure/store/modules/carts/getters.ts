@@ -1,4 +1,4 @@
-import { GET_CART } from '../../carts_types'
+import { GET_CART } from 'src/infrastructure/store/carts_types'
 
 export default {
   [GET_CART](state) {

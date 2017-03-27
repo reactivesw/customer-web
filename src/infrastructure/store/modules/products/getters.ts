@@ -3,7 +3,7 @@ import {
   GET_CURRENT_PRODUCT,
   GET_CURRENT_PRODUCT_VARIANT,
   GET_CURRENT_PRODUCT_VARIANTS,
-  GET_CURRENT_PRODUCT_TYPE } from '../../products_types'
+  GET_CURRENT_PRODUCT_TYPE } from 'src/infrastructure/store/products_types'
 
 export default {
   [GET_CURRENT_CATEGORY_PRODUCTS] (state) {

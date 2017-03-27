@@ -18,16 +18,20 @@ export async function updateCustomerInfo(customerInfoRequest) {
   return await putRequest('updateCustomerInfo', customerInfoRequest)
 }
 
+export async function setDefaultAddress(setDefaultRequest) {
+  return await putRequest('setDefaultAddress', setDefaultRequest)
+}
+
 export async function addAddress(addressRequest) {
-  return await putRequest('AddAddress', addressRequest)
+  return await putRequest('addAddress', addressRequest)
 }
 
 export async function updateAddress(addressRequest) {
-  return await putRequest('UpdateAddress', addressRequest)
+  return await putRequest('updateAddress', addressRequest)
 }
 
 export async function deleteAddress(deleteAddressRequest) {
-  return await putRequest('DeleteAddress', deleteAddressRequest)
+  return await putRequest('deleteAddress', deleteAddressRequest)
 }
 
 async function putRequest(actionName, request) {

@@ -2,7 +2,10 @@ import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import AddressList from 'src/components/customer/AddressList'
 import AddressDetail from 'src/components/customer/AddressDetail'
-import { GET_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO } from 'src/infrastructure/store/customer_info_types'
+import { GET_CUSTOMER_INFO, PUT_DEFAULT_ADDRESS } from 'src/infrastructure/store/customer_info_types'
+
+import CustomerInfo from 'src/models/customer/CustomerInfo'
+import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
 export default {
   name: 'Addresses',
@@ -14,23 +17,17 @@ export default {
 
   methods: {
     ...mapActions({
-      updateCustomerInfo: UPDATE_CUSTOMER_INFO
+      putDefaultAddress: PUT_DEFAULT_ADDRESS
     }),
 
-    changeDefaultAddress(this: Component, addrId) {
-      let ci = this['customerInfo']
-      let infoRequest = {
-        id: ci.id,
-        version: ci.version,
-        customerName: ci.customerName,
-        firstName: ci.firstName,
-        lastName: ci.lastName,
-        middleName: ci.middleName,
-        dateOfBirth: ci.dateOfBirth,
-        locale: ci.locale,
-        defaultAddressId: addrId
+    defaultChangedEventHandler(this: Component, addrId) {
+      let customerInfo: CustomerInfo = this['customerInfo']
+      let putDefaultRequest: SetDefaultRequest = {
+        id: customerInfo.id,
+        version: customerInfo.version,
+        addressId: addrId
       }
-      this['updateCustomerInfo'](infoRequest)
+      this['putDefaultAddress'](putDefaultRequest)
     }
   },
 

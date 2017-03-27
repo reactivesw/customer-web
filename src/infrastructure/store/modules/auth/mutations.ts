@@ -1,4 +1,4 @@
-import { SET_CUSTOMER, SET_TOKEN } from '../../auth_types'
+import { SET_CUSTOMER, SET_TOKEN } from 'src/infrastructure/store/auth_types'
 
 export default {
   [SET_CUSTOMER](state, customer) {

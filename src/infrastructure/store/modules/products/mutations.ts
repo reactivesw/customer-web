@@ -1,6 +1,6 @@
 import {
   SET_CURRENT_CATEGORY_PRODUCTS,
-  SET_CURRENT_PRODUCT } from '../../products_types'
+  SET_CURRENT_PRODUCT } from 'src/infrastructure/store/products_types'
 
 export default {
   // set current category state for category view.
