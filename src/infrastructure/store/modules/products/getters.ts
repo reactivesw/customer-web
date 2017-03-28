@@ -5,7 +5,7 @@ import {
   GET_CURRENT_PRODUCT_VARIANTS,
   GET_CURRENT_PRODUCT_TYPE } from 'src/infrastructure/store/products_types'
 
-export default {
+const getters = {
   [GET_CURRENT_CATEGORY_PRODUCTS] (state) {
     return state.currentCategoryProducts
   },
@@ -50,3 +50,5 @@ function getCurrentVariants (state) {
     return []
   }
 }
+
+export default getters

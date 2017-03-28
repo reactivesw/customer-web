@@ -1,7 +1,7 @@
 declare let process: any
 
-import * as Vue from 'vue'
-import * as Vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 import categories from './modules/categories'
 import products from './modules/products'

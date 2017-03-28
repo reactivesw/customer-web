@@ -1,5 +1,5 @@
-import * as Vue from 'vue'
-import * as VueRouter from 'vue-router'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import store from 'src/infrastructure/store'
 import Category from 'src/router_views/Category'
 import Product from 'src/router_views/Product'

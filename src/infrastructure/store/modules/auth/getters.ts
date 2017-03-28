@@ -1,6 +1,6 @@
 import { GET_CUSTOMER, GET_TOKEN } from 'src/infrastructure/store/auth_types'
 
-export default {
+const getters = {
   [GET_CUSTOMER](state) {
     return state.customer
   },
@@ -9,3 +9,6 @@ export default {
     return state.token
   }
 }
+
+export default getters
+

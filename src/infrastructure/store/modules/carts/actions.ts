@@ -6,7 +6,7 @@ import {
   SET_CART,
   SET_LINE_ITEM_QUANTITY } from 'src/infrastructure/store/carts_types'
 
-export default {
+const actions = {
   async [FETCH_CART]({ commit }) {
     const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
     const cart = await cartsApi.getCart({ anonymousId })
@@ -52,3 +52,6 @@ export default {
     commit(SET_CART, cart)
   }
 }
+
+export default actions
+

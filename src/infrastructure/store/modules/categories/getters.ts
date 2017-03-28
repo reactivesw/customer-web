@@ -1,6 +1,6 @@
 import { GET_CATEGORIES, GET_FEATURE_CATEGORY } from 'src/infrastructure/store/categories_types'
 
-export default {
+const getters = {
   [GET_CATEGORIES](state) {
     return state.categories
   },
@@ -10,3 +10,5 @@ export default {
     return state.categories[0]
   }
 }
+
+export default getters

@@ -6,7 +6,7 @@ import {
   SET_CURRENT_PRODUCT } from 'src/infrastructure/store/products_types'
 import { FETCH_CATEGORIES } from 'src/infrastructure/store/categories_types'
 
-export default {
+const actions = {
 
   /**
    * Fetch products of current category (determined by route)
@@ -42,3 +42,5 @@ export default {
     commit(SET_CURRENT_PRODUCT, { product, productType: product.productType })
   }
 }
+
+export default actions

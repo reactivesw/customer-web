@@ -8,6 +8,7 @@
         v-if="!isEmpty"
         v-for="lineItem of cart.lineItems"
         :lineItem="lineItem"
+        :key=lineItem.id
         @changeQuantity="changeQuantity"
         @removeLineItem="removeLineItem"></LineItem>
 
