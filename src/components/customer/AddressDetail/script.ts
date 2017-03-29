@@ -5,9 +5,10 @@ import ModalDialog from 'src/components/utility/ModalDialog'
 export default {
   name: 'AddressDetails',
 
-  data(this: Component) {
-    return {
-      addressDetails: Object.assign({}, this['addressProp'])
+  // use computed to track the property change
+  computed: {
+    addressDetails(this: Component) {
+      return Object.assign({}, this['addressProp'])
     }
   },
 

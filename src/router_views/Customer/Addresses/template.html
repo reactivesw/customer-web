@@ -4,9 +4,10 @@
   </button>
 
   <AddressList v-if="customerInfo" 
-  :addresses="customerInfo.addresses" 
-  :defaultAddressId="customerInfo.defaultAddressId"
-  @defaultChanged="defaultChangedEventHandler">
+    :addresses="customerInfo.addresses" 
+    :defaultAddressId="customerInfo.defaultAddressId"
+    @defaultChanged="defaultChangedEventHandler"
+    @updateAddress="updateAddressEventHandler">
   </AddressList>
 
   <AddressDetail :show="showAddressDetails" 

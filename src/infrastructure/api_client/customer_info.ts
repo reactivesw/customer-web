@@ -2,6 +2,7 @@ import http from './http'
 
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 import AddAddressRequest from 'src/models/customer/AddAddressRequest'
+import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
 
 export const API_URL = '/customers'
 
@@ -34,14 +35,16 @@ export async function setDefaultAddress(request: SetDefaultRequest) {
 }
 
 export async function addAddress(request: AddAddressRequest) {
-  let {customer_id, version, addressDetails} = request
+  let {customer_id, version, newAddressDetails} = request
   let header: RequestHeader =  {customer_id, version, action: 'addAddress'}
-  return await putRequest(header, addressDetails)
+  return await putRequest(header, newAddressDetails)
 }
 
-// export async function updateAddress(addressRequest) {
-//   return await putRequest('updateAddress', addressRequest)
-// }
+export async function updateAddress(request: UpdateAddressRequest) {
+  let {customer_id, version, addressDetails} = request
+  let header: RequestHeader =  {customer_id, version, action: 'updateAddress'}
+  return await putRequest(header, addressDetails)
+}
 
 // export async function deleteAddress(deleteAddressRequest) {
 //   return await putRequest('deleteAddress', deleteAddressRequest)

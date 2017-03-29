@@ -4,11 +4,13 @@ import {
   FETCH_CUSTOMER_INFO,
   SET_CUSTOMER_INFO,
   PUT_DEFAULT_ADDRESS,
-  PUT_ADD_ADDRESS
+  PUT_ADD_ADDRESS,
+  PUT_UPDATE_ADDRESS
 } from 'src/infrastructure/store/customer_info_types'
 
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 import AddAddressRequest from 'src/models/customer/AddAddressRequest'
+import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
 
 const actions = {
   async [FETCH_CUSTOMER_INFO]({ rootState, commit }) {
@@ -24,6 +26,11 @@ const actions = {
 
   async [PUT_ADD_ADDRESS]({ commit }, addAddressRequest: AddAddressRequest) {
     const customerInfo  = await apiClient.addAddress(addAddressRequest)
+    commit(SET_CUSTOMER_INFO, customerInfo)
+  },
+
+  async [PUT_UPDATE_ADDRESS]({ commit }, updateAddressRequest: UpdateAddressRequest) {
+    const customerInfo  = await apiClient.updateAddress(updateAddressRequest)
     commit(SET_CUSTOMER_INFO, customerInfo)
   }
 }
