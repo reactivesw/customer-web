@@ -9,11 +9,10 @@ import axios from 'axios'
 import tokenStorage from './tokenStorage'
 
 // if there is a apiServerAddr global variable setted, use it as baseURL instead of bundle one.
-const baseURL = (<any>window).apiServerAddr || process.env.RS_API_URL
+const baseURL = (<any>window).apiServerAddr || process.env.REST_API_URL
 
 // Create a http client instance with some common settings
 const instance = axios.create({
-  // baseURL: process.env.RS_API_URL,
   baseURL: baseURL,
   timeout: 3000
 })
