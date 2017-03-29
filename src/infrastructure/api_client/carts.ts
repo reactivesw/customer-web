@@ -1,6 +1,7 @@
 import http from './http'
 import tokenManager from './tokenManager'
 import * as CARTS_ACTIONS from './carts_actions'
+import Utils from './utils'
 
 const CARTS = '/carts'
 
@@ -12,11 +13,18 @@ const CARTS = '/carts'
  * @returns
  */
 export async function getCart() {
-  tokenManager.getToken()
+  return tokenManager.getToken()
   .then(( token ) => {
-    const params = {
-      customerId: token
+    const tokenPayload = Utils.decodeToken( token )
+
+    // token might belong to anonymous customer or signed in customer
+    let params
+    if ( tokenPayload.sub === 'anonymous' ) {
+      params = { anonymousId: tokenPayload.subjectId }
+    } else {
+      params = { customerId: tokenPayload.subjectId }
     }
+
     return http.get(CARTS, { params })
   })
   .then(( response ) => {

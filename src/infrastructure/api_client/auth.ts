@@ -48,7 +48,6 @@ export function signOut() {
 const SIGN_IN = '/auth/signin'
 
 export async function emailSignIn(email, password) {
-  // TODO: make sure it works after api ready
   if (!isPasswordSecure(password)) {
     throw new Error(ERRORES.PASSWORD_NOT_SECURE)
   }
