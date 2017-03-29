@@ -4,7 +4,7 @@ import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from 'src/infr
 import router from 'src/infrastructure/router'
 import * as Vue from 'vue'
 
-export default {
+const actions = {
 
   async [SIGN_UP]({ commit, dispatch }, { email, password }) {
     const customer = await authApi.signUp(email, password)
@@ -50,3 +50,5 @@ export default {
     router.push({ name: 'featureCategory' })
   }
 }
+
+export default actions

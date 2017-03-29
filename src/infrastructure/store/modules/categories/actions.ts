@@ -3,7 +3,7 @@ import { FETCH_CATEGORIES, SET_CATEGORIES } from 'src/infrastructure/store/categ
 
 // categoriesPromise is for prevent duplicate request and cache.
 let categoriesPromise
-export default {
+const actions = {
   async[FETCH_CATEGORIES]({ commit }) {
     if (!categoriesPromise) {
       categoriesPromise = categoriesApi.getCategories()
@@ -15,3 +15,5 @@ export default {
     return await categoriesPromise
   }
 }
+
+export default actions

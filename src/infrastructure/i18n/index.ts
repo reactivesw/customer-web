@@ -1,5 +1,5 @@
-import * as Vue from 'vue'
-import * as VueI18n from 'vue-i18n'
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 
 export default function (Vue) {
   Vue.use(VueI18n)
@@ -28,7 +28,7 @@ function loadLocales(Vue) {
 
   // set lang context
   Object.keys(locales).forEach(key => {
-    (Vue as any).locale(key, locales[key])
+    Vue.locale(key, locales[key])
   })
 }
 

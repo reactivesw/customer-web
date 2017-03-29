@@ -2,7 +2,7 @@ import {
   SET_CURRENT_CATEGORY_PRODUCTS,
   SET_CURRENT_PRODUCT } from 'src/infrastructure/store/products_types'
 
-export default {
+const mutations = {
   // set current category state for category view.
   [SET_CURRENT_CATEGORY_PRODUCTS] (state, products) {
     state.currentCategoryProducts = products
@@ -14,3 +14,5 @@ export default {
     state.currentProductType = productType
   }
 }
+
+export default mutations

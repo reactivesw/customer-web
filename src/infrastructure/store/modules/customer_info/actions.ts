@@ -9,7 +9,7 @@ import { FETCH_CUSTOMER_INFO,
 import ApiPutResult from 'src/models/customer/ApiPutResult'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
-export default {
+const actions = {
   async [FETCH_CUSTOMER_INFO]({ rootState, commit }) {
     const id = rootState.auth.customer.id
     const info = await apiClient.getCustomerInfo(id)
@@ -24,5 +24,7 @@ export default {
     commit(SET_DEFAULT_ADDRESS, putDefaultRequest)
   }
 }
+
+export default actions
 
 

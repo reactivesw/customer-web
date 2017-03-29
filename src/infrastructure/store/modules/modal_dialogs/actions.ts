@@ -6,7 +6,7 @@ import {
   HIDE_SIGN_UP,
   SET_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
 
-export default {
+const actions = {
   [SHOW_SIGN_IN]({ state, commit }) {
     commit(SET_SIGN_IN, true)
   },
@@ -23,3 +23,5 @@ export default {
     commit(SET_SIGN_UP, false)
   }
 }
+
+export default actions

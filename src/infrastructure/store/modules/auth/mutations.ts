@@ -1,6 +1,6 @@
 import { SET_CUSTOMER, SET_TOKEN } from 'src/infrastructure/store/auth_types'
 
-export default {
+const mutations = {
   [SET_CUSTOMER](state, customer) {
     state.customer = customer
   },
@@ -9,3 +9,5 @@ export default {
     state.token = token
   }
 }
+
+export default mutations

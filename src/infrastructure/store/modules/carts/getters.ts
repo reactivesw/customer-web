@@ -1,7 +1,9 @@
 import { GET_CART } from 'src/infrastructure/store/carts_types'
 
-export default {
+const getters = {
   [GET_CART](state) {
     return state.cart
   }
 }
+
+export default getters

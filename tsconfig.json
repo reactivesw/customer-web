@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es5", "es2015.promise", "dom"],
+    "lib": [
+      "es5",
+      "es2015.promise",
+      "dom"
+    ],
     "strictNullChecks": true,
     "noImplicitThis": true,
     "sourceMap": true,
+    // the following three options are recommended by
+    // https://vuejs.org/v2/guide/typescript.html to allow ES module
+    "allowSyntheticDefaultImports": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+
+    // use absolute path in ts file
     "baseUrl": "./",
-    "paths": {
-      "src": ["./src"]
-    },
     "typeRoots": [
+      // required for local type definition such as FB
       "./typings",
+      // required for node type definitioin such as require
       "./node_modules/@types"
     ]
   }

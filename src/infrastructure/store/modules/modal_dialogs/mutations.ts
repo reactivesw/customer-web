@@ -3,7 +3,7 @@ import {
   SET_SIGN_UP
 } from 'src/infrastructure/store/modal_dialogs_types'
 
-export default {
+const mutations = {
   [SET_SIGN_IN] (state, isShow) {
     state.showSignIn = isShow
   },
@@ -12,3 +12,5 @@ export default {
     state.showSignUp = isShow
   }
 }
+
+export default mutations

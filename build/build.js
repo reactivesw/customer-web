@@ -1,48 +1,22 @@
-// https://github.com/shelljs/shelljs
 require('./check-versions')()
-require('shelljs/global')
-env.NODE_ENV = 'production'
 
-var path = require('path')
-var config = require('../config')
+process.env.NODE_ENV = 'production'
+
 var ora = require('ora')
+var rm = require('rimraf')
+var path = require('path')
+var chalk = require('chalk')
 var webpack = require('webpack')
+var config = require('../config')
 var webpackConfig = require('./webpack.prod.conf')
-
-console.log(
-  '  Tip:\n' +
-  '  Built files are meant to be served over an HTTP server.\n' +
-  '  Opening index.html over file:// won\'t work.\n'
-)
 
 var spinner = ora('building for production...')
 spinner.start()
 
-var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
-rm('-rf', assetsPath)
-mkdir('-p', assetsPath)
-cp('-R', 'static/*', assetsPath)
-
-// bundle with webpack
-webpack(webpackConfig, function (err, stats) {
-  // build docker image after bundled
-  var exec = require('child_process').exec;
-  exec(`docker build -t ${config.build.dockerImageName}:${require('../package.json').version} .`, {
-    cwd: path.resolve(config.build.assetsRoot, '../')
-  }, (error, stdout, stderr) => {
+rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+  if (err) throw err
+  webpack(webpackConfig, function (err, stats) {
     spinner.stop()
-
-    // docker logs
-    console.log('\n\n=========== Docker image building output ===========')
-    if (error) {
-      console.error(`Error when building docker image: ${error}`);
-      return;
-    }
-    console.log(`Stdout: ${stdout}`);
-    console.log(`Stderr: ${stderr}`);
-    console.log('====================================================\n')
-
-    // webpack logs
     if (err) throw err
     process.stdout.write(stats.toString({
       colors: true,
@@ -50,6 +24,12 @@ webpack(webpackConfig, function (err, stats) {
       children: false,
       chunks: false,
       chunkModules: false
-    }) + '\n')
-  });
+    }) + '\n\n')
+
+    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.yellow(
+      '  Tip: built files are meant to be served over an HTTP server.\n' +
+      '  Opening index.html over file:// won\'t work.\n'
+    ))
+  })
 })

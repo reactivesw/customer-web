@@ -6,7 +6,7 @@ import {
 import CustomerInfo from 'src/models/customer/CustomerInfo'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
-export default {
+const mutations = {
   [SET_CUSTOMER_INFO](state, customerInfo) {
     state.customerInfo = customerInfo
   },
@@ -17,3 +17,5 @@ export default {
     customerInfo.defaultAddressId = setDefaultResult.addressId
   }
 }
+
+export default mutations
