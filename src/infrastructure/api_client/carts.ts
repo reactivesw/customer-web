@@ -1,6 +1,7 @@
 import http from './http'
 import tokenManager from './tokenManager'
 import * as CARTS_ACTIONS from './carts_actions'
+import Utils from './utils'
 
 const CARTS = '/carts'
 
@@ -12,16 +13,29 @@ const CARTS = '/carts'
  * @returns
  */
 export async function getCart() {
-  tokenManager.getToken()
+  return tokenManager.getToken()
   .then(( token ) => {
-    const params = {
-      customerId: token
+    const tokenPayload = Utils.decodeToken( token )
+
+    // token might belong to anonymous customer or signed in customer
+    let params
+    if ( tokenPayload.sub === 'anonymous' ) {
+      params = { anonymousId: tokenPayload.subjectId }
+    } else {
+      params = { customerId: tokenPayload.subjectId }
     }
-    return http.get(CARTS, { params })
+
+    return http.get( CARTS, { params } )
   })
   .then(( response ) => {
     return response && response.data
   })
+}
+
+interface AddLineItem {
+  productId: string,
+  variantId: string,
+  quantity: number
 }
 
 /**
@@ -30,12 +44,15 @@ export async function getCart() {
  * @export
  * @param {any} cartId
  * @param {any} cartVersion
- * @param {any} options
+ * @param AddLineItem options {}
  * @returns
  */
-export async function addToCart(cartId, cartVersion, options) {
-  const addLineItemAction = buildAction(CARTS_ACTIONS.ADD_LINE_ITEM, options)
-  return updateCart(cartId, cartVersion, [addLineItemAction])
+export async function addToCart( cartId, cartVersion, options: AddLineItem ) {
+  if ( typeof options.quantity !== 'number' || options.quantity < 1 ) {
+    options.quantity = 1
+  }
+  const addLineItemAction = buildAction( CARTS_ACTIONS.ADD_LINE_ITEM, options )
+  return updateCart( cartId, cartVersion, [ addLineItemAction ] )
 }
 
 /**
@@ -47,9 +64,9 @@ export async function addToCart(cartId, cartVersion, options) {
  * @param {any} options
  * @returns
  */
-export async function removeLineItem(cartId, cartVersion, options) {
-  const removeLineItemAction = buildAction(CARTS_ACTIONS.REMOVE_LINE_ITEM, options)
-  return updateCart(cartId, cartVersion, [removeLineItemAction])
+export async function removeLineItem( cartId, cartVersion, options ) {
+  const removeLineItemAction = buildAction( CARTS_ACTIONS.REMOVE_LINE_ITEM, options )
+  return updateCart( cartId, cartVersion, [ removeLineItemAction ] )
 }
 
 /**
@@ -61,12 +78,12 @@ export async function removeLineItem(cartId, cartVersion, options) {
  * @param {any} options
  * @returns
  */
-export async function changeLineItemQuantity(cartId, cartVersion, options) {
-  const changeLineItemQuantityAction = buildAction(CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, options)
-  return updateCart(cartId, cartVersion, [changeLineItemQuantityAction])
+export async function changeLineItemQuantity( cartId, cartVersion, options ) {
+  const changeLineItemQuantityAction = buildAction( CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, options )
+  return updateCart( cartId, cartVersion, [ changeLineItemQuantityAction ] )
 }
 
-function buildAction(actionType, options) {
+function buildAction( actionType, options ) {
   return {
     action: actionType,
     ...options

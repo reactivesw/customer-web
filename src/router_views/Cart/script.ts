@@ -20,7 +20,7 @@ export default {
 
     subTotal(this: Vue.Component) {
       const subTotalCentAmount = this['cart'].lineItems.reduce((sum, lineItem) => {
-        return sum += lineItem.price.value.centAmount * lineItem.quantity
+        return sum += lineItem.price.centAmount * lineItem.quantity
       }, 0)
       return {
         currencyCode: this['cart'].currencyCode,
