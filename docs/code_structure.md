@@ -47,47 +47,4 @@ This is the root component. It has header, footer, categories menu, signin, and 
 ## 4.2. The `components/TheHeader/` folder
 The header has the site's logo, search, cart, signin and language selector.
 
-# 5. Styles
-## 5.1. Setup Bootstrap
-
-### 5.1.1. `package.json`
-Install `bootstrap`, `jquery` and `tether` in `dependencies`.
-Install `node-sass`, `sass-loader` in `devDependencies.
-
-### 5.1.2. `webpack.base.conf.js`
-Add the `jquery` and `tether` to the plugins.
-
-```js
-plugins: [
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    Tether: 'tether'
-  })
-]
-```
-
-### 5.1.3. `main.ts`
-Import the following two files in the entry file `main.ts`.
-
-```js
-import 'bootstrap/dist/js/bootstrap'
-import './styles/style.scss'
-```
-
-## 5.2. Bootstrap Styles
-We use bootstrap 4 to style the web site. All style files are in the `styles/` folder.
-
-The `style.scss` is the root style file that only import two files:
-
-```
-// import from node_module
-@import "~bootstrap/scss/bootstrap";
-
-// import ./_theme.scss.
-// files with a "_" prefix is not compiled by scss
-@import "./theme";
-```
-
-In addtion to the `bootstrap` node module, the `_theme.scss` imports all local variable and styles. The component styles are in the `components/` subfolder.
 

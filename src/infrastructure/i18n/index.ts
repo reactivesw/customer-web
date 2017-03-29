@@ -32,6 +32,13 @@ function loadLocales(Vue) {
   })
 }
 
+/**
+ * We need to handle dynamic localized strings retrieved from
+ * a backend server. The dynamic localized string has a format of
+ * {'language_id1': 'localized_value1', 'language_id2': 'localized_value2' }.
+ * We customize the standard '$t' to handle this data type.
+ * @param Vue The Vue instance
+ */
 function customizeTranslation(Vue) {
   let oldT = Vue.prototype['$t']
 
