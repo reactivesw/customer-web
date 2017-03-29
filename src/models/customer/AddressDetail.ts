@@ -1,5 +1,5 @@
 interface AddressDetail {
-  id: string
+  id?: string
   createdAt?: string
   lastModifiedAt?: string
   fullName?: string

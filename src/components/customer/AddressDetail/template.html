@@ -1,58 +1,65 @@
-<div id="addressDetail" class="form-horizontal">
-    <hr />
-    <h3> Address Details </h3>
-    <div class="form-group row">
-      <label for="full-name" class="col-2 col-form-label">Full Name</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="Firstname Lastname" id="full-name">
+<form id="addressDetailForm" @submit.prevent="submitForm">
+  <ModalDialog title="Address Details" :show="show" @hide="cancelForm">
+    <div slot="body">
+
+      <div class="form-group row">
+        <label for="full-name" class="col-2 col-form-label">Full Name</label>
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="Firstname Lastname" id="full-name" name="full-name" v-model="addressDetails.fullName">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="address-line1" class="col-2 col-form-label">Address Line 1</label>
+        <div class="col-8">
+          <input class="form-control" type="text" placeholder="address line 1" id="address-line1" name="address-line1" v-model="addressDetails.firstLine">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="address-line2" class="col-2 col-form-label">Address Line 2</label>
+        <div class="col-8">
+          <input class="form-control" type="text" placeholder="address line 2" id="address-line2" name="address-line2" v-model="addressDetails.secondLine">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="city" class="col-2 col-form-label">City</label>
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="city" id="city" name="city" v-model="addressDetails.city">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="state" class="col-2 col-form-label">State / Province </label>
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="state / province" id="state" name="state" v-model="addressDetails.state">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="country" class="col-2 col-form-label">Country </label>
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="United States" id="country" name="country" v-model="addressDetails.country">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="phone" class="col-2 col-form-label">Phone</label>
+        <div class="col-3">
+          <input class="form-control" type="text" id="phone" name="phone" v-model="addressDetails.phone">
+        </div>
       </div>
     </div>
+    <!-- slot="body" -->
 
-    <div class="form-group row">
-      <label for="address-line1" class="col-2 col-form-label">Address Line 1</label>
-      <div class="col-8">
-        <input class="form-control" type="text" placeholder="address line 1" id="address-line1" name="address-line1">
-      </div>
+    <div slot="footer">
+      <button type="button" class="btn btn-info" @click="cancelForm">
+            Cancel
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Save
+      </button>
     </div>
-
-    <div class="form-group row">
-      <label for="address-line2" class="col-2 col-form-label">Address Line 2</label>
-      <div class="col-8">
-        <input class="form-control" type="text" placeholder="address line 2" id="address-line2" name="address-line2">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="city" class="col-2 col-form-label">City</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="city" id="city" name="city">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="state" class="col-2 col-form-label">State / Province </label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="state / province" id="state" name="state">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="country" class="col-2 col-form-label">Country </label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="United States" id="country" name="country">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="phone" class="col-2 col-form-label">Phone</label>
-      <div class="col-3">
-        <input class="form-control" type="text" id="phone" name="phone">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <button type="button" class="btn btn-outline-info">Cancel</button>
-      <button type="button" class="btn btn-outline-primary">Save</button>
-    </div>
-  </div>
-</div>
+  </ModalDialog>
+</form>
