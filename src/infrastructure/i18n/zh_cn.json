@@ -25,7 +25,9 @@
     "price": "价格",
     "no_price": "暂无价格",
     "addToCart": "加入购物车",
-    "attributes": "产品参数"
+    "attributes": "产品参数",
+    "addToCartSuccess": "已加入购物车!",
+    "addToCartError": "发生错误，加入购物车失败!"
   },
   "cart": {
     "order_summary": "订单概览",

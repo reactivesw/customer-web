@@ -25,7 +25,9 @@
     "price": "Price",
     "no_price": "No Price",
     "addToCart": "ADD TO CART",
-    "attributes": "Attributes"
+    "attributes": "Attributes",
+    "addToCartSuccess": "Added to cart!",
+    "addToCartError": "Error when adding to cart!"
   },
   "cart": {
     "order_summary": "Order Summary",

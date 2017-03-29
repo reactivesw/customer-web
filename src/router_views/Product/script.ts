@@ -19,6 +19,13 @@ import computeVariantsAttributes from './variantsAttributes'
 
 export default {
   name: 'Product',
+
+  data () {
+    return {
+      addToCartAlert: null
+    }
+  },
+
   computed: {
     ...mapGetters({
       categories: categoriesType.GET_CATEGORIES,
@@ -104,6 +111,17 @@ export default {
       fetchProduct: productsTypes.FETCH_CURRENT_PRODUCT,
       addToCart: cartsTypes.ADD_TO_CART
     }),
+
+    handleAddToCart (this: Component) {
+      this['addToCartAlert'] = null
+      this['addToCart']({productId: this['product'].id, variantId: this['variant'].id})
+      .then(() => {
+        this['addToCartAlert'] = this['$t']('product.addToCartSuccess')
+      })
+      .catch(() => {
+        this['addToCartAlert'] = this['$t']('product.addToCartError')
+      })
+    },
 
     handleSelectSku(this: Component, sku) {
       this['$router'].push({ name: 'products', params: { sku } })

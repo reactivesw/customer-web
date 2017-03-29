@@ -14,9 +14,11 @@
         @selectSku="handleSelectSku"></VariantSelector>
 
       <button
-        class="btn btn-lg btn-lg btn-block"
+        class="btn btn-lg btn-lg btn-danger mt-4"
         v-if="product && variant"
-        @click="addToCart({productId: product.id, variantId: variant.id})">{{ $t('product.addToCart') }}</button>
+        @click="handleAddToCart">{{ $t('product.addToCart') }}</button>
+
+      <p v-show="addToCartAlert" class="text-muted"><small>{{ addToCartAlert }}</small></p>
     </div>
   </div>
 
