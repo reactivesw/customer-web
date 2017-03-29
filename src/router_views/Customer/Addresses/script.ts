@@ -2,11 +2,16 @@ import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import AddressList from 'src/components/customer/AddressList'
 import AddressDetail from 'src/components/customer/AddressDetail'
-import { GET_CUSTOMER_INFO, PUT_DEFAULT_ADDRESS }
+
+import { GET_CUSTOMER_INFO,
+  PUT_DEFAULT_ADDRESS,
+  PUT_ADD_ADDRESS }
   from 'src/infrastructure/store/customer_info_types'
 
+import ApiRequestBase from 'src/models/customer/ApiRequestBase'
 import CustomerInfo from 'src/models/customer/CustomerInfo'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
+import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 
 const emptyAddress = {createdAt: '',
   lastModifiedAt: '', fullName: '',
@@ -33,13 +38,14 @@ export default {
 
   methods: {
     ...mapActions({
-      putDefaultAddress: PUT_DEFAULT_ADDRESS
+      putDefaultAddress: PUT_DEFAULT_ADDRESS,
+      addAddress: PUT_ADD_ADDRESS
     }),
 
     defaultChangedEventHandler(this: Component, addrId) {
       let customerInfo: CustomerInfo = this['customerInfo']
       let putDefaultRequest: SetDefaultRequest = {
-        id: customerInfo.id,
+        customer_id: customerInfo.id,
         version: customerInfo.version,
         addressId: addrId
       }
@@ -55,10 +61,17 @@ export default {
       this['showAddressDetails'] = false
     },
 
-    saveAddressDetails(this: Component) {
+    saveAddressDetails(this: Component, addressDetails) {
       this['showAddressDetails'] = false
-      // save ....
-    },
+
+      let customerInfo: CustomerInfo = this['customerInfo']
+      let addAddressReqeust: AddAddressRequest = {
+        customer_id: customerInfo.id,
+        version: customerInfo.version,
+        addressDetails
+      }
+      this['addAddress'](addAddressReqeust)
+    }
   },
 
   components: {

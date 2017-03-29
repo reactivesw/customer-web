@@ -3,7 +3,7 @@ import { Component } from 'vue'
 import ModalDialog from 'src/components/utility/ModalDialog'
 
 export default {
-  name: 'AddressDetail',
+  name: 'AddressDetails',
 
   data(this: Component) {
     return {

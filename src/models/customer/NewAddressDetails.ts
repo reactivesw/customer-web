@@ -1,5 +1,8 @@
-interface AddressDetail {
-  id?: string
+/**
+ * use for a new address details that don't have an id
+ */
+
+interface NewAddressDetails {
   createdAt?: string
   lastModifiedAt?: string
   fullName?: string
@@ -12,4 +15,4 @@ interface AddressDetail {
   city: string
 }
 
-export default AddressDetail
+export default NewAddressDetails
