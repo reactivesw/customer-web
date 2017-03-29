@@ -1,4 +1,5 @@
 import http from './http'
+import tokenManager from './tokenManager'
 import * as CARTS_ACTIONS from './carts_actions'
 
 const CARTS = '/carts'
@@ -10,17 +11,17 @@ const CARTS = '/carts'
  * @param {Object} - object contain customerId or anonymousId
  * @returns
  */
-export async function getCart({ customerId, anonymousId }: any) {
-  const params = {}
-  if (customerId) {
-    params['customerId'] = customerId
-  } else if (anonymousId) {
-    params['anonymousId'] = anonymousId
-  } else {
-    return
-  }
-  const response = await http.get(CARTS, { params })
-  return response && response.data
+export async function getCart() {
+  tokenManager.getToken()
+  .then(( token ) => {
+    const params = {
+      customerId: token
+    }
+    return http.get(CARTS, { params })
+  })
+  .then(( response ) => {
+    return response && response.data
+  })
 }
 
 /**

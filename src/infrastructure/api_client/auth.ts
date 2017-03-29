@@ -1,5 +1,5 @@
 import http from './http'
-import tokenStorage from './tokenStorage'
+import tokenManager from './tokenManager'
 
 // Error codes
 export const ERRORES = {
@@ -41,7 +41,7 @@ export async function signUp(email, password) {
 }
 
 export function signOut() {
-  tokenStorage.token = null
+  tokenManager.setToken( undefined )
   // no need to sign out Google for this app
 }
 
@@ -87,7 +87,7 @@ export async function googleSignIn(id_token) {
 async function signIn(params) {
   const response = await http.post(SIGN_IN, params)
   if (response) {
-    tokenStorage.token = response.data.token
+    tokenManager.setToken( response.data.token )
     return response.data.customerView
   }
 }

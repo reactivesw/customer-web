@@ -6,7 +6,7 @@
 */
 
 import axios from 'axios'
-import tokenStorage from './tokenStorage'
+import tokenManager from './tokenManager'
 
 // if there is a apiServerAddr global variable setted, use it as baseURL instead of bundle one.
 const baseURL = (<any>window).apiServerAddr || process.env.REST_API_URL
@@ -26,48 +26,16 @@ const functionsWithData = ['post', 'put', 'patch']
 functionsWithoutData.forEach((method) => {
   instanceWithToken[method] = async function (url, config) {
     const configWithToken = await appendToken(config)
-    let result
-    try {
-      return await instance[method](url, configWithToken)
-    } catch (error) {
-      handleError(error)
-    }
+    return await instance[method](url, configWithToken)
   }
 })
 
 functionsWithData.forEach((method) => {
   instanceWithToken[method] = async function (url, data, config) {
     const configWithToken = await appendToken(config)
-    await appendToken(configWithToken)
-    let result
-    try {
-      return await instance[method](url, data, configWithToken)
-    } catch (error) {
-      handleError(error)
-    }
+    return await instance[method](url, data, configWithToken)
   }
 })
-
-let fetchAnonymousTokenPromise
-/**
- * Fetch anonymous token
- *
- * fetchAnonymousTokenPromise is for prevent duplicate request and cache result
- *
- * @returns
- */
-async function fetchAnonymousToken() {
-  const GET_ANONYMOUS_TOKEN = '/auth/anonymous'
-  fetchAnonymousTokenPromise = axios.get(GET_ANONYMOUS_TOKEN, {
-    baseURL: baseURL,
-  })
-  try {
-    const response = await fetchAnonymousTokenPromise
-    return response.data
-  } catch (error) {
-    handleError(error)
-  }
-}
 
 /**
  * append token to provided config
@@ -77,41 +45,16 @@ async function fetchAnonymousToken() {
  */
 async function appendToken(config) {
   const configWithToken = Object.assign({}, config)
-  // if there is no token cached, fetch a anonymousToken for any request
-  if (!tokenStorage.token || tokenStorage.token === '') {
-    let anonymousToken
-    if (fetchAnonymousTokenPromise) {
-      anonymousToken = await fetchAnonymousTokenPromise
-    } else {
-      anonymousToken = await fetchAnonymousToken()
-    }
-    tokenStorage.token = anonymousToken
-  }
-  if (typeof configWithToken.headers === 'object') {
-    configWithToken.headers.Authorization = 'Bearer ' + tokenStorage.token
-  } else {
-    configWithToken.headers = {'Authorization': 'Bearer ' + tokenStorage.token}
-  }
-  return configWithToken
-}
 
-/**
- * Handle network error
- */
-function handleError(error) {
-    if (!error.response) {
-      networkErrorHandler && networkErrorHandler(error)
+  return tokenManager.getToken()
+  .then( ( token ) => {
+    if ( typeof configWithToken.headers === 'object' ) {
+      configWithToken.headers.Authorization = 'Bearer ' + token
     } else {
-      throw error
+      configWithToken.headers = { 'Authorization': 'Bearer ' + token }
     }
-}
-
-/**
- * Set global network error handler
- */
-let networkErrorHandler
-export function setNetworkErrorHandler(handler) {
-  networkErrorHandler = handler
+    return configWithToken
+  })
 }
 
 export default instanceWithToken

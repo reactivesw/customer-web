@@ -8,8 +8,9 @@ import {
 
 const actions = {
   async [FETCH_CART]({ commit }) {
-    const anonymousId = 'anonymousId2' // TODO: Cookies.get('anonymousId')
-    const cart = await cartsApi.getCart({ anonymousId })
+    // we only want our cart, api client will handle it for us
+    // const anonymousId = 'anonymousId2'
+    const cart = await cartsApi.getCart()
     commit(SET_CART, cart)
   },
 
