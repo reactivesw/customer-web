@@ -1,6 +1,6 @@
 import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import { GET_CUSTOMER_INFO, PUT_UPDATE_CUSTOMER_INFO }
+import { GET_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO }
   from 'src/infrastructure/store/customer_info_types'
 
 import CustomerInfoData from 'src/models/customer/CustomerInfoData'
@@ -17,7 +17,7 @@ export default {
 
   methods: {
     ...mapActions({
-      updateCustomer: PUT_UPDATE_CUSTOMER_INFO
+      updateCustomer: UPDATE_CUSTOMER_INFO
     }),
 
     updateCustomerInfoEventHandler(this: Component) {
