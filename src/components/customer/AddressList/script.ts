@@ -24,8 +24,8 @@ export default {
       this['$emit']('updateAddress', addr)
     },
 
-    deleteAddress(this: Component, addr) {
-      this['$emit']('deleteAddress', addr)
+    deleteAddress(this: Component, addrId) {
+      this['$emit']('deleteAddress', addrId)
     }
   }
 }

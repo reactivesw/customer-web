@@ -7,7 +7,8 @@
     :addresses="customerInfo.addresses" 
     :defaultAddressId="customerInfo.defaultAddressId"
     @defaultChanged="defaultChangedEventHandler"
-    @updateAddress="updateAddressEventHandler">
+    @updateAddress="updateAddressEventHandler"
+    @deleteAddress="deleteAddressEventHandler">
   </AddressList>
 
   <AddressDetail :show="showAddressDetails" 
@@ -21,4 +22,11 @@
     @confirmYes="confirmYesChangeDefaultEventHandler"
     @confirmNo="confirmNoChangeDefaultEventHandler">
   </ConfirmDialog>
+
+  <ConfirmDialog :show="confirmDeleteAddress"
+    message="Are you sure you want to delete this address?"
+    @confirmYes="confirmYesDeleteAddressEventHandler"
+    @confirmNo="confirmNoDeleteAddressEventHandler">
+  </ConfirmDialog>
+
 </div>

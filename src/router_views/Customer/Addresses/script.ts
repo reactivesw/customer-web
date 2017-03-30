@@ -8,7 +8,8 @@ import {
   GET_CUSTOMER_INFO,
   PUT_DEFAULT_ADDRESS,
   PUT_ADD_ADDRESS,
-  PUT_UPDATE_ADDRESS
+  PUT_UPDATE_ADDRESS,
+  PUT_DELETE_ADDRESS
 }
   from 'src/infrastructure/store/customer_info_types'
 
@@ -17,6 +18,7 @@ import CustomerInfo from 'src/models/customer/CustomerInfo'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
+import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
 
 const emptyAddress = {
   createdAt: '',
@@ -34,8 +36,13 @@ export default {
       showAddressDetails: false,
       addressDetails: emptyAddress,
 
+      // for change default address confirmation dialog
       confirmChangeDefault: false,
-      confirmChangeDefaultAddressId: ''
+      confirmChangeDefaultAddressId: '',
+
+      // for delete address confirmation dialog
+      confirmDeleteAddress: false,
+      confirmDeleteAddressId: ''
     }
   },
 
@@ -49,7 +56,8 @@ export default {
     ...mapActions({
       putDefaultAddress: PUT_DEFAULT_ADDRESS,
       addAddress: PUT_ADD_ADDRESS,
-      updateAddress: PUT_UPDATE_ADDRESS
+      updateAddress: PUT_UPDATE_ADDRESS,
+      deleteAddress: PUT_DELETE_ADDRESS
     }),
 
     defaultChangedEventHandler(this: Component, addrId) {
@@ -71,6 +79,27 @@ export default {
 
     confirmNoChangeDefaultEventHandler(this: Component) {
       this['confirmChangeDefault'] = false
+    },
+
+    deleteAddressEventHandler(this: Component, addrId) {
+      this['confirmDeleteAddress'] = true
+      this['confirmDeleteAddressId'] = addrId
+    },
+
+    confirmYesDeleteAddressEventHandler(this: Component) {
+      this['confirmDeleteAddress'] = false
+      let id = this['confirmDeleteAddressId']
+      let customerInfo: CustomerInfo = this['customerInfo']
+      let request: DeleteAddressRequest = {
+        customer_id: customerInfo.id,
+        version: customerInfo.version,
+        id
+      }
+      this['deleteAddress'](request)
+    },
+
+    confirmNoDeleteAddressEventHandler(this: Component) {
+      this['confirmDeleteAddress'] = false
     },
 
     updateAddressEventHandler(this: Component, addr) {

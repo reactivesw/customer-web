@@ -3,6 +3,7 @@ import http from './http'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
+import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
 
 export const API_URL = '/customers'
 
@@ -46,9 +47,11 @@ export async function updateAddress(request: UpdateAddressRequest) {
   return await putRequest(header, addressDetails)
 }
 
-// export async function deleteAddress(deleteAddressRequest) {
-//   return await putRequest('deleteAddress', deleteAddressRequest)
-// }
+export async function deleteAddress(request: DeleteAddressRequest) {
+  let {customer_id, version, id} = request
+  let header: RequestHeader = {customer_id, version, action: 'deleteAddress'}
+  return await putRequest(header, { id })
+}
 
 async function putRequest(header: RequestHeader, data: object) {
   const path = `${API_URL}/${header.customer_id}`
