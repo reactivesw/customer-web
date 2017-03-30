@@ -1,13 +1,13 @@
-<ModalDialog title="Confirmation" :show="show" @hide="confirmNo">
+<ModalDialog :title="$t('common.confirmation')" :show="show" @hide="confirmNo">
   <div slot="body">
     {{message}}
   </div>
   <div slot="footer">
     <button type="button" class="btn btn-info" @click="confirmNo">
-        No
+        {{ $t('common.no') }}
       </button>
     <button type="submit" class="btn btn-primary" @click="confirmYes">
-        Yes
+        {{ $t('common.yes') }}
       </button>
   </div>
 </ModalDialog>

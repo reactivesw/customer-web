@@ -1,7 +1,7 @@
 <div class="my-3">
   <div class="form-group">
     <label for="customerName" class="col-2 col-form-label">
-      NickName
+      {{ $t('customer.nick_name') }}
     </label>
     <div class="col-4">
       <input type="text" class="form-control" id="customerName" name="customerName" v-model="customerInfo.customerName">
@@ -16,14 +16,16 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="lastName" class="col-2 col-form-label">{{ $t('customer.last_name') }}</label>
+    <label for="lastName" class="col-2 col-form-label">
+      {{ $t('customer.last_name') }}
+    </label>
     <div class="col-4">
       <input type="text" class="form-control" id="lastName" name="lastName" v-model="customerInfo.lastName">
     </div>
   </div>
   <div class="form-group">
     <label for="middleName" class="col-2 col-form-label">
-      Middle Name
+      {{ $t('customer.middle_name') }}
     </label>
     <div class="col-4">
       <input type="text" class="form-control" id="middleName" name="middleName" v-model="customerInfo.middleName">
