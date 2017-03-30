@@ -1,4 +1,13 @@
 {
+  "common": {
+    "update": "更新",
+    "delete": "删除",
+    "cancel": "取消",
+    "save": "保存",
+    "confirmation": "确认",
+    "yes": "是",
+    "no": "否"
+  },
   "meta": {
     "brand": "Hello",
     "copyright": "Reactivesw."
@@ -38,14 +47,30 @@
   },
   "customer": {
     "info": "个人资料",
+    "nick_name": "昵称",
     "first_name": "名",
     "last_name": "姓",
-    "password": "密码",
-    "new_password": "输入新密码",
+    "middle_name": "中间名",
     "save": "保存",
     "addresses": "地址管理",
     "orders": "订单",
-    "sign_out": "登出"
+    "sign_out": "登出",
+
+    "add_new_address": "新地址",
+    "address_full_name": "地址名",
+    "address_address": "地址",
+    "address_default": "缺省",
+    "address_details": "详细地址",
+    "address_line1": "第一行",
+    "address_line2": "第二行",
+    "address_city": "城市",
+    "address_state": "省／地区",
+    "address_country": "国家",
+    "address_zipcode": "邮政编码",
+    "address_phone": "电话号码",
+    "confirm_delete_address": "请确认删除这个地址？",
+    "confirm_change_default_address": "请确认改变缺省地址？"
+
   },
   "form": {
     "email_address": "邮件地址",
