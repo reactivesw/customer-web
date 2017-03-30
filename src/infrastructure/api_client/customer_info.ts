@@ -56,13 +56,13 @@ export async function deleteAddress(request: DeleteAddressRequest) {
   return await putRequest(header, { id })
 }
 
-async function putRequest(header: RequestHeader, data: object) {
+async function putRequest(header: RequestHeader, fields: object) {
   const path = `${API_URL}/${header.customer_id}`
   const payload = {
     version: header.version,
-    actions: [ {
+    actions: [{
       'action': header.action,
-      ...data
+      ...fields
     }]
   }
   const response = await http.put(path, payload)

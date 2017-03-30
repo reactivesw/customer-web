@@ -6,10 +6,10 @@ import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 
 import {
   GET_CUSTOMER_INFO,
-  PUT_DEFAULT_ADDRESS,
-  PUT_ADD_ADDRESS,
-  PUT_UPDATE_ADDRESS,
-  PUT_DELETE_ADDRESS
+  CHANGE_DEFAULT_ADDRESS,
+  ADD_ADDRESS,
+  UPDATE_ADDRESS,
+  DELETE_ADDRESS
 } from 'src/infrastructure/store/customer_info_types'
 
 import ApiRequestBase from 'src/models/customer/ApiRequestBase'
@@ -53,10 +53,10 @@ export default {
 
   methods: {
     ...mapActions({
-      putDefaultAddress: PUT_DEFAULT_ADDRESS,
-      addAddress: PUT_ADD_ADDRESS,
-      updateAddress: PUT_UPDATE_ADDRESS,
-      deleteAddress: PUT_DELETE_ADDRESS
+      putDefaultAddress: CHANGE_DEFAULT_ADDRESS,
+      addAddress: ADD_ADDRESS,
+      updateAddress: UPDATE_ADDRESS,
+      deleteAddress: DELETE_ADDRESS
     }),
 
     defaultChangedEventHandler(this: Component, addrId) {

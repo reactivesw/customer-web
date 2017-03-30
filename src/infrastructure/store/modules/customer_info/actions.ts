@@ -3,18 +3,12 @@ import { customerInfo as apiClient } from 'src/infrastructure/api_client'
 import {
   FETCH_CUSTOMER_INFO,
   SET_CUSTOMER_INFO,
-  PUT_DEFAULT_ADDRESS,
-  PUT_ADD_ADDRESS,
-  PUT_UPDATE_ADDRESS,
-  PUT_DELETE_ADDRESS, 
-  PUT_UPDATE_CUSTOMER_INFO
+  CHANGE_DEFAULT_ADDRESS,
+  ADD_ADDRESS,
+  UPDATE_ADDRESS,
+  DELETE_ADDRESS,
+  UPDATE_CUSTOMER_INFO
 } from 'src/infrastructure/store/customer_info_types'
-
-import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
-import AddAddressRequest from 'src/models/customer/AddAddressRequest'
-import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
-import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
-import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 
 const actions = {
   async [FETCH_CUSTOMER_INFO]({ rootState, commit }) {
@@ -23,32 +17,30 @@ const actions = {
     commit(SET_CUSTOMER_INFO, info)
   },
 
-  async [PUT_DEFAULT_ADDRESS]({ commit }, putDefaultRequest: SetDefaultRequest) {
-    const customerInfo = await apiClient.setDefaultAddress(putDefaultRequest)
+  async [CHANGE_DEFAULT_ADDRESS]({ commit }, request) {
+    const customerInfo = await apiClient.setDefaultAddress(request)
     commit(SET_CUSTOMER_INFO, customerInfo)
   },
 
-  async [PUT_ADD_ADDRESS]({ commit }, addAddressRequest: AddAddressRequest) {
-    const customerInfo  = await apiClient.addAddress(addAddressRequest)
+  async [ADD_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.addAddress(request)
     commit(SET_CUSTOMER_INFO, customerInfo)
   },
 
-  async [PUT_UPDATE_ADDRESS]({ commit }, updateAddressRequest: UpdateAddressRequest) {
-    const customerInfo  = await apiClient.updateAddress(updateAddressRequest)
+  async [UPDATE_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.updateAddress(request)
     commit(SET_CUSTOMER_INFO, customerInfo)
   },
 
-  async [PUT_DELETE_ADDRESS]({ commit }, deleteAddressRequest: DeleteAddressRequest) {
-    const customerInfo  = await apiClient.deleteAddress(deleteAddressRequest)
+  async [DELETE_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.deleteAddress(request)
     commit(SET_CUSTOMER_INFO, customerInfo)
   },
 
-  async [PUT_UPDATE_CUSTOMER_INFO]({ commit }, request: UpdateCustomerInfoRequest) {
+  async [UPDATE_CUSTOMER_INFO]({ commit }, request) {
     const customerInfo = await apiClient.updateCustomerInfo(request)
     commit(SET_CUSTOMER_INFO, customerInfo)
   }
 }
 
 export default actions
-
-
