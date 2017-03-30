@@ -10,8 +10,7 @@ import {
   ADD_ADDRESS,
   UPDATE_ADDRESS,
   DELETE_ADDRESS
-}
-  from 'src/infrastructure/store/customer_info_types'
+} from 'src/infrastructure/store/customer_info_types'
 
 import ApiRequestBase from 'src/models/customer/ApiRequestBase'
 import CustomerInfo from 'src/models/customer/CustomerInfo'
