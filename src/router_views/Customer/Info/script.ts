@@ -21,15 +21,13 @@ export default {
     }),
 
     updateCustomerInfoEventHandler(this: Component) {
-      debugger
       let customerInfo = this['customerInfo']
-      let {customerName, firstName, lastName, middleName, defaultAddressId} = customerInfo
       let customerInfoData: CustomerInfoData = {
-        customerName,
-        firstName,
-        lastName,
-        middleName,
-        defaultAddressId
+        customerName: customerInfo.customerName,
+        firstName: customerInfo.firstName,
+        lastName: customerInfo.lastName,
+        middleName: customerInfo.middleName,
+        defaultAddressId: customerInfo.defaultAddressId
       }
 
       let request: UpdateCustomerInfoRequest = {
