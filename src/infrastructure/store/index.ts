@@ -9,6 +9,7 @@ import carts from './modules/carts'
 import modal_dialogs from './modules/modal_dialogs'
 import auth from './modules/auth'
 import customer_info from './modules/customer_info'
+import orders from './modules/orders'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ const store = new Vuex.Store({
     carts,
     modal_dialogs,
     auth,
-    customer_info
+    customer_info,
+    orders
   },
   strict: debug
 })
