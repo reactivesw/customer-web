@@ -4,7 +4,7 @@ import { SIGN_OUT } from 'src/infrastructure/store/auth_types'
 import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/customer_info_types'
 
 export default {
-  name: 'CustomerInfo',
+  name: 'Customer',
 
   methods: {
     ...mapActions({
@@ -12,7 +12,6 @@ export default {
       fetchCustomerInfo: FETCH_CUSTOMER_INFO
     })
   },
-
 
   // go fetch backend data
   created (this: Component) {

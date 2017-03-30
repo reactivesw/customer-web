@@ -1,5 +1,5 @@
 import ApiRequestBase from './ApiRequestBase'
-import AddressDetails from 'src/models/customer/AddressDetails'
+import AddressDetails from './AddressDetails'
 
 interface UpdateAddressRequest extends ApiRequestBase {
   addressDetails: AddressDetails

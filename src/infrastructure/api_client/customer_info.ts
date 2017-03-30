@@ -1,5 +1,6 @@
 import http from './http'
 
+import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
@@ -25,9 +26,11 @@ export async function getCustomerInfo(id: string) {
   return response && response.data
 }
 
-// export async function updateCustomerInfo(customerInfoRequest) {
-//   return await putRequest('updateCustomerInfo', customerInfoRequest)
-// }
+export async function updateCustomerInfo(request: UpdateCustomerInfoRequest) {
+  let {customer_id, version, customerInfoData} = request
+  let header: RequestHeader = {customer_id, version, action: 'updateCustomerInfo'}
+  return await putRequest(header, customerInfoData)
+}
 
 export async function setDefaultAddress(request: SetDefaultRequest) {
   let {customer_id, version, addressId} = request
