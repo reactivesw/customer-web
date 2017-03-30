@@ -20,8 +20,12 @@ export default {
       this['$emit']('defaultChanged', addrId)
     },
 
-    updateAddress(this: Component, addrId) {
-      this['$emit']('updateAddress', addrId)
+    updateAddress(this: Component, addr) {
+      this['$emit']('updateAddress', addr)
+    },
+
+    deleteAddress(this: Component, addr) {
+      this['$emit']('deleteAddress', addr)
     }
   }
 }

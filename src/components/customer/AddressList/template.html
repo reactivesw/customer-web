@@ -14,14 +14,17 @@
       <td>{{ addr.fullName }}</td>
       <td>{{ buildAddressStr(addr) }}</td>
       <td>
-        <input type="radio" name="isDefault" :checked="addr.id == defaultAddressId" @click.once.stop="changeDefault(addr.id)">
+        <input type="radio" name="isDefault" :checked="addr.id == defaultAddressId" @click.prevent="changeDefault(addr.id)">
       </td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm" @click.once.stop="updateAddress(addr)">
+        <button type="button" class="btn btn-primary btn-sm" @click.stop="updateAddress(addr)">
           Update
         </button>
       </td>
-      <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+      <td><button type="button" class="btn btn-danger btn-sm" @click.stop="deleteAddress(addr)">
+        Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,0 +1,13 @@
+<ModalDialog title="Confirmation" :show="show" @hide="confirmNo">
+  <div slot="body">
+    {{message}}
+  </div>
+  <div slot="footer">
+    <button type="button" class="btn btn-info" @click="confirmNo">
+        No
+      </button>
+    <button type="submit" class="btn btn-primary" @click="confirmYes">
+        Yes
+      </button>
+  </div>
+</ModalDialog>

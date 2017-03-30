@@ -7,11 +7,13 @@ import { Component } from 'vue'
  *   "title" is the dialog title.
  *
  * It emits one "hide" event when it is closed.
+ * The parent may want to catch this to cancel operation.
+ *
  * In its content, there is a "body" slot for main content
  * and a "footer" slot for control buttons.
  * Only use simple button styles in "footer", don't use extra styles.
  *
- * he actual dom component is a Bootstrap modal dialog.
+ * The actual dom component is a Bootstrap modal dialog.
  */
 export default {
   name: 'ModalDialog',

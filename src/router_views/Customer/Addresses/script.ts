@@ -2,6 +2,7 @@ import Vue, { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import AddressList from 'src/components/customer/AddressList'
 import AddressDetail from 'src/components/customer/AddressDetail'
+import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 
 import {
   GET_CUSTOMER_INFO,
@@ -31,7 +32,10 @@ export default {
   data() {
     return {
       showAddressDetails: false,
-      addressDetails: emptyAddress
+      addressDetails: emptyAddress,
+
+      confirmChangeDefault: false,
+      confirmChangeDefaultAddressId: ''
     }
   },
 
@@ -49,13 +53,24 @@ export default {
     }),
 
     defaultChangedEventHandler(this: Component, addrId) {
+      this['confirmChangeDefault'] = true
+      this['confirmChangeDefaultAddressId'] = addrId
+    },
+
+    confirmYesChangeDefaultEventHandler(this: Component) {
+      this['confirmChangeDefault'] = false
+      let addressId = this['confirmChangeDefaultAddressId']
       let customerInfo: CustomerInfo = this['customerInfo']
       let putDefaultRequest: SetDefaultRequest = {
         customer_id: customerInfo.id,
         version: customerInfo.version,
-        addressId: addrId
+        addressId
       }
       this['putDefaultAddress'](putDefaultRequest)
+    },
+
+    confirmNoChangeDefaultEventHandler(this: Component) {
+      this['confirmChangeDefault'] = false
     },
 
     updateAddressEventHandler(this: Component, addr) {
@@ -97,6 +112,7 @@ export default {
 
   components: {
     AddressDetail,
-    AddressList
+    AddressList,
+    ConfirmDialog
   }
 }

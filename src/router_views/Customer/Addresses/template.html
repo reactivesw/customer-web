@@ -13,7 +13,12 @@
   <AddressDetail :show="showAddressDetails" 
     :addressProp="addressDetails"
     @saveAddressDetails="saveAddressDetails"
-    @cancelAddressDetails="cancelAddressDetails" >
+    @cancelAddressDetails="cancelAddressDetails">
   </AddressDetail>
   
+  <ConfirmDialog :show="confirmChangeDefault"
+    message="Are you sure you want to change the default address?"
+    @confirmYes="confirmYesChangeDefaultEventHandler"
+    @confirmNo="confirmNoChangeDefaultEventHandler">
+  </ConfirmDialog>
 </div>

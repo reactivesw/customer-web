@@ -4,7 +4,7 @@
 
       <div class="form-group row">
         <label for="full-name" class="col-2 col-form-label">Full Name</label>
-        <div class="col-4">
+        <div class="col-8">
           <input class="form-control" type="text" 
           placeholder="Firstname Lastname" id="full-name" 
           name="full-name" v-model="addressDetails.fullName">
@@ -32,7 +32,7 @@
 
       <div class="form-group row">
         <label for="city" class="col-2 col-form-label">City</label>
-        <div class="col-4">
+        <div class="col-8">
           <input class="form-control" type="text" 
           placeholder="city" id="city" name="city" 
           v-model="addressDetails.city" required>
@@ -41,7 +41,7 @@
 
       <div class="form-group row">
         <label for="state" class="col-2 col-form-label">State / Province </label>
-        <div class="col-4">
+        <div class="col-8">
           <input class="form-control" type="text" 
           placeholder="state / province" id="state" 
           name="state" v-model="addressDetails.state">
@@ -50,7 +50,7 @@
 
       <div class="form-group row">
         <label for="country" class="col-2 col-form-label">Country </label>
-        <div class="col-4">
+        <div class="col-8">
           <input class="form-control" type="text" 
           placeholder="United States" id="country" 
           name="country" v-model="addressDetails.country"
@@ -60,7 +60,7 @@
 
       <div class="form-group row">
         <label for="phone" class="col-2 col-form-label">Phone</label>
-        <div class="col-3">
+        <div class="col-4">
           <input class="form-control" type="tel" id="phone" name="phone" v-model="addressDetails.phone">
         </div>
       </div>
@@ -69,7 +69,7 @@
 
     <div slot="footer">
       <button type="button" class="btn btn-info" @click="cancelForm">
-            Cancel
+        Cancel
       </button>
       <button type="submit" class="btn btn-primary">
         Save
