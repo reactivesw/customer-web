@@ -10,17 +10,30 @@ export default {
   name: 'CustomerInfo',
 
   computed: {
-    ...mapGetters({
-      customerInfo: GET_CUSTOMER_INFO
-    })
+    customerInfo(this: Component) {
+      let customerInfo = this['getCustomerInfo']()
+      return {
+        id: customerInfo.id,
+        version: customerInfo.version,
+        customerName: customerInfo.customerName,
+        firstName: customerInfo.firstName,
+        lastName: customerInfo.lastName,
+        middleName: customerInfo.middleName,
+        defaultAddressId: customerInfo.defaultAddressId
+      }
+    }
   },
 
   methods: {
+    ...mapGetters({
+      getCustomerInfo: GET_CUSTOMER_INFO
+    }),
     ...mapActions({
       updateCustomer: UPDATE_CUSTOMER_INFO
     }),
 
     updateCustomerInfoEventHandler(this: Component) {
+      debugger
       let customerInfo = this['customerInfo']
       let customerInfoData: CustomerInfoData = {
         customerName: customerInfo.customerName,
