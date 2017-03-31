@@ -6,13 +6,13 @@ Under the `src/` folder, there are two files and several folders.
 
 * `index.html`: this is the html file working as a root container for Vue components.
 * `main.ts`: this is the project entry file that creates the root Vue component and renders it inside the `index.html`.
-* `assets\`: this folder stores static assets.
-* `components\`: this folder has the components used in view pages.
-* `infrastructure\`: this folder has the infrastructure code for router, store, i18n and api clients.
-* `router_views`: this folder contains the page level components that are used by router configuration.
-* `sytles`: the folder has scss style files.
+* `assets/`: this folder stores static assets.
+* `components/`: this folder has the components used in view pages.
+* `infrastructure/`: this folder has the infrastructure code for router, store, i18n and api clients.
+* `router_views/`: this folder contains the page level components that are used by router configuration.
+* `sytles/`: the folder has scss style files.
 
-Prefer using absolute path('src/') instead of relative path('../../') with import statements.
+Prefer using absolute path(`'src/'`) instead of relative path(`'../../'`) with import statements. Both webpack and Typescript support the path alias to use absolute path.
 
 # 3. App Entry and Router
 ## 3.1. The Entry
@@ -25,11 +25,11 @@ The `main.ts` file performs a number of following tasks:
 * set network error handler to a console logger.
 
 ## 3.2. The Router
- The `infrastructure/router` folder has router files mapping url paths to components in the `router_views/` folder.
+The `infrastructure/router` folder has router files mapping url paths to components in the `router_views/` folder.
 
- The `index.ts` defines the top level components such as category, product, cart etc. Each router item has a name, a URL path, the corresponding component and some optional meta data.
+The `index.ts` defines the top level components such as category, product, cart etc. Each router item has a name, a URL path, the corresponding component and some optional meta data.
 
- The `cusotmer.ts` defines the routers for customer component and its children.
+The `cusotmer.ts` defines the routers for customer component and its children.
 
 # 4. Components
 ## 4.1. File Structures
@@ -41,10 +41,10 @@ The path hierarch is the structure of the view: a sub component is in a sub fold
 
 The root component and page views are in the `router_views/` folder. The components used by router views are in `components/` folder.
 
-## 4.1. The `router_views/App/` Folder
+## 4.2. The `router_views/App/` Folder
 This is the root component. It has header, footer, categories menu, signin, and signup components. It fetches categories and cart in `created` event handler. It has two computed props of cateroies and customer.
 
-## 4.2. The `components/TheHeader/` folder
+## 4.3. The `components/TheHeader/` folder
 The header has the site's logo, search, cart, signin and language selector.
 
 
