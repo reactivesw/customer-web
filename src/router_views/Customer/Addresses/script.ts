@@ -12,6 +12,7 @@ import {
   DELETE_ADDRESS
 } from 'src/infrastructure/store/customer_info_types'
 
+import AddressDetails from 'src/models/customer/AddressDetails'
 import ApiRequestBase from 'src/models/customer/ApiRequestBase'
 import CustomerInfo from 'src/models/customer/CustomerInfo'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
@@ -19,12 +20,14 @@ import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
 import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
 
-const emptyAddress = {
-  createdAt: '',
-  lastModifiedAt: '', fullName: '',
-  zip: '', phone: '', firstLine: '',
-  secondLine: '', country: '',
-  state: '', city: ''
+function getEmptyAddress(): AddressDetails {
+  return {
+    id: '', createdAt: '',
+    lastModifiedAt: '', fullName: '',
+    zip: '', phone: '', firstLine: '',
+    secondLine: '', country: '',
+    state: '', city: ''
+  }
 }
 
 export default {
@@ -33,7 +36,7 @@ export default {
   data() {
     return {
       showAddressDetails: false,
-      addressDetails: emptyAddress,
+      addressDetails: getEmptyAddress(),
 
       // for change default address confirmation dialog
       confirmChangeDefault: false,
@@ -108,7 +111,7 @@ export default {
 
     addNewAddress(this: Component) {
       this['showAddressDetails'] = true
-      this['addressDetails'] = emptyAddress
+      this['addressDetails'] = getEmptyAddress()
     },
 
     cancelAddressDetails(this: Component) {
