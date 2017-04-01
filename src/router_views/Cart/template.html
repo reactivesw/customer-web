@@ -17,8 +17,9 @@
     </div>
     <div v-if="!isEmpty" class="col-md-4">
 
-      <OrderSummary :subTotal="subTotal"></OrderSummary>
+      <OrderSummary :subTotal="cart.totalPrice"></OrderSummary>
 
+      <!-- route to checkout page (change to router-link component -->
       <div class="btn btn-block btn-success">{{ $t('cart.checkout') }}</div>
 
     </div>

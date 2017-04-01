@@ -2,15 +2,20 @@ import http from './http'
 
 const ORDER_API_URL = '/orders'
 
-export default class OrderApi {
-  static async checkout ( cartId: string ) {
-    const response = await http.post(`${ORDER_API_URL}/checkout`, null, {
-      params: { cartId }
-    })
-    .then(( response ) => {
-      return response && response.data
-    })
+export interface PlaceOrderRequest {
+  customerId: string,
+  addressId: string,
+  creditCartId: string,
+  cartId: string
+}
 
-    return response
-  }
+/**
+ * take customerId, addressId, creditCardId and cartId to place a order.
+ * @param request
+ * @returns {Promise<JQueryXHR|AxiosPromise|any>}
+ */
+export async function placeOrder ( request: PlaceOrderRequest ) {
+  // second param represents request body
+  const response = await http.post(`${ORDER_API_URL}`, request)
+  return response && response.data
 }
