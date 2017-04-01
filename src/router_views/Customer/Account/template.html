@@ -1,35 +1,31 @@
 <div>
   <div class="form-group">
-    <label for="customerName" class="col-4 col-form-label">
+    <label for="customerName">
       {{ $t('customer.nick_name') }}
     </label>
-    <div class="col-4">
-      <input type="text" class="form-control" id="customerName" name="customerName" v-model="customerInfo.customerName">
-    </div>
+    <input type="text" class="form-control col-4" id="customerName" v-model="customerInfo.customerName">
   </div>
+
   <div class="form-group">
-    <label for="firstName" class="col-4 col-form-label">
+    <label for="firstName">
       {{ $t('customer.first_name') }}
     </label>
-    <div class="col-4">
-      <input type="text" class="form-control" id="firstName" name="firstName" v-model="customerInfo.firstName">
-    </div>
+    <input type="text" class="form-control col-4" id="firstName" v-model="customerInfo.firstName">
+
   </div>
   <div class="form-group">
-    <label for="lastName" class="col-4 col-form-label">
+    <label for="lastName">
       {{ $t('customer.last_name') }}
     </label>
-    <div class="col-4">
-      <input type="text" class="form-control" id="lastName" name="lastName" v-model="customerInfo.lastName">
-    </div>
+    <input type="text" class="form-control col-4" id="lastName" v-model="customerInfo.lastName">
   </div>
+
   <div class="form-group">
-    <label for="middleName" class="col-4 col-form-label">
+    <label for="middleName">
       {{ $t('customer.middle_name') }}
     </label>
-    <div class="col-4">
-      <input type="text" class="form-control" id="middleName" name="middleName" v-model="customerInfo.middleName">
-    </div>
+    <input type="text" class="form-control col-4" id="middleName" v-model="customerInfo.middleName">
   </div>
-  <button type="button" class="btn btn-primary mx-3" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
+
+  <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
 </div>
