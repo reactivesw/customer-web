@@ -1,7 +1,5 @@
 {
   "common": {
-    "update": "更新",
-    "delete": "删除",
     "cancel": "取消",
     "save": "保存",
     "confirmation": "确认",
@@ -59,10 +57,9 @@
     "middle_name": "中间名",
 
     "add_new_address": "新地址",
+    "no_address": "地址为空，请输入受货地址。",
     "address_fullname": "姓名",
     "placeholder_address_fullname": "赵家人",
-    "address_address": "地址",
-    "address_default": "默认",
     "address_details": "详细地址",
     "address_line1": "第一行",
     "placeholder_address_line1": "扑街1号",

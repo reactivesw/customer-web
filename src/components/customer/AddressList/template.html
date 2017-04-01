@@ -1,31 +1,41 @@
-<table id="addressList" class="table table-striped table-bordered table-hover table-responsive">
-  <thead>
-    <tr>
-      <!-- the col-xx-y doesn't work here, use width style -->
-      <th style="width:20%">{{ $t('customer.address_fullname') }}</th>
-      <th style="width:59%">{{ $t('customer.address_address') }}</th>
-      <th style="width:7%">{{ $t('customer.address_default') }}</th>
-      <th style="width:7%">{{ $t('common.update') }}</th>
-      <th style="width:7%">{{ $t('common.delete') }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="addr in addresses">
-      <td>{{ addr.fullName }}</td>
-      <td>{{ buildAddressStr(addr) }}</td>
-      <td>
-        <input type="radio" name="isDefault" :checked="addr.id == defaultAddressId" @click.prevent="changeDefault(addr.id)">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary btn-sm" @click.stop="updateAddress(addr)">
-          {{ $t('common.update') }}
-        </button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-danger btn-sm" @click.stop="deleteAddress(addr.id)">
-          {{ $t('common.delete') }}
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <template v-if="addresses && addresses.length">
+    <div class="row">
+      <div class="col-4" v-for="addr in addresses">
+        <div class="card my-2">
+          <div class="card-block">
+            
+            <template v-if="addr.id === defaultAddressId">
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            </template>
+            <template v-else>
+              <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefault(addr.id)"></i>
+            </template>
+
+            <i class="fa fa-pencil-square-o mx-1" aria-hidden="true" @click.prevent="updateAddress(addr)"></i>
+            <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteAddress(addr.id)"></i>
+            <br /> 
+
+            {{ addr.fullName + " " + addr.phone}} <br /> 
+            {{ addr.firstLine }} <br /> 
+            <template v-if="addr.secondLine">
+            {{ addr.secondLine }}  <br /> 
+            </template>
+            {{ addr.city + (addr.state ? ("," + addr.state) : "")}} <br /> 
+            {{ addr.country + " " + (addr.zipcode ? addr.zipcode : "") }} <br />
+
+          </div>
+          <!-- div card-block -->
+
+        </div>
+        <!-- div card -->
+
+      </div>
+      <!-- div v-for -->
+    </div>
+    <!-- div row -->
+  </template>
+  <template v-else>
+    {{ $t('customer.no_address') }}
+  </template>
+</div>

@@ -1,7 +1,5 @@
 {
   "common": {
-    "update": "Update",
-    "delete": "Delete",
     "cancel": "Cancel",
     "save": "Save",
     "confirmation": "Confirmation",
@@ -58,10 +56,9 @@
     "middle_name": "Middle Name",
 
     "add_new_address": "Add New Address",
+    "no_address": "You have no shipping address, please add one.",
     "address_fullname": "Full Name",
     "placeholder_address_fullname": "John Smith",
-    "address_address": "Address",
-    "address_default": "Default",
     "address_details": "Address Details",
     "address_line1": "Address Line 1",
     "placeholder_address_line1": "37 Broadway",

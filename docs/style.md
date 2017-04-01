@@ -42,3 +42,12 @@ The `style.scss` is the root style file that only import two files:
 ```
 
 In addtion to the `bootstrap` node module, the `_theme.scss` imports all local variable and styles. The component styles are in the `components/` subfolder.
+
+## 3. Font Awesome
+Download Font Awesome from http://fontawesome.io/ and unzip it. 
+
+Copy the unzipped folder content to `styles/font-awesome` folder. 
+
+Add `@import "./font-awesome/scss/font-awesome"` to `styles/style.scss`. 
+
+Finally, change `$fa-font-path` variable in `styles/font-awesome/scss/_variables.scss` file to a value of `"font-awesome/fonts" !default;`. 
