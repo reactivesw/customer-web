@@ -15,7 +15,7 @@
   "alert": {
     "network_error": "某些网络请求失败，网站可能无法正常工作，请检查网络连接",
     "user_exist": "该邮箱已被注册，请尝试其它邮箱",
-    "password_not_secure": "密码至少8位，必须同时拥有数字以及大小写字符",
+    "password_not_secure": "密码至少8位，必须同时拥有数字以及字母",
     "confirm_password_not_match": "两次密码输入不一致",
     "credential_error": "账号或密码错误",
     "signin_error": "未知原因导致登录失败，请稍后重试"
@@ -46,20 +46,22 @@
     "empty": "购物车为空"
   },
   "customer": {
-    "info": "个人资料",
+    "account": "个人资料",
+
+    "payment_info": "支付信息",
+    "shipping_info": "发货信息",
+    "orders": "订单",
+    "sign_out": "登出",
+
     "nick_name": "昵称",
     "first_name": "名",
     "last_name": "姓",
     "middle_name": "中间名",
-    "save": "保存",
-    "addresses": "地址管理",
-    "orders": "订单",
-    "sign_out": "登出",
 
     "add_new_address": "新地址",
-    "address_full_name": "地址名",
+    "address_full_name": "姓名",
     "address_address": "地址",
-    "address_default": "缺省",
+    "address_default": "默认",
     "address_details": "详细地址",
     "address_line1": "第一行",
     "address_line2": "第二行",

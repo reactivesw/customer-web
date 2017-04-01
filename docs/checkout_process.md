@@ -14,7 +14,7 @@ The design of the customer checkout UI is based on collecting and presenting the
 A customer may be in different stages during the checkout process when one or more pieces of data are not available.
 
 ### 2.1. Login Stage
-A customer must login to checkout. If not, show the login/signup view before the customer can see the checkout view.
+A customer must login to checkout. If not, show the login/signup view before the customer can see the checkout view. The cart items added as an anonymous user will be kept as the current user's cart times.
 
 ### 2.2. Shipping Info Stage
 * If a customer doesn't have shipping info (no shipping address), he/she must add an address.

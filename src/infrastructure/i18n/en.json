@@ -46,18 +46,19 @@
     "empty": "Empty Cart"
   },
   "customer": {
-    "info": "Info",
+    "account": "Account",
+    "orders": "Orders",
+    "payment_info": "Payment Info",
+    "shipping_info": "Shipping Info",
+    "sign_out": "Sign Out",
+
     "nick_name": "Nick Name",
     "first_name": "First Name",
     "last_name": "Last Name",
     "middle_name": "Middle Name",
-    "save": "SAVE",
-    "addresses": "Addresses",
-    "orders": "Orders",
-    "sign_out": "Sign Out",
 
     "add_new_address": "Add New Address",
-    "address_full_name": "Address Name",
+    "address_full_name": "Full Name",
     "address_address": "Address",
     "address_default": "Default",
     "address_details": "Address Details",
