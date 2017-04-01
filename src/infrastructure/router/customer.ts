@@ -1,6 +1,6 @@
 import Customer from 'src/router_views/Customer'
-import CustomerInfo from 'src/router_views/Customer/Info'
-import CustomerAddresses from 'src/router_views/Customer/Addresses'
+import Account from 'src/router_views/Customer/Account'
+import ShippingInfo from 'src/router_views/Customer/ShippingInfo'
 
 export default {
   name: 'customer',
@@ -8,16 +8,16 @@ export default {
   component: Customer,
   children: [
     {
-      name: 'customer_info',
-      path: 'info',
-      component: CustomerInfo
+      name: 'customer-account',
+      path: 'account',
+      component: Account
     },
     {
-      name: 'customer_addresses',
-      path: 'addresses',
-      component: CustomerAddresses
+      name: 'customer-shipping-info',
+      path: 'shipping-info',
+      component: ShippingInfo
     },
-    { path: '*', redirect: { name: 'customer_info' } } // redirect to customer info when visit /customer
+    { path: '*', redirect: { name: 'customer-account' } } // redirect to account when visit /customer
   ],
   meta: { requiresAuth: true }
 }
