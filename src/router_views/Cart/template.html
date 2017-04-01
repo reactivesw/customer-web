@@ -20,7 +20,7 @@
       <OrderSummary :subTotal="cart.totalPrice"></OrderSummary>
 
       <!-- route to checkout page (change to router-link component -->
-      <div class="btn btn-block btn-success">{{ $t('cart.checkout') }}</div>
+      <div class="btn btn-block btn-success" @click="checkoutClickEventHandler">{{ $t('cart.checkout') }}</div>
 
     </div>
   </div>

@@ -4,6 +4,7 @@ import store from 'src/infrastructure/store'
 import Category from 'src/router_views/Category'
 import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
+import Checkout from 'src/router_views/Checkout'
 import customer from './customer'
 import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
 
@@ -30,6 +31,11 @@ const routes = [
     name: 'cart',
     path: '/cart',
     component: Cart
+  },
+  {
+    name: 'checkout',
+    path: '/checkout',
+    component: Checkout
   },
   {
     ...customer

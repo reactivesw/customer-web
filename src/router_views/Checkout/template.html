@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h3>Shipping Info</h3>
+      <h3>Payment Info</h3>
+    </div>
+    <div v-if="!isEmpty" class="col-md-3">
+      <OrderSummary :subTotal="cart.totalPrice"></OrderSummary>
+      <div class="btn btn-block btn-success">Place Order</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <hr>
+      <LineItem v-if="!isEmpty" v-for="lineItem of cart.lineItems" 
+      :lineItem="lineItem" :key=lineItem.id 
+      @changeQuantity="changeQuantity"
+      @removeLineItem="removeLineItem"></LineItem>
+      <h5 v-if="isEmpty">{{ $t('cart.empty') }}</h5>
+    </div>
+  </div>
+</div>

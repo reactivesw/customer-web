@@ -4,15 +4,13 @@ import { GET_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY } from 'src/infrastr
 
 import LineItem from 'src/components/cart/LineItem'
 import OrderSummary from 'src/components/cart/OrderSummary'
-import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
 
 export default {
-  name: 'cart',
+  name: 'checkout',
 
   computed: {
     ...mapGetters( {
-      cart: GET_CART,
-      customer: GET_CUSTOMER
+      cart: GET_CART
     } ),
 
     isEmpty ( this: Component ) {
@@ -25,11 +23,7 @@ export default {
     ...mapActions ( {
       changeQuantity: SET_LINE_ITEM_QUANTITY,
       removeLineItem: REMOVE_LINE_ITEM
-    } ),
-
-    checkoutClickEventHandler(this: Component) {
-      this['$router'].push({ path: 'checkout'})
-    }
+    } )
 
   },
 
