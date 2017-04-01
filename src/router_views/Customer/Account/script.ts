@@ -7,7 +7,7 @@ import CustomerInfoData from 'src/models/customer/CustomerInfoData'
 import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 
 export default {
-  name: 'CustomerInfo',
+  name: 'Account',
 
   computed: {
     customerInfo(this: Component) {

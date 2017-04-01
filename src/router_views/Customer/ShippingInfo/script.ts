@@ -31,7 +31,7 @@ function getEmptyAddress(): AddressDetails {
 }
 
 export default {
-  name: 'Addresses',
+  name: 'ShippingInfo',
 
   data() {
     return {
