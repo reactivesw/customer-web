@@ -1,13 +1,14 @@
 import { customerInfo as apiClient } from 'src/infrastructure/api_client'
 
-import { FETCH_CUSTOMER_INFO,
-  SET_DEFAULT_ADDRESS,
-  PUT_DEFAULT_ADDRESS,
-  SET_CUSTOMER_INFO
+import {
+  FETCH_CUSTOMER_INFO,
+  SET_CUSTOMER_INFO,
+  CHANGE_DEFAULT_ADDRESS,
+  ADD_ADDRESS,
+  UPDATE_ADDRESS,
+  DELETE_ADDRESS,
+  UPDATE_CUSTOMER_INFO
 } from 'src/infrastructure/store/customer_info_types'
-
-import ApiPutResult from 'src/models/customer/ApiPutResult'
-import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'
 
 const actions = {
   async [FETCH_CUSTOMER_INFO]({ rootState, commit }) {
@@ -16,15 +17,30 @@ const actions = {
     commit(SET_CUSTOMER_INFO, info)
   },
 
-  async [PUT_DEFAULT_ADDRESS]({ commit }, putDefaultRequest: SetDefaultRequest) {
-    const result: ApiPutResult = await apiClient.setDefaultAddress(putDefaultRequest)
+  async [CHANGE_DEFAULT_ADDRESS]({ commit }, request) {
+    const customerInfo = await apiClient.setDefaultAddress(request)
+    commit(SET_CUSTOMER_INFO, customerInfo)
+  },
 
-    // sync local state data with new version
-    putDefaultRequest.version = result.version
-    commit(SET_DEFAULT_ADDRESS, putDefaultRequest)
+  async [ADD_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.addAddress(request)
+    commit(SET_CUSTOMER_INFO, customerInfo)
+  },
+
+  async [UPDATE_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.updateAddress(request)
+    commit(SET_CUSTOMER_INFO, customerInfo)
+  },
+
+  async [DELETE_ADDRESS]({ commit }, request) {
+    const customerInfo  = await apiClient.deleteAddress(request)
+    commit(SET_CUSTOMER_INFO, customerInfo)
+  },
+
+  async [UPDATE_CUSTOMER_INFO]({ commit }, request) {
+    const customerInfo = await apiClient.updateCustomerInfo(request)
+    commit(SET_CUSTOMER_INFO, customerInfo)
   }
 }
 
 export default actions
-
-

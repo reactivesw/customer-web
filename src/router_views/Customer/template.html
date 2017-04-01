@@ -1,24 +1,33 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      
+  <div class="row my-2">
+    <div class="col-md-3">
+
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <router-link class="nav-link" active-class="active" :to="{ name: 'customer_info' }">{{ $t('customer.info') }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" active-class="active" :to="{ name: 'customer_addresses' }">{{ $t('customer.addresses') }}</router-link>
+          <router-link class="nav-link" active-class="active" :to="{ name: 'customer-account' }">
+            {{ $t('customer.account') }}
+          </router-link>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">{{ $t('customer.orders') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)" @click="signOut">{{ $t('customer.sign_out') }}</a> <!-- call customer signOut api? -->
+          <a class="nav-link" href="#">{{ $t('customer.payment_info') }}</a>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" active-class="active" :to="{ name: 'customer-shipping-info' }">
+            {{ $t('customer.shipping_info') }}
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" @click="signOut">
+            {{ $t('customer.sign_out') }}
+          </a> <!-- call customer signOut api? -->
         </li>
       </ul>
 
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
 
       <router-view></router-view>
 

@@ -1,6 +1,6 @@
-import ApiBase from './ApiBase'
+import ApiRequestBase from './ApiRequestBase'
 
-interface SetDefaultRequest extends ApiBase {
+interface SetDefaultRequest extends ApiRequestBase {
   addressId: string   // the default address id
 }
 

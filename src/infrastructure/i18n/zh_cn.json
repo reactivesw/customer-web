@@ -1,4 +1,11 @@
 {
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "confirmation": "确认",
+    "yes": "是",
+    "no": "否"
+  },
   "meta": {
     "brand": "Hello",
     "copyright": "Reactivesw."
@@ -6,7 +13,7 @@
   "alert": {
     "network_error": "某些网络请求失败，网站可能无法正常工作，请检查网络连接",
     "user_exist": "该邮箱已被注册，请尝试其它邮箱",
-    "password_not_secure": "密码至少8位，必须同时拥有数字以及大小写字符",
+    "password_not_secure": "密码至少8位，必须同时拥有数字以及字母",
     "confirm_password_not_match": "两次密码输入不一致",
     "credential_error": "账号或密码错误",
     "signin_error": "未知原因导致登录失败，请稍后重试"
@@ -37,15 +44,37 @@
     "empty": "购物车为空"
   },
   "customer": {
-    "info": "个人资料",
+    "account": "个人资料",
+
+    "payment_info": "支付信息",
+    "shipping_info": "发货信息",
+    "orders": "订单",
+    "sign_out": "登出",
+
+    "nick_name": "昵称",
     "first_name": "名",
     "last_name": "姓",
-    "password": "密码",
-    "new_password": "输入新密码",
-    "save": "保存",
-    "addresses": "地址管理",
-    "orders": "订单",
-    "sign_out": "登出"
+    "middle_name": "中间名",
+
+    "add_new_address": "新地址",
+    "no_address": "地址为空，请输入受货地址。",
+    "address_fullname": "姓名",
+    "placeholder_address_fullname": "赵家人",
+    "address_details": "详细地址",
+    "address_line1": "第一行",
+    "placeholder_address_line1": "扑街1号",
+    "address_line2": "第二行",
+    "address_city": "城市*",
+    "placeholder_address_city": "桂林",
+    "address_state": "省／地区",
+    "placeholder_address_state": "广西",
+    "address_country": "国家",
+    "placeholder_address_country": "P. R. China",
+    "address_zipcode": "邮政编码",
+    "address_phone": "电话号码",
+    "confirm_delete_address": "请确认删除这个地址？",
+    "confirm_change_default_address": "请确认改变缺省地址？"
+
   },
   "form": {
     "email_address": "邮件地址",

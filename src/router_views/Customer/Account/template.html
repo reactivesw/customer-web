@@ -1,0 +1,31 @@
+<div>
+  <div class="form-group">
+    <label for="customerName">
+      {{ $t('customer.nick_name') }}
+    </label>
+    <input type="text" class="form-control col-4" id="customerName" v-model="customerInfo.customerName">
+  </div>
+
+  <div class="form-group">
+    <label for="firstName">
+      {{ $t('customer.first_name') }}
+    </label>
+    <input type="text" class="form-control col-4" id="firstName" v-model="customerInfo.firstName">
+
+  </div>
+  <div class="form-group">
+    <label for="lastName">
+      {{ $t('customer.last_name') }}
+    </label>
+    <input type="text" class="form-control col-4" id="lastName" v-model="customerInfo.lastName">
+  </div>
+
+  <div class="form-group">
+    <label for="middleName">
+      {{ $t('customer.middle_name') }}
+    </label>
+    <input type="text" class="form-control col-4" id="middleName" v-model="customerInfo.middleName">
+  </div>
+
+  <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
+</div>
