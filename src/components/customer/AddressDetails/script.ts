@@ -6,13 +6,16 @@ import Component from 'vue-class-component'
     addressProp: Object
   }
 })
-
-export default class App extends Vue {
+export default class AddressDetails extends Vue {
   addressProp: object
+
+  // use this as a flag to force re-compute and discard input values
+  // when a user clicks cancel
+  forceRefresh: boolean = false
 
   // computed
   get addressDetails() {
-    return Object.assign({}, this.addressProp)
+    return Object.assign({}, this.addressProp, {forceRefresh: this.forceRefresh})
   }
 
   saveAddressDetails() {
@@ -20,6 +23,7 @@ export default class App extends Vue {
   }
 
   cancelAddressDetails() {
+    this.forceRefresh = !this.forceRefresh
     this.$emit('cancelAddressDetails')
   }
 

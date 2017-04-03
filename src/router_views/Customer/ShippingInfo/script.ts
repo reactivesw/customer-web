@@ -1,5 +1,6 @@
-import Vue, { Component } from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
 import AddressList from 'src/components/customer/AddressList'
 import AddressDialog from 'src/components/customer/AddressDialog'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
@@ -20,7 +21,99 @@ import AddAddressRequest from 'src/models/customer/AddAddressRequest'
 import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
 import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
 
-function getEmptyAddress(): AddressDetails {
+@Component({
+  props: {
+    addressProp: Object
+  },
+
+  components: {
+    AddressDialog,
+    AddressList,
+    ConfirmDialog
+  }
+})
+export default class ShippingInfo extends Vue {
+  // customerInfo: CustomerInfo
+
+  showAddressDetails = false
+  // always return empty address
+  addressDetails: AddressDetails = getEmptyAddressHelp()
+
+  // for change default address confirmation dialog
+  confirmChangeDefault = false
+  confirmChangeDefaultAddressId = ''
+
+  // for delete address confirmation dialog
+  confirmDeleteAddress = false
+  confirmDeleteAddressId = ''
+
+  defaultChangedEventHandler(addrId) {
+    this.confirmChangeDefault = true
+    this.confirmChangeDefaultAddressId = addrId
+  }
+
+  confirmYesChangeDefaultEventHandler() {
+    changeDefaultAddressHelp(this)
+  }
+
+  confirmNoChangeDefaultEventHandler() {
+    this.confirmChangeDefault = false
+  }
+
+  deleteAddressEventHandler(addrId) {
+    this.confirmDeleteAddress = true
+    this.confirmDeleteAddressId = addrId
+  }
+
+  confirmYesDeleteAddressEventHandler() {
+    deleteAddressHelp(this)
+  }
+
+  confirmNoDeleteAddressEventHandler() {
+    this.confirmDeleteAddress = false
+  }
+
+  updateAddressEventHandler(addr) {
+    this.showAddressDetails = true
+    this.addressDetails = addr
+  }
+
+  addNewAddress() {
+    this.showAddressDetails = true
+    this.addressDetails = getEmptyAddressHelp()
+  }
+
+  cancelAddressDetails() {
+    this.showAddressDetails = false
+  }
+
+  saveAddressDetailsEventHandler(addressDetails) {
+    saveAddressDetailsHelp(this, addressDetails)
+  }
+
+  // following are store operations
+  get customerInfo(): CustomerInfo {
+    return this.$store.getters[GET_CUSTOMER_INFO]
+  }
+
+  changeDefaultAddress(request: SetDefaultRequest) {
+    this.$store.dispatch(CHANGE_DEFAULT_ADDRESS, request)
+  }
+
+  addAddress(request: AddAddressRequest) {
+    this.$store.dispatch(ADD_ADDRESS, request)
+  }
+
+  updateAddress(request: UpdateAddressRequest) {
+    this.$store.dispatch(UPDATE_ADDRESS, request)
+  }
+
+  deleteAddress(request) {
+    this.$store.dispatch(DELETE_ADDRESS, request)
+  }
+}
+
+function getEmptyAddressHelp(): AddressDetails {
   return {
     id: '', createdAt: '',
     lastModifiedAt: '', fullName: '',
@@ -30,121 +123,48 @@ function getEmptyAddress(): AddressDetails {
   }
 }
 
-export default {
-  name: 'ShippingInfo',
+function saveAddressDetailsHelp(vm: ShippingInfo, addressDetails) {
+  vm.showAddressDetails = false
 
-  data() {
-    return {
-      showAddressDetails: false,
-      // always return empty address
-      addressDetails: getEmptyAddress(),
+  let customerInfo: CustomerInfo = vm.customerInfo
 
-      // for change default address confirmation dialog
-      confirmChangeDefault: false,
-      confirmChangeDefaultAddressId: '',
-
-      // for delete address confirmation dialog
-      confirmDeleteAddress: false,
-      confirmDeleteAddressId: ''
+  if (addressDetails.id) {
+    let request: UpdateAddressRequest = {
+      customer_id: customerInfo.id,
+      version: customerInfo.version,
+      addressDetails
     }
-  },
-
-  computed: {
-    ...mapGetters({
-      customerInfo: GET_CUSTOMER_INFO
-    })
-  },
-
-  methods: {
-    ...mapActions({
-      putDefaultAddress: CHANGE_DEFAULT_ADDRESS,
-      addAddress: ADD_ADDRESS,
-      updateAddress: UPDATE_ADDRESS,
-      deleteAddress: DELETE_ADDRESS
-    }),
-
-    defaultChangedEventHandler(this: Component, addrId) {
-      this['confirmChangeDefault'] = true
-      this['confirmChangeDefaultAddressId'] = addrId
-    },
-
-    confirmYesChangeDefaultEventHandler(this: Component) {
-      this['confirmChangeDefault'] = false
-      let addressId = this['confirmChangeDefaultAddressId']
-      let customerInfo: CustomerInfo = this['customerInfo']
-      let putDefaultRequest: SetDefaultRequest = {
-        customer_id: customerInfo.id,
-        version: customerInfo.version,
-        addressId
-      }
-      this['putDefaultAddress'](putDefaultRequest)
-    },
-
-    confirmNoChangeDefaultEventHandler(this: Component) {
-      this['confirmChangeDefault'] = false
-    },
-
-    deleteAddressEventHandler(this: Component, addrId) {
-      this['confirmDeleteAddress'] = true
-      this['confirmDeleteAddressId'] = addrId
-    },
-
-    confirmYesDeleteAddressEventHandler(this: Component) {
-      this['confirmDeleteAddress'] = false
-      let id = this['confirmDeleteAddressId']
-      let customerInfo: CustomerInfo = this['customerInfo']
-      let request: DeleteAddressRequest = {
-        customer_id: customerInfo.id,
-        version: customerInfo.version,
-        id
-      }
-      this['deleteAddress'](request)
-    },
-
-    confirmNoDeleteAddressEventHandler(this: Component) {
-      this['confirmDeleteAddress'] = false
-    },
-
-    updateAddressEventHandler(this: Component, addr) {
-      this['showAddressDetails'] = true
-      this['addressDetails'] = addr
-    },
-
-    addNewAddress(this: Component) {
-      this['showAddressDetails'] = true
-      this['addressDetails'] = getEmptyAddress()
-    },
-
-    cancelAddressDetails(this: Component) {
-      this['showAddressDetails'] = false
-    },
-
-    saveAddressDetails(this: Component, addressDetails) {
-      this['showAddressDetails'] = false
-
-      let customerInfo: CustomerInfo = this['customerInfo']
-
-      if (addressDetails.id) {
-        let request: UpdateAddressRequest = {
-          customer_id: customerInfo.id,
-          version: customerInfo.version,
-          addressDetails
-        }
-        this['updateAddress'](request)
-      } else {
-        let request: AddAddressRequest = {
-          customer_id: customerInfo.id,
-          version: customerInfo.version,
-          newAddressDetails: addressDetails
-        }
-        this['addAddress'](request)
-      }
+    vm.updateAddress(request)
+  } else {
+    let request: AddAddressRequest = {
+      customer_id: customerInfo.id,
+      version: customerInfo.version,
+      newAddressDetails: addressDetails
     }
-  },
-
-  components: {
-    AddressDialog,
-    AddressList,
-    ConfirmDialog
+    vm.addAddress(request)
   }
+}
+
+function changeDefaultAddressHelp(vm: ShippingInfo) {
+  vm.confirmChangeDefault = false
+  let addressId = vm.confirmChangeDefaultAddressId
+  let customerInfo = vm.customerInfo
+  let request: SetDefaultRequest = {
+    customer_id: customerInfo.id,
+    version: customerInfo.version,
+    addressId
+  }
+  vm.changeDefaultAddress(request)
+}
+
+function deleteAddressHelp(vm: ShippingInfo) {
+  vm.confirmDeleteAddress = false
+  let id = vm.confirmDeleteAddressId
+  let customerInfo: CustomerInfo = vm.customerInfo
+  let request: DeleteAddressRequest = {
+    customer_id: customerInfo.id,
+    version: customerInfo.version,
+    id
+  }
+  vm['deleteAddress'](request)
 }

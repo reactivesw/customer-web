@@ -1,23 +1,22 @@
-import { Component } from 'vue'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export default {
-  name: 'AddressList',
-
+@Component({
   props: {
     addresses: Array,
     defaultAddressId: String
-  },
-  methods: {
-    changeDefault(this: Component, addrId) {
-      this['$emit']('defaultChanged', addrId)
-    },
+  }
+})
+export default class AddressList extends Vue {
+  changeDefault(addrId) {
+    this.$emit('defaultChanged', addrId)
+  }
 
-    updateAddress(this: Component, addr) {
-      this['$emit']('updateAddress', addr)
-    },
+  updateAddress(addr) {
+    this.$emit('updateAddress', addr)
+  }
 
-    deleteAddress(this: Component, addrId) {
-      this['$emit']('deleteAddress', addrId)
-    }
+  deleteAddress(addrId) {
+    this.$emit('deleteAddress', addrId)
   }
 }

@@ -1,6 +1,6 @@
 <ModalDialog :title="$t('customer.address_details')" :show="show" @hide="cancelAddressDetails">
   <div slot="body">
-    <AddressDetails :addressProp="addressDetails" @saveAddressDetails="saveAddressDetails" @cancelAddressDetails="cancelAddressDetails">
+    <AddressDetails :addressProp="addressProp" @saveAddressDetails="saveAddressDetails" @cancelAddressDetails="cancelAddressDetails">
     </AddressDetails>
   </div>
 </ModalDialog>

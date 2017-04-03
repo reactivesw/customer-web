@@ -1,20 +1,21 @@
-import { Component } from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
 import { SIGN_OUT } from 'src/infrastructure/store/auth_types'
 import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/customer_info_types'
 
-export default {
-  name: 'Customer',
+@Component({
+})
+export default class Customer extends Vue  {
+  created () {
+    this.fetchCustomerInfo()
+  }
 
-  methods: {
-    ...mapActions({
-      signOut: SIGN_OUT,
-      fetchCustomerInfo: FETCH_CUSTOMER_INFO
-    })
-  },
+  fetchCustomerInfo() {
+    this.$store.dispatch(FETCH_CUSTOMER_INFO)
+  }
 
-  // go fetch backend data
-  created (this: Component) {
-    this['fetchCustomerInfo']()
-  },
+  signOut() {
+    this.$store.dispatch(SIGN_OUT)
+  }
 }

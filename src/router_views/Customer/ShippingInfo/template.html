@@ -7,7 +7,7 @@
     @updateAddress="updateAddressEventHandler" @deleteAddress="deleteAddressEventHandler">
   </AddressList>
 
-  <AddressDialog :show="showAddressDetails" :addressProp="addressDetails" @saveAddressDetails="saveAddressDetails"
+  <AddressDialog :show="showAddressDetails" :addressProp="addressDetails" @saveAddressDetails="saveAddressDetailsEventHandler"
     @cancelAddressDetails="cancelAddressDetails">
   </AddressDialog>
 
