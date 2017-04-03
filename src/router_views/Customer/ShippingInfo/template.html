@@ -3,29 +3,19 @@
     <b>+</b> {{ $t('customer.add_new_address') }}
   </button>
 
-  <AddressList
-    :addresses="customerInfo.addresses"
-    :defaultAddressId="customerInfo.defaultAddressId"
-    @defaultChanged="defaultChangedEventHandler"
-    @updateAddress="updateAddressEventHandler"
-    @deleteAddress="deleteAddressEventHandler">
+  <AddressList :addresses="customerInfo.addresses" :defaultAddressId="customerInfo.defaultAddressId" @defaultChanged="defaultChangedEventHandler"
+    @updateAddress="updateAddressEventHandler" @deleteAddress="deleteAddressEventHandler">
   </AddressList>
 
-  <AddressDetail :show="showAddressDetails"
-    :addressProp="addressDetails"
-    @saveAddressDetails="saveAddressDetails"
+  <AddressDialog :show="showAddressDetails" :addressProp="addressDetails" @saveAddressDetails="saveAddressDetails"
     @cancelAddressDetails="cancelAddressDetails">
-  </AddressDetail>
+  </AddressDialog>
 
-  <ConfirmDialog :show="confirmChangeDefault"
-    :message="$t('customer.confirm_change_default_address')"
-    @confirmYes="confirmYesChangeDefaultEventHandler"
+  <ConfirmDialog :show="confirmChangeDefault" :message="$t('customer.confirm_change_default_address')" @confirmYes="confirmYesChangeDefaultEventHandler"
     @confirmNo="confirmNoChangeDefaultEventHandler">
   </ConfirmDialog>
 
-  <ConfirmDialog :show="confirmDeleteAddress"
-    :message="$t('customer.confirm_delete_address')"
-    @confirmYes="confirmYesDeleteAddressEventHandler"
+  <ConfirmDialog :show="confirmDeleteAddress" :message="$t('customer.confirm_delete_address')" @confirmYes="confirmYesDeleteAddressEventHandler"
     @confirmNo="confirmNoDeleteAddressEventHandler">
   </ConfirmDialog>
 

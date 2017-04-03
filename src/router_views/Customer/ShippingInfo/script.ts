@@ -1,7 +1,7 @@
 import Vue, { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import AddressList from 'src/components/customer/AddressList'
-import AddressDetail from 'src/components/customer/AddressDetail'
+import AddressDialog from 'src/components/customer/AddressDialog'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 
 import {
@@ -143,7 +143,7 @@ export default {
   },
 
   components: {
-    AddressDetail,
+    AddressDialog,
     AddressList,
     ConfirmDialog
   }

@@ -1,4 +1,4 @@
-import * as Vue from 'vue'
+import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'

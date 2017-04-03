@@ -1,9 +1,10 @@
 import { Component } from 'vue'
 
+import AddressDetails from '../AddressDetails'
 import ModalDialog from 'src/components/utility/ModalDialog'
 
 export default {
-  name: 'AddressDetails',
+  name: 'AddressDialog',
 
   // use computed to track the property change
   computed: {
@@ -21,15 +22,16 @@ export default {
   },
 
   methods: {
-    submitForm(this: Component) {
-      this['$emit']('saveAddressDetails', this['addressDetails'])
+    saveAddressDetails(this: Component, addressDetails) {
+      this['$emit']('saveAddressDetails', addressDetails)
     },
-    cancelForm(this: Component) {
+    cancelAddressDetails(this: Component) {
       this['$emit']('cancelAddressDetails')
     }
   },
 
   components: {
+    AddressDetails,
     ModalDialog
   }
 }

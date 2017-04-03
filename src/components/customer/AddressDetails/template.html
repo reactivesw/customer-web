@@ -1,0 +1,76 @@
+<form id="addressDetailForm" @submit.prevent="saveAddressDetails">
+  <div v-if="addressDetails">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="full-name"> {{ $t('customer.address_fullname') }}* </label>
+          <input class="form-control" type="text" :placeholder="$t('customer.placeholder_address_fullname')" id="full-name" v-model="addressDetails.fullName"
+            required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="phone"> {{ $t('customer.address_phone') }} </label>
+          <input class="form-control" type="tel" id="phone" name="phone" v-model="addressDetails.phone">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address-line1"> {{ $t('customer.address_line1') }}* </label>
+      <input class="form-control" type="text" :placeholder="$t('customer.placeholder_address_line1')" id="address-line1" v-model="addressDetails.firstLine"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="address-line2"> {{ $t('customer.address_line2') }} </label>
+      <input class="form-control" type="text" id="address-line2" v-model="addressDetails.secondLine">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="city"> {{ $t('customer.address_city') }}* </label>
+          <input class="form-control" type="text" :placeholder="$t('customer.placeholder_address_city')" id="city" v-model="addressDetails.city"
+            required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="state"> {{ $t('customer.address_state') }} </label>
+          <input class="form-control" type="text" :placeholder="$t('customer.placeholder_address_state')" id="state" v-model="addressDetails.state">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="country"> {{ $t('customer.address_country') }}* </label>
+          <input class="form-control" type="text" :placeholder="$t('customer.placeholder_address_country')" id="country" v-model="addressDetails.country"
+            required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="zipcode"> {{ $t('customer.address_zipcode') }} </label>
+          <input class="form-control" type="text" id="zipcode" v-model="addressDetails.zipcode">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- use col-md-12 to left-align buttons -->
+    <div class="col-md-12">
+      <button type="button" class="btn btn-info" @click="cancelAddressDetails">
+        {{ $t('common.cancel') }}
+    </button>
+      <button type="submit" class="btn btn-primary">
+        {{ $t('common.save') }}
+    </button>
+    </div>
+  </div>
+</form>

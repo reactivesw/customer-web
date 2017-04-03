@@ -3,7 +3,7 @@ import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from 'src/infrast
 import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
 import { FETCH_CART } from 'src/infrastructure/store/carts_types'
 import router from 'src/infrastructure/router'
-import * as Vue from 'vue'
+import Vue from 'vue'
 
 const actions = {
 
