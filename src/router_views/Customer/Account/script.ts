@@ -9,9 +9,6 @@ import CustomerInfoData from 'src/models/customer/CustomerInfoData'
 import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 
 @Component({
-  props: {
-    addressProp: Object
-  }
 })
 export default class Account extends Vue {
 
