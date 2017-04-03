@@ -8,7 +8,8 @@ const getters = {
   },
 
   [GET_IS_LOGGED_IN](state, getters) {
-    return !! getters[GET_CUSTOMER]['id']
+    const customer = getters[GET_CUSTOMER]
+    return customer && customer.id
   },
 
   [GET_TOKEN](state) {
@@ -16,7 +17,8 @@ const getters = {
   },
 
   [GET_CUSTOMER_ID](state, getters ) {
-    return getters[GET_CUSTOMER]['id']
+    const customer = getters[GET_CUSTOMER]
+    return customer && customer.id
   }
 }
 

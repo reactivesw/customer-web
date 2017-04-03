@@ -1,9 +1,7 @@
 <nav class="the-header navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
   <div class="container">
 
-    <router-link
-      class="navbar-brand"
-      :to="{ name: 'featureCategory' }">
+    <router-link class="navbar-brand" :to="{ name: 'featureCategory' }">
       {{ $t('meta.brand') }}
     </router-link>
 
@@ -17,20 +15,18 @@
           <a href="#" class="nav-link">{{ $t('header.search') }}</a>
         </li>
         <li class="nav-item">
-          <router-link
-            class="nav-link"
-            :to="{ name: 'cart' }">
+          <router-link class="nav-link" :to="{ name: 'cart' }">
             {{ $t('header.cart') }}
           </router-link>
         </li>
         <li class="nav-item">
+          <template v-if="isLoggedIn">
+            <router-link class="nav-link" :to="{ name: 'customer-account' }">{{ username }}</router-link>
+          </template>
+          <template v-else>
+            <a href="#" class="nav-link" @click="showSignIn">{{ $t('header.sign_in') }}</a>
+          </template>
 
-          <a v-if="!customer.id" href="#" class="nav-link" @click="showSignIn">{{ $t('header.sign_in') }}</a>
-
-          <router-link
-            v-if="customer.id"
-            class="nav-link"
-            :to="{ name: 'customer-account' }">{{ username }}</router-link>
 
         </li>
         <li class="nav-item">
