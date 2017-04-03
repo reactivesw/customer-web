@@ -1,4 +1,5 @@
-<div>
+<!-- Only display object when it has value. It may be undefined when async action result is not completed -->
+<div v-if="customerInfo">
   <div class="form-group">
     <label for="customerName">
       {{ $t('customer.nick_name') }}

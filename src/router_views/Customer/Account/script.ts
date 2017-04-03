@@ -11,16 +11,21 @@ export default {
 
   computed: {
     customerInfo(this: Component) {
-      let customerInfo = this['getCustomerInfo']()
-      return {
-        id: customerInfo.id,
-        version: customerInfo.version,
-        customerName: customerInfo.customerName,
-        firstName: customerInfo.firstName,
-        lastName: customerInfo.lastName,
-        middleName: customerInfo.middleName,
-        defaultAddressId: customerInfo.defaultAddressId
+      let customerInfo: any = null
+      const customerInfoState = this['getCustomerInfo']()
+      // the customerInfo may not be ready due to async action
+      if (customerInfoState) {
+        customerInfo =  {
+          id: customerInfoState.id,
+          version: customerInfoState.version,
+          customerName: customerInfoState.customerName,
+          firstName: customerInfoState.firstName,
+          lastName: customerInfoState.lastName,
+          middleName: customerInfoState.middleName,
+          defaultAddressId: customerInfoState.defaultAddressId
+        }
       }
+      return customerInfo
     }
   },
 
@@ -33,7 +38,6 @@ export default {
     }),
 
     updateCustomerInfoEventHandler(this: Component) {
-      debugger
       let customerInfo = this['customerInfo']
       let customerInfoData: CustomerInfoData = {
         customerName: customerInfo.customerName,

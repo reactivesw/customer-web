@@ -1,9 +1,9 @@
-<div>
+<div v-if="customerInfo">
   <button class="btn btn-primary" @click="addNewAddress">
     <b>+</b> {{ $t('customer.add_new_address') }}
   </button>
 
-  <AddressList v-if="customerInfo"
+  <AddressList
     :addresses="customerInfo.addresses"
     :defaultAddressId="customerInfo.defaultAddressId"
     @defaultChanged="defaultChangedEventHandler"

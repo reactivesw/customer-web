@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       showAddressDetails: false,
+      // always return empty address
       addressDetails: getEmptyAddress(),
 
       // for change default address confirmation dialog
