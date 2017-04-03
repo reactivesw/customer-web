@@ -7,7 +7,7 @@ import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/customer_info_type
 @Component({
 })
 export default class Customer extends Vue  {
-  created () {
+  created() {
     this.fetchCustomerInfo()
   }
 

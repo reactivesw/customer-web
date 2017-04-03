@@ -41,20 +41,13 @@ const actions = {
 
       localStorage.setItem('customer', JSON.stringify(customer))
       commit(SET_CUSTOMER, customer)
-
-      // after signin or signout, customerId has changed, so that we need to fetch new cart for them.
-      dispatch( FETCH_CART )
     }
   },
 
-  async [SIGN_OUT]({ commit, dispatch }) {
+  [SIGN_OUT]({ commit, dispatch }) {
     localStorage.removeItem('customer')
     authApi.signOut()
     commit(SET_CUSTOMER, undefined)
-
-    // after signin or signout, customerId has changed, so that we need to fetch new cart for them.
-    dispatch( FETCH_CART )
-
     router.push({ name: 'featureCategory' })
   }
 }
