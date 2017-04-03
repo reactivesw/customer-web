@@ -14,7 +14,11 @@ The design of the customer checkout UI is based on collecting and presenting the
 A customer may be in different stages during the checkout process when one or more pieces of data are not available.
 
 ### 2.1. Login Stage
-A customer must login to checkout. If not, show the login/signup view before the customer can see the checkout view. The cart items added as an anonymous user will be kept as the current user's cart times.
+A customer must login to checkout. 
+
+* If not, show the login/signup view before the customer can see the checkout view. 
+* If a customer still not logged after showing login/signup view, go to /cart. 
+* If a customer is logged in, the cart items added as an anonymous user will be merged into the logged customer's cart.
 
 ### 2.2. Shipping Info Stage
 * If a customer doesn't have shipping info (no shipping address), he/she must add an address.
@@ -28,6 +32,9 @@ A customer must login to checkout. If not, show the login/signup view before the
 * If a customer is logged in and has a default shipping address and a default payment method, an order review page with all information is presented for the customer to place the order.
 * The customer is allowed to perform all actions before placing the order: logout, change cart details, continue shopping, change/add address, change/add payment method.
 
+### 2.5. The order of Stage
+The order of info checking is: 1) login statue. 2) shipping info. 3) payment info. A customer only see a stage if the corresponding info is missing. If all info are there, the final review page is shown to allow a customer to change anything.  
+
 ## 3. Checkout View Layout
 The checkout view has three sections: top-left, top-right and bottom.
 
@@ -35,9 +42,12 @@ The checkout view has three sections: top-left, top-right and bottom.
 * The top-right is the area for order summary.
 * The bottom is the area for cart details.
 
-Before the final review stage, the top-left section shows the required information. For example, if there is not a selected shipping address, an "add new shipping address" form should be in this section. If there is not a selected payment method, an "add new payment method" form is shown in this section.
+The order summary is alway shown but the "Place Order" button is disabled if any requried info is missing. 
 
-When a logged customer has a selected shipping address and a selected payment meethod, a final review page with all information is shown. A customer can change any data before he/she places the order.
+* If the customer has no shipping address, the "add a shipping address" view is shown. When the user add a new address, the address is automatically selected. When the customer has at least one shipping address but no select address, the address list is shown to let the user select a shipping address. The "Next" button is disabled unless there is a selected address. 
+* If the customer has a selected shipping address but not a selected method, the payment info is shown that has the same adding/chaning/selecting logic as the shipping info. 
+* When a logged customer has a selected shipping address and a selected payment meethod, a final review page with all information is shown. A customer can change any info before he/she clicks the "Place Order" button. 
+
 
 
 
