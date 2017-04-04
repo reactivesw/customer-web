@@ -2,8 +2,14 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import { GET_CUSTOMER_ID } from 'src/infrastructure/store/auth_types'
+import { FETCH_PAYMENTS,
+  ADD_CREDIT_CARD,
+  SET_SELECTED,
+  DELETE_CREDIT_CARD }
+  from 'src/infrastructure/store/modules/payment_info/actions'
 
-import { FETCH_PAYMENTS } from 'src/infrastructure/store/modules/payment_info/actions'
+import { CreditCardDraft, DefaultCardRequest, DeleteCardRequest }
+  from 'src/infrastructure/api_client/customer/payment_models'
 
 import { GET_PAYMENTS } from 'src/infrastructure/store/modules/payment_info/getters'
 
@@ -43,7 +49,7 @@ export default class PaymentInfo extends Vue {
     return this.$store.getters[GET_CUSTOMER_ID]
   }
 
-  get payments() { 
+  get payments() {
     return this.$store.getters[GET_PAYMENTS]
   }
 
@@ -53,11 +59,11 @@ export default class PaymentInfo extends Vue {
   }
 
   addCreditCardHanlder(data) {
-    let request = {
+    let request: CreditCardDraft = {
       customerId: this.customerId,
       ...data
     }
-    // this.$store.dispatch('add???', request)
+    this.$store.dispatch(ADD_CREDIT_CARD, request)
     this.showPaymentList = true
   }
 
@@ -73,7 +79,11 @@ export default class PaymentInfo extends Vue {
   }
 
   confirmYesChangeDefaultHandler() {
-    // dispatch change action
+    const request: DefaultCardRequest = {
+      customerId: this.customerId,
+      creditCardId: this.confirmChangeDefaultId
+    }
+    this.$store.dispatch(SET_SELECTED, request)
 
     // then clean up
     this.confirmNoChangeDefaultHandler()
@@ -92,8 +102,11 @@ export default class PaymentInfo extends Vue {
   }
 
   confirmYesDeletePaymentHandler() {
-    // dispatch delete
-
+    const request: DeleteCardRequest = {
+      creditCardId: this.confirmDeletePaymentId,
+      version: 'version???'
+    }
+    this.$store.dispatch(DELETE_CREDIT_CARD, request)
     this.confirmNoDeletePaymentHandler()
   }
 

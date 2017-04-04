@@ -1,20 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <template v-if="!hasDefaultAddress">
+      <div v-show="showShipping">
         <ShippingInfo></ShippingInfo>
-      </template>
-      <template v-else-if="!hasDefaultPayment">
-        <h3>Payment Info</h3>
-      </template>
-      <template v-else>
+        <button class="btn btn-block btn-success" :disabled="!hasDefaultAddress">
+          Shipping Continue Checkout
+        </button>
+      </div>
+      <div v-show="showPayment">
+        <PaymentInfo></PaymentInfo>
+        <button class="btn btn-block btn-success" :disabled="!hasSelectedPayment">
+          Payment Continue Checkout
+        </button>
+      </div>
+      <div v-show=showReview>
         <h3>Selected address</h3>
+        <div class="btn btn-block btn-success">Change/Add Address</div>
         <h3>Selected payment</h3>
-      </template>
+        <div class="btn btn-block btn-success">Change/Add Payment</div>
+      </div>
     </div>
     <div class="col-md-3">
       <OrderSummary></OrderSummary>
-      <div class="btn btn-block btn-success">Place Order</div>
+      <div class="btn btn-block btn-success" :disabled="!enablePlaceOrder">Place Order</div>
     </div>
   </div>
   <div class="row">

@@ -7,6 +7,9 @@ import { GET_PAYMENTS } from './getters'
 import { SET_PAYMENTS } from './mutations'
 
 export const FETCH_PAYMENTS = 'customer_info/FETCH_PAYMENTS'
+export const ADD_CREDIT_CARD = 'customer_info/ADD_CREDIT_CARD'
+export const SET_SELECTED = 'customer_info/SET_SELECTED'
+export const DELETE_CREDIT_CARD = 'customer_info/DELETE_CREDIT_CARD'
 
 const actions = {
   async[FETCH_PAYMENTS]({ commit, getters }, forceFetch = false) {
@@ -18,6 +21,22 @@ const actions = {
         commit(SET_PAYMENTS, payments)
       }
     }
+  },
+
+  async[ADD_CREDIT_CARD]({ commit }, request) {
+    const payment = await apiClient.addCreditCard(request)
+    // only return the newly created payment
+    commit(SET_PAYMENTS, [payment])
+  },
+
+  async[SET_SELECTED]({ commit }, request) {
+    const payments = await apiClient.setSelected(request)
+    commit(SET_PAYMENTS, payments)
+  },
+
+  async[DELETE_CREDIT_CARD]({ commit }, request) {
+    const payments = await apiClient.deleteCreditCard(request)
+    commit(SET_PAYMENTS, payments)
   }
 }
 

@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 
 import { GET_CART, GET_IS_EMPTY}
   from 'src/infrastructure/store/modules/carts/getters'
-import { REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY }
+import { FETCH_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY }
   from 'src/infrastructure/store/modules/carts/actions'
 
 import LineItem from '../LineItem'
@@ -14,6 +14,8 @@ import LineItem from '../LineItem'
   }
 })
 export default class CardDetails extends Vue {
+
+
   // sotre operations
   get isEmpty() {
    return this.$store.getters[GET_IS_EMPTY]
@@ -29,6 +31,14 @@ export default class CardDetails extends Vue {
 
   removeLineItem(lineItem) {
     this.$store.dispatch(REMOVE_LINE_ITEM, lineItem)
+  }
+
+  created() {
+    this.fetchCart()
+  }
+
+  fetchCart() {
+    return this.$store.dispatch(FETCH_CART)
   }
 }
 
