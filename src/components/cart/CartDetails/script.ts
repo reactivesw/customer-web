@@ -27,8 +27,8 @@ export default class CardDetails extends Vue {
     this.$store.dispatch(SET_LINE_ITEM_QUANTITY, data)
   }
 
-  removeLineItem(data) {
-    this.$store.dispatch(REMOVE_LINE_ITEM, data)
+  removeLineItem(lineItem) {
+    this.$store.dispatch(REMOVE_LINE_ITEM, lineItem)
   }
 }
 

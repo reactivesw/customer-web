@@ -11,6 +11,8 @@ import { RESET_CUSTOMER_INFO }
   from 'src/infrastructure/store/modules/customer_info/mutations'
 import { RESET_CART }
   from 'src/infrastructure/store/modules/carts/mutations'
+import { RESET_CUSTOMER }
+  from 'src/infrastructure/store/modules/auth/mutations'
 
 import router from 'src/infrastructure/router'
 import Vue from 'vue'
@@ -53,15 +55,16 @@ const actions = {
       commit(SET_CUSTOMER, customer)
 
       // get customer-related info and cart data
-      dispatch(FETCH_CUSTOMER_INFO)
-      dispatch(FETCH_CART)
+      // true means force fetch
+      dispatch(FETCH_CUSTOMER_INFO, true)
+      dispatch(FETCH_CART, true)
     }
   },
 
   [SIGN_OUT]({ commit }) {
     localStorage.removeItem('customer')
     authApi.signOut()
-    commit(SET_CUSTOMER, undefined)
+    commit(RESET_CUSTOMER)
 
     // clear customer-realted data
     commit(RESET_CUSTOMER_INFO)

@@ -6,6 +6,8 @@ import RemoveLineItem = Carts.ActionPayloads.RemoveLineItem
 import SetLineItemQuantity = Carts.ActionPayloads.SetLineItemQuantity
 import AddLineItem = Carts.ActionPayloads.AddLineItem
 
+import { GET_CART } from './getters'
+
 export const FETCH_CART = 'carts/FETCH_CART'
 export const ADD_TO_CART = 'carts/ADD_TO_CART'
 export const REMOVE_LINE_ITEM = 'carts/REMOVE_LINE_ITEM'
@@ -14,13 +16,13 @@ export const SET_LINE_ITEM_QUANTITY = 'carts/SET_LINE_ITEM_QUANTITY'
 const actions = {
   /**
    * fetch current cart from server
-   * @returns {Promise<void>}
    */
-  async [FETCH_CART] ( { commit } ) {
-    // we only want our cart, api client will handle it for us
-    // const anonymousId = 'anonymousId2'
-    const cart = await cartsApi.getCart()
-    commit( SET_CART, cart )
+  async[FETCH_CART]({ commit, getters }, forceFetch = false) {
+    let cart = getters[GET_CART]
+    if (forceFetch || !cart) {
+      cart = await cartsApi.getCart()
+      commit(SET_CART, cart)
+    }
   },
 
   /**
@@ -28,9 +30,10 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async [ADD_TO_CART] ( { state, commit }, lineItem: AddLineItem ) {
-    const cart = await cartsApi.addToCart( state.cart.id, state.cart.version, lineItem )
-    commit( SET_CART, cart )
+  async[ADD_TO_CART]({ commit, getters }, lineItem: AddLineItem) {
+    let cart = getters[GET_CART]
+    cart = await cartsApi.addToCart(cart.id, cart.version, lineItem)
+    commit(SET_CART, cart)
   },
 
   /**
@@ -38,9 +41,9 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async [REMOVE_LINE_ITEM] ( { state, commit }, lineItem: RemoveLineItem ) {
-    const cart = await cartsApi.removeLineItem( state.cart.id, state.cart.version, lineItem )
-    commit( SET_CART, cart )
+  async[REMOVE_LINE_ITEM]({ state, commit }, lineItem: RemoveLineItem) {
+    const cart = await cartsApi.removeLineItem(state.cart.id, state.cart.version, lineItem)
+    commit(SET_CART, cart)
   },
 
   /**
@@ -48,9 +51,9 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async [SET_LINE_ITEM_QUANTITY] ( { state, commit }, lineItem: SetLineItemQuantity ) {
-    const cart = await cartsApi.changeLineItemQuantity( state.cart.id, state.cart.version, lineItem )
-    commit( SET_CART, cart )
+  async[SET_LINE_ITEM_QUANTITY]({ state, commit }, lineItem: SetLineItemQuantity) {
+    const cart = await cartsApi.changeLineItemQuantity(state.cart.id, state.cart.version, lineItem)
+    commit(SET_CART, cart)
   }
 }
 

@@ -8,7 +8,7 @@ const getters = {
   },
 
   [GET_IS_LOGGED_IN](state, getters) {
-    const customer = getters[GET_CUSTOMER]
+    const customer = state.customer
     return customer && customer.id
   },
 
@@ -17,7 +17,7 @@ const getters = {
   },
 
   [GET_CUSTOMER_ID](state, getters ) {
-    const customer = getters[GET_CUSTOMER]
+    const customer = state.customer
     return customer && customer.id
   }
 }

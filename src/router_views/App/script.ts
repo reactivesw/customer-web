@@ -1,39 +1,44 @@
-import { Component } from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
 import TheHeader from 'src/components/TheHeader'
 import TheFooter from 'src/components/TheFooter'
 import SignIn from 'src/components/TheHeader/SignIn'
 import SignUp from 'src/components/TheHeader/SignUp'
-import * as categoriesType from 'src/infrastructure/store/categories_types'
+
+import { FETCH_CATEGORIES }
+  from 'src/infrastructure/store/categories_types'
+
 import { FETCH_CART }
   from 'src/infrastructure/store/modules/carts/actions'
-import * as authType from 'src/infrastructure/store/auth_types'
 
-export default {
-  name: 'app',
+import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
 
-  computed: {
-    ...mapGetters({
-      customer: authType.GET_CUSTOMER
-    })
-  },
-
-  methods: {
-    ...mapActions({
-      fetchCategories: categoriesType.FETCH_CATEGORIES,
-      fetchCart: FETCH_CART
-    })
-  },
-
-  created(this: Component) {
-    this['fetchCategories']()
-    this['fetchCart']()
-  },
-
+@Component({
   components: {
     TheHeader,
     TheFooter,
     SignIn,
     SignUp
+  }
+})
+export default class App extends Vue  {
+
+  created() {
+    this.fetchCategories()
+    this.fetchCart()
+  }
+
+  // store operations
+  get customer() {
+    return this.$store.getters[GET_CUSTOMER]
+  }
+
+  fetchCategories() {
+    this.$store.dispatch(FETCH_CATEGORIES)
+  }
+
+  fetchCart() {
+    this.$store.dispatch(FETCH_CART)
   }
 }

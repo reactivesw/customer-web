@@ -1,9 +1,12 @@
 import { customerInfo as apiClient } from 'src/infrastructure/api_client'
 
+import { GET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/getters'
 import { SET_CUSTOMER_INFO }
   from 'src/infrastructure/store/modules/customer_info/mutations'
 
-import { GET_CUSTOMER_ID } from 'src/infrastructure/store/auth_types'
+import { GET_CUSTOMER_ID, GET_IS_LOGGED_IN }
+  from 'src/infrastructure/store/auth_types'
 
 export const FETCH_CUSTOMER_INFO = 'customer_info/FETCH_CUSTOMER_INFO'
 export const CHANGE_DEFAULT_ADDRESS = 'customer_info/CHANGE_DEFAULT_ADDRESS'
@@ -14,10 +17,15 @@ export const UPDATE_CUSTOMER_INFO = 'customer_info/UPDATE_CUSTOMER_INFO'
 
 
 const actions = {
-  async[FETCH_CUSTOMER_INFO]({ rootState, commit, getters }) {
-    const id = getters[GET_CUSTOMER_ID]
-    const info = await apiClient.getCustomerInfo(id)
-    commit(SET_CUSTOMER_INFO, info)
+  async[FETCH_CUSTOMER_INFO]({ commit, getters }, forceFetch = false) {
+    const isLoggedIn = getters[GET_IS_LOGGED_IN]
+    if (isLoggedIn) {
+      if (forceFetch || !getters[GET_CUSTOMER_INFO]) {
+        const id = getters[GET_CUSTOMER_ID]
+        const info = await apiClient.getCustomerInfo(id)
+        commit(SET_CUSTOMER_INFO, info)
+      }
+    }
   },
 
   async[CHANGE_DEFAULT_ADDRESS]({ commit }, request) {
