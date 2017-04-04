@@ -6,7 +6,8 @@ import OrderSummary from 'src/components/cart/OrderSummary'
 import { GET_IS_EMPTY }
   from 'src/infrastructure/store/modules/carts/getters'
 
-import { FETCH_CART } from 'src/infrastructure/store/carts_types'
+import { FETCH_CART }
+  from 'src/infrastructure/store/modules/carts/actions'
 
 @Component({
   components: {

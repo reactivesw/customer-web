@@ -5,13 +5,15 @@ import AddressList from 'src/components/customer/AddressList'
 import AddressDialog from 'src/components/customer/AddressDialog'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 
+import { GET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/getters'
+
 import {
-  GET_CUSTOMER_INFO,
   CHANGE_DEFAULT_ADDRESS,
   ADD_ADDRESS,
   UPDATE_ADDRESS,
-  DELETE_ADDRESS
-} from 'src/infrastructure/store/customer_info_types'
+  DELETE_ADDRESS }
+  from 'src/infrastructure/store/modules/customer_info/actions'
 
 import AddressDetails from 'src/models/customer/AddressDetails'
 import ApiRequestBase from 'src/models/customer/ApiRequestBase'

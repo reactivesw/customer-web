@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { GET_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO }
-  from 'src/infrastructure/store/customer_info_types'
+import { GET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/getters'
+import { UPDATE_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/actions'
 
 import CustomerInfo from 'src/models/customer/CustomerInfo'
 import CustomerInfoData from 'src/models/customer/CustomerInfoData'

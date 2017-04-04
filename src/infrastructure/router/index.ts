@@ -13,6 +13,11 @@ Vue.use(VueRouter)
 const routes = [
   // map '/categories' to Category to dismiss vue-router warning
   {
+    name: 'home',
+    path: '/',
+    redirect: '/categories'
+  },
+  {
     name: 'featureCategory',
     path: '/categories',
     component: Category

@@ -5,7 +5,8 @@ import TheFooter from 'src/components/TheFooter'
 import SignIn from 'src/components/TheHeader/SignIn'
 import SignUp from 'src/components/TheHeader/SignUp'
 import * as categoriesType from 'src/infrastructure/store/categories_types'
-import * as cartType from 'src/infrastructure/store/carts_types'
+import { FETCH_CART }
+  from 'src/infrastructure/store/modules/carts/actions'
 import * as authType from 'src/infrastructure/store/auth_types'
 
 export default {
@@ -20,7 +21,7 @@ export default {
   methods: {
     ...mapActions({
       fetchCategories: categoriesType.FETCH_CATEGORIES,
-      fetchCart: cartType.FETCH_CART
+      fetchCart: FETCH_CART
     })
   },
 

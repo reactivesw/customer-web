@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { GET_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY }
-  from 'src/infrastructure/store/carts_types'
+import { GET_CART, GET_IS_EMPTY}
+  from 'src/infrastructure/store/modules/carts/getters'
+import { REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY }
+  from 'src/infrastructure/store/modules/carts/actions'
 
 import LineItem from '../LineItem'
 
@@ -12,12 +14,11 @@ import LineItem from '../LineItem'
   }
 })
 export default class CardDetails extends Vue {
+  // sotre operations
   get isEmpty() {
-    const lineItems = this.cart.lineItems
-    return (!lineItems) || (lineItems.length === 0)
+   return this.$store.getters[GET_IS_EMPTY]
   }
 
-  // sotre operations
   get cart() {
     return this.$store.getters[GET_CART]
   }

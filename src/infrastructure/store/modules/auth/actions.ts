@@ -1,7 +1,17 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from 'src/infrastructure/store/auth_types'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
-import { FETCH_CART } from 'src/infrastructure/store/carts_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT }
+  from 'src/infrastructure/store/auth_types'
+import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP }
+  from 'src/infrastructure/store/modal_dialogs_types'
+import { FETCH_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/actions'
+import { FETCH_CART }
+  from 'src/infrastructure/store/modules/carts/actions'
+import { RESET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/mutations'
+import { RESET_CART }
+  from 'src/infrastructure/store/modules/carts/mutations'
+
 import router from 'src/infrastructure/router'
 import Vue from 'vue'
 
@@ -41,14 +51,24 @@ const actions = {
 
       localStorage.setItem('customer', JSON.stringify(customer))
       commit(SET_CUSTOMER, customer)
+
+      // get customer-related info and cart data
+      dispatch(FETCH_CUSTOMER_INFO)
+      dispatch(FETCH_CART)
     }
   },
 
-  [SIGN_OUT]({ commit, dispatch }) {
+  [SIGN_OUT]({ commit }) {
     localStorage.removeItem('customer')
     authApi.signOut()
     commit(SET_CUSTOMER, undefined)
-    router.push({ name: 'featureCategory' })
+
+    // clear customer-realted data
+    commit(RESET_CUSTOMER_INFO)
+    commit(RESET_CART)
+
+    // go home
+    router.push({ name: 'home' })
   }
 }
 

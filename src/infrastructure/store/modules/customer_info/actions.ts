@@ -1,16 +1,17 @@
 import { customerInfo as apiClient } from 'src/infrastructure/api_client'
 
-import {
-  FETCH_CUSTOMER_INFO,
-  SET_CUSTOMER_INFO,
-  CHANGE_DEFAULT_ADDRESS,
-  ADD_ADDRESS,
-  UPDATE_ADDRESS,
-  DELETE_ADDRESS,
-  UPDATE_CUSTOMER_INFO
-} from 'src/infrastructure/store/customer_info_types'
+import { SET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/mutations'
 
 import { GET_CUSTOMER_ID } from 'src/infrastructure/store/auth_types'
+
+export const FETCH_CUSTOMER_INFO = 'customer_info/FETCH_CUSTOMER_INFO'
+export const CHANGE_DEFAULT_ADDRESS = 'customer_info/CHANGE_DEFAULT_ADDRESS'
+export const ADD_ADDRESS = 'customer_info/ADD_ADDRESS'
+export const UPDATE_ADDRESS = 'customer_info/UPDATE_ADDRESS'
+export const DELETE_ADDRESS = 'customer_info/DELETE_ADDRESS'
+export const UPDATE_CUSTOMER_INFO = 'customer_info/UPDATE_CUSTOMER_INFO'
+
 
 const actions = {
   async[FETCH_CUSTOMER_INFO]({ rootState, commit, getters }) {
