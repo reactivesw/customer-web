@@ -2,7 +2,7 @@ import { orders as ordersApi } from 'src/infrastructure/api_client'
 import { PLACE_ORDER, SET_CURRENT_ORDER } from 'src/infrastructure/store/orders_types'
 import { FETCH_CART }
   from 'src/infrastructure/store/modules/carts/actions'
-import { PlaceOrderRequest } from 'src/infrastructure/api_client/orders'
+import { PlaceOrderRequest } from 'src/infrastructure/api_client/customer/orders'
 
 export interface PlaceOrder {
   addressId: string,

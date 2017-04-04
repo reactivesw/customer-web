@@ -1,4 +1,4 @@
-import http from './http'
+import http from '../http'
 
 import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 import SetDefaultRequest from 'src/models/customer/SetDefaultRequest'

@@ -7,7 +7,7 @@ import Component from 'vue-class-component'
   }
 })
 export default class AddressDetails extends Vue {
-  addressProp: object
+  addressProp: object // for the above props field
 
   // use this as a flag to force re-compute and discard input values
   // when a user clicks cancel
