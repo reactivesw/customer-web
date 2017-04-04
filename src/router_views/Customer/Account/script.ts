@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 
 import { GET_CUSTOMER_INFO }
   from 'src/infrastructure/store/modules/customer_info/getters'
-import { UPDATE_CUSTOMER_INFO }
+import { FETCH_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO }
   from 'src/infrastructure/store/modules/customer_info/actions'
 
 import CustomerInfo from 'src/models/customer/CustomerInfo'
@@ -13,6 +13,10 @@ import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoReq
 @Component({
 })
 export default class Account extends Vue {
+
+  created() {
+    this.fetchCustomerInfo()
+  }
 
   get customerInfo() {
     let customerInfo: any = null
@@ -52,6 +56,10 @@ export default class Account extends Vue {
 
 
   // following are store operatoins
+  fetchCustomerInfo() {
+    this.$store.dispatch(FETCH_CUSTOMER_INFO)
+  }
+
   getCustomerInfo() {
     return this.$store.getters[GET_CUSTOMER_INFO]
   }

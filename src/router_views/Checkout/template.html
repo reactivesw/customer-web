@@ -1,8 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <h3>Shipping Info</h3>
-      <h3>Payment Info</h3>
+      <template v-if="!hasDefaultAddress">
+        <ShippingInfo></ShippingInfo>
+      </template>
+      <template v-else-if="!hasDefaultPayment">
+        <h3>Payment Info</h3>
+      </template>
+      <template v-else>
+        <h3>Selected address</h3>
+        <h3>Selected payment</h3>
+      </template>
     </div>
     <div class="col-md-3">
       <OrderSummary></OrderSummary>

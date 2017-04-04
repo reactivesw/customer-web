@@ -9,10 +9,12 @@ import { GET_CUSTOMER_INFO }
   from 'src/infrastructure/store/modules/customer_info/getters'
 
 import {
+  FETCH_CUSTOMER_INFO,
   CHANGE_DEFAULT_ADDRESS,
   ADD_ADDRESS,
   UPDATE_ADDRESS,
-  DELETE_ADDRESS }
+  DELETE_ADDRESS
+}
   from 'src/infrastructure/store/modules/customer_info/actions'
 
 import AddressDetails from 'src/models/customer/AddressDetails'
@@ -24,10 +26,6 @@ import UpdateAddressRequest from 'src/models/customer/UpdateAddressRequest'
 import DeleteAddressRequest from 'src/models/customer/DeleteAddressRequest'
 
 @Component({
-  props: {
-    addressProp: Object
-  },
-
   components: {
     AddressDialog,
     AddressList,
@@ -48,6 +46,10 @@ export default class ShippingInfo extends Vue {
   // for delete address confirmation dialog
   confirmDeleteAddress = false
   confirmDeleteAddressId = ''
+
+  created() {
+    this.fetchCustomerInfo()
+  }
 
   defaultChangedEventHandler(addrId) {
     this.confirmChangeDefault = true
@@ -94,6 +96,10 @@ export default class ShippingInfo extends Vue {
   }
 
   // following are store operations
+  fetchCustomerInfo() {
+    this.$store.dispatch(FETCH_CUSTOMER_INFO)
+  }
+
   get customerInfo(): CustomerInfo {
     return this.$store.getters[GET_CUSTOMER_INFO]
   }
