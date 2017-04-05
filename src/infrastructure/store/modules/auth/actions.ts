@@ -1,9 +1,21 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT } from 'src/infrastructure/store/auth_types'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
-import { FETCH_CART } from 'src/infrastructure/store/carts_types'
+import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT }
+  from 'src/infrastructure/store/auth_types'
+import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP }
+  from 'src/infrastructure/store/modal_dialogs_types'
+import { FETCH_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/actions'
+import { FETCH_CART }
+  from 'src/infrastructure/store/modules/carts/actions'
+import { RESET_CUSTOMER_INFO }
+  from 'src/infrastructure/store/modules/customer_info/mutations'
+import { RESET_CART }
+  from 'src/infrastructure/store/modules/carts/mutations'
+import { RESET_CUSTOMER }
+  from 'src/infrastructure/store/modules/auth/mutations'
+
 import router from 'src/infrastructure/router'
-import * as Vue from 'vue'
+import Vue from 'vue'
 
 const actions = {
 
@@ -42,20 +54,24 @@ const actions = {
       localStorage.setItem('customer', JSON.stringify(customer))
       commit(SET_CUSTOMER, customer)
 
-      // after signin or signout, customerId has changed, so that we need to fetch new cart for them.
-      dispatch( FETCH_CART )
+      // get customer-related info and cart data
+      // true means force fetch
+      dispatch(FETCH_CUSTOMER_INFO, true)
+      dispatch(FETCH_CART, true)
     }
   },
 
-  async [SIGN_OUT]({ commit, dispatch }) {
+  [SIGN_OUT]({ commit }) {
     localStorage.removeItem('customer')
     authApi.signOut()
-    commit(SET_CUSTOMER, {})
+    commit(RESET_CUSTOMER)
 
-    // after signin or signout, customerId has changed, so that we need to fetch new cart for them.
-    dispatch( FETCH_CART )
+    // clear customer-realted data
+    commit(RESET_CUSTOMER_INFO)
+    commit(RESET_CART)
 
-    router.push({ name: 'featureCategory' })
+    // go home
+    router.push({ name: 'home' })
   }
 }
 

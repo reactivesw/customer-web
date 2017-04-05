@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" v-if="!isEmpty">
   <thead>
     <tr>
       <th colspan="2">{{ $t('cart.order_summary') }}</th>
@@ -7,7 +7,7 @@
   <tbody>
     <tr>
       <th scope="row">{{ $t('cart.subtotal') }}</th>
-      <td>{{ MoneyToString(subTotal) }}</td>
+      <td>{{ subTotal }}</td>
     </tr>
   </tbody>
 </table>

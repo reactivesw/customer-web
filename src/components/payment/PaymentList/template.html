@@ -1,0 +1,31 @@
+<div>
+  <template v-if="payments && payments.length">
+    <div class="row">
+      <div class="col-4" v-for="payment in payments">
+        <div class="card my-2">
+          <div class="card-block">
+            <template v-if="payment.selected">
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            </template>
+            <template v-else>
+              <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefaultHandler(payment.id)"></i>
+            </template>
+            <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteHandler(payment.id)"></i>
+            <hr /> 
+            {{ payment.cardholderName }} <br> 
+            {{ payment.cardType }} {{ payment.bin }}******{{ payment.last4 }}
+          </div>
+          <!-- div card-block -->
+
+        </div>
+        <!-- div card -->
+
+      </div>
+      <!-- div v-for -->
+    </div>
+    <!-- div row -->
+  </template>
+  <template v-else>
+    You don't have any payment data. Please add one.
+  </template>
+</div>

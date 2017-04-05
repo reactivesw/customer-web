@@ -1,4 +1,4 @@
-import http from './http'
+import http from '../http'
 
 const ORDER_API_URL = '/orders'
 

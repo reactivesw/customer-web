@@ -12,7 +12,9 @@
           <a class="nav-link" href="#">{{ $t('customer.orders') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ $t('customer.payment_info') }}</a>
+          <router-link class="nav-link" active-class="active" :to="{ name: 'customer-payment-info' }">
+            {{ $t('customer.payment_info') }}
+          </router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" :to="{ name: 'customer-shipping-info' }">

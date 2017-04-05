@@ -2,14 +2,15 @@ import { Component } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from './LanguageSelector'
 import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
-import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
+import { GET_CUSTOMER, GET_IS_LOGGED_IN } from 'src/infrastructure/store/auth_types'
 
 export default {
   name: 'TheHeader',
 
   computed: {
     ...mapGetters({
-      customer: GET_CUSTOMER
+      customer: GET_CUSTOMER,
+      isLoggedIn: GET_IS_LOGGED_IN
     }),
 
     username(this: Component) {

@@ -1,4 +1,4 @@
-import * as Vue from 'vue'
+import Vue from 'vue'
 import { changeLang } from 'src/infrastructure/i18n'
 
 export default {

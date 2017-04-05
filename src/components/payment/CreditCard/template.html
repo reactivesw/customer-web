@@ -1,0 +1,60 @@
+<form id="paymentDetailForm" @submit.prevent="saveFormHandler">
+  <div v-if="creditCard">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cardholder-name"> Cardholder Name* </label>
+          <input class="form-control" type="text" placeholder="Will Smith" id="cardholder-name" v-model="creditCard.cardholderName"
+            required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="number"> Credit Card Number* </label>
+          <input class="form-control" type="number" id="number" v-model="creditCard.number" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cvv"> Security Code </label>
+          <input class="form-control" type="number" id="cvv" v-model="creditCard.cvv" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="month"> Expiration Month* </label>
+          <input class="form-control" type="number" placeholder="MM" id="month" v-model="creditCard.expirationMonth" required>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="year"> Expiration Year* </label>
+          <input class="form-control" type="number" placeholder="YYYY" id="year" v-model="creditCard.expirationYear"
+            required>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <!-- use col-md-12 to left-align buttons -->
+    <div class="col-md-12">
+      <button type="button" class="btn btn-info" @click="cancelFormHandler">
+        {{ $t('common.cancel') }}
+    </button>
+      <button type="submit" class="btn btn-primary">
+        {{ $t('common.save') }}
+    </button>
+    </div>
+  </div>
+</form>

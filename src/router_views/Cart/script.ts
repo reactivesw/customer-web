@@ -1,33 +1,35 @@
-import * as Vue from 'vue'
-import { mapActions, mapGetters } from 'vuex'
-import { GET_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY } from 'src/infrastructure/store/carts_types'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-import LineItem from 'src/components/cart/LineItem'
+import CartDetails from 'src/components/cart/CartDetails'
 import OrderSummary from 'src/components/cart/OrderSummary'
+import {GET_IS_EMPTY }
+  from 'src/infrastructure/store/modules/carts/getters'
 
-export default {
-  name: 'cart',
+import { FETCH_CART }
+  from 'src/infrastructure/store/modules/carts/actions'
 
-  computed: {
-    ...mapGetters( {
-      cart: GET_CART
-    } ),
-
-    isEmpty ( this: Vue.Component ) {
-      const lineItems = this['cart'].lineItems
-      return ( !lineItems ) || ( lineItems.length === 0 )
-    }
-  },
-
-  methods: {
-    ...mapActions ( {
-      changeQuantity: SET_LINE_ITEM_QUANTITY,
-      removeLineItem: REMOVE_LINE_ITEM
-    } )
-  },
-
+@Component({
   components: {
-    LineItem,
+    CartDetails,
     OrderSummary
   }
-} as Vue.ComponentOptions<Vue>
+})
+export default class Cart extends Vue {
+  created() {
+    this.fetchCart()
+  }
+
+  checkoutClickEventHandler() {
+    this.$router.push({ path: 'checkout' })
+  }
+
+  // store operations
+  get isEmptyCart() {
+    return this.$store.getters[GET_IS_EMPTY]
+  }
+
+  fetchCart() {
+    return this.$store.dispatch(FETCH_CART)
+  }
+}

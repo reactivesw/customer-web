@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div v-show="showShipping">
+        <ShippingInfo></ShippingInfo>
+        <button class="btn btn-block btn-success" 
+          :disabled="!hasDefaultAddress"
+          @click="shippingContinueHandler">
+          Continue Checkout
+        </button>
+      </div>
+      <div v-show="showPayment">
+        <PaymentInfo></PaymentInfo>
+        <button class="btn btn-block btn-success" 
+          :disabled="!hasSelectedPayment"
+          @click="paymentContinueHandler">
+          Continue Checkout
+        </button>
+      </div>
+      <div v-show=showReview>
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Shipping Address</h5>
+            <hr>
+            <AddressCard :addr="defaultAddress"></AddressCard>
+            <button class="btn btn-success btn-sm"
+              @click="editShippingHandler">
+              Change/Add Address
+            </button>
+          </div>
+          <div class="col-md-6">
+            <h5>Payment Card</h5>
+            <hr>
+            <!--TODO: remove v-if because it shouldn't happen' -->
+            <template v-if="selectedPayment">
+            {{ selectedPayment.cardholderName }} <br> 
+            {{ selectedPayment.cardType }} {{ selectedPayment.bin }}******{{ selectedPayment.last4 }}
+            </template>
+            <template v-else>
+              <h1>Happy debugging</h1>
+            </template>
+            <button class="btn btn-success btn-sm"
+              @click="editPaymentHandler">
+              Change/Add Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <OrderSummary></OrderSummary>
+      <button class="btn btn-block btn-success" 
+        :disabled="!isPlaceOrderEnabled"
+        @click="placeOrderHandler">
+        Place Order
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <hr>
+      <CartDetails></CartDetails>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div>
+  {{ addr.fullName + " " + addr.phone}} <br /> 
+  {{ addr.firstLine }} <br /> 
+  <template v-if="addr.secondLine">
+  {{ addr.secondLine }}  <br /> 
+  </template>
+  {{ addr.city + (addr.state ? ("," + addr.state) : "")}} <br /> 
+  {{ addr.country + " " + (addr.zipcode ? addr.zipcode : "") }} <br />    
+</div>

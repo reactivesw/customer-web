@@ -1,0 +1,30 @@
+<div>
+  <button class="btn btn-primary" @click="clickAddCreditCardHanlder">
+    <b>+</b> Add a Credit Card
+  </button>
+
+  <template v-if="showPaymentList">
+    <PaymentList :payments="payments" 
+      @defaultChanged="defaultChangedHandler" 
+      @deletePayment="deletePaymentHandler">
+    </PaymentList>
+  </template>
+
+  <template v-else>
+    <CreditCard @addCreditCard="addCreditCardHanlder" 
+      @cancelAddCreditCard="cancelAddCreditCardHandler">
+    </CreditCard>
+  </template>
+
+  <ConfirmDialog :show="showConfirmChangeDefault" 
+    message="Are you sure you want to select this payment?" 
+    @confirmYes="confirmYesChangeDefaultHandler"
+    @confirmNo="confirmNoChangeDefaultHandler">
+  </ConfirmDialog>
+
+  <ConfirmDialog :show="showConfirmDeletePayment" 
+    message="Are you sure you want to delete this payment?" 
+    @confirmYes="confirmYesDeletePaymentHandler"
+    @confirmNo="confirmNoDeletePaymentHandler">
+  </ConfirmDialog>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+  <template v-if="isEmpty">
+    <h5>{{ $t('cart.empty') }}</h5>
+  </template>
+  <template v-else>
+    <LineItem v-for="lineItem of cart.lineItems" 
+      :lineItem="lineItem" 
+      :key=lineItem.id 
+      @changeQuantity="changeQuantity"
+      @removeLineItem="removeLineItem">
+    </LineItem>
+  </template>
+</div>

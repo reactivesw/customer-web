@@ -8,7 +8,7 @@ import ProductInfo from 'src/components/product/ProductInfo'
 import VariantSelector from 'src/components/product/VariantSelector'
 // store method names
 import * as productsTypes from 'src/infrastructure/store/products_types'
-import * as cartsTypes from 'src/infrastructure/store/carts_types'
+import { ADD_TO_CART } from 'src/infrastructure/store/modules/carts/actions'
 // help funciton
 import computeVariantsAttributes from './variantsAttributes'
 const noImagePlaceHolder = require( 'src/assets/images/no_image_placeholder.png' )
@@ -108,7 +108,7 @@ export default {
   methods: {
     ...mapActions( {
       fetchProduct: productsTypes.FETCH_CURRENT_PRODUCT,
-      addToCart: cartsTypes.ADD_TO_CART
+      addToCart: ADD_TO_CART
     } ),
 
     handleAddToCart ( this: Component ) {

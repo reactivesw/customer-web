@@ -1,13 +1,18 @@
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import { MoneyToString } from 'src/infrastructure/utils'
+import { GET_TOTAL_PRICE, GET_IS_EMPTY }
+  from 'src/infrastructure/store/modules/carts/getters'
 
-export default {
-  name: 'OrderSummary',
+@Component({
+})
+export default class OrderSummary extends Vue  {
+  get subTotal() {
+    const totalPrice = this.$store.getters[GET_TOTAL_PRICE]
+    return MoneyToString(totalPrice)
+  }
 
-  props: {
-    subTotal: Object
-  },
-
-  methods: {
-    MoneyToString
+  get isEmpty() {
+    return this.$store.getters[GET_IS_EMPTY]
   }
 }
