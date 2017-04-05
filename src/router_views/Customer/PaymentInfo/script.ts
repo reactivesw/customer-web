@@ -29,10 +29,10 @@ export default class PaymentInfo extends Vue {
   showPaymentList = true
 
   showConfirmChangeDefault = false
-  confirmChangeDefaultId = ''
+  confirmChangeDefaultPayment: any = undefined
 
   showConfirmDeletePayment = false
-  confirmDeletePaymentId = ''
+  confirmDeletePayment: any = undefined
 
   // fetch payments when created
   created() {
@@ -73,15 +73,16 @@ export default class PaymentInfo extends Vue {
   // END: add credit card
 
   // BEGIN: handle change default
-  defaultChangedHandler(paymentId) {
+  defaultChangedHandler(payment) {
     this.showConfirmChangeDefault = true
-    this.confirmChangeDefaultId = paymentId
+    this.confirmChangeDefaultPayment = payment
   }
 
   confirmYesChangeDefaultHandler() {
     const request: DefaultCardRequest = {
       customerId: this.customerId,
-      creditCardId: this.confirmChangeDefaultId
+      creditCardId: this.confirmChangeDefaultPayment.id,
+      version: this.confirmChangeDefaultPayment.version
     }
     this.$store.dispatch(SET_SELECTED, request)
 
@@ -91,20 +92,20 @@ export default class PaymentInfo extends Vue {
 
   confirmNoChangeDefaultHandler() {
     this.showConfirmChangeDefault = false
-    this.confirmChangeDefaultId = ''
+    this.confirmChangeDefaultPayment = undefined
   }
   // END: handle change default
 
   // BEGIN: handle delete event
-  deletePaymentHandler(paymentId) {
+  deletePaymentHandler(payment) {
     this.showConfirmDeletePayment = true
-    this.confirmDeletePaymentId = paymentId
+    this.confirmDeletePayment = payment
   }
 
   confirmYesDeletePaymentHandler() {
     const request: DeleteCardRequest = {
-      creditCardId: this.confirmDeletePaymentId,
-      version: 'version???'
+      creditCardId: this.confirmDeletePayment.id,
+      version: this.confirmDeletePayment.version
     }
     this.$store.dispatch(DELETE_CREDIT_CARD, request)
     this.confirmNoDeletePaymentHandler()
@@ -112,7 +113,7 @@ export default class PaymentInfo extends Vue {
 
   confirmNoDeletePaymentHandler() {
     this.showConfirmDeletePayment = false
-    this.confirmDeletePaymentId = ''
+    this.confirmDeletePayment = undefined
   }
   // END: handle delete event
 }
