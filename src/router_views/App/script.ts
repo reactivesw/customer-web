@@ -6,13 +6,10 @@ import TheFooter from 'src/components/TheFooter'
 import SignIn from 'src/components/TheHeader/SignIn'
 import SignUp from 'src/components/TheHeader/SignUp'
 
-import { FETCH_CATEGORIES }
-  from 'src/infrastructure/store/categories_types'
+import { FETCH_CATEGORIES } from 'src/infrastructure/store/categories_types'
 
-import { FETCH_CART }
-  from 'src/infrastructure/store/modules/carts/actions'
-
-import { GET_CUSTOMER } from 'src/infrastructure/store/auth_types'
+import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
+import { GET_CUSTOMER } from 'src/infrastructure/store/modules/auth/getters'
 
 @Component({
   components: {

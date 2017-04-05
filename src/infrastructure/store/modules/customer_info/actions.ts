@@ -1,12 +1,8 @@
 import { customerInfo as apiClient } from 'src/infrastructure/api_client'
 
-import { GET_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/getters'
-import { SET_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/mutations'
-
-import { GET_CUSTOMER_ID, GET_IS_LOGGED_IN }
-  from 'src/infrastructure/store/auth_types'
+import { GET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/getters'
+import { SET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/mutations'
+import { GET_CUSTOMER_ID, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 
 export const FETCH_CUSTOMER_INFO = 'customer_info/FETCH_CUSTOMER_INFO'
 export const CHANGE_DEFAULT_ADDRESS = 'customer_info/CHANGE_DEFAULT_ADDRESS'

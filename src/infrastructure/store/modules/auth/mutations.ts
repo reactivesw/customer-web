@@ -1,7 +1,9 @@
-import { SET_CUSTOMER, SET_TOKEN } from 'src/infrastructure/store/auth_types'
+export const SET_CUSTOMER = 'auth/SET_CUSTOMER'
+export const SET_TOKEN = 'auth/SET_TOKEN'
+export const RESET_CUSTOMER = 'auth/RESET_CUSTOMER'
 
 export const INITIAL_VALUE = undefined
-export const RESET_CUSTOMER = 'auth/RESET_CUSTOMER'
+
 const mutations = {
   [SET_CUSTOMER](state, customer) {
     state.customer = customer

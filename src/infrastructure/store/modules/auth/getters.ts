@@ -1,6 +1,7 @@
-import { GET_CUSTOMER, GET_TOKEN,
-  GET_IS_LOGGED_IN, GET_CUSTOMER_ID }
-  from 'src/infrastructure/store/auth_types'
+export const GET_CUSTOMER = 'auth/GET_CUSTOMER'
+export const GET_TOKEN = 'auth/GET_TOKEN'
+export const GET_IS_LOGGED_IN = 'auth/GET_IS_LOGGED_IN'
+export const GET_CUSTOMER_ID = 'auth/GET_CUSTOMER_ID'
 
 const getters = {
   [GET_CUSTOMER](state) {
