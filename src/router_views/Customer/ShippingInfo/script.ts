@@ -51,6 +51,7 @@ export default class ShippingInfo extends Vue {
     this.fetchCustomerInfo()
   }
 
+  // BEGIN: change default, confirm the change
   defaultChangedEventHandler(addrId) {
     this.confirmChangeDefault = true
     this.confirmChangeDefaultAddressId = addrId
@@ -63,7 +64,9 @@ export default class ShippingInfo extends Vue {
   confirmNoChangeDefaultEventHandler() {
     this.confirmChangeDefault = false
   }
+  // END: change default
 
+  // BEGIN: delete event, confirm the delete
   deleteAddressEventHandler(addrId) {
     this.confirmDeleteAddress = true
     this.confirmDeleteAddressId = addrId
@@ -76,7 +79,9 @@ export default class ShippingInfo extends Vue {
   confirmNoDeleteAddressEventHandler() {
     this.confirmDeleteAddress = false
   }
+  // END: delete
 
+  // BEGIN: update and add
   updateAddressEventHandler(addr) {
     this.showAddressDetails = true
     this.addressDetails = addr
@@ -94,6 +99,7 @@ export default class ShippingInfo extends Vue {
   saveAddressDetailsEventHandler(addressDetails) {
     saveAddressDetailsHelp(this, addressDetails)
   }
+  // END: update and add
 
   // following are store operations
   fetchCustomerInfo() {

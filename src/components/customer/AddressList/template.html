@@ -15,15 +15,7 @@
             <i class="fa fa-pencil-square-o mx-1" aria-hidden="true" @click.prevent="updateAddress(addr)"></i>
             <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteAddress(addr.id)"></i>
             <br /> 
-
-            {{ addr.fullName + " " + addr.phone}} <br /> 
-            {{ addr.firstLine }} <br /> 
-            <template v-if="addr.secondLine">
-            {{ addr.secondLine }}  <br /> 
-            </template>
-            {{ addr.city + (addr.state ? ("," + addr.state) : "")}} <br /> 
-            {{ addr.country + " " + (addr.zipcode ? addr.zipcode : "") }} <br />
-
+            <AddressCard :addr="addr"></AddressCard>
           </div>
           <!-- div card-block -->
 

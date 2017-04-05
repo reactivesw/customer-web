@@ -4,7 +4,7 @@ import { FETCH_CART }
   from 'src/infrastructure/store/modules/carts/actions'
 import { PlaceOrderRequest } from 'src/infrastructure/api_client/customer/orders'
 
-export interface PlaceOrder {
+export interface PlaceOrderPayload {
   addressId: string,
   creditCartId: string
 }
@@ -14,7 +14,7 @@ const actions = {
   /**
    * checkout current active cart
    */
-  async [PLACE_ORDER] ( { rootState, commit, dispatch }, payload: PlaceOrder ) {
+  async [PLACE_ORDER] ( { rootState, commit, dispatch }, payload: PlaceOrderPayload ) {
     const placeOrderRequest: PlaceOrderRequest = {
       customerId: rootState.auth.customer.id,
       addressId: payload.addressId,

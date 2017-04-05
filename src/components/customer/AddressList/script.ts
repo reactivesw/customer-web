@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import AddressCard from '../AddressCard'
+
 @Component({
   props: {
     addresses: Array,
     defaultAddressId: String
+  },
+
+  components: {
+    AddressCard
   }
 })
 export default class AddressList extends Vue {
