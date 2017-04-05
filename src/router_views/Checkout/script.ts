@@ -42,7 +42,7 @@ export default class Checkout extends Vue {
   }
 
   // used to manage UI state
-  // one-way dependency: showShipping => showPayment ==> showReview
+  // one-way dependency: showShipping => showPayment => showReview
   get showShipping() {
     return this.isEditingShipping || !this.hasDefaultAddress
   }
