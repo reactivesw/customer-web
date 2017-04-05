@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import AddressCard from 'src/components/customer/AddressCard'
+import PaymentCard from 'src/components/payment/PaymentCard'
 import CartDetails from 'src/components/cart/CartDetails'
 import OrderSummary from 'src/components/cart/OrderSummary'
 import ShippingInfo from 'src/router_views/Customer/ShippingInfo'
 import PaymentInfo from 'src/router_views/Customer/PaymentInfo'
+
 import { PLACE_ORDER } from 'src/infrastructure/store/orders_types'
 import { PlaceOrderPayload }
   from 'src/infrastructure/store/modules/orders/actions'
@@ -21,7 +23,8 @@ import { HAS_SELECTED_PAYMENT, GET_SELECTED_PAYMENT }
     OrderSummary,
     ShippingInfo,
     PaymentInfo,
-    AddressCard
+    AddressCard,
+    PaymentCard
   }
 })
 export default class Checkout extends Vue {
@@ -87,8 +90,7 @@ export default class Checkout extends Vue {
   }
 
   get hasSelectedPayment() {
-    // TODO: remove !
-    return !this.$store.getters[HAS_SELECTED_PAYMENT]
+    return this.$store.getters[HAS_SELECTED_PAYMENT]
   }
 
   get selectedPayment() {

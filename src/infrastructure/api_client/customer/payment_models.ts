@@ -8,6 +8,7 @@ export interface CreditCardDraft {
 
 export interface CreditCardView {
   id: string
+  version: number
   customerId: string
   bin: string
   cardholderName: string
@@ -20,6 +21,7 @@ export interface CreditCardView {
 export interface DefaultCardRequest {
   customerId: string
   creditCardId: string
+  version: number
 }
 
 export interface DeleteCardRequest {

@@ -8,12 +8,11 @@
               <i class="fa fa-check-square-o" aria-hidden="true"></i>
             </template>
             <template v-else>
-              <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefaultHandler(payment.id)"></i>
+              <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefaultHandler(payment)"></i>
             </template>
-            <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteHandler(payment.id)"></i>
+            <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteHandler(payment)"></i>
             <hr /> 
-            {{ payment.cardholderName }} <br> 
-            {{ payment.cardType }} {{ payment.bin }}******{{ payment.last4 }}
+            <PaymentCard :payment="payment"></PaymentCard>
           </div>
           <!-- div card-block -->
 
