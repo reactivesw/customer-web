@@ -24,9 +24,9 @@ const actions = {
   },
 
   async[ADD_CREDIT_CARD]({ commit }, request) {
-    const payment = await apiClient.addCreditCard(request)
+    const payments = await apiClient.addCreditCard(request)
     // only return the newly created payment
-    commit(SET_PAYMENTS, [payment])
+    commit(SET_PAYMENTS, payments)
   },
 
   async[SET_SELECTED]({ commit }, request) {
