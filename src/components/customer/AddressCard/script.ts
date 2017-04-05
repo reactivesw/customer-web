@@ -6,6 +6,6 @@ import Component from 'vue-class-component'
     addr: Object
   }
 })
-export default class AddressDetails extends Vue {
+export default class AddressCard extends Vue {
 }
 
