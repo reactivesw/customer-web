@@ -10,8 +10,6 @@
             <template v-else>
               <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefaultHandler(payment.id)"></i>
             </template>
-
-            <i class="fa fa-pencil-square-o mx-1" aria-hidden="true" @click.prevent="updateHandler(payment)"></i>
             <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteHandler(payment.id)"></i>
             <hr /> 
             {{ payment.cardholderName }} <br> 

@@ -11,10 +11,6 @@ export default class AddressList extends Vue {
     this.$emit('defaultChanged', addrId)
   }
 
-  updateHandler(payment) {
-    this.$emit('updatePayment', payment)
-  }
-
   deleteHandler(paymentId) {
     this.$emit('deletePayment', paymentId)
   }
