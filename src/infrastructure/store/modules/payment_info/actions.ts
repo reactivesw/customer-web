@@ -1,10 +1,8 @@
 import { paymentInfo as apiClient } from 'src/infrastructure/api_client'
 
-import { GET_CUSTOMER_ID, GET_IS_LOGGED_IN }
-  from 'src/infrastructure/store/auth_types'
-
 import { GET_PAYMENTS } from './getters'
 import { SET_PAYMENTS } from './mutations'
+import { GET_CUSTOMER_ID, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 
 export const FETCH_PAYMENTS = 'customer_info/FETCH_PAYMENTS'
 export const ADD_CREDIT_CARD = 'customer_info/ADD_CREDIT_CARD'

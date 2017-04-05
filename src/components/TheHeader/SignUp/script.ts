@@ -2,8 +2,8 @@ import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
-import * as authTypes from 'src/infrastructure/store/auth_types'
 import { ERRORES as AUTH_ERRORES } from 'src/infrastructure/api_client/auth'
+import { SIGN_UP } from 'src/infrastructure/store/modules/auth/actions'
 
 export default {
   name: 'SignUp',
@@ -26,7 +26,7 @@ export default {
     ...mapActions({
       hideSignUp: modalDialogsTypes.HIDE_SIGN_UP,
       showSignIn: modalDialogsTypes.SHOW_SIGN_IN,
-      signUp: authTypes.SIGN_UP
+      signUp: SIGN_UP
     }),
 
     checkFormValidity(this: Vue.Component) {

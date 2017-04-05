@@ -3,11 +3,9 @@ import Component from 'vue-class-component'
 
 import CartDetails from 'src/components/cart/CartDetails'
 import OrderSummary from 'src/components/cart/OrderSummary'
-import {GET_IS_EMPTY }
-  from 'src/infrastructure/store/modules/carts/getters'
+import { GET_IS_EMPTY } from 'src/infrastructure/store/modules/carts/getters'
 
-import { FETCH_CART }
-  from 'src/infrastructure/store/modules/carts/actions'
+import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
 
 @Component({
   components: {

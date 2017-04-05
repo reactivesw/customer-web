@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import store from 'src/infrastructure/store'
-import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/auth_types'
 
 import Category from 'src/router_views/Category'
 import Product from 'src/router_views/Product'
@@ -10,6 +9,7 @@ import Cart from 'src/router_views/Cart'
 import customer from './customer'
 import chekcout from './checkout'
 import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
+import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 
 Vue.use(VueRouter)
 

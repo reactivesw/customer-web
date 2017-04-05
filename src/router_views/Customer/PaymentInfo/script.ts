@@ -1,21 +1,25 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { GET_CUSTOMER_ID } from 'src/infrastructure/store/auth_types'
-import { FETCH_PAYMENTS,
+import {
   ADD_CREDIT_CARD,
-  SET_SELECTED,
-  DELETE_CREDIT_CARD }
-  from 'src/infrastructure/store/modules/payment_info/actions'
+  DELETE_CREDIT_CARD,
+  FETCH_PAYMENTS,
+  SET_SELECTED
+} from 'src/infrastructure/store/modules/payment_info/actions'
 
-import { CreditCardDraft, DefaultCardRequest, DeleteCardRequest }
-  from 'src/infrastructure/api_client/customer/payment_models'
+import {
+  CreditCardDraft,
+  DefaultCardRequest,
+  DeleteCardRequest
+} from 'src/infrastructure/api_client/customer/payment_models'
 
 import { GET_PAYMENTS } from 'src/infrastructure/store/modules/payment_info/getters'
 
 import CreditCard from 'src/components/payment/CreditCard'
 import PaymentList from 'src/components/payment/PaymentList'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
+import { GET_CUSTOMER_ID } from 'src/infrastructure/store/modules/auth/getters'
 
 @Component({
   components: {

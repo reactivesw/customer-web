@@ -3,10 +3,10 @@ import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from './FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
-import * as authTypes from 'src/infrastructure/store/auth_types'
 import { ERRORES as AUTH_ERRORES } from 'src/infrastructure/api_client/auth'
 
 import * as GSignInButton from 'vue-google-signin-button'
+import { SIGN_IN } from 'src/infrastructure/store/modules/auth/actions'
 Vue.use(GSignInButton)
 
 export default {
@@ -32,7 +32,7 @@ export default {
     ...mapActions({
       hideSignIn: modalDialogsTypes.HIDE_SIGN_IN,
       showSignUp: modalDialogsTypes.SHOW_SIGN_UP,
-      signIn: authTypes.SIGN_IN
+      signIn: SIGN_IN
     }),
 
     async submitSignIn(this: Vue.Component) {

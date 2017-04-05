@@ -1,21 +1,15 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { SIGN_UP, SIGN_IN, SET_CUSTOMER, SET_TOKEN, SIGN_OUT }
-  from 'src/infrastructure/store/auth_types'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN, SHOW_SIGN_UP }
-  from 'src/infrastructure/store/modal_dialogs_types'
-import { FETCH_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/actions'
-import { FETCH_CART }
-  from 'src/infrastructure/store/modules/carts/actions'
-import { RESET_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/mutations'
-import { RESET_CART }
-  from 'src/infrastructure/store/modules/carts/mutations'
-import { RESET_CUSTOMER }
-  from 'src/infrastructure/store/modules/auth/mutations'
-
+import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
+import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/actions'
+import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
+import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/mutations'
+import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
+import { RESET_CUSTOMER, SET_CUSTOMER } from 'src/infrastructure/store/modules/auth/mutations'
 import router from 'src/infrastructure/router'
-import Vue from 'vue'
+
+export const SIGN_UP = 'auth/SIGN_UP'
+export const SIGN_IN = 'auth/SIGN_IN'
+export const SIGN_OUT = 'auth/SIGN_OUT'
 
 const actions = {
 
