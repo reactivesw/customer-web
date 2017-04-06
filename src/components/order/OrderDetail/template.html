@@ -1,0 +1,5 @@
+<div v-if="order">
+  <AddressCard :addr="order.addr"></AddressCard>
+  <PaymentCard :payment="order.payment"></PaymentCard>
+  <LineItemDisplay v-for="lineItem in order.lineItems" :lineItem="lineItem" :key="lineItem.id"></LineItemDisplay>
+</div>
