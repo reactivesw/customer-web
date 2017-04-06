@@ -1,5 +1,7 @@
 <div class="card lineitem-card">
-  <img :src="image" class="card-img-top align-self-center" alt="Card image cap">
+  <div class="lineitem-card__image-wrapper">
+    <img :src="image" class="lineitem-card__image">
+  </div>
 
   <div class="card-block">
     <h6 class="card-title">{{ $t(lineItem.name) }}</h6>
