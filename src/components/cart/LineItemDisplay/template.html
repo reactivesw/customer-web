@@ -1,0 +1,11 @@
+<div class="card lineitem-card">
+  <div class="lineitem-card__image-wrapper">
+    <img :src="image" class="lineitem-card__image" alt="Card image cap">
+  </div>
+
+  <div class="card-block">
+    <h6 class="card-title">{{ $t(lineItem.name) }}</h6>
+    <p class="card-text"><small class="text-muted">{{ price }}</small></p>
+    <p><span>{{ $t('cart.quantity') }}</span>{{ lineItem.quantity }}</p>
+  </div>
+</div>

@@ -41,7 +41,8 @@
     "back_to_shopping": "Back To Shopping",
     "checkout": "CHECKOUT",
     "subtotal": "Sub Total",
-    "empty": "Empty Cart"
+    "empty": "Empty Cart",
+    "quantity": "Quantity: "
   },
   "customer": {
     "account": "Account",
