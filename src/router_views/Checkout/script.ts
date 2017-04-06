@@ -37,9 +37,11 @@ export default class Checkout extends Vue {
   isEditingPayment = false
 
   placeOrderHandler() {
-    const payload: PlaceOrderPayload = {
+    const payload: PlaceOrderRequest = {
+      customerId: this.customerInfo.id,
       addressId: this.defaultAddress.id,
-      creditCartId: this.selectedPayment.id
+      creditCardId: this.selectedPayment.id,
+      cartId: this.currentCart.id
     }
     this.$store.dispatch(PLACE_ORDER, payload)
   }
@@ -95,6 +97,14 @@ export default class Checkout extends Vue {
 
   get selectedPayment() {
     return this.$store.getters[GET_SELECTED_PAYMENT]
+  }
+
+  get customerInfo() {
+    return this.$store.getters[GET_CUSTOMER_INFO]
+  }
+
+  get currentCart() {
+    return this.$store.getters[GET_CART]
   }
 }
 

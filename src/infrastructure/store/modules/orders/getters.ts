@@ -1,4 +1,4 @@
-import { GET_CURRENT_ORDER } from 'src/infrastructure/store/orders_types'
+export const GET_CURRENT_ORDER = 'orders/GET_CURRENT_ORDER'
 
 const getters = {
   [GET_CURRENT_ORDER]( state ) {

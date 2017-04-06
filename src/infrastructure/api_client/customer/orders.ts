@@ -5,7 +5,7 @@ const ORDER_API_URL = '/orders'
 export interface PlaceOrderRequest {
   customerId: string,
   addressId: string,
-  creditCartId: string,
+  creditCardId: string,
   cartId: string
 }
 

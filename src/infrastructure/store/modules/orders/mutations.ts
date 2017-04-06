@@ -1,4 +1,4 @@
-import { SET_CURRENT_ORDER } from 'src/infrastructure/store/orders_types'
+export const SET_CURRENT_ORDER = 'orders/SET_CURRENT_ORDER'
 
 const mutations = {
   [SET_CURRENT_ORDER] ( state, order ) {
