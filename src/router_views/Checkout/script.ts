@@ -7,15 +7,15 @@ import CartDetails from 'src/components/cart/CartDetails'
 import OrderSummary from 'src/components/cart/OrderSummary'
 import ShippingInfo from 'src/router_views/Customer/ShippingInfo'
 import PaymentInfo from 'src/router_views/Customer/PaymentInfo'
+import OrderDetail from 'src/components/order/OrderDetail'
 
-import { PLACE_ORDER } from 'src/infrastructure/store/orders_types'
-import { PlaceOrderPayload }
-  from 'src/infrastructure/store/modules/orders/actions'
-
-import { HAS_DEFAULT_ADDRESS,  GET_DEFAULT_ADDRESS }
-  from 'src/infrastructure/store/modules/customer_info/getters'
-import { HAS_SELECTED_PAYMENT, GET_SELECTED_PAYMENT }
-  from 'src/infrastructure/store/modules/payment_info/getters'
+import {
+  HAS_DEFAULT_ADDRESS, GET_DEFAULT_ADDRESS, GET_CUSTOMER_INFO
+} from 'src/infrastructure/store/modules/customer_info/getters'
+import { HAS_SELECTED_PAYMENT, GET_SELECTED_PAYMENT } from 'src/infrastructure/store/modules/payment_info/getters'
+import { PlaceOrderRequest } from 'src/infrastructure/api_client/customer/orders'
+import { PLACE_ORDER } from 'src/infrastructure/store/modules/orders/actions'
+import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
 
 @Component({
   components: {
@@ -24,10 +24,14 @@ import { HAS_SELECTED_PAYMENT, GET_SELECTED_PAYMENT }
     ShippingInfo,
     PaymentInfo,
     AddressCard,
-    PaymentCard
+    PaymentCard,
+    OrderDetail
   }
 })
 export default class Checkout extends Vue {
+  // the order server returned after place order
+  placedOrder:any = null
+
   // the checkout needs two pieces of info:
   // a selected shipping address and a selected payment
   // if meet both conditions, go to final review stage
@@ -36,14 +40,14 @@ export default class Checkout extends Vue {
   isEditingShipping = false
   isEditingPayment = false
 
-  placeOrderHandler() {
+  async placeOrderHandler() {
     const payload: PlaceOrderRequest = {
       customerId: this.customerInfo.id,
       addressId: this.defaultAddress.id,
       creditCardId: this.selectedPayment.id,
       cartId: this.currentCart.id
     }
-    this.$store.dispatch(PLACE_ORDER, payload)
+    this.placedOrder = await this.$store.dispatch(PLACE_ORDER, payload)
   }
 
   // used to manage UI state
@@ -63,6 +67,11 @@ export default class Checkout extends Vue {
 
   get isPlaceOrderEnabled() {
     return this.hasSelectedPayment && this.hasDefaultAddress
+  }
+
+  // if placedOrder has value, means place order request has been sent, show placed result.
+  get showPlacedResult () {
+    return !!this.placedOrder
   }
 
   // UI event handler

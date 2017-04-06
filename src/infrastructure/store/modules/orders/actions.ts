@@ -26,7 +26,7 @@ const actions = {
     } catch ( e ) {
       // it's possible place order failed but cart been consumed, so always fetch it.
       dispatch( FETCH_CART )
-      commit( SET_CURRENT_ORDER, 'failed' )
+      throw e
     }
   }
 }
