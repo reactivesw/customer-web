@@ -19,13 +19,13 @@ const actions = {
       commit( SET_CURRENT_ORDER, order )
 
       // previous cart has been consumed, fetch the new empty cart for customer now.
-      dispatch( FETCH_CART )
+      dispatch( FETCH_CART, true )
 
       return order
 
     } catch ( e ) {
       // it's possible place order failed but cart been consumed, so always fetch it.
-      dispatch( FETCH_CART )
+      dispatch( FETCH_CART, true )
       throw e
     }
   }
