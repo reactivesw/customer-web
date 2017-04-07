@@ -3,6 +3,7 @@ import Component from 'vue-class-component'
 import AddressCard from 'src/components/customer/AddressCard/script'
 import PaymentCard from 'src/components/payment/PaymentCard/script'
 import LineItemDisplay from 'src/components/cart/LineItemDisplay'
+import { MoneyToString } from 'src/infrastructure/utils'
 
 @Component({
   props: {
@@ -15,4 +16,9 @@ import LineItemDisplay from 'src/components/cart/LineItemDisplay'
   }
 })
 export default class OrderDetail extends Vue {
+  order
+
+  get totalPrice () {
+    return MoneyToString(this.order.totalPrice)
+  }
 }

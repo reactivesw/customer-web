@@ -1,5 +1,14 @@
-<div v-if="order">
-  <AddressCard :addr="order.addr"></AddressCard>
-  <PaymentCard :payment="order.payment"></PaymentCard>
-  <LineItemDisplay v-for="lineItem in order.lineItems" :lineItem="lineItem" :key="lineItem.id"></LineItemDisplay>
+<div v-if="order" class="row">
+  <div class="col-12 my-3">
+    <h6>Sent To:</h6>
+    <AddressCard :addr="order.shippingAddress"></AddressCard>
+  </div>
+
+  <div class="col-12">
+    <h6>Total Price: <span>{{ totalPrice }}</span></h6>
+  </div>
+
+  <div class="col-12">
+    <LineItemDisplay v-for="lineItem in order.lineItems" :lineItem="lineItem" :key="lineItem.id"></LineItemDisplay>
+  </div>
 </div>
