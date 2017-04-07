@@ -6,6 +6,7 @@ import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_i
 import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 import { RESET_CUSTOMER, SET_CUSTOMER } from 'src/infrastructure/store/modules/auth/mutations'
 import router from 'src/infrastructure/router'
+import { GoogleSignInRequest } from 'src/infrastructure/api_client/auth'
 
 export const SIGN_UP = 'auth/SIGN_UP'
 export const SIGN_IN = 'auth/SIGN_IN'
@@ -34,11 +35,24 @@ const actions = {
   async [SIGN_IN]({ rootState, commit, dispatch }, authInfo) {
     let customer
     if (authInfo.type === 'email') {
-      customer = await authApi.emailSignIn(authInfo.email, authInfo.pwd)
+      customer = await authApi.emailSignIn( authInfo.email, authInfo.pwd )
+
     } else if (authInfo.type === 'google') {
-      customer = await authApi.googleSignIn(authInfo.id_token)
+      const request: GoogleSignInRequest = {
+        token: authInfo.id_token
+      }
+      customer = await authApi.googleSignIn( request )
+      customer.name = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName()
+
     } else if (authInfo.type === 'facebook') {
-      // TODO: wait for sign in api
+      customer = await authApi.facebookSignIn( authInfo.response )
+
+      // make facebook sdk callback method to promise
+      customer.name = await new Promise( ( resolve, reject ) => {
+        FB.api( '/me', ( response ) => {
+          resolve( response.name )
+        } )
+      } )
     }
 
     if (customer) {
@@ -63,6 +77,10 @@ const actions = {
     // clear customer-realted data
     commit(RESET_CUSTOMER_INFO)
     commit(RESET_CART)
+
+    // should sign out google when user sign out our website, next time they might want to choose another google account.
+    const gAuth = gapi.auth2.getAuthInstance()
+    gAuth.signOut()
 
     // go home
     router.push({ name: 'home' })

@@ -19,15 +19,20 @@ export default {
       if (this['customer']) {
         if (this['customer'].firstName && this['customer'].lastName) {
           return (this['customer'].firstName + this['customer'].lastName)
-        } else {
+        } else if (this['customer'].email) {
           return this['customer'].email
+        } else if (this['customer'].name) {
+          // server don't return name field when sign in, we use it to record name from social login.
+          return this['customer'].name
+        } else {
+          return 'Customer'
         }
+        // TODO: google loged in use google name, fb is the same
       }
-      return ''
     },
 
     cartQuantity ( this: Component ) {
-      if ( this['cart'] ) {
+      if ( this['cart'] && this['cart'].lineItems ) {
         return this[ 'cart' ].lineItems.reduce( ( quantity, item ) => {
           return quantity + item.quantity
         }, 0 )

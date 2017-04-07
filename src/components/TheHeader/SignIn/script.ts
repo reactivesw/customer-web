@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
-import FacebookBtn from './FacebookButton'
+import FacebookBtn from 'src/components/TheHeader/SignIn/FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 import { ERRORES as AUTH_ERRORES } from 'src/infrastructure/api_client/auth'
 
@@ -81,11 +81,16 @@ export default {
 
     onGoogleSignInError(this: Vue.Component, error) {
       // this['signinFeedback'] = Vue['t']('alert.social_signin_error')
-      // console.log('sign in error: ', error) // TODO: tell user their is a error happend
+      this['signinFeedback'] = Vue['t']('alert.signin_error')
     },
 
-    onFacebookSignIn(this: Vue.Component, facebookUser) {
-      this['signIn']({type: 'facebook', facebookUser})
+    onFacebookSignIn(this: Vue.Component, response) {
+      this['signIn']({type: 'facebook', response})
+    },
+
+    onFacebookSignInError(this: Vue.Component, errorResponse) {
+      // this['signinFeedback'] = Vue['t']('alert.social_signin_error')
+      this['signinFeedback'] = Vue['t']('alert.signin_error')
     }
   },
 

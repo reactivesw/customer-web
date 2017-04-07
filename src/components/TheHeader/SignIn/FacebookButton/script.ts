@@ -9,15 +9,32 @@ export default {
   },
   methods: {
     doSignIn: function (this: Component) {
-      FB.login((response) => {
+      FB.getLoginStatus((response) => {
         if (response.status === 'connected') {
-          const data = { userId: response.authResponse.userID, userName: '' }
-          FB.api('/me', (response) => {
-            data.userName = response.name
-            this['$emit']('signIn', data)
+          this['signIn'](response)
+        } else {
+          FB.login((response) => {
+            if ( response.status === 'connected' ) {
+              this['signIn'](response)
+            } else {
+              this['$emit']('error', response)
+            }
           })
         }
       })
+    },
+
+    signIn ( this: Component, response ) {
+      if ( response.status === 'connected' ) {
+        const data = {
+          userID: response.authResponse.userID,
+          accessToken: response.authResponse.accessToken,
+          expiresIn: response.authResponse.expiresIn,
+          signedRequest: response.authResponse.signedRequest
+        }
+        this[ '$emit' ]( 'signIn', data )
+      }
     }
   }
 }
+

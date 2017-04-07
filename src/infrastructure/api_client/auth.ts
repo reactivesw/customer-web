@@ -9,6 +9,13 @@ export const ERRORES = {
   PASSWORD_NOT_MATCH: 'PASSWORD_NOT_MATCH'
 }
 
+// a pattern for simulating string enums in typescript, http://stackoverflow.com/a/41631732
+const SignInMethod = {
+  Email: '/auth/signin' as 'Email',
+  Google: '/auth/signin/google' as 'Google',
+  FB: '/auth/signin/facebook' as 'FB'
+}
+
 /**
  * Server responses:
  * {"code":10002,"message":"customer already exist."}
@@ -45,8 +52,6 @@ export function signOut() {
   // no need to sign out Google for this app
 }
 
-const SIGN_IN = '/auth/signin'
-
 export async function emailSignIn(email, password) {
   if (!isPasswordSecure(password)) {
     throw new Error(ERRORES.PASSWORD_NOT_SECURE)
@@ -54,7 +59,7 @@ export async function emailSignIn(email, password) {
 
   try {
     const params = { email, password }
-    return await signIn(params)
+    return await signIn( SignInMethod.Email, params )
   } catch (error) {
     // server response error
     if (error.response) {
@@ -70,21 +75,27 @@ export async function emailSignIn(email, password) {
   }
 }
 
-export async function googleSignIn(id_token) {
-  const params = { gToken: id_token }
-  return await signIn(params)
+export interface GoogleSignInRequest {
+  token: string
 }
 
-// TODO: wait for facebook sign in api
-// const SIGN_IN = '/auth/signin'
-// export async function facebookSignIn(id_token) {
-//   const params = { gToken: id_token }
-//   const response = await http.post(SIGN_IN, {}, { params })
-//   return response.data
-// }
+export async function googleSignIn(request: GoogleSignInRequest) {
+  return await signIn( SignInMethod.Google, request )
+}
 
-async function signIn(params) {
-  const response = await http.post(SIGN_IN, params)
+export interface FacebookSignInRequest {
+  accessToken: string,
+  expiresIn: string,
+  signedRequest: string,
+  userID: string
+}
+
+export async function facebookSignIn( request: FacebookSignInRequest ) {
+  return await signIn( SignInMethod.FB, request )
+}
+
+async function signIn( signInMethod: keyof typeof SignInMethod, params ) {
+  const response = await http.post( signInMethod, params )
   if (response) {
     tokenManager.setToken( response.data.token )
     return response.data.customerView
