@@ -86,7 +86,7 @@
   "order": {
     "status": {
       "created": "订单已创建",
-      "reserved": "正在出库",
+      "reserved": "等待支付",
       "payed": "支付成功",
       "shipped": "已发货",
       "complete": "完成",
