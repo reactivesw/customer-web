@@ -75,7 +75,13 @@
     "address_phone": "电话号码",
     "confirm_delete_address": "请确认删除这个地址？",
     "confirm_change_default_address": "请确认改变缺省地址？"
-
+  },
+  "payment": {
+    "cardholder_name": "持卡人",
+    "credit_card_number": "卡号",
+    "security_code": "安全码",
+    "expiration_month": "过期月份",
+    "expiration_year": "过期年份"
   },
   "form": {
     "email_address": "邮件地址",
