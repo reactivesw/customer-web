@@ -83,6 +83,17 @@
     "expiration_month": "过期月份",
     "expiration_year": "过期年份"
   },
+  "order": {
+    "status": {
+      "created": "订单已创建",
+      "reserved": "正在出库",
+      "payed": "支付成功",
+      "shipped": "已发货",
+      "complete": "完成",
+      "cancelled": "已取消",
+      "unkonw": "订单状态有误"
+    }
+  },
   "form": {
     "email_address": "邮件地址",
     "password": "密码",

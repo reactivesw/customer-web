@@ -82,6 +82,17 @@
     "expiration_month": "Expiration Month",
     "expiration_year": "Expiration Year"
   },
+  "order": {
+    "status": {
+      "created": "Order is created.",
+      "reserved": "Order is reserved.",
+      "payed": "Order is Payed.",
+      "shipped": "Order is created.",
+      "complete": "Order is completed.",
+      "cancelled": "Order is cancelled.",
+      "unkonw": "Sorry, something wrong with this order."
+    }
+  },
   "form": {
     "email_address": "Email Address",
     "password": "Password",

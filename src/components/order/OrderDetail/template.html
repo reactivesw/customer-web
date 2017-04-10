@@ -1,4 +1,10 @@
 <div v-if="order" class="row">
+
+  <div class="col-12">
+    <h6>Status:</h6>
+    {{ orderStatus }}
+  </div>
+
   <div class="col-12 my-3">
     <h6>Sent To:</h6>
     <AddressCard :addr="order.shippingAddress"></AddressCard>
