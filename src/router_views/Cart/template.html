@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row flex-items-middle">
     <div :class="isEmptyCart ? 'col-md-12' : 'col-md-8'">
-      <a href="javascript:void(0)" @click="$router.back()">&lt; {{$t('cart.back_to_shopping')}}</a>
+      <a href="javascript:void(0)" @click="backToShopping">&lt; {{$t('cart.back_to_shopping')}}</a>
       <hr>
       <CartDetails></CartDetails>
     </div>
     <div v-if="!isEmptyCart" class="col-md-4">
       <OrderSummary></OrderSummary>
       <!-- route to checkout page (change to router-link component -->
-      <div class="btn btn-block btn-success" 
+      <div class="btn btn-block btn-success"
         @click="checkoutClickEventHandler">{{ $t('cart.checkout') }}
       </div>
     </div>
