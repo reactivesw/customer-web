@@ -1,4 +1,4 @@
-<form ref="signInForm" @submit.prevent="submitSignIn">
+<form class="sign-in-modal" ref="signInForm" @submit.prevent="submitSignIn">
   <ModalDialog :title="$t('header.sign_in')" :show="showSignIn" @hide="hideSignIn()">
 
     <div slot="body">
@@ -10,7 +10,7 @@
 
         <div class="col-md-6">
           <g-signin-button
-            class="btn btn-lg btn-block btn-danger"
+            class="btn btn-lg btn-block btn-danger sign-in-modal__social-login"
             :params="googleSignInParams"
             @success="onGoogleSignIn"
             @error="onGoogleSignInError">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-6">
-          <FacebookBtn @signIn="onFacebookSignIn" @error="onFacebookSignInError"></FacebookBtn>
+          <FacebookBtn class="sign-in-modal__social-login" @signIn="onFacebookSignIn" @error="onFacebookSignInError"></FacebookBtn>
         </div>
 
       </div>
