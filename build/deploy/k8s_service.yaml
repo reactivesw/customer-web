@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: customer-web
+  labels:
+    name: customer-web
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30011
+  selector:
+    name: customer-web

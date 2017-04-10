@@ -4,7 +4,7 @@ var path = require('path')
 var version = process.argv
 var package = require( '../package.json' )
 
-var k8sPath = path.resolve( __dirname, 'deploy/k8s.yaml' )
+var k8sPath = path.resolve( __dirname, 'deploy/k8s_deployment.yaml' )
 var packagePath = path.resolve( __dirname, '../package.json' )
 
 // Check version string is provided, it should be the third argument
@@ -17,7 +17,7 @@ var version = process.argv[2]
 // Edit version in k8s.yaml
 try {
   var k8s = yaml.load( fs.readFileSync( k8sPath, 'utf8' ) )
-  k8s.items[0].spec.template.spec.containers[0].image = 'reactivesw/' + package.name + ':' + version
+  k8s.spec.template.spec.containers[0].image = 'reactivesw/' + package.name + ':' + version
 
   var k8sYamlContent = yaml.dump( k8s )
   fs.writeFile( k8sPath, k8sYamlContent)
