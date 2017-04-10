@@ -75,6 +75,24 @@
     "confirm_delete_address": "Are you sure you want to delete this address?",
     "confirm_change_default_address": "Are you sure you want to change the default address?"
   },
+  "payment": {
+    "cardholder_name": "Cardholder Name",
+    "credit_card_number": "Credit Card Number",
+    "security_code": "Security Code",
+    "expiration_month": "Expiration Month",
+    "expiration_year": "Expiration Year"
+  },
+  "order": {
+    "status": {
+      "created": "Order is created.",
+      "reserved": "Order is reserved.",
+      "payed": "Order is Payed.",
+      "shipped": "Order is created.",
+      "complete": "Order is completed.",
+      "cancelled": "Order is cancelled.",
+      "unkonw": "Sorry, something wrong with this order."
+    }
+  },
   "form": {
     "email_address": "Email Address",
     "password": "Password",

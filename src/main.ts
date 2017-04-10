@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import router from './infrastructure/router'
 import store from './infrastructure/store'
-import App from './router_views/App'
+import App from 'src/router_views/App'
 import 'bootstrap/dist/js/bootstrap'
 import './styles/style.scss'
 

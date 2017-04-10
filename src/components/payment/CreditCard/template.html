@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="cardholder-name"> Cardholder Name* </label>
+          <label for="cardholder-name"> {{ $t('payment.cardholder_name') }}* </label>
           <input class="form-control" type="text" placeholder="Will Smith" id="cardholder-name" v-model="creditCard.cardholderName"
             required>
         </div>
@@ -14,14 +14,14 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="number"> Credit Card Number* </label>
+          <label for="number"> {{ $t('payment.credit_card_number') }}* </label>
           <input class="form-control" type="number" id="number" v-model="creditCard.number" required>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="cvv"> Security Code </label>
+          <label for="cvv"> {{ $t('payment.security_code') }}* </label>
           <input class="form-control" type="number" id="cvv" v-model="creditCard.cvv" required>
         </div>
       </div>
@@ -30,14 +30,14 @@
     <div class="row">
       <div class="col-md-3">
         <div class="form-group">
-          <label for="month"> Expiration Month* </label>
+          <label for="month"> {{ $t('payment.expiration_month') }}* </label>
           <input class="form-control" type="number" placeholder="MM" id="month" v-model="creditCard.expirationMonth" required>
         </div>
       </div>
 
       <div class="col-md-3">
         <div class="form-group">
-          <label for="year"> Expiration Year* </label>
+          <label for="year"> {{ $t('payment.expiration_year') }}* </label>
           <input class="form-control" type="number" placeholder="YYYY" id="year" v-model="creditCard.expirationYear"
             required>
         </div>
