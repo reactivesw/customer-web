@@ -1,10 +1,7 @@
-var merge = require('webpack-merge')
 var prodEnv = require('./prod.env')
-var osEnv = require('./os.env')
 
-module.exports = merge(
-  prodEnv,
-  osEnv,
-  {
-    NODE_ENV: '"development"'
-  })
+module.exports = Object.assign(prodEnv, {
+  NODE_ENV: '"development"',
+
+  FACEBOOK_APP_ID: process.env.FACEBOOK_LOCAL_APP_ID
+})
