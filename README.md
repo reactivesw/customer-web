@@ -3,7 +3,7 @@
 > e-commerce web frontend.
 
 ## Setup
-The application reads backend Rest API URL and other configuration parameters such as Google client Id from the host's operating system envirnoment. Please check [`config/prod.env.js`](./config/prod.env.js) for all environment variable names. Replaced them in [dev.env.js](config/dev.env.js) if you want specify a different value in develop environment.
+The application reads backend Rest API URL and other configuration parameters such as Google client Id from the host's operating system envirnoment. Please check [`config/prod.env.js`](./config/prod.env.js) for all environment variable names. Replace them in [dev.env.js](config/dev.env.js) if you want specify a different value in develop environment.
 
 Some enviornment variable names are:
 
