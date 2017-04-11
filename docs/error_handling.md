@@ -23,7 +23,7 @@ So here is the Api error handling strategy
 
 ### Api client
 
-1. Api client should Give every expected error a constant as identifier:
+1. Api client should give every expected error a constant as identifier:
 
     ```javascript
     export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
@@ -54,16 +54,10 @@ So here is the Api error handling strategy
       if (e.response) {
         // server responsed
         switch (e.response.data.code) {
-          case 10002:
-            throw new Error(USER_EXIST)
-          default:
-            // server response something we don't expected.
-            throw e
+          case 10002: throw new Error(USER_EXIST)
         }
-      } else {
-        // network error
-        throw e
       }
+      throw e
     }
     ```
 
