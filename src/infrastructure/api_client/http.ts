@@ -1,15 +1,7 @@
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Alan Zhang @zcfan
-
-  Build docker image
-*/
-
 import axios from 'axios'
 import tokenManager from './tokenManager'
 
-// if there is a apiServerAddr global variable setted, use it as baseURL instead of bundle one.
-const baseURL = (<any>window).apiServerAddr || process.env.REST_API_URL
+const baseURL = process.env.REST_API_URL
 
 // Create a http client instance with some common settings
 const instance = axios.create({
