@@ -20,12 +20,19 @@ export default {
       email: '',
       pwd: '',
       passwordFeedback: null,
-      signinFeedback: null
+      signinFeedback: null,
+      googleScriptIsReady: false,
+      facebookScriptIsReady: false
     }
   },
 
   computed: {
     showSignIn(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignIn }
+  },
+
+  created (this: Vue.Component) {
+    this['initFacebook']().then(() => this['facebookScriptIsReady'] = true)
+    this['initGoogle']().then(() => this['googleScriptIsReady'] = true)
   },
 
   methods: {
@@ -89,8 +96,67 @@ export default {
     },
 
     onFacebookSignInError(this: Vue.Component, errorResponse) {
-      // this['signinFeedback'] = Vue['t']('alert.social_signin_error')
       this['signinFeedback'] = Vue['t']('alert.signin_error')
+    },
+
+    // load facebook & google scripts
+    initFacebook() {
+      return new Promise((resolve, reject) => {
+        try {
+          /* tslint:disable */
+          (<any>window).fbAsyncInit = function () {
+            FB.init( {
+              appId: process.env.FACEBOOK_APP_ID,
+              xfbml: true,
+              version: 'v2.8'
+            } );
+            FB.AppEvents.logPageView();
+          };
+
+          (function ( d, s, id ) {
+            var js, fjs = d.getElementsByTagName( s )[ 0 ];
+            if ( d.getElementById( id ) ) {
+              return;
+            }
+            js = d.createElement( s );
+            js.id = id;
+            js.onload = function () {
+              // facebook initialized
+              resolve()
+            }
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            (<any>fjs.parentNode).insertBefore( js, fjs );
+          }( document, 'script', 'facebook-jssdk' ));
+          /* tslint:enable */
+        } catch (e) {
+          reject(e)
+        }
+      })
+    },
+
+    initGoogle() {
+      return new Promise((resolve, reject) => {
+        try {
+          /* tslint:disable */
+          (function ( d, s, id ) {
+            var js, fjs = d.getElementsByTagName( s )[ 0 ];
+            if ( d.getElementById( id ) ) {
+              return;
+            }
+            js = d.createElement( s );
+            js.id = id;
+            js.onload = function () {
+              // google initialized
+              resolve()
+            }
+            js.src = "//apis.google.com/js/api:client.js";
+            (<any>fjs.parentNode).insertBefore( js, fjs );
+          }( document, 'script', 'google-gapi' ));
+          /* tslint:enable */
+        } catch (e) {
+          reject(e)
+        }
+      })
     }
   },
 
