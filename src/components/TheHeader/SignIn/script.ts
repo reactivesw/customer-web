@@ -21,8 +21,8 @@ export default {
       pwd: '',
       passwordFeedback: null,
       signinFeedback: null,
-      googleScriptIsReady: false,
-      facebookScriptIsReady: false
+      googleLoginIsReady: false,
+      facebookLoginIsReady: false
     }
   },
 
@@ -31,8 +31,8 @@ export default {
   },
 
   created (this: Vue.Component) {
-    this['initFacebook']().then(() => this['facebookScriptIsReady'] = true)
-    this['initGoogle']().then(() => this['googleScriptIsReady'] = true)
+    this['initFacebookLogin']().then(() => this['facebookLoginIsReady'] = true)
+    this['initGoogleLogin']().then(() => this['googleLoginIsReady'] = true)
   },
 
   methods: {
@@ -100,7 +100,7 @@ export default {
     },
 
     // load facebook & google scripts
-    initFacebook() {
+    initFacebookLogin() {
       return new Promise((resolve, reject) => {
         try {
           /* tslint:disable */
@@ -134,7 +134,7 @@ export default {
       })
     },
 
-    initGoogle() {
+    initGoogleLogin() {
       return new Promise((resolve, reject) => {
         try {
           /* tslint:disable */
