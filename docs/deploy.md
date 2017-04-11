@@ -3,8 +3,9 @@
 Process of deployment:
 
 1. Use webpack bundle project.
-1. Build docker image.
-1. deploy docker image to Kubernetes(Google Container Engine).
+2. Build docker image.
+3. push docker image to docker hub.
+4. deploy docker image to Kubernetes(Google Container Engine).
 
 ## Bundle Project
 
@@ -26,19 +27,28 @@ This command will copy all files from `/build/docker` to `/dist`.
 
 `Dockerfile` instruct docker cli build the image based on official node:6.10.0 image.
 
+## Push to docker hub.
+
+Use docker cli to push image built in last step to docker hub.
+
+```bash
+docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
+docker push reactivesw/customer-web;
+```
+
 ## Deploy to Kubernetes
 
-`.travis.yml` config file instruct Travis CI to deploy project.
+`/build/deploy/deploy.sh` will deploy docker to Kubernetes.
 
-It will:
+`/build/deploy/k8s_deployment.yaml` tells `deploy.sh` how to config customer-web pod.
 
-1. Bundle project.
-1. Build docker image.
-1. Upload docker image to DockerHub.
-1. run `/build/deploy/deploy.sh` which deploy docker to Kubernetes.
+`/build/deploy/k8s_service.yaml` isn't been used by deploy.sh, cause it'll recreate customer-web service, which change public ip of www server. But it contains configuration for manually create the customer-web service, if a new service is what we want. 
 
-`/build/deploy/k8s_deployment.yaml` tell `deploy.sh` how to config customer-web pod.
-`/build/deploy/k8s_service.yaml` not been used by any script, But it contains configuration for manually create the customer-web service. 
+## CI
+
+`.travis.yml` config file instruct Travis CI to deploy this project.
+
+It will run all previous steps automatically.
 
 ## Other
 
@@ -46,7 +56,7 @@ version in `k8s_deployment.yaml` must keep sync with `package.json`. There is a 
  
  ```bash
  npm run version -- <new version>
- // for instance
+ // for instance:
  // npm run version -- 0.0.4
  ```
  
