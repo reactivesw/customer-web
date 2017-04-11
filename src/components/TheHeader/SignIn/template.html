@@ -10,6 +10,7 @@
 
         <div class="col-md-6">
           <g-signin-button
+            v-if="googleLoginIsReady"
             class="btn btn-lg btn-block btn-danger sign-in-modal__social-login"
             :params="googleSignInParams"
             @success="onGoogleSignIn"
@@ -19,7 +20,11 @@
         </div>
 
         <div class="col-md-6">
-          <FacebookBtn class="sign-in-modal__social-login" @signIn="onFacebookSignIn" @error="onFacebookSignInError"></FacebookBtn>
+          <FacebookBtn
+            v-if="facebookLoginIsReady"
+            class="sign-in-modal__social-login"
+            @signIn="onFacebookSignIn"
+            @error="onFacebookSignInError"></FacebookBtn>
         </div>
 
       </div>
