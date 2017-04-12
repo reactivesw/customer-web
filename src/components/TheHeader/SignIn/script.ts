@@ -111,6 +111,7 @@ export default {
               version: 'v2.8'
             } );
             FB.AppEvents.logPageView();
+            resolve()
           };
 
           (function ( d, s, id ) {
@@ -120,10 +121,6 @@ export default {
             }
             js = d.createElement( s );
             js.id = id;
-            js.onload = function () {
-              // facebook initialized
-              resolve()
-            }
             js.src = "//connect.facebook.net/en_US/sdk.js";
             (<any>fjs.parentNode).insertBefore( js, fjs );
           }( document, 'script', 'facebook-jssdk' ));
