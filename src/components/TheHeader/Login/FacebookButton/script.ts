@@ -8,14 +8,14 @@ export default {
     }
   },
   methods: {
-    doSignIn: function (this: Component) {
+    doLogin: function (this: Component) {
       FB.getLoginStatus((response) => {
         if (response.status === 'connected') {
-          this['signIn'](response)
+          this['login'](response)
         } else {
           FB.login((response) => {
             if ( response.status === 'connected' ) {
-              this['signIn'](response)
+              this['login'](response)
             } else {
               this['$emit']('error', response)
             }
@@ -24,7 +24,7 @@ export default {
       })
     },
 
-    signIn ( this: Component, response ) {
+    login ( this: Component, response ) {
       if ( response.status === 'connected' ) {
         const data = {
           userID: response.authResponse.userID,
@@ -32,7 +32,7 @@ export default {
           expiresIn: response.authResponse.expiresIn,
           signedRequest: response.authResponse.signedRequest
         }
-        this[ '$emit' ]( 'signIn', data )
+        this[ '$emit' ]( 'login', data )
       }
     }
   }

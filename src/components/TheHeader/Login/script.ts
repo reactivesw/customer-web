@@ -1,33 +1,33 @@
 import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
-import FacebookBtn from 'src/components/TheHeader/SignIn/FacebookButton'
+import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
 import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
-import { ERRORES as AUTH_ERRORES } from 'src/infrastructure/api_client/auth'
 
 import * as GSignInButton from 'vue-google-signin-button'
-import { SIGN_IN } from 'src/infrastructure/store/modules/auth/actions'
+import { LOG_IN } from 'src/infrastructure/store/modules/auth/actions'
+import {PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND} from 'src/infrastructure/api_client/auth'
 Vue.use(GSignInButton)
 
 export default {
-  name: 'SignIn',
+  name: 'Login',
 
   data () {
     return {
-      googleSignInParams: {
+      googleLoginParams: {
         client_id: process.env.GOOGLE_CLIENT_ID
       },
       email: '',
       pwd: '',
       passwordFeedback: null,
-      signinFeedback: null,
+      loginFeedback: null,
       googleLoginIsReady: false,
       facebookLoginIsReady: false
     }
   },
 
   computed: {
-    showSignIn(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignIn }
+    showLogin(this: Vue.Component) { return this['$store'].state.modal_dialogs.showLogin }
   },
 
   created (this: Vue.Component) {
@@ -37,66 +37,70 @@ export default {
 
   methods: {
     ...mapActions({
-      hideSignIn: modalDialogsTypes.HIDE_SIGN_IN,
+      hideLogin: modalDialogsTypes.HIDE_LOG_IN,
       showSignUp: modalDialogsTypes.SHOW_SIGN_UP,
-      signIn: SIGN_IN
+      login: LOG_IN
     }),
 
-    async submitSignIn(this: Vue.Component) {
+    async submitLogin(this: Vue.Component) {
       try {
         // clean feedbacks
         this['passwordFeedback'] = null
 
-        await this['signIn']({
+        await this['login']({
           type: 'email',
           email: this['email'],
           pwd: this['pwd']
         })
       } catch (e) {
-        // TODO: handle sign in error like password not match.
         // server response is not correct.
         switch (e.message) {
-          case AUTH_ERRORES.USER_NOT_FOUND:
+
+          case USER_NOT_FOUND:
             this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
-          case AUTH_ERRORES.PASSWORD_NOT_SECURE:
+
+          case PASSWORD_NOT_SECURE:
             this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
-          case AUTH_ERRORES.PASSWORD_NOT_MATCH:
+
+          case PASSWORD_NOT_MATCH:
             this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
+
           default:
-            this['signinFeedback'] = Vue['t']('alert.signin_error')
+            this['loginFeedback'] = Vue['t']('alert.login_error')
+            throw e
         }
       }
     },
 
     goSignUp(this: Vue.Component) {
-      this['hideSignIn']()
+      this['hideLogin']()
       this['showSignUp']()
     },
 
     goForgotPwd(this: Vue.Component) {
-      this['hideSignIn']()
+      this['hideLogin']()
       // TODO: redirect to forgot password page
     },
 
-    onGoogleSignIn(this: Vue.Component, googleUser) {
+    onGoogleLogin(this: Vue.Component, googleUser) {
       const id_token = googleUser.getAuthResponse().id_token
-      this['signIn']({type: 'google', id_token})
+      this['login']({type: 'google', id_token})
     },
 
-    onGoogleSignInError(this: Vue.Component, error) {
-      // this['signinFeedback'] = Vue['t']('alert.social_signin_error')
-      this['signinFeedback'] = Vue['t']('alert.signin_error')
+    onGoogleLoginError(this: Vue.Component, error) {
+      // this['loginFeedback'] = Vue['t']('alert.social_login_error')
+      this['loginFeedback'] = Vue['t']('alert.login_error')
     },
 
-    onFacebookSignIn(this: Vue.Component, response) {
-      this['signIn']({type: 'facebook', response})
+    onFacebookLogin(this: Vue.Component, response) {
+      this['login']({type: 'facebook', response})
     },
 
-    onFacebookSignInError(this: Vue.Component, errorResponse) {
-      this['signinFeedback'] = Vue['t']('alert.signin_error')
+    onFacebookLoginError(this: Vue.Component, errorResponse) {
+      this['loginFeedback'] = Vue['t']('alert.login_error')
     },
 
     // load facebook & google scripts

@@ -1,7 +1,7 @@
 import { Component } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from 'src/components/TheHeader/LanguageSelector'
-import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
+import { SHOW_LOG_IN } from 'src/infrastructure/store/modal_dialogs_types'
 import { GET_CUSTOMER, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
 
@@ -44,7 +44,7 @@ export default {
 
   methods: {
     ...mapActions({
-      showSignIn: SHOW_SIGN_IN
+      showLogin: SHOW_LOG_IN
     })
   },
 

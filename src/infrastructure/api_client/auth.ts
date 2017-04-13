@@ -2,12 +2,10 @@ import http from './http'
 import tokenManager from './tokenManager'
 
 // Error codes
-export const ERRORES = {
-  USER_EXIST: 'USER_EXIST',
-  USER_NOT_FOUND: 'USER_NOT_FOUND',
-  PASSWORD_NOT_SECURE: 'PASSWORD_NOT_SECURE',
-  PASSWORD_NOT_MATCH: 'PASSWORD_NOT_MATCH'
-}
+export const USER_EXIST = 'auth/USER_EXIST'
+export const USER_NOT_FOUND = 'auth/USER_NOT_FOUND'
+export const PASSWORD_NOT_SECURE = 'auth/PASSWORD_NOT_SECURE'
+export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
 
 // a pattern for simulating string enums in typescript, http://stackoverflow.com/a/41631732
 const SignInMethod = {
@@ -23,7 +21,7 @@ const SignInMethod = {
 const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
   if (!isPasswordSecure(password)) {
-    throw new Error(ERRORES.PASSWORD_NOT_SECURE)
+    throw new Error(PASSWORD_NOT_SECURE)
   }
 
   const data = { email, password }
@@ -33,17 +31,13 @@ export async function signUp(email, password) {
       // sign in success, route to login page
       return true
     }
-  } catch (error) {
-    if (error.response.data) {
-      switch (error.response.data.code) {
-        case 10002:
-          throw new Error(ERRORES.USER_EXIST)
-        default:
-          throw error
+  } catch (e) {
+    if (e.response && e.response.data) {
+      switch (e.response.data.code) {
+        case 10002: throw new Error(USER_EXIST)
       }
-    } else {
-
     }
+    throw e
   }
 }
 
@@ -54,24 +48,23 @@ export function signOut() {
 
 export async function emailSignIn(email, password) {
   if (!isPasswordSecure(password)) {
-    throw new Error(ERRORES.PASSWORD_NOT_SECURE)
+    throw new Error(PASSWORD_NOT_SECURE)
   }
 
   try {
     const params = { email, password }
     return await signIn( SignInMethod.Email, params )
-  } catch (error) {
+  } catch (e) {
     // server response error
-    if (error.response) {
-      switch (error.response.data.code) {
+    if (e.response && e.response.data) {
+      switch (e.response.data.code) {
         case 10001:
-          throw new Error(ERRORES.USER_NOT_FOUND)
+          throw new Error(USER_NOT_FOUND)
         case 10003:
-          throw new Error(ERRORES.PASSWORD_NOT_MATCH)
-        default:
-          throw error
+          throw new Error(PASSWORD_NOT_MATCH)
       }
     }
+    throw e
   }
 }
 

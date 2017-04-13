@@ -16,11 +16,11 @@
     "password_not_secure": "Passwords must be at least 8 characters, has digital, lower case character and upper case character inside.",
     "confirm_password_not_match": "Confirm password not matching.",
     "credential_error": "Password is not match.",
-    "signin_error": "Login failed, please try again later."
+    "login_error": "Login failed, please try again later."
   },
   "header": {
     "search": "Search",
-    "sign_in": "Sign In",
+    "login": "Log In",
     "sign_up": "Sign Up",
     "cart": "Cart",
     "language": "Lang"

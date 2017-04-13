@@ -45,10 +45,10 @@ The path hierarch is the structure of the view: a sub component is in a sub fold
 The root component and page views are in the `router_views/` folder. The components used by router views are in `components/` folder.
 
 ### 4.2. The `router_views/App/` Folder
-This is the root component. It has header, footer, categories menu, signin, and signup components. It fetches categories and cart in `created` event handler. It has two computed props of cateroies and customer.
+This is the root component. It has header, footer, categories menu, login, and signup components. It fetches categories and cart in `created` event handler. It has two computed props of cateroies and customer.
 
 ### 4.3. The `components/TheHeader/` folder
-The header has the site's logo, search, cart, signin and language selector.
+The header has the site's logo, search, cart, login and language selector.
 
 ## 5. Fetch Data
 We use vuex action to send http requests to fetch data. To maintain the data consistent and avoid redundant fetching, we have the folloiwng "cache" mechanism: 

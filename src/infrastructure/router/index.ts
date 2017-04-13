@@ -8,7 +8,7 @@ import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
 import customer from './customer'
 import chekcout from './checkout'
-import { SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
+import { SHOW_LOG_IN } from 'src/infrastructure/store/modal_dialogs_types'
 import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 
 Vue.use(VueRouter)
@@ -62,7 +62,7 @@ const router = new VueRouter({
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters[GET_IS_LOGGED_IN]) {
     // if route requires auth and user isn't authenticated, show sign in modal and abort current navigation.
-    store.dispatch(SHOW_SIGN_IN)
+    store.dispatch(SHOW_LOG_IN)
     // seems like a router bug, navigation triggered by next(false) is not going to redirect properly.
     if (from.fullPath === '/') {
       next({ name: 'home' })

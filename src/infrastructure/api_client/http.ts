@@ -1,6 +1,8 @@
 import axios from 'axios'
 import tokenManager from './tokenManager'
 
+export const NETWORK_ERROR = 'Network Error'
+
 const baseURL = process.env.REST_API_URL
 
 // Create a http client instance with some common settings

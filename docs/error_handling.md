@@ -73,7 +73,7 @@ In vue components, those functions dispatch actions should be `async function` t
 export default {
   // ...
   
-  async signIn() {
+  async signUp() {
     try {
       await this.$store.dispatch(SIGN_UP)
     } catch (e) {

@@ -16,11 +16,11 @@
     "password_not_secure": "密码至少8位，必须同时拥有数字以及字母",
     "confirm_password_not_match": "两次密码输入不一致",
     "credential_error": "账号或密码错误",
-    "signin_error": "未知原因导致登录失败，请稍后重试"
+    "log_in_error": "未知原因导致登录失败，请稍后重试"
   },
   "header": {
     "search": "搜索",
-    "sign_in": "登录",
+    "log_in": "登录",
     "sign_up": "注册",
     "cart": "购物车",
     "language": "语言"

@@ -1,5 +1,5 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { HIDE_SIGN_IN, HIDE_SIGN_UP, SHOW_SIGN_IN } from 'src/infrastructure/store/modal_dialogs_types'
+import { HIDE_LOG_IN, HIDE_SIGN_UP, SHOW_LOG_IN } from 'src/infrastructure/store/modal_dialogs_types'
 import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/actions'
 import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
 import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/mutations'
@@ -9,7 +9,7 @@ import router from 'src/infrastructure/router'
 import { GoogleSignInRequest } from 'src/infrastructure/api_client/auth'
 
 export const SIGN_UP = 'auth/SIGN_UP'
-export const SIGN_IN = 'auth/SIGN_IN'
+export const LOG_IN = 'auth/LOG_IN'
 export const SIGN_OUT = 'auth/SIGN_OUT'
 
 const actions = {
@@ -19,20 +19,17 @@ const actions = {
 
     if (customer) {
       dispatch(HIDE_SIGN_UP)
-      dispatch(SHOW_SIGN_IN)
+      dispatch(SHOW_LOG_IN)
     }
   },
 
   /**
-   * Sign in to backend, authInfo should be a object.
-   *
-   * - Google Sign in
-   * { type: 'google', id_token: 'id_token provided by google sign in' }
+   * Log in to backend, authInfo should be a object.
    *
    * @param {any} { commit }
    * @param {any} authInfo
    */
-  async [SIGN_IN]({ rootState, commit, dispatch }, authInfo) {
+  async [LOG_IN]({ rootState, commit, dispatch }, authInfo) {
     let customer
     if (authInfo.type === 'email') {
       customer = await authApi.emailSignIn( authInfo.email, authInfo.pwd )
@@ -56,7 +53,7 @@ const actions = {
     }
 
     if (customer) {
-      dispatch(HIDE_SIGN_IN)
+      dispatch(HIDE_LOG_IN)
       dispatch(HIDE_SIGN_UP)
 
       localStorage.setItem('customer', JSON.stringify(customer))
