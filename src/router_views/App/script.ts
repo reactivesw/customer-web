@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 
 import TheHeader from 'src/components/TheHeader'
 import TheFooter from 'src/components/TheFooter'
-import SignIn from 'src/components/TheHeader/SignIn'
+import Login from 'src/components/TheHeader/Login'
 import SignUp from 'src/components/TheHeader/SignUp'
 
 import { FETCH_CATEGORIES } from 'src/infrastructure/store/categories_types'
@@ -15,7 +15,7 @@ import { GET_CUSTOMER } from 'src/infrastructure/store/modules/auth/getters'
   components: {
     TheHeader,
     TheFooter,
-    SignIn,
+    Login,
     SignUp
   }
 })

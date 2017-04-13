@@ -1,0 +1,53 @@
+<form class="login-modal" ref="loginForm" @submit.prevent="submitLogin">
+  <ModalDialog :title="$t('header.login')" :show="showLogin" @hide="hideLogin()">
+
+    <div slot="body">
+      <div class="row">
+
+        <div class="col-xs-12" v-if="loginFeedback">
+          <div class="alert alert-danger" role="alert">{{ loginFeedback }}</div>
+        </div>
+
+        <div class="col-md-6">
+          <g-signin-button
+            v-if="googleLoginIsReady"
+            class="btn btn-lg btn-block btn-danger login-modal__social-login"
+            :params="googleLoginParams"
+            @success="onGoogleLogin"
+            @error="onGoogleLoginError">
+            Google
+          </g-signin-button>
+        </div>
+
+        <div class="col-md-6">
+          <FacebookBtn
+            v-if="facebookLoginIsReady"
+            class="login-modal__social-login"
+            @login="onFacebookLogin"
+            @error="onFacebookLoginError"></FacebookBtn>
+        </div>
+
+      </div>
+      <hr>
+
+      <div class="form-group" :class="{ 'has-danger': passwordFeedback }">
+        <label for="login-email">{{ $t('form.email_address') }}</label>
+        <input type="email" class="form-control" id="login-email" v-model="email" required>
+      </div>
+
+      <div class="form-group" :class="{ 'has-danger': passwordFeedback }">
+        <label for="login-pwd">{{ $t('form.password') }}</label>
+        <input type="password" class="form-control" id="login-pwd" v-model="pwd" required>
+        <div class="form-control-feedback" v-if="passwordFeedback">{{ passwordFeedback }}</div>
+      </div>
+
+    </div>
+
+    <div slot="footer">
+      <button type="button" class="btn btn-link text-muted" @click="goForgotPwd">{{ $t('form.forgot_pwd') }}</button>
+      <button type="button" class="btn btn-link" @click="goSignUp">{{ $t('header.sign_up') }}</button>
+      <button type="submit" class="btn btn-primary">{{ $t('header.login') }}</button>
+    </div>
+
+  </ModalDialog>
+</form>

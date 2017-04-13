@@ -3,4 +3,4 @@ export const CATEGORIES = '/categories'
 export const PRODUCTS = '/products'
 export const PRODUCT_TYPES = '/product-types'
 export const CARTS = '/carts'
-export const SIGN_IN = '/customers/signin' // TODO: will move to auth endpoint.
+export const LOGIN = '/customers/signin' // TODO: will move to auth endpoint.
