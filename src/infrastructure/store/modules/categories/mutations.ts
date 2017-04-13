@@ -1,4 +1,4 @@
-import { SET_CATEGORIES } from 'src/infrastructure/store/categories_types'
+export const SET_CATEGORIES = 'categories/SET_CATEGORIES'
 
 const mutations = {
   [SET_CATEGORIES] (state, categories) {

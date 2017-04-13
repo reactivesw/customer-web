@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
-import * as modalDialogsTypes from 'src/infrastructure/store/modal_dialogs_types'
 
 import * as GSignInButton from 'vue-google-signin-button'
-import { LOG_IN } from 'src/infrastructure/store/modules/auth/actions'
+import {LOG_IN} from 'src/infrastructure/store/modules/auth/actions'
 import {PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND} from 'src/infrastructure/api_client/auth'
+import {HIDE_LOG_IN, SHOW_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/actions'
 Vue.use(GSignInButton)
 
 export default {
@@ -27,7 +27,9 @@ export default {
   },
 
   computed: {
-    showLogin(this: Vue.Component) { return this['$store'].state.modal_dialogs.showLogin }
+    showLogin(this: Vue.Component) {
+      return this['$store'].state.modal_dialogs.showLogin
+    }
   },
 
   created (this: Vue.Component) {
@@ -37,8 +39,8 @@ export default {
 
   methods: {
     ...mapActions({
-      hideLogin: modalDialogsTypes.HIDE_LOG_IN,
-      showSignUp: modalDialogsTypes.SHOW_SIGN_UP,
+      hideLogin: HIDE_LOG_IN,
+      showSignUp: SHOW_SIGN_UP,
       login: LOG_IN
     }),
 
@@ -109,25 +111,25 @@ export default {
         try {
           /* tslint:disable */
           (<any>window).fbAsyncInit = function () {
-            FB.init( {
+            FB.init({
               appId: process.env.FACEBOOK_APP_ID,
               xfbml: true,
               version: 'v2.8'
-            } );
-            FB.AppEvents.logPageView();
+            })
+            FB.AppEvents.logPageView()
             resolve()
           };
 
-          (function ( d, s, id ) {
-            var js, fjs = d.getElementsByTagName( s )[ 0 ];
-            if ( d.getElementById( id ) ) {
-              return;
+          (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0]
+            if (d.getElementById(id)) {
+              return
             }
-            js = d.createElement( s );
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            (<any>fjs.parentNode).insertBefore( js, fjs );
-          }( document, 'script', 'facebook-jssdk' ));
+            js = d.createElement(s)
+            js.id = id
+            js.src = '//connect.facebook.net/en_US/sdk.js';
+            (<any>fjs.parentNode).insertBefore(js, fjs)
+          }(document, 'script', 'facebook-jssdk'))
           /* tslint:enable */
         } catch (e) {
           reject(e)
@@ -139,20 +141,20 @@ export default {
       return new Promise((resolve, reject) => {
         try {
           /* tslint:disable */
-          (function ( d, s, id ) {
-            var js, fjs = d.getElementsByTagName( s )[ 0 ];
-            if ( d.getElementById( id ) ) {
-              return;
+          (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0]
+            if (d.getElementById(id)) {
+              return
             }
-            js = d.createElement( s );
-            js.id = id;
+            js = d.createElement(s)
+            js.id = id
             js.onload = function () {
               // google initialized
               resolve()
             }
-            js.src = "//apis.google.com/js/api:client.js";
-            (<any>fjs.parentNode).insertBefore( js, fjs );
-          }( document, 'script', 'google-gapi' ));
+            js.src = '//apis.google.com/js/api:client.js';
+            (<any>fjs.parentNode).insertBefore(js, fjs)
+          }(document, 'script', 'google-gapi'))
           /* tslint:enable */
         } catch (e) {
           reject(e)

@@ -1,5 +1,4 @@
 import { auth as authApi } from 'src/infrastructure/api_client'
-import { HIDE_LOG_IN, HIDE_SIGN_UP, SHOW_LOG_IN } from 'src/infrastructure/store/modal_dialogs_types'
 import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/actions'
 import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
 import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/mutations'
@@ -7,6 +6,7 @@ import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 import { RESET_CUSTOMER, SET_CUSTOMER } from 'src/infrastructure/store/modules/auth/mutations'
 import router from 'src/infrastructure/router'
 import { GoogleSignInRequest } from 'src/infrastructure/api_client/auth'
+import {HIDE_LOG_IN, HIDE_SIGN_UP, SHOW_LOG_IN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 export const SIGN_UP = 'auth/SIGN_UP'
 export const LOG_IN = 'auth/LOG_IN'

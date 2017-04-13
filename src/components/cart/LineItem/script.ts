@@ -1,6 +1,6 @@
 import { Component } from 'vue'
 import { MoneyToString } from 'src/infrastructure/utils'
-import SetLineItemQuantity = Carts.ActionPayloads.SetLineItemQuantity
+import {SetLineItemQuantity} from 'src/infrastructure/api_client/carts'
 
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
