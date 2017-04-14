@@ -1,7 +1,4 @@
 /*
- MIT License http://www.opensource.org/licenses/mit-license.php
- Author Alan Zhang @zcfan
-
  This server meant to change api server address dynamically even after the Vue SPA bundled.
  I think the better way is just make sure api server is "example.com/api", then let the reverse proxy server handle it...
  */
