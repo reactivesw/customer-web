@@ -9,17 +9,11 @@ export default {
   },
   methods: {
     doLogin: function (this: Component) {
-      FB.getLoginStatus((response) => {
+      FB.login((response) => {
         if (response.status === 'connected') {
           this['login'](response)
         } else {
-          FB.login((response) => {
-            if (response.status === 'connected') {
-              this['login'](response)
-            } else {
-              this['$emit']('error', response)
-            }
-          })
+          this['$emit']('error', response)
         }
       })
     },
