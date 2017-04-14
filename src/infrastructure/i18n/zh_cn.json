@@ -7,8 +7,8 @@
     "no": "否"
   },
   "meta": {
-    "brand": "Hello",
-    "copyright": "Reactivesw."
+    "brand": "Reactive Software",
+    "copyright": "Reactive Software."
   },
   "alert": {
     "network_error": "某些网络请求失败，网站可能无法正常工作，请检查网络连接",
