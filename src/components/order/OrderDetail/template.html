@@ -1,20 +1,27 @@
 <div v-if="order" class="row">
 
   <div class="col-12">
-    <h6>Status:</h6>
-    {{ orderStatus }}
+    <a href="javascript:void(0)" @click="backToShopping">&lt; {{$t('cart.back_to_shopping')}}</a>
+    <hr>
   </div>
 
-  <div class="col-12 my-3">
-    <h6>Sent To:</h6>
-    <AddressCard :addr="order.shippingAddress"></AddressCard>
+  <div class="col-6">
+    <h5>Thank you for your order</h5>
+    <hr>
+    <strong>Order Status:</strong> {{ orderStatus }}
+    <br>
+    <strong>Order Total:</strong> {{ totalPrice }}
+  </div>
+
+  <div class="col-6">
+    <h5>Shipping To</h5>
+    <hr>
+    <AddressCard class="my-3" :addr="order.shippingAddress"></AddressCard>
   </div>
 
   <div class="col-12">
-    <h6>Total Price: <span>{{ totalPrice }}</span></h6>
-  </div>
-
-  <div class="col-12">
+    <h5>Shipped Items</h5>
+    <hr>
     <LineItemDisplay v-for="lineItem in order.lineItems" :lineItem="lineItem" :key="lineItem.id"></LineItemDisplay>
   </div>
 </div>
