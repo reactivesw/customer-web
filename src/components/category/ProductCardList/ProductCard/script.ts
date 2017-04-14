@@ -1,5 +1,4 @@
 import { Component } from 'vue'
-import { MoneyToString } from 'src/infrastructure/utils'
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
 export default {
@@ -18,11 +17,7 @@ export default {
     },
 
     money(this: Component) {
-      return MoneyToString(this['product'].price.value)
+      return this['$moneyToString'](this['product'].price.value)
     }
-  },
-
-  methods: {
-    MoneyToString
   }
 }

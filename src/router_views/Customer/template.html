@@ -9,7 +9,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ $t('customer.orders') }}</a>
+          <router-link class="nav-link" active-class="active" :to="{ name: 'customer-orders' }">
+            {{ $t('customer.orders') }}
+          </router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" :to="{ name: 'customer-payment-info' }">
