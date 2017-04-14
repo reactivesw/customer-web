@@ -1,10 +1,8 @@
-import {
-  SHOW_LOG_IN,
-  HIDE_LOG_IN,
-  SET_LOG_IN,
-  SHOW_SIGN_UP,
-  HIDE_SIGN_UP,
-  SET_SIGN_UP } from 'src/infrastructure/store/modal_dialogs_types'
+import {SET_LOG_IN, SET_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/mutations'
+export const SHOW_LOG_IN = 'modal_dialogs/SHOW_LOG_IN'
+export const HIDE_LOG_IN = 'modal_dialogs/HIDE_LOG_IN'
+export const SHOW_SIGN_UP = 'modal_dialogs/SHOW_SIGN_UP'
+export const HIDE_SIGN_UP = 'modal_dialogs/HIDE_SIGN_UP'
 
 const actions = {
   [SHOW_LOG_IN]({ state, commit }) {

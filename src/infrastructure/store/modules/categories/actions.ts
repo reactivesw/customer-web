@@ -1,5 +1,7 @@
 import { categories as categoriesApi } from 'src/infrastructure/api_client'
-import { FETCH_CATEGORIES, SET_CATEGORIES } from 'src/infrastructure/store/categories_types'
+import {SET_CATEGORIES} from 'src/infrastructure/store/modules/categories/mutations'
+
+export const FETCH_CATEGORIES = 'categories/FETCH_CATEGORIES'
 
 // categoriesPromise is for prevent duplicate request and cache.
 let categoriesPromise

@@ -2,11 +2,8 @@ import { carts as cartsApi } from 'src/infrastructure/api_client'
 
 import { SET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 
-import RemoveLineItem = Carts.ActionPayloads.RemoveLineItem
-import SetLineItemQuantity = Carts.ActionPayloads.SetLineItemQuantity
-import AddLineItem = Carts.ActionPayloads.AddLineItem
-
 import { GET_CART } from './getters'
+import {AddLineItem, RemoveLineItem, SetLineItemQuantity} from 'src/infrastructure/api_client/carts'
 
 export const FETCH_CART = 'carts/FETCH_CART'
 export const ADD_TO_CART = 'carts/ADD_TO_CART'

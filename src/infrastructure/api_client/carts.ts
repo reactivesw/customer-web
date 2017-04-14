@@ -2,34 +2,45 @@ import http from './http'
 import tokenManager from './tokenManager'
 import * as CARTS_ACTIONS from './carts_actions'
 import Utils from './utils'
-import AddLineItem = Carts.ActionPayloads.AddLineItem
-import RemoveLineItem = Carts.ActionPayloads.RemoveLineItem
-import SetLineItemQuantity = Carts.ActionPayloads.SetLineItemQuantity
+
+export interface AddLineItem {
+  productId: string,
+  variantId: number,
+  quantity: number
+}
+
+export interface RemoveLineItem {
+  lineItemId: string,
+  quantity: number
+}
+
+export interface SetLineItemQuantity {
+  lineItemId: string,
+  quantity: number
+}
 
 const CARTS = '/carts'
 
 /**
  * fetch cart by customerId or anonymousId(if not logged in)
- * @export
- * @param {Object} - object contain customerId or anonymousId
- * @returns
+ * @param {Object} object contain customerId or anonymousId
  */
-export async function getCart() {
+export async function getCart () {
   return tokenManager.getToken()
-  .then(( token ) => {
-    const tokenPayload = Utils.decodeToken( token )
+  .then((token) => {
+    const tokenPayload = Utils.decodeToken(token)
 
     // token might belong to anonymous customer or signed in customer
     let params
-    if ( tokenPayload.sub === 'anonymous' ) {
-      params = { anonymousId: tokenPayload.subjectId }
+    if (tokenPayload.sub === 'anonymous') {
+      params = {anonymousId: tokenPayload.subjectId}
     } else {
-      params = { customerId: tokenPayload.subjectId }
+      params = {customerId: tokenPayload.subjectId}
     }
 
-    return http.get( CARTS, { params } )
+    return http.get(CARTS, {params})
   })
-  .then(( response ) => {
+  .then((response) => {
     return response && response.data
   })
 }
@@ -41,12 +52,12 @@ export async function getCart() {
  * @param {any} lineItem
  * @returns
  */
-export async function addToCart( cartId: string, cartVersion: number, lineItem: AddLineItem ) {
-  if ( typeof lineItem.quantity !== 'number' || lineItem.quantity < 1 ) {
+export async function addToCart (cartId: string, cartVersion: number, lineItem: AddLineItem) {
+  if (typeof lineItem.quantity !== 'number' || lineItem.quantity < 1) {
     lineItem.quantity = 1
   }
-  const addLineItemAction = Utils.buildAction( CARTS_ACTIONS.ADD_LINE_ITEM, lineItem )
-  return Utils.makeUpdateRequest( `${CARTS}/${cartId}`, cartVersion, [ addLineItemAction ] )
+  const addLineItemAction = Utils.buildAction(CARTS_ACTIONS.ADD_LINE_ITEM, lineItem)
+  return Utils.makeUpdateRequest(`${CARTS}/${cartId}`, cartVersion, [addLineItemAction])
 }
 
 /**
@@ -56,9 +67,9 @@ export async function addToCart( cartId: string, cartVersion: number, lineItem: 
  * @param {any} lineItem
  * @returns
  */
-export async function removeLineItem( cartId: string, cartVersion: number, lineItem: RemoveLineItem ) {
-  const removeLineItemAction = Utils.buildAction( CARTS_ACTIONS.REMOVE_LINE_ITEM, lineItem )
-  return Utils.makeUpdateRequest( `${CARTS}/${cartId}`, cartVersion, [ removeLineItemAction ] )
+export async function removeLineItem (cartId: string, cartVersion: number, lineItem: RemoveLineItem) {
+  const removeLineItemAction = Utils.buildAction(CARTS_ACTIONS.REMOVE_LINE_ITEM, lineItem)
+  return Utils.makeUpdateRequest(`${CARTS}/${cartId}`, cartVersion, [removeLineItemAction])
 }
 
 /**
@@ -68,7 +79,7 @@ export async function removeLineItem( cartId: string, cartVersion: number, lineI
  * @param {any} lineItem
  * @returns
  */
-export async function changeLineItemQuantity( cartId: string, cartVersion: number, lineItem: SetLineItemQuantity ) {
-  const changeLineItemQuantityAction = Utils.buildAction( CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, lineItem )
-  return Utils.makeUpdateRequest( `${CARTS}/${cartId}`, cartVersion, [ changeLineItemQuantityAction ] )
+export async function changeLineItemQuantity (cartId: string, cartVersion: number, lineItem: SetLineItemQuantity) {
+  const changeLineItemQuantityAction = Utils.buildAction(CARTS_ACTIONS.SET_LINE_ITEM_QUANTITY, lineItem)
+  return Utils.makeUpdateRequest(`${CARTS}/${cartId}`, cartVersion, [changeLineItemQuantityAction])
 }

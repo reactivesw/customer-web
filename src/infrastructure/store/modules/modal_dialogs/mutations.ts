@@ -1,7 +1,5 @@
-import {
-  SET_LOG_IN,
-  SET_SIGN_UP
-} from 'src/infrastructure/store/modal_dialogs_types'
+export const SET_LOG_IN = 'modal_dialogs/SET_LOG_IN'
+export const SET_SIGN_UP = 'modal_dialogs/SET_SIGN_UP'
 
 const mutations = {
   [SET_LOG_IN] (state, isShow) {

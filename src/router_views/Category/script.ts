@@ -1,23 +1,27 @@
 import { Component } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
+
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import ProductCardList from 'src/components/category/ProductCardList'
-import * as productsType from 'src/infrastructure/store/products_types'
-import * as categoriesType from 'src/infrastructure/store/categories_types'
+
+import {GET_CATEGORIES, GET_FEATURE_CATEGORY} from 'src/infrastructure/store/modules/categories/getters'
+import {FETCH_CATEGORIES} from 'src/infrastructure/store/modules/categories/actions'
+import {GET_CURRENT_CATEGORY_PRODUCTS} from 'src/infrastructure/store/modules/products/getters'
+import {FETCH_CURRENT_CATEGORY_PRODUCTS} from 'src/infrastructure/store/modules/products/actions'
 
 export default {
   name: 'Category',
 
   computed: mapGetters({
-    categories: categoriesType.GET_CATEGORIES,
-    products: productsType.GET_CURRENT_CATEGORY_PRODUCTS,
-    featureCategory: categoriesType.GET_FEATURE_CATEGORY
+    categories: GET_CATEGORIES,
+    products: GET_CURRENT_CATEGORY_PRODUCTS,
+    featureCategory: GET_FEATURE_CATEGORY
   }),
 
   methods: {
     ...mapActions({
-      fetchCategories: categoriesType.FETCH_CATEGORIES,
-      fetchCurrentProducts: productsType.FETCH_CURRENT_CATEGORY_PRODUCTS
+      fetchCategories: FETCH_CATEGORIES,
+      fetchCurrentProducts: FETCH_CURRENT_CATEGORY_PRODUCTS
     }),
 
     async fetchData (this: Component) {
