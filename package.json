@@ -1,14 +1,13 @@
 {
   "name": "customer-web",
-  "version": "0.0.5",
+  "version": "0.0.5-beta",
   "description": "ecommerce web frontend",
   "author": "dev@reactivesw.io",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "docker": "node build/docker.js",
-    "version": "node build/edit-version.js"
+    "docker": "node build/docker.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
