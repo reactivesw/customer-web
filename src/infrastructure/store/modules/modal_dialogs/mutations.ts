@@ -1,12 +1,12 @@
-export const SET_LOG_IN = 'modal_dialogs/SET_LOG_IN'
-export const SET_SIGN_UP = 'modal_dialogs/SET_SIGN_UP'
+export const SET_LOGIN = 'modal_dialogs/SET_LOGIN'
+export const SET_SIGNUP = 'modal_dialogs/SET_SIGNUP'
 
 const mutations = {
-  [SET_LOG_IN] (state, isShow) {
+  [SET_LOGIN] (state, isShow) {
     state.showLogin = isShow
   },
 
-  [SET_SIGN_UP] (state, isShow) {
+  [SET_SIGNUP] (state, isShow) {
     state.showSignUp = isShow
   }
 }

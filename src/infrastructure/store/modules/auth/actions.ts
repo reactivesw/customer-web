@@ -5,12 +5,12 @@ import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_i
 import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 import { RESET_CUSTOMER, SET_CUSTOMER } from 'src/infrastructure/store/modules/auth/mutations'
 import router from 'src/infrastructure/router'
-import { GoogleSignInRequest } from 'src/infrastructure/api_client/auth'
-import {HIDE_LOG_IN, HIDE_SIGN_UP, SHOW_LOG_IN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { GoogleLoginRequest } from 'src/infrastructure/api_client/auth'
+import {HIDE_LOGIN, HIDE_SIGN_UP, SHOW_LOGIN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 export const SIGN_UP = 'auth/SIGN_UP'
-export const LOG_IN = 'auth/LOG_IN'
-export const SIGN_OUT = 'auth/SIGN_OUT'
+export const LOGIN = 'auth/LOGIN'
+export const LOGOUT = 'auth/LOGOUT'
 
 const actions = {
 
@@ -19,7 +19,7 @@ const actions = {
 
     if (customer) {
       dispatch(HIDE_SIGN_UP)
-      dispatch(SHOW_LOG_IN)
+      dispatch(SHOW_LOGIN)
     }
   },
 
@@ -29,20 +29,20 @@ const actions = {
    * @param {any} { commit }
    * @param {any} authInfo
    */
-  async [LOG_IN]({ rootState, commit, dispatch }, authInfo) {
+  async [LOGIN]({ rootState, commit, dispatch }, authInfo) {
     let customer
     if (authInfo.type === 'email') {
-      customer = await authApi.emailSignIn( authInfo.email, authInfo.pwd )
+      customer = await authApi.emailLogin( authInfo.email, authInfo.pwd )
 
     } else if (authInfo.type === 'google') {
-      const request: GoogleSignInRequest = {
+      const request: GoogleLoginRequest = {
         token: authInfo.id_token
       }
-      customer = await authApi.googleSignIn( request )
+      customer = await authApi.googleLogin( request )
       customer.name = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName()
 
     } else if (authInfo.type === 'facebook') {
-      customer = await authApi.facebookSignIn( authInfo.response )
+      customer = await authApi.facebookLogin( authInfo.response )
 
       // make facebook sdk callback method to promise
       customer.name = await new Promise( ( resolve, reject ) => {
@@ -53,7 +53,7 @@ const actions = {
     }
 
     if (customer) {
-      dispatch(HIDE_LOG_IN)
+      dispatch(HIDE_LOGIN)
       dispatch(HIDE_SIGN_UP)
 
       localStorage.setItem('customer', JSON.stringify(customer))
@@ -66,18 +66,14 @@ const actions = {
     }
   },
 
-  [SIGN_OUT]({ commit }) {
+  [LOGOUT]({ commit }) {
     localStorage.removeItem('customer')
-    authApi.signOut()
+    authApi.logout()
     commit(RESET_CUSTOMER)
 
     // clear customer-realted data
     commit(RESET_CUSTOMER_INFO)
     commit(RESET_CART)
-
-    // should sign out google when user sign out our website, next time they might want to choose another google account.
-    const gAuth = gapi.auth2.getAuthInstance()
-    gAuth.signOut()
 
     // go home
     router.push({ name: 'home' })
