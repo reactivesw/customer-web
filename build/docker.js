@@ -11,7 +11,7 @@ cp( '-R', dockerFilesPath, config.build.assetsRoot )
 var spinner = ora( 'Building docker image...' )
 spinner.start()
 
-exec( `docker build -t reactivesw/${package.name}:${package.version} .`, {
+exec( `docker build -t reactivesw/${package.name}:${package.version}-beta .`, {
   cwd: config.build.assetsRoot
 }, ( error, stdout, stderr ) => {
   spinner.stop()
