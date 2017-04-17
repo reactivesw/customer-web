@@ -49,15 +49,3 @@ docker push reactivesw/customer-web;
 `.travis.yml` config file instruct Travis CI to deploy this project.
 
 It will run all previous steps automatically.
-
-## Other
-
-version in `k8s_deployment.yaml` must keep sync with `package.json`. There is a npm script defined in `package.json` could help with that.
- 
- ```bash
- npm run version -- <new version>
- // for instance:
- // npm run version -- 0.0.4
- ```
- 
- It'll change version in two files. ( Not adding git tag like `npm version` )

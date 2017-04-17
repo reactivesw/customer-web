@@ -18,19 +18,3 @@ Some enviornment variable names are:
 yarn
 yarn run dev
 ```
-
-## update version
-
-There is a npm script to update project version in multi config files.
-
-It will modify version strings in two files: `/package.json` and `/build/deploy/k8s.yaml`
-
-```bash
-// npm run version -- <new version>
-// for instance:
-npm run version -- 0.0.4
-
-// for Yarn:
-yarn run version -- 0.0.4
-```
-
