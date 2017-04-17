@@ -8,7 +8,7 @@ export const PASSWORD_NOT_SECURE = 'auth/PASSWORD_NOT_SECURE'
 export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
 
 // a pattern for simulating string enums in typescript, http://stackoverflow.com/a/41631732
-const SignInMethod = {
+const LoginMethod = {
   Email: '/auth/signin' as 'Email',
   Google: '/auth/signin/google' as 'Google',
   FB: '/auth/signin/facebook' as 'FB'
@@ -19,41 +19,42 @@ const SignInMethod = {
  * {"code":10002,"message":"customer already exist."}
  */
 const SIGN_UP = '/auth/signup'
-export async function signUp(email, password) {
+export async function signUp (email, password) {
   if (!isPasswordSecure(password)) {
     throw new Error(PASSWORD_NOT_SECURE)
   }
 
-  const data = { email, password }
+  const data = {email, password}
   try {
     const response = await http.post(SIGN_UP, data)
     if (response.status === 200) {
-      // sign in success, route to login page
+      // login success
       return true
     }
   } catch (e) {
     if (e.response && e.response.data) {
       switch (e.response.data.code) {
-        case 10002: throw new Error(USER_EXIST)
+        case 10002:
+          throw new Error(USER_EXIST)
       }
     }
     throw e
   }
 }
 
-export function signOut() {
-  tokenManager.setToken( undefined )
-  // no need to sign out Google for this app
+export function logout () {
+  tokenManager.setToken(undefined)
+  // no need to logout Google for this app
 }
 
-export async function emailSignIn(email, password) {
+export async function emailLogin (email, password) {
   if (!isPasswordSecure(password)) {
     throw new Error(PASSWORD_NOT_SECURE)
   }
 
   try {
-    const params = { email, password }
-    return await signIn( SignInMethod.Email, params )
+    const params = {email, password}
+    return await login(LoginMethod.Email, params)
   } catch (e) {
     // server response error
     if (e.response && e.response.data) {
@@ -68,34 +69,34 @@ export async function emailSignIn(email, password) {
   }
 }
 
-export interface GoogleSignInRequest {
+export interface GoogleLoginRequest {
   token: string
 }
 
-export async function googleSignIn(request: GoogleSignInRequest) {
-  return await signIn( SignInMethod.Google, request )
+export async function googleLogin (request: GoogleLoginRequest) {
+  return await login(LoginMethod.Google, request)
 }
 
-export interface FacebookSignInRequest {
+export interface FacebookLoginRequest {
   accessToken: string,
   expiresIn: string,
   signedRequest: string,
   userID: string
 }
 
-export async function facebookSignIn( request: FacebookSignInRequest ) {
-  return await signIn( SignInMethod.FB, request )
+export async function facebookLogin (request: FacebookLoginRequest) {
+  return await login(LoginMethod.FB, request)
 }
 
-async function signIn( signInMethod: keyof typeof SignInMethod, params ) {
-  const response = await http.post( signInMethod, params )
+async function login (loginMethod: keyof typeof LoginMethod, params) {
+  const response = await http.post(loginMethod, params)
   if (response) {
-    tokenManager.setToken( response.data.token )
+    tokenManager.setToken(response.data.token)
     return response.data.customerView
   }
 }
 
-function isPasswordSecure(password: string) {
+function isPasswordSecure (password: string) {
   const re = /^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,}$/
   return re.test(password)
 }

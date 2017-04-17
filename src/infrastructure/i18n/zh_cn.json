@@ -50,7 +50,7 @@
     "payment_info": "支付信息",
     "shipping_info": "发货信息",
     "orders": "订单",
-    "sign_out": "登出",
+    "logout": "登出",
 
     "nick_name": "昵称",
     "first_name": "名",

@@ -4,9 +4,9 @@ import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
 
 import * as GSignInButton from 'vue-google-signin-button'
-import {LOG_IN} from 'src/infrastructure/store/modules/auth/actions'
+import {LOGIN} from 'src/infrastructure/store/modules/auth/actions'
 import {PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND} from 'src/infrastructure/api_client/auth'
-import {HIDE_LOG_IN, SHOW_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import {HIDE_LOGIN, SHOW_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/actions'
 Vue.use(GSignInButton)
 
 export default {
@@ -39,9 +39,9 @@ export default {
 
   methods: {
     ...mapActions({
-      hideLogin: HIDE_LOG_IN,
+      hideLogin: HIDE_LOGIN,
       showSignUp: SHOW_SIGN_UP,
-      login: LOG_IN
+      login: LOGIN
     }),
 
     async submitLogin(this: Vue.Component) {

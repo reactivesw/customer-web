@@ -1,24 +1,24 @@
-import {SET_LOG_IN, SET_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/mutations'
-export const SHOW_LOG_IN = 'modal_dialogs/SHOW_LOG_IN'
-export const HIDE_LOG_IN = 'modal_dialogs/HIDE_LOG_IN'
+import {SET_LOGIN, SET_SIGNUP} from 'src/infrastructure/store/modules/modal_dialogs/mutations'
+export const SHOW_LOGIN = 'modal_dialogs/SHOW_LOGIN'
+export const HIDE_LOGIN = 'modal_dialogs/HIDE_LOGIN'
 export const SHOW_SIGN_UP = 'modal_dialogs/SHOW_SIGN_UP'
 export const HIDE_SIGN_UP = 'modal_dialogs/HIDE_SIGN_UP'
 
 const actions = {
-  [SHOW_LOG_IN]({ state, commit }) {
-    commit(SET_LOG_IN, true)
+  [SHOW_LOGIN]({ state, commit }) {
+    commit(SET_LOGIN, true)
   },
 
-  [HIDE_LOG_IN]({ state, commit }) {
-    commit(SET_LOG_IN, false)
+  [HIDE_LOGIN]({ state, commit }) {
+    commit(SET_LOGIN, false)
   },
 
   [SHOW_SIGN_UP]({ state, commit }, ) {
-    commit(SET_SIGN_UP, true)
+    commit(SET_SIGNUP, true)
   },
 
   [HIDE_SIGN_UP]({ state, commit }) {
-    commit(SET_SIGN_UP, false)
+    commit(SET_SIGNUP, false)
   }
 }
 
