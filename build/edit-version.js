@@ -17,7 +17,7 @@ var version = process.argv[2]
 // Edit version in k8s.yaml
 try {
   var k8s = yaml.load( fs.readFileSync( k8sPath, 'utf8' ) )
-  k8s.spec.template.spec.containers[0].image = 'reactivesw/' + package.name + ':' + version
+  k8s.spec.template.spec.containers[0].image = 'reactivesw/' + package.name + ':' + version + '-beta'
 
   var k8sYamlContent = yaml.dump( k8s )
   fs.writeFile( k8sPath, k8sYamlContent)
