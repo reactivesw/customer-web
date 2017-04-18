@@ -3,7 +3,7 @@ import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from 'src/components/TheHeader/LanguageSelector'
 import { GET_CUSTOMER, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
-import {SHOW_LOG_IN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import {SHOW_LOGIN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 export default {
   name: 'TheHeader',
@@ -44,7 +44,7 @@ export default {
 
   methods: {
     ...mapActions({
-      showLogin: SHOW_LOG_IN
+      showLogin: SHOW_LOGIN
     })
   },
 

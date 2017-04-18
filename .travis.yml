@@ -32,9 +32,9 @@ before_deploy:
   - echo '=============================finish update=============================='
 
 # 执行部署脚本，deploy-staging.sh参考4.2的模版
-#deploy:
-#  - provider: script
-#    script: sh ./build/deploy/deploy.sh
-#    skip_cleanup: true
-#    on:
-#      branch: master
+deploy:
+  - provider: script
+    script: sh ./build/deploy/deploy.sh
+    skip_cleanup: true
+    on:
+      branch: master

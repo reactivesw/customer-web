@@ -49,7 +49,7 @@
     "orders": "Orders",
     "payment_info": "Payment Info",
     "shipping_info": "Shipping Info",
-    "sign_out": "Sign Out",
+    "logout": "Logout",
 
     "nick_name": "Nick Name",
     "first_name": "First Name",
