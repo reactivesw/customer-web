@@ -15,10 +15,8 @@ script:
   - npm run build
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
 - npm run docker
-- docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
-  docker push reactivesw/customer-web;
+- sh ./build/deploy/docker_pusher.sh
 
 # deploy之前，安装gcloud和kubectl
 before_deploy:
