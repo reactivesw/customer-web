@@ -1,5 +1,3 @@
-import CustomerInfo from 'src/models/customer/CustomerInfo'
-
 export const SET_CUSTOMER_INFO = 'customer_info/SET_CUSTOMER_INFO'
 export const RESET_CUSTOMER_INFO = 'customerInfo/RESET_CUSTOMER_INFO'
 
