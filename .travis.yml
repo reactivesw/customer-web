@@ -15,7 +15,7 @@ script:
   - npm run build
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+- npm run docker
 - sh ./build/deploy/docker_pusher.sh
 
 # deploy之前，安装gcloud和kubectl
