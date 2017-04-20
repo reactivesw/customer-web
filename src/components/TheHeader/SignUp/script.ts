@@ -48,9 +48,7 @@ export default {
         // it has already passed all validation when enter this function
         await this['signUp']({ email: this['email'], password: this['pwd'] })
       } catch (e) {
-        debugger
         switch (e.message) {
-
           case USER_EXIST:
             this['usernameFeedback'] = this['$t']('alert.user_exist')
             break
