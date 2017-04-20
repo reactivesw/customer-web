@@ -1,5 +1,4 @@
 import { Component } from 'vue'
-import { MoneyToString } from 'src/infrastructure/utils'
 
 export default {
   name: 'Product',
@@ -19,9 +18,5 @@ export default {
   props: {
     product: Object,
     variant: Object
-  },
-
-  methods: {
-    MoneyToString
   }
 }

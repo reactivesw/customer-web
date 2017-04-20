@@ -1,3 +1,5 @@
+import {PluginObject} from 'vue'
+
 export function currencyNameToSymbol (currencyName) {
   // Currency symbol lookup table extracted from http://www.xe.com/symbols.php
   // tslint:disable-next-line
@@ -21,7 +23,19 @@ export function currencyNameToSymbol (currencyName) {
  * @param {any} priceObj
  * @returns
  */
-export function MoneyToString (priceObj) {
+export function moneyToString (priceObj) {
   // TODO: turn centAmount to human readable money amount according to iso 4217 standard
   return priceObj ? `${currencyNameToSymbol(priceObj.currencyCode)} ${priceObj.centAmount / 100}` : 'NULL price'
 }
+
+// Utils plugin can make all util functions to vue instances methods.
+const Utils: PluginObject<null> = {
+  install (Vue) {
+    Object.assign(Vue.prototype, {
+      $moneyToString: moneyToString,
+      $currencyNameToSymbol: currencyNameToSymbol
+    })
+  }
+}
+
+export default Utils
