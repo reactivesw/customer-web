@@ -89,8 +89,13 @@ export async function facebookLogin (request: FacebookLoginRequest) {
 }
 
 async function login (loginMethod: keyof typeof LoginMethod, params) {
-  const response = await http.post(loginMethod, params)
-  if (response) {
+  // add anonymousId for data merge
+  const payload = await tokenManager.getPayload()
+  const tempParams = Object.assign({}, params, {anonymousId: payload.subjectId})
+
+  // send request
+  const response = await http.post(loginMethod, tempParams)
+    if (response) {
     tokenManager.setToken(response.data.token)
     return response.data.customerView
   }
