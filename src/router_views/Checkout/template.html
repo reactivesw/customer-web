@@ -1,10 +1,13 @@
 <div class="container">
+
   <template v-if="showPlacedResult">
     <OrderDetail :order="placedOrder"></OrderDetail>
   </template>
+
   <template v-else>
     <div class="row">
       <div class="col-md-9">
+
         <div v-show="showShipping">
           <ShippingInfo></ShippingInfo>
           <button class="btn btn-success"
@@ -13,6 +16,7 @@
             Continue Checkout
           </button>
         </div>
+
         <div v-show="showPayment">
           <PaymentInfo></PaymentInfo>
           <button class="btn btn-success"
@@ -21,6 +25,7 @@
             Continue Checkout
           </button>
         </div>
+
         <div v-show=showReview>
           <div class="row">
             <div class="col-md-6">
@@ -49,14 +54,17 @@
             </div>
           </div>
         </div>
+
       </div>
       <div class="col-md-3">
+
         <OrderSummary></OrderSummary>
         <button class="btn btn-block btn-success"
           :disabled="!isPlaceOrderEnabled"
           @click="placeOrderHandler">
           Place Order
         </button>
+
       </div>
     </div>
     <div class="row">
@@ -66,4 +74,5 @@
     </div>
   </div>
   </template>
+
 </div>
