@@ -93,7 +93,13 @@
       "complete": "完成",
       "cancelled": "已取消",
       "unkonw": "订单状态有误"
-    }
+    },
+    "order_info": "订单详情",
+    "order_number": "订单号",
+    "order_price": "订单总价",
+    "order_status": "订单状态",
+    "ship_to": "寄送至",
+    "shipped_items": "订单内商品"
   },
   "form": {
     "email_address": "邮件地址",
