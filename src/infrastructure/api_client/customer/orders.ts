@@ -2,6 +2,15 @@ import http from '../http'
 
 const ORDER_API_URL = '/orders'
 
+export interface FetchOrderByOrderIdRequest {
+  orderId: string
+}
+
+export async function fetchOrderByOrderId (request: FetchOrderByOrderIdRequest) {
+  const response = await http.get(ORDER_API_URL + '/' + request.orderId)
+  return response && response.data
+}
+
 export interface FetchOrderListByCustomerIdRequest {
   customerId: string
 }

@@ -35,8 +35,4 @@ export default class OrderDetail extends Vue {
         return this['$t']('order.status.unknow')
     }
   }
-
-  backToShopping () {
-    this.$router.push({ name: 'featureCategory' })
-  }
 }

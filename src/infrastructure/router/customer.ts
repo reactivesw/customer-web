@@ -16,7 +16,8 @@ export default {
     },
     {
       name: 'customer-orders',
-      path: 'orders',
+      path: 'orders/:orderId?',
+      props: true, // make route params to component props, https://router.vuejs.org/en/essentials/passing-props.html
       component: Orders
     },
     {

@@ -1,6 +1,12 @@
 <div class="container">
 
   <template v-if="showPlacedResult">
+    <div class="row">
+      <div class="col-12">
+        <a href="javascript:void(0)" @click="$router.push({name:'featureCategory'})">&lt; {{$t('cart.back_to_shopping')}}</a>
+        <hr>
+      </div>
+    </div>
     <OrderDetail :order="placedOrder"></OrderDetail>
   </template>
 

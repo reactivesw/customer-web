@@ -4,7 +4,8 @@
     "save": "保存",
     "confirmation": "确认",
     "yes": "是",
-    "no": "否"
+    "no": "否",
+    "back": "返回"
   },
   "meta": {
     "brand": "Reactive Software",
