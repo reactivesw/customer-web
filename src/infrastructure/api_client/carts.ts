@@ -26,23 +26,15 @@ const CARTS = '/carts'
  * @param {Object} object contain customerId or anonymousId
  */
 export async function getCart () {
-  return tokenManager.getToken()
-  .then((token) => {
-    const tokenPayload = Utils.decodeToken(token)
-
-    // token might belong to anonymous customer or signed in customer
-    let params
-    if (tokenPayload.sub === 'anonymous') {
-      params = {anonymousId: tokenPayload.subjectId}
-    } else {
-      params = {customerId: tokenPayload.subjectId}
-    }
-
-    return http.get(CARTS, {params})
-  })
-  .then((response) => {
-    return response && response.data
-  })
+  const payload = await tokenManager.getPayload()
+  let params
+  if (payload.sub === 'anonymous') {
+    params = {anonymousId: payload.subjectId}
+  } else {
+    params = {customerId: payload.subjectId}
+  }
+  const response = await http.get(CARTS, {params})
+  return response && response.data
 }
 
 /**

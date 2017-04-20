@@ -8,7 +8,7 @@ const baseURL = process.env.REST_API_URL
 // Create a http client instance with some common settings
 const instance = axios.create({
   baseURL: baseURL,
-  timeout: 3000
+  timeout: 10000 // TODO: too long, reduce it after server stable.
 })
 
 // wrap the axios instance, to append a token to every request it sent.
