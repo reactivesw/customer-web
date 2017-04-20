@@ -13,7 +13,7 @@
       <router-link :to="{ name: 'customer-orders', params: { orderId: order.id } }">{{ order.id }}</router-link>
     </td>
     <td>{{ $moneyToString(order.totalPrice) }}</td>
-    <td>{{ order.orderStatus }}</td>
+    <td>{{ $t(`order.status.${order.orderStatus.toLowerCase()}`) }}</td>
   </tr>
   </tbody>
 </table>
