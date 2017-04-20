@@ -12,7 +12,7 @@ export default {
 
   computed: {
     price(this: Component) {
-      return this['moneyToString'](this['lineItem'].price)
+      return this['$moneyToString'](this['lineItem'].price)
     },
     image(this: Component) {
       const images = this['lineItem'].images
