@@ -8,6 +8,7 @@ import router from 'src/infrastructure/router'
 import { GoogleLoginRequest } from 'src/infrastructure/api_client/auth'
 import { HIDE_LOGIN, HIDE_SIGN_UP, SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 import { RESET_PAYMENTS } from 'src/infrastructure/store/modules/payment_info/mutations'
+import { RESET_ORDERS } from 'src/infrastructure/store/modules/orders/mutations'
 
 export const SIGN_UP = 'auth/SIGN_UP'
 export const LOGIN = 'auth/LOGIN'
@@ -76,6 +77,7 @@ const actions = {
     commit(RESET_CUSTOMER_INFO)
     commit(RESET_CART)
     commit(RESET_PAYMENTS)
+    commit(RESET_ORDERS)
 
     // go home
     router.push({ name: 'home' })
