@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'CategoriesNavButton',
+  export default {
+    name: 'CategoriesNavButton',
 
-  props: {
-    category: Object
+    props: {
+      category: Object
+    }
   }
-}
 </script>

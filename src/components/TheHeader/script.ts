@@ -3,7 +3,7 @@ import { mapActions, mapGetters } from 'vuex'
 import LanguageSelector from 'src/components/TheHeader/LanguageSelector'
 import { GET_CUSTOMER, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
-import {SHOW_LOGIN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 export default {
   name: 'TheHeader',
@@ -31,11 +31,11 @@ export default {
       }
     },
 
-    cartQuantity ( this: Component ) {
-      if ( this['cart'] && this['cart'].lineItems ) {
-        return this[ 'cart' ].lineItems.reduce( ( quantity, item ) => {
+    cartQuantity (this: Component) {
+      if (this['cart'] && this['cart'].lineItems) {
+        return this['cart'].lineItems.reduce((quantity, item) => {
           return quantity + item.quantity
-        }, 0 )
+        }, 0)
       } else {
         return 0
       }

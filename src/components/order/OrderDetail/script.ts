@@ -17,11 +17,11 @@ import LineItemDisplay from 'src/components/cart/LineItemDisplay'
 export default class OrderDetail extends Vue {
   order
 
-  get totalPrice () {
+  get totalPrice() {
     return this['$moneyToString'](this.order.totalPrice)
   }
 
-  get orderStatus () {
+  get orderStatus() {
     switch (this.order.orderStatus) {
       case 'Payed':
         return this['$t']('order.status.payed')

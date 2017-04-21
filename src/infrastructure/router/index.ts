@@ -8,8 +8,8 @@ import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
 import customer from './customer'
 import chekcout from './checkout'
-import {GET_IS_LOGGED_IN} from 'src/infrastructure/store/modules/auth/getters'
-import {SHOW_LOGIN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
+import { SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 Vue.use(VueRouter)
 
@@ -65,7 +65,7 @@ router.beforeEach(function (to, from, next) {
     store.dispatch(SHOW_LOGIN)
     // seems like a router bug, navigation triggered by next(false) is not going to redirect properly.
     if (from.fullPath === '/') {
-      next({name: 'home'})
+      next({ name: 'home' })
     } else {
       next(false)
     }

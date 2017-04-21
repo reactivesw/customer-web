@@ -1,4 +1,4 @@
-import {orders as ordersApi} from 'src/infrastructure/api_client'
+import { orders as ordersApi } from 'src/infrastructure/api_client'
 import {
   FETCH_CART
 } from 'src/infrastructure/store/modules/carts/actions'
@@ -6,7 +6,7 @@ import {
   FetchOrderByOrderIdRequest, FetchOrderListByCustomerIdRequest,
   PlaceOrderRequest
 } from 'src/infrastructure/api_client/customer/orders'
-import {SET_CURRENT_ORDER, SET_ORDERS} from 'src/infrastructure/store/modules/orders/mutations'
+import { SET_CURRENT_ORDER, SET_ORDERS } from 'src/infrastructure/store/modules/orders/mutations'
 
 export const FETCH_ORDER = 'orders/FETCH_ORDER'
 export const FETCH_ORDERS = 'orders/FETCH_ORDERS'
@@ -15,13 +15,13 @@ export const PLACE_ORDER = 'orders/PLACE_ORDER'
 const actions = {
 
   // fetched order will become current order, get it by GET_CURRENT_ORDER getter
-  async [FETCH_ORDER] ({state, commit}, payload: FetchOrderByOrderIdRequest) {
+  async [FETCH_ORDER]({ state, commit }, payload: FetchOrderByOrderIdRequest) {
     commit(SET_CURRENT_ORDER, null)
     const order = await ordersApi.fetchOrderByOrderId(payload)
     commit(SET_CURRENT_ORDER, order)
   },
 
-  async [FETCH_ORDERS] ({state, commit}, payload: FetchOrderListByCustomerIdRequest) {
+  async [FETCH_ORDERS]({ state, commit }, payload: FetchOrderListByCustomerIdRequest) {
     const orders = await ordersApi.fetchOrderListByCustomerId(payload)
     commit(SET_ORDERS, orders)
   },
@@ -29,7 +29,7 @@ const actions = {
   /**
    * checkout current active cart, generated order will become current order, get it by GET_CURRENT_ORDER getter
    */
-  async [PLACE_ORDER] ({rootState, commit, dispatch}, payload: PlaceOrderRequest) {
+  async [PLACE_ORDER]({ rootState, commit, dispatch }, payload: PlaceOrderRequest) {
     try {
       const order = await ordersApi.placeOrder(payload)
 

@@ -11,8 +11,7 @@ function createEmpty() {
   }
 }
 
-@Component({
-})
+@Component({})
 export default class CreditCard extends Vue {
   creditCard = createEmpty()
 

@@ -21,16 +21,16 @@ export default function computeVariantsAttributes(variants, productType) {
 function getCombinationAttributes(productType) {
   // get all combination attributes, use array to keep original order
   const combinationAttributes = productType.attributes
-    .filter(attr => attr.attributeConstraint === COMBINATION_UNIQUE)
-    .map((attr) => {
-      return {
-        name: attr.name,
-        label: attr.label,
-        type: attr.type,
-        // Use array to keep original order
-        values: []
-      }
-    })
+  .filter(attr => attr.attributeConstraint === COMBINATION_UNIQUE)
+  .map((attr) => {
+    return {
+      name: attr.name,
+      label: attr.label,
+      type: attr.type,
+      // Use array to keep original order
+      values: []
+    }
+  })
 
   return combinationAttributes
 }
@@ -78,9 +78,9 @@ function getVariantAttribute(variant, attributeValues) {
 // add the current value to attribute's values if it is new
 function addNewValue(attributeValues, currentValue) {
   const isExisted = attributeValues.values.some(value => {
-      return value === currentValue
-    })
-    if (!isExisted) {
-      attributeValues.values.push(currentValue)
-    }
+    return value === currentValue
+  })
+  if (!isExisted) {
+    attributeValues.values.push(currentValue)
+  }
 }

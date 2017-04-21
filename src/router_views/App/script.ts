@@ -6,9 +6,9 @@ import TheFooter from 'src/components/TheFooter'
 import Login from 'src/components/TheHeader/Login'
 import SignUp from 'src/components/TheHeader/SignUp'
 
-import {FETCH_CART} from 'src/infrastructure/store/modules/carts/actions'
-import {GET_CUSTOMER} from 'src/infrastructure/store/modules/auth/getters'
-import {FETCH_CATEGORIES} from 'src/infrastructure/store/modules/categories/actions'
+import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
+import { GET_CUSTOMER } from 'src/infrastructure/store/modules/auth/getters'
+import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/actions'
 
 @Component({
   components: {
@@ -20,21 +20,21 @@ import {FETCH_CATEGORIES} from 'src/infrastructure/store/modules/categories/acti
 })
 export default class App extends Vue {
 
-  created () {
+  created() {
     this.fetchCategories()
     this.fetchCart()
   }
 
   // store operations
-  get customer () {
+  get customer() {
     return this.$store.getters[GET_CUSTOMER]
   }
 
-  fetchCategories () {
+  fetchCategories() {
     this.$store.dispatch(FETCH_CATEGORIES)
   }
 
-  fetchCart () {
+  fetchCart() {
     this.$store.dispatch(FETCH_CART)
   }
 }

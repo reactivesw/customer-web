@@ -9,17 +9,17 @@
 </template>
 
 <script lang="ts">
-import CategoryNavButton from './CategoryNavButton'
+  import CategoryNavButton from './CategoryNavButton'
 
-export default {
-  name: 'CategoriesMenu',
+  export default {
+    name: 'CategoriesMenu',
 
-  props: {
-    categories: Array
-  },
+    props: {
+      categories: Array
+    },
 
-  components: {
-    CategoryNavButton
+    components: {
+      CategoryNavButton
+    }
   }
-}
 </script>

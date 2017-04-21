@@ -74,6 +74,7 @@ export default class PaymentInfo extends Vue {
   cancelAddCreditCardHandler() {
     this.showPaymentList = true
   }
+
   // END: add credit card
 
   // BEGIN: handle change default
@@ -98,6 +99,7 @@ export default class PaymentInfo extends Vue {
     this.showConfirmChangeDefault = false
     this.confirmChangeDefaultPayment = undefined
   }
+
   // END: handle change default
 
   // BEGIN: handle delete event
@@ -119,5 +121,6 @@ export default class PaymentInfo extends Vue {
     this.showConfirmDeletePayment = false
     this.confirmDeletePayment = undefined
   }
+
   // END: handle delete event
 }

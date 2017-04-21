@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
-import {PASSWORD_NOT_SECURE, USER_EXIST} from 'src/infrastructure/api_client/auth'
+import { PASSWORD_NOT_SECURE, USER_EXIST } from 'src/infrastructure/api_client/auth'
 import { SIGN_UP } from 'src/infrastructure/store/modules/auth/actions'
-import {HIDE_SIGN_UP, SHOW_LOGIN} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { HIDE_SIGN_UP, SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
 export default {
   name: 'SignUp',
@@ -19,7 +19,9 @@ export default {
   },
 
   computed: {
-    showSignUp(this: Vue.Component) { return this['$store'].state.modal_dialogs.showSignUp }
+    showSignUp(this: Vue.Component) {
+      return this['$store'].state.modal_dialogs.showSignUp
+    }
   },
 
   methods: {

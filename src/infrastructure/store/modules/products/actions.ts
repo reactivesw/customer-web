@@ -1,6 +1,6 @@
 import { products as productApi } from 'src/infrastructure/api_client'
-import {SET_CURRENT_CATEGORY_PRODUCTS, SET_CURRENT_PRODUCT} from 'src/infrastructure/store/modules/products/mutations'
-import {FETCH_CATEGORIES} from 'src/infrastructure/store/modules/categories/actions'
+import { SET_CURRENT_CATEGORY_PRODUCTS, SET_CURRENT_PRODUCT } from 'src/infrastructure/store/modules/products/mutations'
+import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/actions'
 
 export const FETCH_CURRENT_CATEGORY_PRODUCTS = 'products/FETCH_CURRENT_CATEGORY_PRODUCTS'
 export const FETCH_CURRENT_PRODUCT = 'products/FETCH_CURRENT_PRODUCT'
