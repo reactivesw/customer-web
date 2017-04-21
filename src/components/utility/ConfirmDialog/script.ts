@@ -1,6 +1,6 @@
 import { Component } from 'vue'
 
-import ModalDialog from '../ModalDialog'
+import ModalDialog from 'src/components/utility/ModalDialog'
 
 export default {
   name: 'ConfirmDialog',

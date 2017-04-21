@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import AddressDetails from '../AddressDetails'
+import AddressDetails from 'src/components/customer/AddressDetails'
 import ModalDialog from 'src/components/utility/ModalDialog'
 
 @Component({

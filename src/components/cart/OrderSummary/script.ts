@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { GET_TOTAL_PRICE, GET_IS_EMPTY }
-  from 'src/infrastructure/store/modules/carts/getters'
+import {
+  GET_TOTAL_PRICE,
+  GET_IS_EMPTY
+} from 'src/infrastructure/store/modules/carts/getters'
 
 @Component({
 })

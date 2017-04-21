@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Utils from './utils'
-import {type} from 'os'
 
 interface Payload {
   readonly sub: string;
@@ -15,18 +14,18 @@ class TokenManager {
   private _token?: string
   private _payload?: Payload
 
-  constructor ( ) {
+  constructor() {
     const token = localStorage.getItem('token')
-    if ( token ) {
+    if (token) {
       this.setToken(token)
     }
   }
 
-  async getToken ( ): Promise<string> {
+  async getToken(): Promise<string> {
     // something wrong with typescript, data type not match when using this._token directly.
     let token: string = <string>this._token
     if (!this._token) {
-      token = await fetchAnonymousToken( )
+      token = await fetchAnonymousToken()
       this.setToken(token)
     }
     return token
@@ -35,16 +34,16 @@ class TokenManager {
   async getPayload(): Promise<Payload> {
     let payload = <Payload>this._payload
     if (!this._token) {
-      const token = await fetchAnonymousToken( )
+      const token = await fetchAnonymousToken()
       this.setToken(token)
       payload = <Payload>this._payload
     }
     return payload
   }
 
-  setToken ( token?: string ) {
+  setToken(token?: string) {
     this._token = token
-    if ( token ) {
+    if (token) {
       localStorage.setItem('token', token)
 
       // decode payload
@@ -72,13 +71,13 @@ const baseURL = (<any>window).apiServerAddr || process.env.REST_API_URL
  *
  * @returns
  */
-async function fetchAnonymousToken (): Promise<string> {
+async function fetchAnonymousToken(): Promise<string> {
   const GET_ANONYMOUS_TOKEN = '/auth/anonymous'
   return await axios.get(GET_ANONYMOUS_TOKEN, {
-    baseURL: baseURL,
+    baseURL: baseURL
   })
-  .then( response => response.data )
+  .then(response => response.data)
 }
 
 // multiple imports share one instance
-export default new TokenManager( )
+export default new TokenManager()

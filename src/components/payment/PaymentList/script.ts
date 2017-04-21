@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import PaymentCard from '../PaymentCard'
+import PaymentCard from 'src/components/payment/PaymentCard'
 
 @Component({
   props: {

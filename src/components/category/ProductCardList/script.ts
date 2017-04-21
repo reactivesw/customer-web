@@ -1,6 +1,6 @@
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import ProductCard from 'src/components/category/ProductCardList/ProductCard'
-import {GET_CURRENT_CATEGORY_PRODUCTS} from 'src/infrastructure/store/modules/products/getters'
+import { GET_CURRENT_CATEGORY_PRODUCTS } from 'src/infrastructure/store/modules/products/getters'
 
 export default {
   name: 'ProductCardList',

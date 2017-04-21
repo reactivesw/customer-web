@@ -6,7 +6,7 @@ export interface FetchOrderByOrderIdRequest {
   orderId: string
 }
 
-export async function fetchOrderByOrderId (request: FetchOrderByOrderIdRequest) {
+export async function fetchOrderByOrderId(request: FetchOrderByOrderIdRequest) {
   const response = await http.get(ORDER_API_URL + '/' + request.orderId)
   return response && response.data
 }
@@ -20,7 +20,7 @@ export interface FetchOrderListByCustomerIdRequest {
  * @param {FetchOrderListByCustomerIdRequest} request
  * @returns {Promise<any>}
  */
-export async function fetchOrderListByCustomerId (request: FetchOrderListByCustomerIdRequest) {
+export async function fetchOrderListByCustomerId(request: FetchOrderListByCustomerIdRequest) {
   const response = await http.get(ORDER_API_URL, {
     params: request
   })
@@ -39,7 +39,7 @@ export interface PlaceOrderRequest {
  * @param {PlaceOrderRequest} request
  * @returns {Promise<any>}
  */
-export async function placeOrder ( request: PlaceOrderRequest ) {
+export async function placeOrder(request: PlaceOrderRequest) {
   // second param represents request body
   const response = await http.post(ORDER_API_URL, request)
   return response && response.data

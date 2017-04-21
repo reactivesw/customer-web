@@ -27,32 +27,32 @@ export async function getCustomerInfo(id: string) {
 }
 
 export async function updateCustomerInfo(request: UpdateCustomerInfoRequest) {
-  let {customer_id, version, customerInfoData} = request
-  let header: RequestHeader = {customer_id, version, action: 'updateCustomerInfo'}
+  let { customer_id, version, customerInfoData } = request
+  let header: RequestHeader = { customer_id, version, action: 'updateCustomerInfo' }
   return await putRequest(header, customerInfoData)
 }
 
 export async function setDefaultAddress(request: SetDefaultRequest) {
-  let {customer_id, version, addressId} = request
-  let header: RequestHeader = {customer_id, version, action: 'setDefaultAddress'}
+  let { customer_id, version, addressId } = request
+  let header: RequestHeader = { customer_id, version, action: 'setDefaultAddress' }
   return await putRequest(header, { addressId })
 }
 
 export async function addAddress(request: AddAddressRequest) {
-  let {customer_id, version, newAddressDetails} = request
-  let header: RequestHeader =  {customer_id, version, action: 'addAddress'}
+  let { customer_id, version, newAddressDetails } = request
+  let header: RequestHeader = { customer_id, version, action: 'addAddress' }
   return await putRequest(header, newAddressDetails)
 }
 
 export async function updateAddress(request: UpdateAddressRequest) {
-  let {customer_id, version, addressDetails} = request
-  let header: RequestHeader =  {customer_id, version, action: 'updateAddress'}
+  let { customer_id, version, addressDetails } = request
+  let header: RequestHeader = { customer_id, version, action: 'updateAddress' }
   return await putRequest(header, addressDetails)
 }
 
 export async function deleteAddress(request: DeleteAddressRequest) {
-  let {customer_id, version, id} = request
-  let header: RequestHeader = {customer_id, version, action: 'deleteAddress'}
+  let { customer_id, version, id } = request
+  let header: RequestHeader = { customer_id, version, action: 'deleteAddress' }
   return await putRequest(header, { id })
 }
 

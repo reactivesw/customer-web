@@ -1,5 +1,5 @@
 import { Component } from 'vue'
-import {SetLineItemQuantity} from 'src/infrastructure/api_client/carts'
+import { SetLineItemQuantity } from 'src/infrastructure/api_client/carts'
 
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 

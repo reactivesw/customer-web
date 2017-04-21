@@ -5,19 +5,19 @@ export const GET_CURRENT_PRODUCT_VARIANT = 'products/GET_CURRENT_PRODUCT_VARIANT
 export const GET_CURRENT_PRODUCT_VARIANTS = 'products/GET_CURRENT_PRODUCT_VARIANTS'
 
 const getters = {
-  [GET_CURRENT_CATEGORY_PRODUCTS] (state) {
+  [GET_CURRENT_CATEGORY_PRODUCTS](state) {
     return state.currentCategoryProducts
   },
 
-  [GET_CURRENT_PRODUCT] (state) {
+  [GET_CURRENT_PRODUCT](state) {
     return state.currentProduct
   },
 
-  [GET_CURRENT_PRODUCT_VARIANTS] (state) {
+  [GET_CURRENT_PRODUCT_VARIANTS](state) {
     return getCurrentVariants(state)
   },
 
-  [GET_CURRENT_PRODUCT_VARIANT] (state, getters, rootState) {
+  [GET_CURRENT_PRODUCT_VARIANT](state, getters, rootState) {
     const sku = rootState.route.params.sku
 
     const variants = getCurrentVariants(state)
@@ -28,7 +28,7 @@ const getters = {
     return currentVariant
   },
 
-  [GET_CURRENT_PRODUCT_TYPE] (state) {
+  [GET_CURRENT_PRODUCT_TYPE](state) {
     return state.currentProductType
   }
 }
@@ -39,7 +39,7 @@ const getters = {
  * @param {any} state
  * @returns
  */
-function getCurrentVariants (state) {
+function getCurrentVariants(state) {
   if (state.currentProduct) {
     return [
       state.currentProduct.masterVariant,

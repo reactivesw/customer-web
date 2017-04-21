@@ -5,8 +5,9 @@ import AddressList from 'src/components/customer/AddressList'
 import AddressDialog from 'src/components/customer/AddressDialog'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 
-import { GET_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/getters'
+import {
+  GET_CUSTOMER_INFO
+} from 'src/infrastructure/store/modules/customer_info/getters'
 
 import {
   FETCH_CUSTOMER_INFO,
@@ -14,8 +15,7 @@ import {
   ADD_ADDRESS,
   UPDATE_ADDRESS,
   DELETE_ADDRESS
-}
-  from 'src/infrastructure/store/modules/customer_info/actions'
+} from 'src/infrastructure/store/modules/customer_info/actions'
 
 import AddressDetails from 'src/models/customer/AddressDetails'
 import ApiRequestBase from 'src/models/customer/ApiRequestBase'
@@ -64,6 +64,7 @@ export default class ShippingInfo extends Vue {
   confirmNoChangeDefaultEventHandler() {
     this.confirmChangeDefault = false
   }
+
   // END: change default
 
   // BEGIN: delete event, confirm the delete
@@ -79,6 +80,7 @@ export default class ShippingInfo extends Vue {
   confirmNoDeleteAddressEventHandler() {
     this.confirmDeleteAddress = false
   }
+
   // END: delete
 
   // BEGIN: update and add
@@ -99,6 +101,7 @@ export default class ShippingInfo extends Vue {
   saveAddressDetailsEventHandler(addressDetails) {
     saveAddressDetailsHelp(this, addressDetails)
   }
+
   // END: update and add
 
   // following are store operations

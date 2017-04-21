@@ -41,8 +41,8 @@ async function appendToken(config) {
   const configWithToken = Object.assign({}, config)
 
   return tokenManager.getToken()
-  .then( ( token ) => {
-    if ( typeof configWithToken.headers === 'object' ) {
+  .then((token) => {
+    if (typeof configWithToken.headers === 'object') {
       configWithToken.headers.Authorization = 'Bearer ' + token
     } else {
       configWithToken.headers = { 'Authorization': 'Bearer ' + token }

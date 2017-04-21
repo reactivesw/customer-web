@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { GET_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/getters'
-import { FETCH_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO }
-  from 'src/infrastructure/store/modules/customer_info/actions'
+import {
+  GET_CUSTOMER_INFO
+} from 'src/infrastructure/store/modules/customer_info/getters'
+import {
+  FETCH_CUSTOMER_INFO, UPDATE_CUSTOMER_INFO
+} from 'src/infrastructure/store/modules/customer_info/actions'
 
-import CustomerInfo from 'src/models/customer/CustomerInfo'
 import CustomerInfoData from 'src/models/customer/CustomerInfoData'
 import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
 
-@Component({
-})
+@Component({})
 export default class Account extends Vue {
 
   created() {

@@ -1,5 +1,5 @@
 import { categories as categoriesApi } from 'src/infrastructure/api_client'
-import {SET_CATEGORIES} from 'src/infrastructure/store/modules/categories/mutations'
+import { SET_CATEGORIES } from 'src/infrastructure/store/modules/categories/mutations'
 
 export const FETCH_CATEGORIES = 'categories/FETCH_CATEGORIES'
 

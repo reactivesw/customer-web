@@ -2,7 +2,7 @@ import getters from './getters'
 import mutations, { INITIAL_VALUE } from './mutations'
 import actions from './actions'
 
-function getCustomerInitialState () {
+function getCustomerInitialState() {
   let localCustomer = localStorage.getItem('customer')
   return localCustomer ? JSON.parse(localCustomer) : INITIAL_VALUE
 }
@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export default {
-  state: {...initialState},
+  state: { ...initialState },
   getters,
   mutations,
   actions
