@@ -1,0 +1,19 @@
+// for application variables
+@import '~src/styles/variables';
+// for media-breakpoint-down
+@import '~bootstrap/scss/mixins/breakpoints';
+
+.the-header {
+  min-height: $header-height;
+
+  // Float layout for drop menu.
+  @include media-breakpoint-down("xs") {
+    .navbar-toggleable-xs {
+      clear: both;
+    }
+  }
+
+  .language-selector {
+    width: 6em;
+  }
+}
