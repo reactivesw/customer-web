@@ -11,7 +11,7 @@ const getters = {
     let result = false
     const payments = state.payments
     if (payments) {
-      if (payments.find( payment => payment.selected)) {
+      if (payments.find(payment => payment.selected)) {
         result = true
       }
     }
@@ -22,7 +22,7 @@ const getters = {
     let result = undefined
     const payments = state.payments
     if (payments) {
-      result = payments.find( payment => payment.selected)
+      result = payments.find(payment => payment.selected)
     }
     return result
   }

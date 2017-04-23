@@ -1,6 +1,7 @@
 import http from '../http'
-import { CreditCardDraft, DefaultCardRequest, DeleteCardRequest }
-  from './payment_models'
+import {
+  CreditCardDraft, DefaultCardRequest, DeleteCardRequest
+} from './payment_models'
 
 export const API_URL = '/payments/credit-cards'
 

@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { GET_CART, GET_IS_EMPTY}
-  from 'src/infrastructure/store/modules/carts/getters'
-import { FETCH_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY }
-  from 'src/infrastructure/store/modules/carts/actions'
+import {
+  GET_CART, GET_IS_EMPTY
+} from 'src/infrastructure/store/modules/carts/getters'
+import {
+  FETCH_CART, REMOVE_LINE_ITEM, SET_LINE_ITEM_QUANTITY
+} from 'src/infrastructure/store/modules/carts/actions'
 
-import LineItem from '../LineItem'
+import LineItem from 'src/components/cart/LineItem'
 
 @Component({
   components: {
@@ -18,7 +20,7 @@ export default class CardDetails extends Vue {
 
   // sotre operations
   get isEmpty() {
-   return this.$store.getters[GET_IS_EMPTY]
+    return this.$store.getters[GET_IS_EMPTY]
   }
 
   get cart() {

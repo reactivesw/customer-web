@@ -1,6 +1,5 @@
 import { Component } from 'vue'
-import { MoneyToString } from 'src/infrastructure/utils'
-import {SetLineItemQuantity} from 'src/infrastructure/api_client/carts'
+import { SetLineItemQuantity } from 'src/infrastructure/api_client/carts'
 
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
@@ -13,7 +12,7 @@ export default {
 
   computed: {
     price(this: Component) {
-      return MoneyToString(this['lineItem'].price)
+      return this['$moneyToString'](this['lineItem'].price)
     },
     image(this: Component) {
       const images = this['lineItem'].images

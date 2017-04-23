@@ -3,7 +3,6 @@ import Component from 'vue-class-component'
 import AddressCard from 'src/components/customer/AddressCard/script'
 import PaymentCard from 'src/components/payment/PaymentCard/script'
 import LineItemDisplay from 'src/components/cart/LineItemDisplay'
-import { MoneyToString } from 'src/infrastructure/utils'
 
 @Component({
   props: {
@@ -18,11 +17,11 @@ import { MoneyToString } from 'src/infrastructure/utils'
 export default class OrderDetail extends Vue {
   order
 
-  get totalPrice () {
-    return MoneyToString(this.order.totalPrice)
+  get totalPrice() {
+    return this['$moneyToString'](this.order.totalPrice)
   }
 
-  get orderStatus () {
+  get orderStatus() {
     switch (this.order.orderStatus) {
       case 'Payed':
         return this['$t']('order.status.payed')
@@ -35,9 +34,5 @@ export default class OrderDetail extends Vue {
       default:
         return this['$t']('order.status.unknow')
     }
-  }
-
-  backToShopping () {
-    this.$router.push({ name: 'featureCategory' })
   }
 }

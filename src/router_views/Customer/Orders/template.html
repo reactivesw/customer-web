@@ -1,0 +1,16 @@
+<!-- Only display object when it has value. It may be undefined when async action result is not completed -->
+<div>
+  <template v-if="orderId">
+    <div class="row">
+      <div class="col-12">
+        <a href="javascript:void(0)" @click="$router.push({name:'customer-orders'})">&lt; {{$t('common.back')}}</a>
+        <hr>
+      </div>
+    </div>
+    <OrderDetail :order="order" v-if="order"></OrderDetail>
+  </template>
+
+  <template v-else>
+    <OrderList :orders="orders" v-if="orders"></OrderList>
+  </template>
+</div>

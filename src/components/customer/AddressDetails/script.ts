@@ -15,7 +15,7 @@ export default class AddressDetails extends Vue {
 
   // computed
   get addressDetails() {
-    return Object.assign({}, this.addressProp, {forceRefresh: this.forceRefresh})
+    return Object.assign({}, this.addressProp, { forceRefresh: this.forceRefresh })
   }
 
   saveAddressDetails() {

@@ -8,7 +8,7 @@ export default function (Vue) {
   initLang()
 }
 
-export function changeLang (newLang) {
+export function changeLang(newLang) {
   Vue.config['lang'] = newLang
   localStorage.setItem('lang', newLang)
 }

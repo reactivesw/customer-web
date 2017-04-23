@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { MoneyToString } from 'src/infrastructure/utils'
-
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
 @Component({
@@ -14,7 +12,7 @@ export default class LineItem extends Vue {
   lineItem
 
   get price() {
-    return MoneyToString(this.lineItem.price)
+    return this['$moneyToString'](this.lineItem.price)
   }
 
   get image() {

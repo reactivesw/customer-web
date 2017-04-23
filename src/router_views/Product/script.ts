@@ -1,28 +1,28 @@
-import {Component} from 'vue'
-import {mapActions, mapGetters} from 'vuex'
+import { Component } from 'vue'
+import { mapActions, mapGetters } from 'vuex'
 
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import Gallery from 'src/components/product/Gallery'
 import ProductInfo from 'src/components/product/ProductInfo'
 import VariantSelector from 'src/components/product/VariantSelector'
 
-import {ADD_TO_CART} from 'src/infrastructure/store/modules/carts/actions'
-import {GET_CATEGORIES} from 'src/infrastructure/store/modules/categories/getters'
+import { ADD_TO_CART } from 'src/infrastructure/store/modules/carts/actions'
+import { GET_CATEGORIES } from 'src/infrastructure/store/modules/categories/getters'
 import {
   GET_CURRENT_PRODUCT, GET_CURRENT_PRODUCT_TYPE, GET_CURRENT_PRODUCT_VARIANT,
   GET_CURRENT_PRODUCT_VARIANTS
 } from 'src/infrastructure/store/modules/products/getters'
-import {FETCH_CURRENT_PRODUCT} from 'src/infrastructure/store/modules/products/actions'
+import { FETCH_CURRENT_PRODUCT } from 'src/infrastructure/store/modules/products/actions'
 
 import computeVariantsAttributes from './variantsAttributes'
-import {AddLineItem} from 'src/infrastructure/api_client/carts'
+import { AddLineItem } from 'src/infrastructure/api_client/carts'
 
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
 export default {
   name: 'Product',
 
-  data () {
+  data() {
     return {
       addToCartAlert: null
     }
@@ -132,7 +132,7 @@ export default {
     },
 
     handleSelectSku(this: Component, sku) {
-      this['$router'].push({name: 'products', params: {sku}})
+      this['$router'].push({ name: 'products', params: { sku } })
     }
   },
 

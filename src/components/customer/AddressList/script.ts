@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import AddressCard from '../AddressCard'
+import AddressCard from 'src/components/customer/AddressCard'
 
 @Component({
   props: {

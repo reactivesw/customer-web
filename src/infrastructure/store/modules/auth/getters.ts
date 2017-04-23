@@ -17,7 +17,7 @@ const getters = {
     return state.token
   },
 
-  [GET_CUSTOMER_ID](state, getters ) {
+  [GET_CUSTOMER_ID](state, getters) {
     const customer = state.customer
     return customer && customer.id
   }

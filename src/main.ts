@@ -5,6 +5,9 @@ import App from 'src/router_views/App'
 import 'bootstrap/dist/js/bootstrap'
 import './styles/style.scss'
 
+import Utils from './infrastructure/utils'
+Vue.use(Utils)
+
 import setLocales from './infrastructure/i18n'
 setLocales(Vue)
 

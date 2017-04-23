@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
 
 import * as GSignInButton from 'vue-google-signin-button'
-import {LOGIN} from 'src/infrastructure/store/modules/auth/actions'
-import {PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND} from 'src/infrastructure/api_client/auth'
-import {HIDE_LOGIN, SHOW_SIGN_UP} from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { LOGIN } from 'src/infrastructure/store/modules/auth/actions'
+import { PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND } from 'src/infrastructure/api_client/auth'
+import { HIDE_LOGIN, SHOW_SIGN_UP } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 Vue.use(GSignInButton)
 
 export default {
@@ -89,7 +89,7 @@ export default {
 
     onGoogleLogin(this: Vue.Component, googleUser) {
       const id_token = googleUser.getAuthResponse().id_token
-      this['login']({type: 'google', id_token})
+      this['login']({ type: 'google', id_token })
     },
 
     onGoogleLoginError(this: Vue.Component, error) {
@@ -98,7 +98,7 @@ export default {
     },
 
     onFacebookLogin(this: Vue.Component, response) {
-      this['login']({type: 'facebook', response})
+      this['login']({ type: 'facebook', response })
     },
 
     onFacebookLoginError(this: Vue.Component, errorResponse) {

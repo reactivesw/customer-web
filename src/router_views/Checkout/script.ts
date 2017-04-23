@@ -30,7 +30,7 @@ import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
 })
 export default class Checkout extends Vue {
   // the order server returned after place order
-  placedOrder:any = null
+  placedOrder: any = null
 
   // the checkout needs two pieces of info:
   // a selected shipping address and a selected payment
@@ -70,7 +70,7 @@ export default class Checkout extends Vue {
   }
 
   // if placedOrder has value, means place order request has been sent, show placed result.
-  get showPlacedResult () {
+  get showPlacedResult() {
     return !!this.placedOrder
   }
 

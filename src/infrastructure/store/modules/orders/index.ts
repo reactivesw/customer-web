@@ -3,11 +3,12 @@ import mutations from './mutations'
 import actions from './actions'
 
 const initialState = {
-  currentOrder: {}
+  orders: null,
+  currentOrder: null
 }
 
 export default {
-  state: {...initialState},
+  state: { ...initialState },
   getters,
   mutations,
   actions

@@ -19,12 +19,12 @@ const LoginMethod = {
  * {"code":10002,"message":"customer already exist."}
  */
 const SIGN_UP = '/auth/signup'
-export async function signUp (email, password) {
+export async function signUp(email, password) {
   if (!isPasswordSecure(password)) {
     throw new Error(PASSWORD_NOT_SECURE)
   }
 
-  const data = {email, password}
+  const data = { email, password }
   try {
     const response = await http.post(SIGN_UP, data)
     if (response.status === 200) {
@@ -42,18 +42,18 @@ export async function signUp (email, password) {
   }
 }
 
-export function logout () {
+export function logout() {
   tokenManager.setToken(undefined)
   // no need to logout Google for this app
 }
 
-export async function emailLogin (email, password) {
+export async function emailLogin(email, password) {
   if (!isPasswordSecure(password)) {
     throw new Error(PASSWORD_NOT_SECURE)
   }
 
   try {
-    const params = {email, password}
+    const params = { email, password }
     return await login(LoginMethod.Email, params)
   } catch (e) {
     // server response error
@@ -73,7 +73,7 @@ export interface GoogleLoginRequest {
   token: string
 }
 
-export async function googleLogin (request: GoogleLoginRequest) {
+export async function googleLogin(request: GoogleLoginRequest) {
   return await login(LoginMethod.Google, request)
 }
 
@@ -84,19 +84,24 @@ export interface FacebookLoginRequest {
   userID: string
 }
 
-export async function facebookLogin (request: FacebookLoginRequest) {
+export async function facebookLogin(request: FacebookLoginRequest) {
   return await login(LoginMethod.FB, request)
 }
 
-async function login (loginMethod: keyof typeof LoginMethod, params) {
-  const response = await http.post(loginMethod, params)
+async function login(loginMethod: keyof typeof LoginMethod, params) {
+  // add anonymousId for data merge
+  const payload = await tokenManager.getPayload()
+  const tempParams = Object.assign({}, params, { anonymousId: payload.subjectId })
+
+  // send request
+  const response = await http.post(loginMethod, tempParams)
   if (response) {
     tokenManager.setToken(response.data.token)
     return response.data.customerView
   }
 }
 
-function isPasswordSecure (password: string) {
+function isPasswordSecure(password: string) {
   const re = /^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,}$/
   return re.test(password)
 }

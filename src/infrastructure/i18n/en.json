@@ -4,7 +4,8 @@
     "save": "Save",
     "confirmation": "Confirmation",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "back": "Back"
   },
   "meta": {
     "brand": "Reactive Software",
@@ -91,7 +92,13 @@
       "complete": "Order is completed.",
       "cancelled": "Order is cancelled.",
       "unkonw": "Sorry, something wrong with this order."
-    }
+    },
+    "order_info": "Order Info",
+    "order_number": "Order Number",
+    "order_price": "Order Price",
+    "order_status": "Order Status",
+    "ship_to": "Ship To",
+    "shipped_items": "Shipped Items"
   },
   "form": {
     "email_address": "Email Address",
