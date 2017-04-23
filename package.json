@@ -1,6 +1,6 @@
 {
   "name": "customer-web",
-  "version": "0.0.5-dev",
+  "version": "0.0.5",
   "description": "ecommerce web frontend",
   "author": "dev@reactivesw.io",
   "private": true,
