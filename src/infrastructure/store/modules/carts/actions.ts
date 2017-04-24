@@ -20,6 +20,7 @@ const actions = {
       cart = await cartsApi.getCart()
       commit(SET_CART, cart)
     }
+    return cart
   },
 
   /**
@@ -27,10 +28,11 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async[ADD_TO_CART]({ commit, getters }, lineItem: AddLineItem) {
-    let cart = getters[GET_CART]
+  async[ADD_TO_CART]({ commit, getters, dispatch }, lineItem: AddLineItem) {
+    let cart = await dispatch(FETCH_CART)
     cart = await cartsApi.addToCart(cart.id, cart.version, lineItem)
     commit(SET_CART, cart)
+    return cart
   },
 
   /**
@@ -38,9 +40,11 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async[REMOVE_LINE_ITEM]({ state, commit }, lineItem: RemoveLineItem) {
-    const cart = await cartsApi.removeLineItem(state.cart.id, state.cart.version, lineItem)
+  async[REMOVE_LINE_ITEM]({ getters, commit, dispatch }, lineItem: RemoveLineItem) {
+    let cart = await dispatch(FETCH_CART)
+    cart = await cartsApi.removeLineItem(cart.id, cart.version, lineItem)
     commit(SET_CART, cart)
+    return cart
   },
 
   /**
@@ -48,9 +52,11 @@ const actions = {
    * @param lineItem
    * @returns {Promise<void>}
    */
-  async[SET_LINE_ITEM_QUANTITY]({ state, commit }, lineItem: SetLineItemQuantity) {
-    const cart = await cartsApi.changeLineItemQuantity(state.cart.id, state.cart.version, lineItem)
+  async[SET_LINE_ITEM_QUANTITY]({ getters, commit, dispatch }, lineItem: SetLineItemQuantity) {
+    let cart = await dispatch(FETCH_CART)
+    cart = await cartsApi.changeLineItemQuantity(cart.id, cart.version, lineItem)
     commit(SET_CART, cart)
+    return cart
   }
 }
 
