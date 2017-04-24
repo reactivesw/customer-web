@@ -2,7 +2,6 @@ import { auth as authApi } from 'src/infrastructure/api_client'
 import { FETCH_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/actions'
 import { FETCH_CART } from 'src/infrastructure/store/modules/carts/actions'
 import { RESET_CUSTOMER_INFO } from 'src/infrastructure/store/modules/customer_info/mutations'
-import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 import { RESET_CUSTOMER, SET_CUSTOMER } from 'src/infrastructure/store/modules/auth/mutations'
 import router from 'src/infrastructure/router'
 import { GoogleLoginRequest } from 'src/infrastructure/api_client/auth'
@@ -68,16 +67,16 @@ const actions = {
     }
   },
 
-  [LOGOUT]({ commit }) {
+  [LOGOUT]({ commit, dispatch }) {
     localStorage.removeItem('customer')
     authApi.logout()
     commit(RESET_CUSTOMER)
 
     // clear customer-realted data
     commit(RESET_CUSTOMER_INFO)
-    commit(RESET_CART)
     commit(RESET_PAYMENTS)
     commit(RESET_ORDERS)
+    dispatch(FETCH_CART, true) // fetch a new cart for anonymous instead of reset to undefined.
 
     // go home
     router.push({ name: 'home' })
