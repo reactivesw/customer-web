@@ -10,9 +10,19 @@ import {
 
 import CustomerInfoData from 'src/models/customer/CustomerInfoData'
 import UpdateCustomerInfoRequest from 'src/models/customer/UpdateCustomerInfoRequest'
+import { UpdatePasswordRequest } from 'src/infrastructure/api_client/auth'
+import { GET_CUSTOMER } from 'src/infrastructure/store/modules/auth/getters'
+import { UPDATE_PASSWORD } from 'src/infrastructure/store/modules/auth/actions'
 
 @Component({})
 export default class Account extends Vue {
+  editingPwd: boolean = false // this variable toggle edit info/password ui.
+
+  successAlert: string = ''
+  errorAlert: string = ''
+
+  oldPassword: string = ''
+  newPassword: string = ''
 
   created() {
     this.fetchCustomerInfo()
@@ -54,6 +64,20 @@ export default class Account extends Vue {
     this.updateCustomer(request)
   }
 
+  async updateCustomerPwdEventHandler() {
+    let request:UpdatePasswordRequest = {
+      customerId: this.customerInfo.id,
+      version: this.customerInfo.version,
+      oldPassword: this.oldPassword,
+      newPassword: this.newPassword
+    }
+    try {
+      await this.$store.dispatch(UPDATE_PASSWORD, request)
+      this.errorAlert = this['$t']('customer.update_pwd_success')
+    } catch (e) {
+      this.errorAlert = this['$t']('customer.update_pwd_failed')
+    }
+  }
 
   // following are store operatoins
   fetchCustomerInfo() {
@@ -64,7 +88,19 @@ export default class Account extends Vue {
     return this.$store.getters[GET_CUSTOMER_INFO]
   }
 
-  updateCustomer(request: UpdateCustomerInfoRequest) {
-    this.$store.dispatch(UPDATE_CUSTOMER_INFO, request)
+  get customer() {
+    return this.$store.getters(GET_CUSTOMER)
+  }
+
+  async updateCustomer(request: UpdateCustomerInfoRequest) {
+    try {
+      this.successAlert = ''
+      this.errorAlert = ''
+      await this.$store.dispatch(UPDATE_CUSTOMER_INFO, request)
+      this.successAlert = this['$t']('customer.update_info_success')
+    } catch(e) {
+      this.errorAlert = this['$t']('customer.update_info_failed')
+      throw e
+    }
   }
 }

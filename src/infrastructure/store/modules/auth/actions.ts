@@ -12,6 +12,7 @@ import { RESET_ORDERS } from 'src/infrastructure/store/modules/orders/mutations'
 export const SIGN_UP = 'auth/SIGN_UP'
 export const LOGIN = 'auth/LOGIN'
 export const LOGOUT = 'auth/LOGOUT'
+export const UPDATE_PASSWORD = 'auth/UPDATE_PASSWORD'
 
 const actions = {
 
@@ -64,6 +65,8 @@ const actions = {
       // true means force fetch
       dispatch(FETCH_CUSTOMER_INFO, true)
       dispatch(FETCH_CART, true)
+
+      return customer
     }
   },
 
@@ -80,6 +83,15 @@ const actions = {
 
     // go home
     router.push({ name: 'home' })
+  },
+
+  async [UPDATE_PASSWORD]({ commit, dispatch }, request) {
+    const customer = await authApi.updatePassword(request)
+
+    localStorage.setItem('customer', JSON.stringify(customer))
+    commit(SET_CUSTOMER, customer)
+
+    return customer
   }
 }
 

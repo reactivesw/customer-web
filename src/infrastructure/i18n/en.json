@@ -74,7 +74,17 @@
     "address_zipcode": "Zipcode",
     "address_phone": "Phone",
     "confirm_delete_address": "Are you sure you want to delete this address?",
-    "confirm_change_default_address": "Are you sure you want to change the default address?"
+    "confirm_change_default_address": "Are you sure you want to change the default address?",
+
+    "edit_information": "Edit your account information.",
+    "update_info_success": "Your account information has been updated",
+    "update_info_failed": "Updating account information failed",
+    "update_pwd_success": "Your password has been updated",
+    "update_pwd_failed": "Updating password failed",
+    "change_pwd": "Change Password",
+    "old_password": "Old Password",
+    "new_password": "New Password"
+
   },
   "payment": {
     "cardholder_name": "Cardholder Name",
