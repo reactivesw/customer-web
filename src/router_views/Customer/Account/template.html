@@ -57,6 +57,6 @@
     </div>
 
     <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
-    <button type="button" class="btn btn-primary" @click="editingPwd = true">{{ $t('customer.change_pwd') }}</button>
+    <button type="button" class="btn btn-primary" @click="editingPwd = true" v-if="!customer.source">{{ $t('customer.change_pwd') }}</button>
   </template>
 </div>
