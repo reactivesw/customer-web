@@ -98,11 +98,12 @@
     "status": {
       "created": "Order is created.",
       "reserved": "Order is reserved.",
-      "payed": "Order is Payed.",
-      "shipped": "Order is created.",
+      "reservedfailed": "Order reserve failed.",
+      "payed": "Order payment was successful",
+      "payfailed": "Order payment was failed",
+      "shipped": "Order is shipping.",
       "complete": "Order is completed.",
-      "cancelled": "Order is cancelled.",
-      "unkonw": "Sorry, something wrong with this order."
+      "cancelled": "Order is cancelled."
     },
     "order_info": "Order Info",
     "order_number": "Order Number",

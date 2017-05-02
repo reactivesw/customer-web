@@ -97,12 +97,13 @@
   "order": {
     "status": {
       "created": "订单已创建",
-      "reserved": "等待支付",
+      "reserved": "出库成功",
+      "reservedfailed": "出库失败",
       "payed": "支付成功",
+      "payfailed": "支付失败",
       "shipped": "已发货",
       "complete": "完成",
-      "cancelled": "已取消",
-      "unkonw": "订单状态有误"
+      "cancelled": "已取消"
     },
     "order_info": "订单详情",
     "order_number": "订单号",
