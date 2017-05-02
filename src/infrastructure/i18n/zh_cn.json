@@ -75,7 +75,17 @@
     "address_zipcode": "邮政编码",
     "address_phone": "电话号码",
     "confirm_delete_address": "请确认删除这个地址？",
-    "confirm_change_default_address": "请确认改变缺省地址？"
+    "confirm_change_default_address": "请确认改变缺省地址？",
+
+    "edit_information": "编辑账户信息",
+    "update_info_success": "账户信息已更新",
+    "update_info_failed": "账户信息更新失败",
+    "update_pwd_success": "密码已更新",
+    "update_pwd_failed": "密码更新失败，请确认旧密码输入正确，且新密码至少8位，包含字母与数字。",
+    "change_pwd": "更改密码",
+    "old_password": "旧密码",
+    "new_password": "新密码",
+    "password_hint": "至少八位，包含字母与数字"
   },
   "payment": {
     "cardholder_name": "持卡人",
@@ -87,12 +97,13 @@
   "order": {
     "status": {
       "created": "订单已创建",
-      "reserved": "等待支付",
+      "reserved": "出库成功",
+      "reservedfailed": "出库失败",
       "payed": "支付成功",
+      "payfailed": "支付失败",
       "shipped": "已发货",
       "complete": "完成",
-      "cancelled": "已取消",
-      "unkonw": "订单状态有误"
+      "cancelled": "已取消"
     },
     "order_info": "订单详情",
     "order_number": "订单号",

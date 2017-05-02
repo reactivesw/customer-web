@@ -1,32 +1,63 @@
 <!-- Only display object when it has value. It may be undefined when async action result is not completed -->
 <div v-if="customerInfo">
-  <div class="form-group">
-    <label for="customerName">
-      {{ $t('customer.nick_name') }}
-    </label>
-    <input type="text" class="form-control col-4" id="customerName" v-model="customerInfo.customerName">
-  </div>
 
-  <div class="form-group">
-    <label for="firstName">
-      {{ $t('customer.first_name') }}
-    </label>
-    <input type="text" class="form-control col-4" id="firstName" v-model="customerInfo.firstName">
+  <h3 class="mb-4">{{ $t('customer.edit_information') }}</h3>
 
-  </div>
-  <div class="form-group">
-    <label for="lastName">
-      {{ $t('customer.last_name') }}
-    </label>
-    <input type="text" class="form-control col-4" id="lastName" v-model="customerInfo.lastName">
-  </div>
+  <div class="alert alert-success" v-show="successAlert">{{ successAlert }}</div>
+  <div class="alert alert-danger" v-show="errorAlert">{{ errorAlert }}</div>
 
-  <div class="form-group">
-    <label for="middleName">
-      {{ $t('customer.middle_name') }}
-    </label>
-    <input type="text" class="form-control col-4" id="middleName" v-model="customerInfo.middleName">
-  </div>
+  <!-- Update password ui-->
+  <template v-if="editingPwd">
+    <div class="form-group">
+      <label for="old-password">
+        {{ $t('customer.old_password') }}
+      </label>
+      <input type="password" class="form-control col-4" id="old-password" v-model="oldPassword">
+    </div>
 
-  <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
+    <div class="form-group">
+      <label for="new-password">
+        {{ $t('customer.new_password') }}
+      </label>
+      <input type="password" class="form-control col-4" id="new-password" v-model="newPassword">
+      <p class="text-muted"><small>{{ $t('customer.password_hint') }}</small> </p>
+    </div>
+
+    <button type="button" class="btn btn-primary" @click="updateCustomerPwdEventHandler">{{ $t('common.save') }}</button>
+    <button type="button" class="btn btn-secondary" @click="editingPwd = false">{{ $t('common.back') }}</button>
+  </template>
+
+  <!-- Update customer info ui -->
+  <template v-else>
+    <div class="form-group">
+      <label for="customerName">
+        {{ $t('customer.nick_name') }}
+      </label>
+      <input type="text" class="form-control col-4" id="customerName" v-model="customerInfo.customerName">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">
+        {{ $t('customer.first_name') }}
+      </label>
+      <input type="text" class="form-control col-4" id="firstName" v-model="customerInfo.firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">
+        {{ $t('customer.last_name') }}
+      </label>
+      <input type="text" class="form-control col-4" id="lastName" v-model="customerInfo.lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="middleName">
+        {{ $t('customer.middle_name') }}
+      </label>
+      <input type="text" class="form-control col-4" id="middleName" v-model="customerInfo.middleName">
+    </div>
+
+    <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
+    <button type="button" class="btn btn-primary" @click="editingPwd = true" v-if="!customer.source">{{ $t('customer.change_pwd') }}</button>
+  </template>
 </div>

@@ -22,17 +22,7 @@ export default class OrderDetail extends Vue {
   }
 
   get orderStatus() {
-    switch (this.order.orderStatus) {
-      case 'Payed':
-        return this['$t']('order.status.payed')
-      case 'Shipped':
-        return this['$t']('order.status.shipped')
-      case 'Complete':
-        return this['$t']('order.status.complete')
-      case 'Cancelled':
-        return this['$t']('order.status.Cancelled')
-      default:
-        return this['$t']('order.status.unknow')
-    }
+    const state = this.order.orderStatus.toLowerCase()
+    return this['$t']('order.status.' + state)
   }
 }

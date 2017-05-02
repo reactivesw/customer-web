@@ -28,7 +28,9 @@ export default {
       // if catSlug is undefined then find the featureCategory and redirect to it.
       if (!this['$route'].params.catSlug) {
         await this['fetchCategories']()
-        this['$router'].replace({ name: 'categories', params: { catSlug: this['featureCategory'].slug } })
+        if (this['featureCategory']) {
+          this['$router'].replace({ name: 'categories', params: { catSlug: this['featureCategory'].slug } })
+        }
       } else {
         this['fetchCurrentProducts']()
       }
