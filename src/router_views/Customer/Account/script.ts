@@ -65,6 +65,8 @@ export default class Account extends Vue {
   }
 
   async updateCustomerPwdEventHandler() {
+    this.successAlert = ''
+    this.errorAlert = ''
     let request:UpdatePasswordRequest = {
       customerId: this.customer.id,
       version: this.customer.version,
@@ -73,7 +75,7 @@ export default class Account extends Vue {
     }
     try {
       await this.$store.dispatch(UPDATE_PASSWORD, request)
-      this.errorAlert = this['$t']('customer.update_pwd_success')
+      this.successAlert = this['$t']('customer.update_pwd_success')
     } catch (e) {
       this.errorAlert = this['$t']('customer.update_pwd_failed')
     }

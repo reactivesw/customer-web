@@ -20,6 +20,7 @@
         {{ $t('customer.new_password') }}
       </label>
       <input type="password" class="form-control col-4" id="new-password" v-model="newPassword">
+      <p class="text-muted"><small>{{ $t('customer.password_hint') }}</small> </p>
     </div>
 
     <button type="button" class="btn btn-primary" @click="updateCustomerPwdEventHandler">{{ $t('common.save') }}</button>

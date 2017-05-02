@@ -80,10 +80,11 @@
     "update_info_success": "Your account information has been updated",
     "update_info_failed": "Updating account information failed",
     "update_pwd_success": "Your password has been updated",
-    "update_pwd_failed": "Updating password failed",
+    "update_pwd_failed": "Updating password failed, please make sure old password is correct and new password has at least 8 characters, include digital and letter.",
     "change_pwd": "Change Password",
     "old_password": "Old Password",
-    "new_password": "New Password"
+    "new_password": "New Password",
+    "password_hint": "At least 8 characters, include digital and letter."
 
   },
   "payment": {
