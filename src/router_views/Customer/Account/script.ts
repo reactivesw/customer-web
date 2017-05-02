@@ -66,8 +66,8 @@ export default class Account extends Vue {
 
   async updateCustomerPwdEventHandler() {
     let request:UpdatePasswordRequest = {
-      customerId: this.customerInfo.id,
-      version: this.customerInfo.version,
+      customerId: this.customer.id,
+      version: this.customer.version,
       oldPassword: this.oldPassword,
       newPassword: this.newPassword
     }
@@ -89,7 +89,7 @@ export default class Account extends Vue {
   }
 
   get customer() {
-    return this.$store.getters(GET_CUSTOMER)
+    return this.$store.getters[GET_CUSTOMER]
   }
 
   async updateCustomer(request: UpdateCustomerInfoRequest) {
