@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLadda from 'vue-ladda'
 import Component from 'vue-class-component'
 
 function createEmpty() {
@@ -11,9 +12,19 @@ function createEmpty() {
   }
 }
 
-@Component({})
+@Component({
+  props: {
+    saving: Boolean,
+    default: false
+  },
+  components: {
+    VueLadda
+  }
+})
 export default class CreditCard extends Vue {
   creditCard = createEmpty()
+
+  saving: boolean
 
   saveFormHandler() {
     this.$emit('addCreditCard', this.creditCard)

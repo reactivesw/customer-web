@@ -38,6 +38,8 @@ export default class PaymentInfo extends Vue {
   showConfirmDeletePayment = false
   confirmDeletePayment: any = undefined
 
+  savingNewCard = false
+
   // fetch payments when created
   created() {
     this.fetchPayments()
@@ -62,12 +64,14 @@ export default class PaymentInfo extends Vue {
     this.showPaymentList = false
   }
 
-  addCreditCardHanlder(data) {
+  async addCreditCardHanlder(data) {
+    this.savingNewCard = true
     let request: CreditCardDraft = {
       customerId: this.customerId,
       ...data
     }
-    this.$store.dispatch(ADD_CREDIT_CARD, request)
+    await this.$store.dispatch(ADD_CREDIT_CARD, request)
+    this.savingNewCard = false
     this.showPaymentList = true
   }
 

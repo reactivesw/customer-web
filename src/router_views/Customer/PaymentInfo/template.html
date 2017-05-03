@@ -11,7 +11,7 @@
   </template>
 
   <template v-else>
-    <CreditCard @addCreditCard="addCreditCardHanlder"
+    <CreditCard :saving="savingNewCard" @addCreditCard="addCreditCardHanlder"
       @cancelAddCreditCard="cancelAddCreditCardHandler">
     </CreditCard>
   </template>
