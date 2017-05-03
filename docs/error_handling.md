@@ -6,20 +6,15 @@ The api client(`/src/infrastructure/api_client`) do the ajax job, make it the so
 
 Vuex actions(`/src/infrastructure/store/modules/*/actions.ts`) use api client, but it doesn't have enough knowledge to handle it.
 
-Vue components is the proper place to handle expected errors: `"username has been taken"`, `"password not match"`, etc.
- 
-But sometimes some errors can't be handle in vue components like `"500 server internal error"` or network down. Those error should been handled globally.
+Vue components is the proper place to handle all errors.
 
-Problem is es6 standard has no easy way to handle "unhandled promise errors" globally, luckly we're going to use core-js as a es6 shim for wider browser support, which provide [unhandled rejection tracking](https://github.com/zloirock/core-js#unhandled-rejection-tracking) could solve this problem.
-
-So here is the Api error handling strategy
+So here is the Api error handling strategy:
 
 1. api client throw errors.
-2. action do nothing.
+2. actions do nothing.
 3. components handle errors they expected.
-4. global unhandled promise errors handler do the rest.
 
-\* <small>Also, prefer `async await` to `Promise`.</small>
+\* <small>Prefer `async await` to `Promise`.</small>
 
 ### Api client
 
@@ -80,22 +75,13 @@ export default {
       switch (e.message) {
         case USER_EXIST:
           // inform user the username he want has been taken.
+        // other expected errors...
         default:
-          // re-throw those errors can't handled.
-          throw e
+          // inform use something unexpected happend.
       }
     }
   },
   
   // ...
 }
-```
-
-## Global Unhandled Rejection Handler
-
-All unhandled ajax errors will be handled in `/src/infrastructure/unhandled_rejection_handler.ts`. If the application is impossible to continue, show a undismissable modal or replace whole page with error message, force user to refresh page. If not, tell user what to do next. Maybe try again later, or just tell them something is wrong but they can still going on if they think it didn't cause them trouble.
-
-```javascript
-window.onunhandledrejection = e => console.log('unhandled', e.reason, e.promise);
-window.onrejectionhandled = e => console.log('handled', e.reason, e.promise);
 ```
