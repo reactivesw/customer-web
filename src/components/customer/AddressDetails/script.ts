@@ -1,9 +1,17 @@
 import Vue from 'vue'
+import VueLadda from 'vue-ladda'
 import Component from 'vue-class-component'
 
 @Component({
   props: {
-    addressProp: Object
+    addressProp: Object,
+    saving: {
+      type: Boolean,
+      default: false
+    }
+  },
+  components: {
+    VueLadda
   }
 })
 export default class AddressDetails extends Vue {
