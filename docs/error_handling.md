@@ -6,20 +6,7 @@ The api client(`/src/infrastructure/api_client`) do the ajax job, make it the so
 
 Vuex actions(`/src/infrastructure/store/modules/*/actions.ts`) use api client, but it doesn't have enough knowledge to handle it.
 
-Vue components is the proper place to handle expected errors: `"username has been taken"`, `"password not match"`, etc.
- 
-But sometimes some errors can't be handle in vue components like `"500 server internal error"` or network down. Those error should been handled globally.
-
-Problem is es6 standard has no easy way to handle "unhandled promise errors" globally, luckly we're going to use core-js as a es6 shim for wider browser support, which provide [unhandled rejection tracking](https://github.com/zloirock/core-js#unhandled-rejection-tracking) could solve this problem.
-
-So here is the Api error handling strategy
-
-1. api client throw errors.
-2. action do nothing.
-3. components handle errors they expected.
-4. global unhandled promise errors handler do the rest.
-
-\* <small>Also, prefer `async await` to `Promise`.</small>
+So we handle all errors in vue components.
 
 ### Api client
 
@@ -67,7 +54,7 @@ Nothing to do here, just make sure to use `async function`.
 
 ### Vue Component
 
-In vue components, those functions dispatch actions should be `async function` too, use `try...catch...` wrap action dispatch, catch expected errors and handle them. Re-throw those don't expected.
+In vue components, functions dispatch actions should be `async function` too, use `try...catch...` wrap action dispatch, catch expected errors and handle them. Re-throw those don't expected.
 
 ```javascript
 export default {
@@ -91,11 +78,9 @@ export default {
 }
 ```
 
-## Global Unhandled Rejection Handler
+There are a few ways to handle common errors:
 
-All unhandled ajax errors will be handled in `/src/infrastructure/unhandled_rejection_handler.ts`. If the application is impossible to continue, show a undismissable modal or replace whole page with error message, force user to refresh page. If not, tell user what to do next. Maybe try again later, or just tell them something is wrong but they can still going on if they think it didn't cause them trouble.
-
-```javascript
-window.onunhandledrejection = e => console.log('unhandled', e.reason, e.promise);
-window.onrejectionhandled = e => console.log('handled', e.reason, e.promise);
-```
+- Show a [bootstrap alert](http://v4-alpha.getbootstrap.com/components/alerts/) to notify user something is wrong.
+- Show a special UI for unexpected result if there are no proper place to show alert. (when visit product detail with a invalid product id, we should notify user product can't find product.)
+- Show a offline UI indicator using [offline.js](http://github.hubspot.com/offline/docs/welcome/) notify user network is down.
+- Redirect to index(first category) when visit any unmatched route.
