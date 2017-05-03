@@ -21,6 +21,7 @@
     "vue": "^2.2.2",
     "vue-google-signin-button": "^1.0.2",
     "vue-i18n": "^5.0.3",
+    "vue-ladda": "0.0.7",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1",
     "vuex-router-sync": "^4.1.2"

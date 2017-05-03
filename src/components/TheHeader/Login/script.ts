@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLadda from 'vue-ladda'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
@@ -22,7 +23,8 @@ export default {
       passwordFeedback: null,
       loginFeedback: null,
       googleLoginIsReady: false,
-      facebookLoginIsReady: false
+      facebookLoginIsReady: false,
+      loginLoading: false,
     }
   },
 
@@ -48,6 +50,7 @@ export default {
       try {
         // clean feedbacks
         this['passwordFeedback'] = null
+        this['loginLoading'] = true
 
         await this['login']({
           type: 'email',
@@ -74,6 +77,8 @@ export default {
             this['loginFeedback'] = Vue['t']('alert.login_error')
             throw e
         }
+      } finally {
+        this['loginLoading'] = false
       }
     },
 
@@ -165,6 +170,7 @@ export default {
 
   components: {
     ModalDialog,
-    FacebookBtn
+    FacebookBtn,
+    VueLadda
   }
 }

@@ -1,0 +1,33 @@
+.ladda-button[disabled]:hover,
+.ladda-button[data-loading]:hover {
+  background-color: inherit;
+}
+
+@mixin ladda-button($color, $background, $border) {
+  background: $background;
+}
+
+.btn-primary[disabled]:hover,
+.btn-primary[data-loading]:hover {
+  @include ladda-button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+.btn-secondary[disabled]:hover,
+.btn-secondary[data-loading]:hover {
+  @include ladda-button($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+.btn-info[disabled]:hover,
+.btn-info[data-loading]:hover {
+  @include ladda-button($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+.btn-success[disabled]:hover,
+.btn-success[data-loading]:hover {
+  @include ladda-button($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+.btn-warning[disabled]:hover,
+.btn-warning[data-loading]:hover {
+  @include ladda-button($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+.btn-danger[disabled]:hover,
+.btn-danger[data-loading]:hover {
+  @include ladda-button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+}
