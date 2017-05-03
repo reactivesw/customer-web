@@ -23,44 +23,21 @@ The proper place to handle errors is vue components. Catch Errors from api clien
 
 ### 2.1 Api client
 
-1. Api client should give every expected error a constant as identifier:
+1. `try...catch...` a async ajax call.
+
+2. Unify expected errors into api client defined errors, to make it easier for components to handle.
 
     ```javascript
     export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
     ```
     
-    The value of error identifier should be global unique, suggest start with the api client file name like 'auth/'. 
+    The value of error identifier should be global unique, suggest start with the api client file name like 'auth/'.  
 
-2. Api client functions should be `async` function, to make sure they return Promises.
-
-    ```javascript
-    export async function signUp(email, password) {/*...*/}
-    ```
-
-3. Use `try...catch...` wrap the ajax request. In catch block, throw proper Error according to the response. For unexpected errors, simply re-throw them.
-
-    ```javascript
-    try {
-      // make ajax call
-      const response = await http.get(SOMETHING)
-    } catch (e) {
-  
-      // unify error form for expected ajax errors
-      if (e.response) {
-        // server responsed
-        switch (e.response.data.code) {
-          case 10002: throw new Error(USER_EXIST)
-        }
-      }
-   
-      // re-throw unexpected errors without change
-      throw e
-    }
-    ```
+3. Re-throw unexpected errors without modify.
 
 ### 2.2 Vue Component
 
-In vue components, those methods dispatch actions should be `async` too, use `try...catch...` wrap action dispatch, catch errors and notify user. Re-throw those don't expected.
+In vue components, `try...catch...` action dispatch, catch errors and notify user. Re-throw those don't expected.
 
 ```javascript
 export default {
