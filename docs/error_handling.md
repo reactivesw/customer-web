@@ -45,7 +45,7 @@ The proper place to handle errors is vue components. Catch Errors from api clien
       const response = await http.get(SOMETHING)
     } catch (e) {
   
-      // throw Error for expected ajax errors
+      // unify error form for expected ajax errors
       if (e.response) {
         // server responsed
         switch (e.response.data.code) {
@@ -53,7 +53,7 @@ The proper place to handle errors is vue components. Catch Errors from api clien
         }
       }
    
-      // re-throw unexpected errors 
+      // re-throw unexpected errors without change
       throw e
     }
     ```
@@ -74,7 +74,7 @@ export default {
         case USER_EXIST:
           // notify user the username he want has been taken.
         default:
-          // re-throw unexpected errors after notify user unknow error happened.
+          // re-throw unexpected errors after notify user that unknow error happened.
           throw e
       }
     }
