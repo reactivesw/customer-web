@@ -6,7 +6,7 @@
 
   Show a loading indicator in button. Then hide it no matter the request success or fail after finished.
 
-  Use [vue-ladda](https://github.com/zcfan/vue-ladda) to make this easier.
+  Use [ladda](https://github.com/hakimel/Ladda) to make this easier. Will create a utility component to wrap it.
   
   Example(use single file component syntax to make example simpler):
   
@@ -19,7 +19,7 @@
   </template>
   
   <script>
-    import VueLadda from 'vue-ladda'
+    import VueLadda from 'src/components/utility/VueLadda'
     
     export default {
       data () {
