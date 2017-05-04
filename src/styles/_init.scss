@@ -1,0 +1,8 @@
+/*
+ * Both global and component style need to import this file.
+ * Notice they're all variables or mixins, so import them in every components will not increase bundle size.
+ */
+
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "./custom";

@@ -5,3 +5,6 @@
   import s from './script.ts'
   export default s
 </script>
+
+<style lang="scss" src="./style.scss">
+</style>

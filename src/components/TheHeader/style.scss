@@ -1,7 +1,4 @@
-// for application variables
-@import '~src/styles/variables';
-// for media-breakpoint-down
-@import '~bootstrap/scss/mixins/breakpoints';
+@import "~src/styles/init";
 
 .the-header {
   min-height: $header-height;

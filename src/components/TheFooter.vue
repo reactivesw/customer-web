@@ -7,7 +7,22 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'TheFooter'
-}
+  export default {
+    name: 'TheFooter'
+  }
 </script>
+
+<style lang="scss">
+  @import "~src/styles/init";
+
+  .the-footer {
+    // Match the padding-bottom
+    line-height: $footer-height;
+
+    background-color: $footer-background-color;
+
+    p {
+      margin: 0;
+    }
+  }
+</style>

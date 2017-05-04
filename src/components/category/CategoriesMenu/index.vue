@@ -23,3 +23,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .categories-menu {
+    margin-bottom: 1rem;
+  }
+</style>
