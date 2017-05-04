@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'vue-ladda'
+import VueLadda from 'src/components/utility/VueLadda'
 import Component from 'vue-class-component'
 
 @Component({

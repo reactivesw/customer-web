@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'vue-ladda'
+import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import { PASSWORD_NOT_SECURE, USER_EXIST } from 'src/infrastructure/api_client/auth'

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'vue-ladda'
+import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'

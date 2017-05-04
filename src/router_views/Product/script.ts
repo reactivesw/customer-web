@@ -1,5 +1,5 @@
 import { Component } from 'vue'
-import VueLadda from 'vue-ladda'
+import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions, mapGetters } from 'vuex'
 
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
