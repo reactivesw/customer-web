@@ -1,1 +1,28 @@
-@import '~ladda/css/ladda-themed.scss';
+@import "~src/styles/init";
+@import "~ladda/css/ladda-themed.scss";
+
+// Make ladda button style compatible with bootstrap
+.btn-primary[disabled]:hover,
+.btn-primary[data-loading]:hover {
+  background: $btn-primary-bg;
+}
+.btn-secondary[disabled]:hover,
+.btn-secondary[data-loading]:hover {
+  background: $btn-secondary-bg;
+}
+.btn-info[disabled]:hover,
+.btn-info[data-loading]:hover {
+  background: $btn-info-bg;
+}
+.btn-success[disabled]:hover,
+.btn-success[data-loading]:hover {
+  background: $btn-success-bg;
+}
+.btn-warning[disabled]:hover,
+.btn-warning[data-loading]:hover {
+  background: $btn-warning-bg;
+}
+.btn-danger[disabled]:hover,
+.btn-danger[data-loading]:hover {
+  background: $btn-danger-bg;
+}

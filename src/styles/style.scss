@@ -1,7 +1,23 @@
-// import from node_module
-@import "~bootstrap/scss/bootstrap";
+/*
+ * Global style (include customized bootstrap style)
+ */
 
-// import ./_theme.scss.
-// files with a "_" prefix is not compiled by scss
-@import "./theme";
-@import "./font-awesome/scss/font-awesome";
+@import "./init";
+@import "./bootstrap";
+
+// import font-awesome
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+html, body {
+  overflow-x: hidden;
+}
+
+// fix bootstrap 4 alpha 6 bug
+// https://github.com/twbs/bootstrap/issues/21590
+@include media-breakpoint-down(xs) {
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
