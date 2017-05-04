@@ -70,9 +70,14 @@ export default class PaymentInfo extends Vue {
       customerId: this.customerId,
       ...data
     }
-    await this.$store.dispatch(ADD_CREDIT_CARD, request)
-    this.savingNewCard = false
-    this.showPaymentList = true
+    try {
+      await this.$store.dispatch(ADD_CREDIT_CARD, request)
+      this.showPaymentList = true
+    } catch (e) {
+      // TODO: handle error
+    } finally {
+      this.savingNewCard = false
+    }
   }
 
   cancelAddCreditCardHandler() {
