@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLadda from 'src/components/utility/VueLadda'
 import Component from 'vue-class-component'
 
 import {
@@ -14,7 +15,11 @@ import { UpdatePasswordRequest } from 'src/infrastructure/api_client/auth'
 import { GET_CUSTOMER } from 'src/infrastructure/store/modules/auth/getters'
 import { UPDATE_PASSWORD } from 'src/infrastructure/store/modules/auth/actions'
 
-@Component({})
+@Component({
+  components: {
+    VueLadda
+  }
+})
 export default class Account extends Vue {
   editingPwd: boolean = false // this variable toggle edit info/password ui.
 
@@ -23,6 +28,8 @@ export default class Account extends Vue {
 
   oldPassword: string = ''
   newPassword: string = ''
+
+  saveLoading: boolean = false
 
   created() {
     this.fetchCustomerInfo()
@@ -46,7 +53,7 @@ export default class Account extends Vue {
     return customerInfo
   }
 
-  updateCustomerInfoEventHandler() {
+  async updateCustomerInfoEventHandler() {
     let customerInfo = this.customerInfo
     let customerInfoData: CustomerInfoData = {
       customerName: customerInfo.customerName,
@@ -67,6 +74,8 @@ export default class Account extends Vue {
   async updateCustomerPwdEventHandler() {
     this.successAlert = ''
     this.errorAlert = ''
+    this.saveLoading = true
+
     let request:UpdatePasswordRequest = {
       customerId: this.customer.id,
       version: this.customer.version,
@@ -78,6 +87,8 @@ export default class Account extends Vue {
       this.successAlert = this['$t']('customer.update_pwd_success')
     } catch (e) {
       this.errorAlert = this['$t']('customer.update_pwd_failed')
+    } finally {
+      this.saveLoading = false
     }
   }
 
@@ -98,11 +109,15 @@ export default class Account extends Vue {
     try {
       this.successAlert = ''
       this.errorAlert = ''
+      this.saveLoading = true
+
       await this.$store.dispatch(UPDATE_CUSTOMER_INFO, request)
       this.successAlert = this['$t']('customer.update_info_success')
     } catch(e) {
       this.errorAlert = this['$t']('customer.update_info_failed')
       throw e
+    } finally {
+      this.saveLoading = false
     }
   }
 }

@@ -23,7 +23,8 @@
       <p class="text-muted"><small>{{ $t('customer.password_hint') }}</small> </p>
     </div>
 
-    <button type="button" class="btn btn-primary" @click="updateCustomerPwdEventHandler">{{ $t('common.save') }}</button>
+    <!--<button type="button" class="btn btn-primary" @click="updateCustomerPwdEventHandler">{{ $t('common.save') }}</button>-->
+    <VueLadda class="btn btn-primary" @click="updateCustomerPwdEventHandler" :loading="saveLoading">{{ $t('common.save') }}</VueLadda>
     <button type="button" class="btn btn-secondary" @click="editingPwd = false">{{ $t('common.back') }}</button>
   </template>
 
@@ -57,7 +58,8 @@
       <input type="text" class="form-control col-4" id="middleName" v-model="customerInfo.middleName">
     </div>
 
-    <button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>
+    <!--<button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>-->
+    <VueLadda class="btn btn-primary" @click="updateCustomerInfoEventHandler" :loading="saveLoading">{{ $t('common.save') }}</VueLadda>
     <button type="button" class="btn btn-primary" @click="editingPwd = true" v-if="!customer.source">{{ $t('customer.change_pwd') }}</button>
   </template>
 </div>

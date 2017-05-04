@@ -1,4 +1,5 @@
 import { Component } from 'vue'
+import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions, mapGetters } from 'vuex'
 
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
@@ -24,7 +25,8 @@ export default {
 
   data() {
     return {
-      addToCartAlert: null
+      addToCartAlert: null,
+      addingToCart: false
     }
   },
 
@@ -114,21 +116,23 @@ export default {
       addToCart: ADD_TO_CART
     }),
 
-    handleAddToCart (this: Component) {
+    async handleAddToCart (this: Component) {
       this['addToCartAlert'] = null
+      this['addingToCart'] = true
 
       const payload: AddLineItem = {
         productId: this['product'].id,
         variantId: this['variant'].id,
         quantity: 1
       }
-      this['addToCart'](payload)
-      .then(() => {
+      try {
+        await this['addToCart'](payload)
         this['addToCartAlert'] = this['$t']('product.addToCartSuccess')
-      })
-      .catch(() => {
+      } catch (e) {
         this['addToCartAlert'] = this['$t']('product.addToCartError')
-      })
+      } finally {
+        this['addingToCart'] = false
+      }
     },
 
     handleSelectSku(this: Component, sku) {
@@ -140,6 +144,7 @@ export default {
     CategoriesMenu,
     Gallery,
     ProductInfo,
-    VariantSelector
+    VariantSelector,
+    VueLadda
   }
 }

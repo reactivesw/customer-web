@@ -7,8 +7,11 @@
     @updateAddress="updateAddressEventHandler" @deleteAddress="deleteAddressEventHandler">
   </AddressList>
 
-  <AddressDialog :show="showAddressDetails" :addressProp="addressDetails" @saveAddressDetails="saveAddressDetailsEventHandler"
-    @cancelAddressDetails="cancelAddressDetails">
+  <AddressDialog :show="showAddressDetails"
+                 :addressProp="addressDetails"
+                 :saving="saving"
+                 @saveAddressDetails="saveAddressDetailsEventHandler"
+                 @cancelAddressDetails="cancelAddressDetails">
   </AddressDialog>
 
   <ConfirmDialog :show="confirmChangeDefault" :message="$t('customer.confirm_change_default_address')" @confirmYes="confirmYesChangeDefaultEventHandler"

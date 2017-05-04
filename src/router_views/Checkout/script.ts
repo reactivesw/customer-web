@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLadda from 'src/components/utility/VueLadda'
 import Component from 'vue-class-component'
 
 import AddressCard from 'src/components/customer/AddressCard'
@@ -25,7 +26,8 @@ import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
     PaymentInfo,
     AddressCard,
     PaymentCard,
-    OrderDetail
+    OrderDetail,
+    VueLadda
   }
 })
 export default class Checkout extends Vue {
@@ -40,14 +42,24 @@ export default class Checkout extends Vue {
   isEditingShipping = false
   isEditingPayment = false
 
+  // for place order button loading indicator
+  loading = false
+
   async placeOrderHandler() {
+    this.loading = true
     const payload: PlaceOrderRequest = {
       customerId: this.customerInfo.id,
       addressId: this.defaultAddress.id,
       creditCardId: this.selectedPayment.id,
       cartId: this.currentCart.id
     }
-    this.placedOrder = await this.$store.dispatch(PLACE_ORDER, payload)
+    try {
+      this.placedOrder = await this.$store.dispatch(PLACE_ORDER, payload)
+    } catch (e) {
+      // TODO: handle errors
+    } finally {
+      this.loading = false
+    }
   }
 
   // used to manage UI state
