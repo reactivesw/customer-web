@@ -1,6 +1,6 @@
 <div v-if="payments">
   <button class="btn btn-primary" @click="clickAddCreditCardHanlder">
-    <b>+</b> Add a Credit Card
+    <b>+</b> {{ $('add_credit_card') }}
   </button>
 
   <template v-if="showPaymentList">

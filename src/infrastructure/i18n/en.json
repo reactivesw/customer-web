@@ -41,6 +41,7 @@
     "order_summary": "Order Summary",
     "back_to_shopping": "Back To Shopping",
     "checkout": "CHECKOUT",
+    "place_order": "Place Order",
     "subtotal": "Sub Total",
     "empty": "Empty Cart",
     "quantity": "Quantity: "
@@ -92,7 +93,15 @@
     "credit_card_number": "Credit Card Number",
     "security_code": "Security Code",
     "expiration_month": "Expiration Month",
-    "expiration_year": "Expiration Year"
+    "expiration_year": "Expiration Year",
+
+    "add_credit_card": "Add a Credit Card",
+
+    "no_payment_msg": "You don't have any payment data. Please add one."
+  },
+  "checkout": {
+    "add_edit_address": "Change/Add Address",
+    "add_edit_payment": "Change/Add Payment"
   },
   "order": {
     "status": {

@@ -41,6 +41,7 @@
     "order_summary": "订单概览",
     "back_to_shopping": "继续购物",
     "checkout": "去结算",
+    "place_order": "确认支付",
     "subtotal": "小结",
     "empty": "购物车为空",
     "quantity": "数量："
@@ -59,14 +60,14 @@
     "middle_name": "中间名",
 
     "add_new_address": "新地址",
-    "no_address": "地址为空，请输入受货地址。",
+    "no_address": "地址为空，请输入收货地址。",
     "address_fullname": "姓名",
     "placeholder_address_fullname": "赵家人",
     "address_details": "详细地址",
     "address_line1": "第一行",
     "placeholder_address_line1": "扑街1号",
     "address_line2": "第二行",
-    "address_city": "城市*",
+    "address_city": "城市",
     "placeholder_address_city": "桂林",
     "address_state": "省／地区",
     "placeholder_address_state": "广西",
@@ -92,7 +93,15 @@
     "credit_card_number": "卡号",
     "security_code": "安全码",
     "expiration_month": "过期月份",
-    "expiration_year": "过期年份"
+    "expiration_year": "过期年份",
+
+    "add_credit_card": "添加信用卡",
+
+    "no_payment_msg": "没有支付信息，请添加信用卡"
+  },
+  "checkout": {
+    "add_edit_address": "编辑／添加地址",
+    "add_edit_payment": "编辑／添加信用卡"
   },
   "order": {
     "status": {

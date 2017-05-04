@@ -11,7 +11,7 @@
               <i class="fa fa-square-o" aria-hidden="true" @click.prevent="changeDefaultHandler(payment)"></i>
             </template>
             <i class="fa fa-times mx-1" aria-hidden="true" @click.prevent="deleteHandler(payment)"></i>
-            <hr /> 
+            <hr />
             <PaymentCard :payment="payment"></PaymentCard>
           </div>
           <!-- div card-block -->
@@ -25,6 +25,6 @@
     <!-- div row -->
   </template>
   <template v-else>
-    You don't have any payment data. Please add one.
+    {{ $t('payment.no_payment_msg') }}
   </template>
 </div>

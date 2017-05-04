@@ -49,13 +49,13 @@
             <div class="col-md-6">
                <button class="btn btn-success btn-sm"
                 @click="editShippingHandler">
-                Change/Add Address
+                {{ $t('add_edit_address') }}
               </button>
             </div>
             <div class="col-md-6">
               <button class="btn btn-success btn-sm"
                 @click="editPaymentHandler">
-                Change/Add Payment
+                {{ $t('add_edit_payment') }}
               </button>
             </div>
           </div>
@@ -69,8 +69,7 @@
                   :disabled="!isPlaceOrderEnabled"
                   :loading="loading"
                   @click="placeOrderHandler">
-          <!--TODO: i18n-->
-          Place Order
+          {{ $t('cart.place_order') }}
         </VueLadda>
 
       </div>
