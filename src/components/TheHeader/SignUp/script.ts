@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import { PASSWORD_NOT_SECURE, USER_EXIST } from 'src/infrastructure/api_client/auth'
@@ -14,7 +15,8 @@ export default {
       pwd: '',
       repeatPwd: '',
       usernameFeedback: null,
-      passwordFeedback: null
+      passwordFeedback: null,
+      signUpLoading: false
     }
   },
 
@@ -46,6 +48,7 @@ export default {
         // clean error messages
         this['usernameFeedback'] = null
         this['passwordFeedback'] = null
+        this['signUpLoading'] = true
 
         // it has already passed all validation when enter this function
         await this['signUp']({ email: this['email'], password: this['pwd'] })
@@ -62,6 +65,8 @@ export default {
           default:
             throw e
         }
+      } finally {
+        this['signUpLoading'] = false
       }
     },
 
@@ -72,6 +77,7 @@ export default {
   },
 
   components: {
-    ModalDialog
+    ModalDialog,
+    VueLadda
   }
 }

@@ -51,10 +51,10 @@
     <div class="col-md-12">
       <button type="button" class="btn btn-info" @click="cancelFormHandler">
         {{ $t('common.cancel') }}
-    </button>
-      <button type="submit" class="btn btn-primary">
+      </button>
+      <VueLadda type="submit" class="btn btn-primary" :loading="saving">
         {{ $t('common.save') }}
-    </button>
+      </VueLadda>
     </div>
   </div>
 </form>

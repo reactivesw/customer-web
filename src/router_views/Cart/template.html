@@ -8,9 +8,9 @@
     <div v-if="!isEmptyCart" class="col-md-4">
       <OrderSummary></OrderSummary>
       <!-- route to checkout page (change to router-link component -->
-      <div class="btn btn-block btn-success"
+      <button class="btn btn-block btn-success"
         @click="checkoutClickEventHandler">{{ $t('cart.checkout') }}
-      </div>
+      </button>
     </div>
   </div>
 </div>

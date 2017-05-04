@@ -47,6 +47,9 @@ export default class ShippingInfo extends Vue {
   confirmDeleteAddress = false
   confirmDeleteAddressId = ''
 
+  // for saving indicator in save button
+  saving = false
+
   created() {
     this.fetchCustomerInfo()
   }
@@ -117,12 +120,12 @@ export default class ShippingInfo extends Vue {
     this.$store.dispatch(CHANGE_DEFAULT_ADDRESS, request)
   }
 
-  addAddress(request: AddAddressRequest) {
-    this.$store.dispatch(ADD_ADDRESS, request)
+  async addAddress(request: AddAddressRequest) {
+    await this.$store.dispatch(ADD_ADDRESS, request)
   }
 
-  updateAddress(request: UpdateAddressRequest) {
-    this.$store.dispatch(UPDATE_ADDRESS, request)
+  async updateAddress(request: UpdateAddressRequest) {
+    await this.$store.dispatch(UPDATE_ADDRESS, request)
   }
 
   deleteAddress(request) {
@@ -140,25 +143,34 @@ function getEmptyAddressHelp(): AddressDetails {
   }
 }
 
-function saveAddressDetailsHelp(vm: ShippingInfo, addressDetails) {
-  vm.showAddressDetails = false
+async function saveAddressDetailsHelp(vm: ShippingInfo, addressDetails) {
+  vm.saving = true
 
   let customerInfo: CustomerInfo = vm.customerInfo
 
-  if (addressDetails.id) {
-    let request: UpdateAddressRequest = {
-      customer_id: customerInfo.id,
-      version: customerInfo.version,
-      addressDetails
+  try {
+    if (addressDetails.id) {
+      let request: UpdateAddressRequest = {
+        customer_id: customerInfo.id,
+        version: customerInfo.version,
+        addressDetails
+      }
+      await vm.updateAddress(request)
+    } else {
+      let request: AddAddressRequest = {
+        customer_id: customerInfo.id,
+        version: customerInfo.version,
+        newAddressDetails: addressDetails
+      }
+      await vm.addAddress(request)
     }
-    vm.updateAddress(request)
-  } else {
-    let request: AddAddressRequest = {
-      customer_id: customerInfo.id,
-      version: customerInfo.version,
-      newAddressDetails: addressDetails
-    }
-    vm.addAddress(request)
+
+    // updata/add success, hide edit dialog
+    vm.showAddressDetails = false
+  } catch (e) {
+    // TODO: handle errors
+  } finally {
+    vm.saving = false
   }
 }
 

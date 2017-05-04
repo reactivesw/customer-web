@@ -4,7 +4,7 @@
     <div slot="body">
       <div class="row">
 
-        <div class="col-xs-12" v-if="loginFeedback">
+        <div class="col-12" v-if="loginFeedback">
           <div class="alert alert-danger" role="alert">{{ loginFeedback }}</div>
         </div>
 
@@ -46,7 +46,7 @@
     <div slot="footer">
       <button type="button" class="btn btn-link text-muted" @click="goForgotPwd">{{ $t('form.forgot_pwd') }}</button>
       <button type="button" class="btn btn-link" @click="goSignUp">{{ $t('header.sign_up') }}</button>
-      <button type="submit" class="btn btn-primary">{{ $t('header.login') }}</button>
+      <VueLadda type="submit" class="btn btn-primary" :loading="loginLoading">{{ $t('header.login') }}</VueLadda>
     </div>
 
   </ModalDialog>

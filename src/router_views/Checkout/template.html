@@ -65,11 +65,13 @@
       <div class="col-md-3">
 
         <OrderSummary></OrderSummary>
-        <button class="btn btn-block btn-success"
-          :disabled="!isPlaceOrderEnabled"
-          @click="placeOrderHandler">
+        <VueLadda class="btn btn-block btn-success"
+                  :disabled="!isPlaceOrderEnabled"
+                  :loading="loading"
+                  @click="placeOrderHandler">
+          <!--TODO: i18n-->
           Place Order
-        </button>
+        </VueLadda>
 
       </div>
     </div>

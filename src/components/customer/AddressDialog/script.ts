@@ -10,6 +10,7 @@ import ModalDialog from 'src/components/utility/ModalDialog'
       type: Boolean,
       default: false
     },
+    saving: Boolean,
     addressProp: Object
   },
 
