@@ -59,7 +59,7 @@
     "last_name": "姓",
     "middle_name": "中间名",
 
-    "add_new_address": "新地址",
+    "add_new_address": "添加地址",
     "no_address": "地址为空，请输入收货地址。",
     "address_fullname": "姓名",
     "placeholder_address_fullname": "赵家人",
