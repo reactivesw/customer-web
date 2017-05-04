@@ -4,9 +4,10 @@
 
 @import "./init";
 @import "./bootstrap";
-@import "./font-awesome/scss/font-awesome";
 
-// Global Style
+// import font-awesome
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 
 html, body {
   overflow-x: hidden;
