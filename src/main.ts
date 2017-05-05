@@ -1,9 +1,10 @@
+// Make sure global style is imported before App component, so the global style can't overwrite component styles.
+import 'src/styles/style.scss'
+import 'bootstrap/dist/js/bootstrap'
 import Vue from 'vue'
 import router from './infrastructure/router'
 import store from './infrastructure/store'
 import App from 'src/router_views/App'
-import 'bootstrap/dist/js/bootstrap'
-import './styles/style.scss'
 
 import Utils from './infrastructure/utils'
 Vue.use(Utils)
