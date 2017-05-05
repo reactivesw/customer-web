@@ -1,10 +1,14 @@
 <template>
-  <div class="row text-xs-center categories-menu">
+  <div class="categories-menu">
+    <div class="container">
+      <div class="row text-xs-center">
 
-    <div class="col-sm-2" v-for="category in categories">
-      <CategoryNavButton :category="category"></CategoryNavButton>
+        <div class="col">
+          <CategoryNavButton v-for="(category, index) in categories" :key="index" :category="category"></CategoryNavButton>
+        </div>
+
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -25,7 +29,11 @@
 </script>
 
 <style lang="scss">
+  @import "~src/styles/init";
+
   .categories-menu {
+    margin-top: -1rem;
     margin-bottom: 1rem;
+    background-color: $gray-lightest;
   }
 </style>

@@ -1,44 +1,46 @@
-<div class="container">
+<div>
   <CategoriesMenu :categories="categories"></CategoriesMenu>
+  <div class="container">
 
-  <div class="row">
-    <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
 
-      <Gallery v-if="images" :slides="images"></Gallery>
+        <Gallery v-if="images" :slides="images"></Gallery>
 
+      </div>
+      <div class="col-md-6">
+        <ProductInfo v-if="product && variant" :product="product" :variant="variant"></ProductInfo>
+
+        <VariantSelector v-if="variantsAttributes && currentSku" :variantsAttributes="variantsAttributes" :currentSku="currentSku"
+          @selectSku="handleSelectSku"></VariantSelector>
+
+        <VueLadda class="btn btn-lg btn-lg btn-danger mt-4"
+                  v-if="product && variant"
+                  :loading="addingToCart"
+                  @click="handleAddToCart">
+          {{ $t('product.addToCart') }}
+        </VueLadda>
+
+        <p v-show="addToCartAlert" class="text-muted"><small>{{ addToCartAlert }}</small></p>
+      </div>
     </div>
-    <div class="col-md-6">
-      <ProductInfo v-if="product && variant" :product="product" :variant="variant"></ProductInfo>
 
-      <VariantSelector v-if="variantsAttributes && currentSku" :variantsAttributes="variantsAttributes" :currentSku="currentSku"
-        @selectSku="handleSelectSku"></VariantSelector>
-
-      <VueLadda class="btn btn-lg btn-lg btn-danger mt-4"
-                v-if="product && variant"
-                :loading="addingToCart"
-                @click="handleAddToCart">
-        {{ $t('product.addToCart') }}
-      </VueLadda>
-
-      <p v-show="addToCartAlert" class="text-muted"><small>{{ addToCartAlert }}</small></p>
-    </div>
-  </div>
-
-  <div class="row" v-if="product && variant">
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th colspan="2">{{ $t('product.attributes') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="attr of attributes">
-            <th scope="row">{{ $t(attr.label) }}</th>
-            <td>{{ attr.value }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row" v-if="product && variant">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2">{{ $t('product.attributes') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="attr of attributes">
+              <th scope="row">{{ $t(attr.label) }}</th>
+              <td>{{ attr.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
