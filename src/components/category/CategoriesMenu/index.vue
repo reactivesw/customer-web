@@ -32,6 +32,7 @@
   @import "~src/styles/init";
 
   .categories-menu {
+    margin-top: -1rem;
     margin-bottom: 1rem;
     background-color: $gray-lightest;
   }
