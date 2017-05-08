@@ -58,6 +58,7 @@
     "last_name": "Last Name",
     "middle_name": "Middle Name",
 
+    "shipping_address": "Shipping Address",
     "add_new_address": "Add New Address",
     "no_address": "You have no shipping address, please add one.",
     "address_fullname": "Full Name",
@@ -89,6 +90,7 @@
 
   },
   "payment": {
+    "credit_cards": "Credit Cards",
     "cardholder_name": "Cardholder Name",
     "credit_card_number": "Credit Card Number",
     "security_code": "Security Code",
@@ -101,7 +103,8 @@
   },
   "checkout": {
     "add_edit_address": "Change/Add Address",
-    "add_edit_payment": "Change/Add Payment"
+    "add_edit_payment": "Change/Add Payment",
+    "continue_checkout": "Continue Checkout"
   },
   "order": {
     "status": {

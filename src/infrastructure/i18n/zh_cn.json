@@ -59,6 +59,7 @@
     "last_name": "姓",
     "middle_name": "中间名",
 
+    "shipping_address": "送货地址",
     "add_new_address": "添加地址",
     "no_address": "地址为空，请输入收货地址。",
     "address_fullname": "姓名",
@@ -89,6 +90,7 @@
     "password_hint": "至少八位，包含字母与数字"
   },
   "payment": {
+    "credit_cards": "信用卡",
     "cardholder_name": "持卡人",
     "credit_card_number": "卡号",
     "security_code": "安全码",
@@ -101,7 +103,8 @@
   },
   "checkout": {
     "add_edit_address": "编辑／添加地址",
-    "add_edit_payment": "编辑／添加信用卡"
+    "add_edit_payment": "编辑／添加信用卡",
+    "continue_checkout": "回到支付"
   },
   "order": {
     "status": {

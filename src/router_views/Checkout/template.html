@@ -19,7 +19,7 @@
           <button class="btn btn-success"
             :disabled="!hasDefaultAddress"
             @click="shippingContinueHandler">
-            Continue Checkout
+            {{ $t('checkout.continue_checkout') }}
           </button>
         </div>
 
@@ -28,19 +28,19 @@
           <button class="btn btn-success"
             :disabled="!hasSelectedPayment"
             @click="paymentContinueHandler">
-            Continue Checkout
+            {{ $t('checkout.continue_checkout') }}
           </button>
         </div>
 
         <div v-show=showReview>
           <div class="row">
             <div class="col-md-6">
-              <h5>Shipping Address</h5>
+              <h5>{{ $t('customer.shipping_address') }}</h5>
               <hr>
               <AddressCard :addr="defaultAddress"></AddressCard>
             </div>
             <div class="col-md-6">
-              <h5>Payment Card</h5>
+              <h5>{{ $t('payment.credit_cards') }}</h5>
               <hr>
               <PaymentCard :payment="selectedPayment"></PaymentCard>
             </div>
@@ -49,13 +49,13 @@
             <div class="col-md-6">
                <button class="btn btn-success btn-sm"
                 @click="editShippingHandler">
-                {{ $t('add_edit_address') }}
+                {{ $t('checkout.add_edit_address') }}
               </button>
             </div>
             <div class="col-md-6">
               <button class="btn btn-success btn-sm"
                 @click="editPaymentHandler">
-                {{ $t('add_edit_payment') }}
+                {{ $t('checkout.add_edit_payment') }}
               </button>
             </div>
           </div>
