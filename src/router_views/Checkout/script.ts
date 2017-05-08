@@ -78,7 +78,7 @@ export default class Checkout extends Vue {
   }
 
   get isPlaceOrderEnabled() {
-    return this.hasSelectedPayment && this.hasDefaultAddress
+    return this.hasSelectedPayment && this.hasDefaultAddress && this.currentCart.lineItems.length > 0
   }
 
   // if placedOrder has value, means place order request has been sent, show placed result.
@@ -125,7 +125,12 @@ export default class Checkout extends Vue {
   }
 
   get currentCart() {
-    return this.$store.getters[GET_CART]
+    const cart = this.$store.getters[GET_CART]
+    // if no lineItems, redirect customer to cart
+    if (cart.lineItems.length === 0) {
+      this.$router.replace({name: 'cart'})
+    }
+    return cart
   }
 }
 
