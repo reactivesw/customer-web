@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions } from 'vuex'
 import ModalDialog from 'src/components/utility/ModalDialog'
-import { PASSWORD_NOT_SECURE, USER_EXIST } from 'src/infrastructure/api_client/auth'
+import { INVALID_EMAIL, PASSWORD_NOT_VALID, USER_EXIST } from 'src/infrastructure/api_client/auth'
 import { SIGN_UP } from 'src/infrastructure/store/modules/auth/actions'
 import { HIDE_SIGN_UP, SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 
@@ -44,25 +44,31 @@ export default {
     },
 
     async submitSignUp(this: Vue.Component) {
-      try {
-        // clean error messages
-        this['usernameFeedback'] = null
-        this['passwordFeedback'] = null
-        this['signUpLoading'] = true
+      // clean error messages
+      this['usernameFeedback'] = null
+      this['passwordFeedback'] = null
+      this['signUpLoading'] = true
 
+      try {
         // it has already passed all validation when enter this function
         await this['signUp']({ email: this['email'], password: this['pwd'] })
       } catch (e) {
         switch (e.message) {
+          case INVALID_EMAIL:
+            this['usernameFeedback'] = this['$t']('alert.invalid_email')
+            break
+
           case USER_EXIST:
             this['usernameFeedback'] = this['$t']('alert.user_exist')
             break
 
-          case PASSWORD_NOT_SECURE:
-            this['passwordFeedback'] = this['$t']('alert.password_not_secure')
+          case PASSWORD_NOT_VALID:
+            this['passwordFeedback'] = this['$t']('alert.password_not_valid')
             break
 
           default:
+            // password feedback message is on the bottom of the dialog, so show unknow error there is better.
+            this['passwordFeedback'] = this['$t']('alert.unknow_error')
             throw e
         }
       } finally {

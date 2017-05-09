@@ -6,7 +6,7 @@ import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
 
 import * as GSignInButton from 'vue-google-signin-button'
 import { LOGIN } from 'src/infrastructure/store/modules/auth/actions'
-import { PASSWORD_NOT_MATCH, PASSWORD_NOT_SECURE, USER_NOT_FOUND } from 'src/infrastructure/api_client/auth'
+import { PASSWORD_NOT_MATCH, PASSWORD_NOT_VALID, USER_NOT_FOUND } from 'src/infrastructure/api_client/auth'
 import { HIDE_LOGIN, SHOW_SIGN_UP } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 Vue.use(GSignInButton)
 
@@ -65,7 +65,7 @@ export default {
             this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
 
-          case PASSWORD_NOT_SECURE:
+          case PASSWORD_NOT_VALID:
             this['passwordFeedback'] = Vue['t']('alert.credential_error')
             break
 
