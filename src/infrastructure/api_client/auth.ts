@@ -10,6 +10,8 @@ export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
 export const INVALID_EMAIL = 'auth/INVALID_EMAIL'
 
 const ACCOUNT_LENGTH_LIMIT = 64
+const SIGN_UP_API_URL = '/auth/signup'
+const UP_DATE_PASSWORD_ACTION_NAME = 'updatePassword'
 
 // a pattern for simulating string enums in typescript, http://stackoverflow.com/a/41631732
 const LoginMethod = {
@@ -18,11 +20,30 @@ const LoginMethod = {
   FB: '/auth/signin/facebook' as 'FB'
 }
 
+export interface GoogleLoginRequest {
+  token: string
+}
+
+export interface FacebookLoginRequest {
+  accessToken: string,
+  expiresIn: string,
+  signedRequest: string,
+  userID: string
+}
+
+export interface UpdatePasswordRequest {
+  customerId: string,
+  version: number,
+  oldPassword: string,
+  newPassword: string
+}
+
 /**
- * Server responses:
- * {"code":10002,"message":"customer already exist."}
+ * Sign Up
+ * @param email
+ * @param password
+ * @returns {Promise<boolean>}
  */
-const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
   if (!isPasswordValid(password)) {
     throw new Error(PASSWORD_NOT_VALID)
@@ -33,7 +54,7 @@ export async function signUp(email, password) {
 
   const data = { email, password }
   try {
-    const response = await http.post(SIGN_UP, data)
+    const response = await http.post(SIGN_UP_API_URL, data)
     if (response.status === 200) {
       // login success
       return true
@@ -49,11 +70,12 @@ export async function signUp(email, password) {
   }
 }
 
-export function logout() {
-  tokenManager.setToken(undefined)
-  // no need to logout Google for this app
-}
-
+/**
+ * Email Login
+ * @param email
+ * @param password
+ * @returns {Promise<any>}
+ */
 export async function emailLogin(email, password) {
   if (!isPasswordValid(password)) {
     throw new Error(PASSWORD_NOT_VALID)
@@ -76,25 +98,30 @@ export async function emailLogin(email, password) {
   }
 }
 
-export interface GoogleLoginRequest {
-  token: string
-}
-
+/**
+ * Google login
+ * @param request
+ * @returns {Promise<any>}
+ */
 export async function googleLogin(request: GoogleLoginRequest) {
   return await login(LoginMethod.Google, request)
 }
 
-export interface FacebookLoginRequest {
-  accessToken: string,
-  expiresIn: string,
-  signedRequest: string,
-  userID: string
-}
-
+/**
+ * Facebook login
+ * @param request
+ * @returns {Promise<any>}
+ */
 export async function facebookLogin(request: FacebookLoginRequest) {
   return await login(LoginMethod.FB, request)
 }
 
+/**
+ * Login
+ * @param loginMethod
+ * @param params
+ * @returns {Promise<any>}
+ */
 async function login(loginMethod: keyof typeof LoginMethod, params) {
   // add anonymousId for data merge
   const payload = await tokenManager.getPayload()
@@ -108,14 +135,19 @@ async function login(loginMethod: keyof typeof LoginMethod, params) {
   }
 }
 
-export interface UpdatePasswordRequest {
-  customerId: string,
-  version: number,
-  oldPassword: string,
-  newPassword: string
+/**
+ * Logout
+ */
+export function logout() {
+  tokenManager.setToken(undefined)
+  // no need to logout Google for this app
 }
 
-export const UP_DATE_PASSWORD = 'updatePassword'
+/**
+ * Update password
+ * @param request
+ * @returns {Promise<AxiosPromise|any>}
+ */
 export async function updatePassword(request: UpdatePasswordRequest) {
   if (!isPasswordValid(request.newPassword)) {
     throw new Error(PASSWORD_NOT_VALID)
@@ -125,7 +157,7 @@ export async function updatePassword(request: UpdatePasswordRequest) {
     oldPassword: request.oldPassword,
     newPassword: request.newPassword
   }
-  const updatePasswordAction = Utils.buildAction(UP_DATE_PASSWORD, actionFields)
+  const updatePasswordAction = Utils.buildAction(UP_DATE_PASSWORD_ACTION_NAME, actionFields)
   return Utils.makeUpdateRequest(`/auth/${request.customerId}`, request.version, [updatePasswordAction])
 }
 
