@@ -1,6 +1,7 @@
 import http from './http'
 import tokenManager from './tokenManager'
 import Utils from './utils'
+import { AxiosResponse } from 'axios'
 
 // Error codes
 export const USER_EXIST = 'auth/USER_EXIST'
@@ -20,6 +21,8 @@ const LoginMethod = {
   FB: '/auth/signin/facebook' as 'FB'
 }
 
+let unAuthorizedListener
+
 export interface GoogleLoginRequest {
   token: string
 }
@@ -36,6 +39,35 @@ export interface UpdatePasswordRequest {
   version: number,
   oldPassword: string,
   newPassword: string
+}
+
+/**
+ * TODO: This kind of event seems pretty common, consider add a generic event interface for api client if we need more
+ *       events again.
+ */
+
+/**
+ * Add a interceptor to handle 401 response.
+ * App should listen to event, and make user login again if it's happend.
+ * first parameter is for silent typescript error.
+ */
+http.interceptors.response.use(res => res, err => {
+  if (err.response) {
+    let res = err.response
+    if (res.status === 401 && unAuthorizedListener) {
+      unAuthorizedListener(err)
+    }
+  }
+  return Promise.reject(err)
+})
+
+/**
+ * Set a unauthorized event listener, this event will raise when sending request with a outdated token.
+ * App should do the necessary logout process, ask user to login again when this event raise.
+ * @param ((err?: any) => void) listener
+ */
+export function setUnAuthorizedListener(listener: (err?: any) => void) {
+  unAuthorizedListener = listener
 }
 
 /**
