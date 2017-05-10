@@ -39,8 +39,10 @@ export interface UpdatePasswordRequest {
 }
 
 /**
- * Server responses:
- * {"code":10002,"message":"customer already exist."}
+ * Sign Up
+ * @param email
+ * @param password
+ * @returns {Promise<boolean>}
  */
 export async function signUp(email, password) {
   if (!isPasswordValid(password)) {
