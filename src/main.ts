@@ -1,3 +1,5 @@
+// import core-js polyfill at the top of source code, so they're available in everywhere.
+import './infrastructure/utils/polyfills'
 // Make sure global style is imported before App component, so the global style can't overwrite component styles.
 import 'src/styles/style.scss'
 import 'bootstrap/dist/js/bootstrap'
