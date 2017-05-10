@@ -5,9 +5,11 @@ import Utils from './utils'
 // Error codes
 export const USER_EXIST = 'auth/USER_EXIST'
 export const USER_NOT_FOUND = 'auth/USER_NOT_FOUND'
-export const PASSWORD_NOT_SECURE = 'auth/PASSWORD_NOT_SECURE'
+export const PASSWORD_NOT_VALID = 'auth/PASSWORD_NOT_VALID'
 export const PASSWORD_NOT_MATCH = 'auth/PASSWORD_NOT_MATCH'
+export const INVALID_EMAIL = 'auth/INVALID_EMAIL'
 
+const ACCOUNT_LENGTH_LIMIT = 64
 
 // a pattern for simulating string enums in typescript, http://stackoverflow.com/a/41631732
 const LoginMethod = {
@@ -22,8 +24,11 @@ const LoginMethod = {
  */
 const SIGN_UP = '/auth/signup'
 export async function signUp(email, password) {
-  if (!isPasswordSecure(password)) {
-    throw new Error(PASSWORD_NOT_SECURE)
+  if (!isPasswordValid(password)) {
+    throw new Error(PASSWORD_NOT_VALID)
+  }
+  if (email.length > ACCOUNT_LENGTH_LIMIT) {
+    throw new Error(INVALID_EMAIL)
   }
 
   const data = { email, password }
@@ -50,8 +55,8 @@ export function logout() {
 }
 
 export async function emailLogin(email, password) {
-  if (!isPasswordSecure(password)) {
-    throw new Error(PASSWORD_NOT_SECURE)
+  if (!isPasswordValid(password)) {
+    throw new Error(PASSWORD_NOT_VALID)
   }
 
   try {
@@ -112,8 +117,8 @@ export interface UpdatePasswordRequest {
 
 export const UP_DATE_PASSWORD = 'updatePassword'
 export async function updatePassword(request: UpdatePasswordRequest) {
-  if (!isPasswordSecure(request.newPassword)) {
-    throw new Error(PASSWORD_NOT_SECURE)
+  if (!isPasswordValid(request.newPassword)) {
+    throw new Error(PASSWORD_NOT_VALID)
   }
 
   const actionFields = {
@@ -125,11 +130,13 @@ export async function updatePassword(request: UpdatePasswordRequest) {
 }
 
 /**
- * helper function to detect is password secure enough.
+ * helper function to detect is password valid
+ * 8-16 long, has digital and letter
+ *
  * @param password
  * @returns {boolean}
  */
-function isPasswordSecure(password: string) {
-  const re = /^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,}$/
+function isPasswordValid(password: string) {
+  const re = /^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,16}$/
   return re.test(password)
 }
