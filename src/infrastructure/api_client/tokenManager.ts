@@ -3,7 +3,8 @@ import Utils from './utils'
 
 interface Payload {
   readonly sub: string;
-  readonly subjectId: string
+  readonly subjectId: string;
+  readonly anonymousId?: string;
 }
 
 /**
@@ -44,16 +45,26 @@ class TokenManager {
   setToken(token?: string) {
     this._token = token
     if (token) {
+      let anonymousId: string = ''
       localStorage.setItem('token', token)
 
       // decode payload
       const payload = Utils.decodeToken(token)
+
+      // if new token is a customer token, save the previous anonymousId
+      if (payload.sub === 'customer' && this._payload) {
+        anonymousId = this._payload.subjectId
+      }
+
       this._payload = {
         get sub() {
           return payload.sub
         },
         get subjectId() {
           return payload.subjectId
+        },
+        get anonymousId() {
+          return anonymousId
         }
       }
     } else {
