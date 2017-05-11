@@ -1,7 +1,6 @@
 import http from './http'
 import tokenManager from './tokenManager'
 import Utils from './utils'
-import { AxiosResponse } from 'axios'
 
 // Error codes
 export const USER_EXIST = 'auth/USER_EXIST'
