@@ -20,6 +20,7 @@ import CreditCard from 'src/components/payment/CreditCard'
 import PaymentList from 'src/components/payment/PaymentList'
 import ConfirmDialog from 'src/components/utility/ConfirmDialog'
 import { GET_CUSTOMER_ID } from 'src/infrastructure/store/modules/auth/getters'
+import { CREDIT_CARD_CONFLICT } from 'src/infrastructure/api_client/customer/payment_info'
 
 @Component({
   components: {
@@ -39,6 +40,8 @@ export default class PaymentInfo extends Vue {
   confirmDeletePayment: any = undefined
 
   savingNewCard = false
+
+  errorMessage = null
 
   // fetch payments when created
   created() {
@@ -61,6 +64,7 @@ export default class PaymentInfo extends Vue {
 
   // BEGIN: add a credit card
   clickAddCreditCardHanlder() {
+    this.errorMessage = null
     this.showPaymentList = false
   }
 
@@ -74,13 +78,19 @@ export default class PaymentInfo extends Vue {
       await this.$store.dispatch(ADD_CREDIT_CARD, request)
       this.showPaymentList = true
     } catch (e) {
-      // TODO: handle error
+      switch (e.message) {
+        case CREDIT_CARD_CONFLICT:
+          this.errorMessage = this['$t']('alert.credit_card_conflict')
+        default:
+          throw e
+      }
     } finally {
       this.savingNewCard = false
     }
   }
 
   cancelAddCreditCardHandler() {
+    this.errorMessage = null
     this.showPaymentList = true
   }
 
@@ -88,6 +98,7 @@ export default class PaymentInfo extends Vue {
 
   // BEGIN: handle change default
   defaultChangedHandler(payment) {
+    this.errorMessage = null
     this.showConfirmChangeDefault = true
     this.confirmChangeDefaultPayment = payment
   }
@@ -113,6 +124,7 @@ export default class PaymentInfo extends Vue {
 
   // BEGIN: handle delete event
   deletePaymentHandler(payment) {
+    this.errorMessage = null
     this.showConfirmDeletePayment = true
     this.confirmDeletePayment = payment
   }

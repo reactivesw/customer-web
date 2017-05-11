@@ -1,4 +1,8 @@
 <div v-if="payments">
+  <div class="alert alert-danger mt-2" role="alert" v-if="errorMessage">
+    {{ errorMessage }}
+  </div>
+
   <button class="btn btn-primary" @click="clickAddCreditCardHanlder">
     <b>+</b> {{ $t('payment.add_credit_card') }}
   </button>

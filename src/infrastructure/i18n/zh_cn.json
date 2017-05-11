@@ -19,7 +19,8 @@
     "password_not_valid": "密码8到16位，必须同时拥有数字以及字母",
     "confirm_password_not_match": "两次密码输入不一致",
     "credential_error": "账号或密码错误",
-    "log_in_error": "未知原因导致登录失败，请稍后重试"
+    "log_in_error": "未知原因导致登录失败，请稍后重试",
+    "credit_card_conflict": "这张信用卡已经添加过了"
   },
   "header": {
     "search": "搜索",

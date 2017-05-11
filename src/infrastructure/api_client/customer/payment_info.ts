@@ -3,6 +3,8 @@ import {
   CreditCardDraft, DefaultCardRequest, DeleteCardRequest
 } from './payment_models'
 
+export const CREDIT_CARD_CONFLICT = 'payment/CREDIT_CARD_CONFLICT'
+
 export const API_URL = '/payments/credit-cards'
 
 export async function getPayments(customerId) {
@@ -12,8 +14,19 @@ export async function getPayments(customerId) {
 }
 
 export async function addCreditCard(request: CreditCardDraft) {
-  const response = await http.post(API_URL, request)
-  return response && response.data
+  try {
+    const response = await http.post(API_URL, request)
+    return response && response.data
+  } catch(e) {
+    if (e.response) {
+      switch (e.response.status) {
+        case 409:
+          throw new Error(CREDIT_CARD_CONFLICT)
+        default:
+          throw e
+      }
+    }
+  }
 }
 
 export async function setSelected(request: DefaultCardRequest) {

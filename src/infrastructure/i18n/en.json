@@ -19,7 +19,8 @@
     "password_not_valid": "Password must has 8 to 16 characters, has digital and letter.",
     "confirm_password_not_match": "Confirm password not matching.",
     "credential_error": "Password is not match.",
-    "login_error": "Login failed, please try again later."
+    "login_error": "Login failed, please try again later.",
+    "credit_card_conflict": "This credit card has been added before."
   },
   "header": {
     "search": "Search",
