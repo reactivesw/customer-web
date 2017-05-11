@@ -17,8 +17,8 @@
     "user_exist": "This email has been taken, please choose another one.",
     "invalid_email": "Email address is invalid, please check again.",
     "password_not_valid": "Password must has 8 to 16 characters, has digital and letter.",
-    "confirm_password_not_match": "Confirm password not matching.",
-    "credential_error": "Password is not match.",
+    "confirm_password_not_match": "Password and confirm password does not match.",
+    "credential_error": "Password does not match.",
     "login_error": "Login failed, please try again later.",
     "credit_card_conflict": "This credit card has been added before."
   },
