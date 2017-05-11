@@ -55,8 +55,12 @@ export default {
     if (!promiseTable.hasOwnProperty(id)) {
       promiseTable[id] = sendRequestFunc()
     }
-    const res = await promiseTable[id]
-    delete promiseTable[id]
-    return res
+    try {
+      const res = await promiseTable[id]
+      return res
+    } finally {
+      // request might fail, always delete the promise
+      delete promiseTable[id]
+    }
   }
 }
