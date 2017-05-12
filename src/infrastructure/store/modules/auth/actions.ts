@@ -8,6 +8,7 @@ import { GoogleLoginRequest } from 'src/infrastructure/api_client/auth'
 import { HIDE_LOGIN, HIDE_SIGN_UP, SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
 import { RESET_PAYMENTS } from 'src/infrastructure/store/modules/payment_info/mutations'
 import { RESET_ORDERS } from 'src/infrastructure/store/modules/orders/mutations'
+import { RESET_CART } from 'src/infrastructure/store/modules/carts/mutations'
 
 export const SIGN_UP = 'auth/SIGN_UP'
 export const LOGIN = 'auth/LOGIN'
@@ -73,12 +74,14 @@ const actions = {
   [LOGOUT]({ commit, dispatch }) {
     localStorage.removeItem('customer')
     authApi.logout()
-    commit(RESET_CUSTOMER)
 
     // clear customer-realted data
+    commit(RESET_CUSTOMER)
     commit(RESET_CUSTOMER_INFO)
     commit(RESET_PAYMENTS)
     commit(RESET_ORDERS)
+    commit(RESET_CART)
+
     dispatch(FETCH_CART, true) // fetch a new cart for anonymous instead of reset to undefined.
 
     // go home
