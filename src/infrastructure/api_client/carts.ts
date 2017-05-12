@@ -35,6 +35,9 @@ export async function getCart() {
     params = { anonymousId: payload.subjectId }
   } else {
     params = { customerId: payload.subjectId }
+    if (payload.anonymousId) {
+      params.anonymousId = payload.anonymousId
+    }
   }
   const response = await http.get(CARTS, { params })
   return response && response.data

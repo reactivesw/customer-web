@@ -3,7 +3,8 @@ import Utils from './utils'
 
 interface Payload {
   readonly sub: string;
-  readonly subjectId: string
+  readonly subjectId: string;
+  readonly anonymousId?: string;
 }
 
 /**
@@ -13,6 +14,7 @@ interface Payload {
 class TokenManager {
   private _token?: string
   private _payload?: Payload
+  private _anonymousId?: string
 
   constructor() {
     const token = localStorage.getItem('token')
@@ -42,22 +44,35 @@ class TokenManager {
   }
 
   setToken(token?: string) {
-    this._token = token
     if (token) {
+      this._token = token
       localStorage.setItem('token', token)
 
       // decode payload
       const payload = Utils.decodeToken(token)
+
+      // if new token is a customer token, save the previous anonymousId
+      if (payload.sub === 'customer' && this._payload && this._payload.sub === 'anonymous') {
+        this._anonymousId = this._payload.subjectId
+      }
+
+      const that = this
       this._payload = {
         get sub() {
           return payload.sub
         },
         get subjectId() {
           return payload.subjectId
+        },
+        get anonymousId() {
+          return that._anonymousId
         }
       }
     } else {
+      this._token = undefined
       localStorage.removeItem('token')
+      this._anonymousId = undefined
+      this._payload = undefined
     }
   }
 }
@@ -73,10 +88,12 @@ const baseURL = (<any>window).apiServerAddr || process.env.REST_API_URL
  */
 async function fetchAnonymousToken(): Promise<string> {
   const GET_ANONYMOUS_TOKEN = '/auth/anonymous'
-  return await axios.get(GET_ANONYMOUS_TOKEN, {
-    baseURL: baseURL
+
+  return await Utils.singleRequest('fetchAnonymousToken', () => {
+    return axios.get(GET_ANONYMOUS_TOKEN, {
+      baseURL: baseURL
+    }).then(res => res.data)
   })
-  .then(response => response.data)
 }
 
 // multiple imports share one instance
