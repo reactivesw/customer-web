@@ -11,6 +11,7 @@
         name="quantity"
         class="form-control form-control-sm lineitem-quantity"
         type="number"
+        :disabled="quantityInputDisabled"
         :value="lineItem.quantity"
         @input="handleChangeQuantity">
     </div>
