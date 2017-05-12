@@ -28,6 +28,7 @@ export default class Account extends Vue {
 
   oldPassword: string = ''
   newPassword: string = ''
+  repeatPassword: string = ''
 
   saveLoading: boolean = false
 
@@ -75,6 +76,12 @@ export default class Account extends Vue {
     this.successAlert = ''
     this.errorAlert = ''
     this.saveLoading = true
+
+    if (this.newPassword !== this.repeatPassword) {
+      this.errorAlert = this['$t']('alert.confirm_password_not_match')
+      this.saveLoading = false
+      return
+    }
 
     let request:UpdatePasswordRequest = {
       customerId: this.customer.id,
