@@ -17,6 +17,7 @@ import { HAS_SELECTED_PAYMENT, GET_SELECTED_PAYMENT } from 'src/infrastructure/s
 import { PlaceOrderRequest } from 'src/infrastructure/api_client/customer/orders'
 import { PLACE_ORDER } from 'src/infrastructure/store/modules/orders/actions'
 import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
+import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/actions'
 
 @Component({
   components: {
@@ -44,6 +45,10 @@ export default class Checkout extends Vue {
 
   // for place order button loading indicator
   loading = false
+
+  created() {
+    this.$store.dispatch(FETCH_CATEGORIES)
+  }
 
   async placeOrderHandler() {
     this.loading = true
