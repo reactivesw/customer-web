@@ -102,7 +102,10 @@
 
     "add_credit_card": "添加信用卡",
 
-    "no_payment_msg": "没有支付信息，请添加信用卡"
+    "no_payment_msg": "没有支付信息，请添加信用卡",
+
+    "confirm_delete": "确认要删除该信用卡么？",
+    "confirm_select": "确认要设置该卡为默认么？"
   },
   "checkout": {
     "add_edit_address": "编辑／添加地址",
