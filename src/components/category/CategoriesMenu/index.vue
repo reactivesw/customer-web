@@ -13,13 +13,25 @@
 </template>
 
 <script lang="ts">
+  import { Component } from 'vue'
   import CategoryNavButton from './CategoryNavButton'
+  import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/actions'
 
   export default {
     name: 'CategoriesMenu',
 
     props: {
       categories: Array
+    },
+
+    created(this: Component) {
+      this['fetchCategories']()
+    },
+
+    methods: {
+      fetchCategories(this: Component) {
+        return this['$store'].dispatch(FETCH_CATEGORIES)
+      }
     },
 
     components: {
