@@ -1,15 +1,13 @@
 <div>
-  <!-- Full size images-->
-  <div class="product-gallery-fullsizes" ref="fullsizes">
-    <div v-for="slide in slides">
-      <img :src="slide.href"/>
-    </div>
+  <div class="gallery">
+    <img :src="currentImg"/>
   </div>
 
-  <!-- Thumbnails -->
-  <div class="product-gallery-thumbnails" ref="thumbnails">
-    <div v-for="slide in slides">
-      <img :src="slide.thumbnail"/>
-    </div>
-  </div>
+  <swiper class="thumbnail" :options="thumbnailOptions" ref="thumbnail">
+    <swiper-slide v-for="slide in slides" :key="slide.href">
+      <img :src="slide.href" @click="currentImg = slide.href" :class="{ 'slide-selected': currentImg === slide.href }"/>
+    </swiper-slide>
+    <div class="swiper-navigation swiper-button-prev swiper-button-white" slot="button-prev"></div>
+    <div class="swiper-navigation swiper-button-next swiper-button-white" slot="button-next"></div>
+  </swiper>
 </div>
