@@ -21,13 +21,13 @@
   </template>
 
   <ConfirmDialog :show="showConfirmChangeDefault"
-    message="Are you sure you want to select this payment?"
+    :message="$t('payment.confirm_select')"
     @confirmYes="confirmYesChangeDefaultHandler"
     @confirmNo="confirmNoChangeDefaultHandler">
   </ConfirmDialog>
 
   <ConfirmDialog :show="showConfirmDeletePayment"
-    message="Are you sure you want to delete this payment?"
+    :message="$t('payment.confirm_delete')"
     @confirmYes="confirmYesDeletePaymentHandler"
     @confirmNo="confirmNoDeletePaymentHandler">
   </ConfirmDialog>

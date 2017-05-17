@@ -102,7 +102,10 @@
 
     "add_credit_card": "Add a Credit Card",
 
-    "no_payment_msg": "You don't have any payment data. Please add one."
+    "no_payment_msg": "You don't have any payment data. Please add one.",
+
+    "confirm_delete": "Are you sure you want to select this payment?",
+    "confirm_select": "Are you sure you want to select this payment?"
   },
   "checkout": {
     "add_edit_address": "Change/Add Address",
