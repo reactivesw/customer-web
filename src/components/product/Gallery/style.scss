@@ -1,52 +1,68 @@
 @import "~src/styles/init";
 
-.product-gallery-fullsizes img {
-  width: 100%;
+.swiper-container,
+.gallery {
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.product-gallery-thumbnails {
-  margin-bottom: 2rem;
+// hide gallery in small screen, show it in bigger screen
+.gallery {
+  display: none;
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
 
-  .slick-slide {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
+.swiper-navigation {
+  // hide navigation buttons in small screen
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  // and show it in bigger screen
+  @include media-breakpoint-up(md) {
+    display: block;
   }
 
-  img {
-    width: 100px;
-    height: auto;
-    transition: all 300ms ease;
-  }
-
-  .slick-current {
-    position: relative;
-    &:before {
-      content: ' ';
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border: 3px solid $gray-lighter;
-    }
-  }
-
-  .slick-prev,
-  .slick-next {
-    width: 2rem;
+  // make navigation buttons 100% height
+  &.swiper-button-prev,
+  &.swiper-button-next {
+    margin-top: 0;
+    top: 0;
+    bottom: 0;
     height: 100%;
-    background: transparentize($gray-light, 0.6);
   }
 
-  .slick-prev {
+  // make navigation button prev align with left adge
+  &.swiper-button-prev {
     left: 0;
-    z-index: 1;
   }
 
-  .slick-next {
+  // make navigation button next align with right adge
+  &.swiper-button-next {
     right: 0;
+  }
+}
+
+// add a red border to current gellery slide in bigger screen.
+.slide-selected {
+  @include media-breakpoint-up(md) {
+    border: 2px solid red;
+    box-sizing: border-box;
+  }
+}
+
+// thumbnail will become the gallery in small screen.
+.swiper-container.thumbnail {
+  .swiper-slide {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      $thumbnail-size: 6rem;
+      height: $thumbnail-size;
+      width: $thumbnail-size;
+    }
   }
 }
