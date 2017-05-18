@@ -1,39 +1,37 @@
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import * as _ from 'lodash'
-import { Component } from 'vue'
 
-export default {
-  name: 'VariantSelector',
-
+@Component({
   props: {
     variantsAttributes: Object,
     currentSku: String
-  },
+  }
+})
+export default class VariantSelector extends Vue {
+  // bind to selector styles
+  checkState(name, value) {
+    let stateParams = prepareParams(this, name, value)
+    const result = computeStates(stateParams)
+    return {
+      'btn-danger': result.selected,
+      'btn-outline-danger': !result.selected && result.available,
+      'btn-outline-secondary': !result.selected && !result.available
+    }
+  }
 
-  methods: {
-    // bind to selector styles
-    checkState(this: Component, name, value) {
-      let stateParams = prepareParams(this, name, value)
-      const result = computeStates(stateParams)
-      return {
-        'btn-danger': result.selected,
-        'btn-outline-danger': !result.selected && result.available,
-        'btn-outline-secondary': !result.selected && !result.available
-      }
-    },
+  // bind to click event
+  handleAttributeClick(name, value) {
+    let stateParams = prepareParams(this, name, value)
+    const result = computeStates(stateParams)
 
-    // bind to click event
-    handleAttributeClick(this: Component, name, value) {
-      let stateParams = prepareParams(this, name, value)
-      const result = computeStates(stateParams)
-
-      if (!result.selected) {
-        this['$emit']('selectSku', result.selectedSku)
-      }
+    if (!result.selected) {
+      this.$emit('selectSku', result.selectedSku)
     }
   }
 }
 
-function prepareParams(vm: Component, name, value) {
+function prepareParams(vm, name, value) {
   const variantsAttributes = vm['variantsAttributes']
   const skuAttributeMap = variantsAttributes.skuAttributeMap
   const currentSku = vm['currentSku']

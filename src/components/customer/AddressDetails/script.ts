@@ -10,6 +10,7 @@ import Component from 'vue-class-component'
       default: false
     }
   },
+
   components: {
     VueLadda
   }
@@ -34,6 +35,5 @@ export default class AddressDetails extends Vue {
     this.forceRefresh = !this.forceRefresh
     this.$emit('cancelAddressDetails')
   }
-
 }
 

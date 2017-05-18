@@ -1,9 +1,8 @@
-import { Component } from 'vue'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-export default {
-  name: 'Gallery',
-
+@Component({
   props: {
     slides: {
       type: Array,
@@ -11,21 +10,16 @@ export default {
     }
   },
 
-  data(this: Component) {
-    return {
-      currentImg: this['slides'][0].href, // current selected image
-
-      // options documentation: http://idangero.us/swiper/api/
-      thumbnailOptions: {
-        slidesPerView: 'auto',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-      }
-    }
-  },
-
   components: {
     swiper,
     swiperSlide
+  }
+})
+export default class Gallery extends Vue {
+  currentImg = this['slides'][0].href
+  thumbnailOptions = {
+    slidesPerView: 'auto',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
   }
 }

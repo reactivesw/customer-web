@@ -1,33 +1,30 @@
-import {Component} from 'vue'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export default {
-  data: function () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    doLogin: function (this: Component) {
-      FB.login((response) => {
-        if (response.status === 'connected') {
-          this['login'](response)
-        } else {
-          this['$emit']('error', response)
-        }
-      })
-    },
+@Component({})
+export default class FacebookButton extends Vue {
+  email = ''
+  password = ''
 
-    login (this: Component, response) {
+  doLogin() {
+    FB.login((response) => {
       if (response.status === 'connected') {
-        const data = {
-          userID: response.authResponse.userID,
-          accessToken: response.authResponse.accessToken,
-          expiresIn: response.authResponse.expiresIn,
-          signedRequest: response.authResponse.signedRequest
-        }
-        this['$emit']('login', data)
+        this['login'](response)
+      } else {
+        this['$emit']('error', response)
       }
+    })
+  }
+
+  login (response) {
+    if (response.status === 'connected') {
+      const data = {
+        userID: response.authResponse.userID,
+        accessToken: response.authResponse.accessToken,
+        expiresIn: response.authResponse.expiresIn,
+        signedRequest: response.authResponse.signedRequest
+      }
+      this.$emit('login', data)
     }
   }
 }

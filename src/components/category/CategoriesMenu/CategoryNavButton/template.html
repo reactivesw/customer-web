@@ -1,0 +1,5 @@
+<router-link
+  class="category-btn"
+  :to="{ name: 'categories', params: { 'catSlug': category.slug }}">
+  {{ $t(category.name) }}
+</router-link>

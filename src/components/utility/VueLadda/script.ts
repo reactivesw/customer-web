@@ -37,13 +37,12 @@ export default class VueLadda extends Vue {
   loading
 
   mounted() {
-    const l = Ladda.create(this.$refs.ladda);
-    this.ladda = l;
-    this.loading ? this.ladda.start() : this.ladda.stop();
+    this.ladda = Ladda.create(this.$refs.ladda)
+    this.loading ? this.ladda.start() : this.ladda.stop()
   }
 
   beforeDestroy() {
-    this.ladda.remove();
+    this.ladda.remove()
   }
 
   handleClick(e) {
