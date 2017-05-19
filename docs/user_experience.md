@@ -6,20 +6,20 @@
 
   Show a loading indicator in button. Then hide it no matter the request success or fail after finished.
 
-  Use [ladda](https://github.com/hakimel/Ladda) to make this easier. Will create a utility component to wrap it.
+  Use [LoadingButton](src/components/utility/LoadingButton) to make this easier.
   
   Example(use single file component syntax to make example simpler):
   
   ```html
   <template>
-    <VueLadda :loading="submitting"
+    <LoadingButton :loading="submitting"
               @click="submit">
       Submit
-    </VueLadda>
+    </LoadingButton>
   </template>
   
   <script>
-    import VueLadda from 'src/components/utility/VueLadda'
+    import LoadingButton from 'src/components/utility/LoadingButton'
     
     export default {
       data () {
@@ -42,7 +42,7 @@
       },
       
       components: {
-        VueLadda
+        LoadingButton
       }  
     }
   </script>
