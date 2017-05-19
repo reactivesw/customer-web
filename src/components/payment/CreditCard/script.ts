@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import Component from 'vue-class-component'
 
 function createEmpty() {
@@ -18,7 +18,7 @@ function createEmpty() {
     default: false
   },
   components: {
-    VueLadda
+    LoadingButton
   }
 })
 export default class CreditCard extends Vue {

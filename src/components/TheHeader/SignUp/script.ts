@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import { INVALID_EMAIL, PASSWORD_NOT_VALID, USER_EXIST } from 'src/infrastructure/api_client/auth'
 import { SIGN_UP } from 'src/infrastructure/store/modules/auth/actions'
@@ -9,7 +9,7 @@ import { HIDE_SIGN_UP, SHOW_LOGIN } from 'src/infrastructure/store/modules/modal
 @Component({
   components: {
     ModalDialog,
-    VueLadda
+    LoadingButton
   }
 })
 export default class SignUp extends Vue {

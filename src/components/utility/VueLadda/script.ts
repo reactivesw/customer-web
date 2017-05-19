@@ -32,7 +32,7 @@ import Ladda from 'ladda'
     }
   }
 })
-export default class VueLadda extends Vue {
+export default class LoadingButton extends Vue {
   ladda: any
   loading
 

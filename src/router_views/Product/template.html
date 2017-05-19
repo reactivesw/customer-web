@@ -14,12 +14,12 @@
         <VariantSelector v-if="variantsAttributes && currentSku" :variantsAttributes="variantsAttributes" :currentSku="currentSku"
           @selectSku="handleSelectSku"></VariantSelector>
 
-        <VueLadda class="btn btn-lg btn-lg btn-danger mt-4"
-                  v-if="product && variant"
-                  :loading="addingToCart"
-                  @click="handleAddToCart">
+        <LoadingButton class="btn btn-lg btn-danger mt-4"
+                       v-if="product && variant"
+                       :loading="addingToCart"
+                       @click="handleAddToCart">
           {{ $t('product.addToCart') }}
-        </VueLadda>
+        </LoadingButton>
 
         <p v-show="addToCartAlert" class="text-muted"><small>{{ addToCartAlert }}</small></p>
       </div>

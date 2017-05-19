@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import Component from 'vue-class-component'
 
 import {
@@ -17,7 +17,7 @@ import { UPDATE_PASSWORD } from 'src/infrastructure/store/modules/auth/actions'
 
 @Component({
   components: {
-    VueLadda
+    LoadingButton
   }
 })
 export default class Account extends Vue {
