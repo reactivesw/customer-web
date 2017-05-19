@@ -20,7 +20,6 @@ import { LOGOUT } from 'src/infrastructure/store/modules/auth/actions'
   }
 })
 export default class App extends Vue {
-
   created() {
     // Make sure logout current user(outdated) and ask for login again if unAuthorized event raised.
     authApi.setUnAuthorizedListener(async err => {

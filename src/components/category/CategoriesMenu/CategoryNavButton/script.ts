@@ -3,8 +3,8 @@ import Component from 'vue-class-component'
 
 @Component({
   props: {
-    addr: Object
+    category: Object
   }
 })
-export default class AddressCard extends Vue {
+export default class CategoriesNavButton extends Vue {
 }

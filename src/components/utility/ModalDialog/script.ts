@@ -1,4 +1,5 @@
-import { Component } from 'vue'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 /**
  * The dialog component is a presentation component.
@@ -15,32 +16,29 @@ import { Component } from 'vue'
  *
  * The actual dom component is a Bootstrap modal dialog.
  */
-export default {
-  name: 'ModalDialog',
-
+@Component({
   props: {
     show: Boolean,
     title: String
   },
-
-  methods: {
-    updateState(this: Component) {
-      if (this['show']) {
-        $(this['$refs'].modal)['modal']('show')
-      } else {
-        $(this['$refs'].modal)['modal']('hide')
-      }
+})
+export default class ModalDialog extends Vue {
+  updateState() {
+    if (this['show']) {
+      $(this.$refs.modal)['modal']('show')
+    } else {
+      $(this.$refs.modal)['modal']('hide')
     }
-  },
+  }
 
-  mounted(this: Component) {
-    this['updateState']()
-    $(this['$refs'].modal).on('hide.bs.modal', e => {
-      this['$emit']('hide')
+  mounted() {
+    this.updateState()
+    $(this.$refs.modal).on('hide.bs.modal', e => {
+      this.$emit('hide')
     })
-  },
+  }
 
-  updated(this: Component) {
-    this['updateState']()
+  updated() {
+    this.updateState()
   }
 }

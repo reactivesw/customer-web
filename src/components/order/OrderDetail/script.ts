@@ -8,6 +8,7 @@ import LineItemDisplay from 'src/components/cart/LineItemDisplay'
   props: {
     order: Object
   },
+
   components: {
     AddressCard,
     PaymentCard,

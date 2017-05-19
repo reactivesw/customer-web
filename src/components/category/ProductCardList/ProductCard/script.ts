@@ -1,23 +1,23 @@
-import { Component } from 'vue'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
 const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
 
-export default {
-  name: 'ProductCard',
+@Component({
   props: {
     product: Object
-  },
-
-  computed: {
-    imageUrl(this: Component) {
-      if (!this['product'].imageUrl) {
-        return noImagePlaceHolder
-      } else {
-        return this['product'].imageUrl
-      }
-    },
-
-    money(this: Component) {
-      return this['$moneyToString'](this['product'].price.value)
+  }
+})
+export default class ProductCard extends Vue {
+  get imageUrl() {
+    if (!this['product'].imageUrl) {
+      return noImagePlaceHolder
+    } else {
+      return this['product'].imageUrl
     }
+  }
+
+  get money() {
+    return this['$moneyToString'](this['product'].price.value)
   }
 }
