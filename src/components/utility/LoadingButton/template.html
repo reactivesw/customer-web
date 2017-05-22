@@ -1,0 +1,4 @@
+<button class="loading-button" @click="handleClick" :disabled="loading">
+  <i class="fa fa-refresh fa-spin" aria-hidden="true" v-show="loading"></i>
+  <span class="loading-button__label"><slot>Submit</slot></span>
+</button>

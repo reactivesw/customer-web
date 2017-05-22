@@ -23,7 +23,7 @@
 
     <div slot="footer">
       <button type="button" class="btn btn-link" @click="goLogin">{{ $t('header.login') }}</button>
-      <VueLadda class="btn btn-primary" :loading="signUpLoading">{{ $t('header.sign_up') }}</VueLadda>
+      <LoadingButton class="btn btn-primary" :loading="signUpLoading">{{ $t('header.sign_up') }}</LoadingButton>
     </div>
 
   </ModalDialog>

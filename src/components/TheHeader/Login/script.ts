@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import ModalDialog from 'src/components/utility/ModalDialog'
 import FacebookBtn from 'src/components/TheHeader/Login/FacebookButton'
 
@@ -14,7 +14,7 @@ Vue.use(GSignInButton)
   components: {
     ModalDialog,
     FacebookBtn,
-    VueLadda
+    LoadingButton
   }
 })
 export default class Login extends Vue {
