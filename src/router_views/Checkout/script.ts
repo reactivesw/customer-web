@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import Component from 'vue-class-component'
 
 import AddressCard from 'src/components/customer/AddressCard'
@@ -28,7 +28,7 @@ import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/ac
     AddressCard,
     PaymentCard,
     OrderDetail,
-    VueLadda
+    LoadingButton
   }
 })
 export default class Checkout extends Vue {

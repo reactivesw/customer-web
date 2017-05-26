@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueLadda from 'src/components/utility/VueLadda'
+import LoadingButton from 'src/components/utility/LoadingButton'
 import Component from 'vue-class-component'
 
 @Component({
@@ -12,7 +12,7 @@ import Component from 'vue-class-component'
   },
 
   components: {
-    VueLadda
+    LoadingButton
   }
 })
 export default class AddressDetails extends Vue {

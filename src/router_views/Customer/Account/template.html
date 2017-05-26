@@ -31,7 +31,7 @@
     </div>
 
     <!--<button type="button" class="btn btn-primary" @click="updateCustomerPwdEventHandler">{{ $t('common.save') }}</button>-->
-    <VueLadda class="btn btn-primary" @click="updateCustomerPwdEventHandler" :loading="saveLoading">{{ $t('common.save') }}</VueLadda>
+    <LoadingButton class="btn btn-primary" @click="updateCustomerPwdEventHandler" :loading="saveLoading">{{ $t('common.save') }}</LoadingButton>
     <button type="button" class="btn btn-secondary" @click="editingPwd = false">{{ $t('common.back') }}</button>
   </template>
 
@@ -66,7 +66,7 @@
     </div>
 
     <!--<button type="button" class="btn btn-primary" @click="updateCustomerInfoEventHandler">{{ $t('common.save') }}</button>-->
-    <VueLadda class="btn btn-primary" @click="updateCustomerInfoEventHandler" :loading="saveLoading">{{ $t('common.save') }}</VueLadda>
+    <LoadingButton class="btn btn-primary" @click="updateCustomerInfoEventHandler" :loading="saveLoading">{{ $t('common.save') }}</LoadingButton>
     <button type="button" class="btn btn-primary" @click="editingPwd = true" v-if="!customer.source">{{ $t('customer.change_pwd') }}</button>
   </template>
 </div>

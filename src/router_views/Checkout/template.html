@@ -65,12 +65,12 @@
       <div class="col-md-3">
 
         <OrderSummary></OrderSummary>
-        <VueLadda class="btn btn-block btn-success"
+        <LoadingButton class="btn btn-block btn-success"
                   :disabled="!isPlaceOrderEnabled"
                   :loading="loading"
                   @click="placeOrderHandler">
           {{ $t('cart.place_order') }}
-        </VueLadda>
+        </LoadingButton>
 
       </div>
     </div>

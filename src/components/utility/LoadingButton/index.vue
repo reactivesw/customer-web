@@ -6,5 +6,3 @@
 import s from './script'
 export default s
 </script>
-
-<style lang="scss" src="./style.scss"></style>

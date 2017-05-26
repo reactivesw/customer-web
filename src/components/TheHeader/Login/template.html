@@ -46,7 +46,7 @@
     <div slot="footer">
       <button type="button" class="btn btn-link text-muted" @click="goForgotPwd">{{ $t('form.forgot_pwd') }}</button>
       <button type="button" class="btn btn-link" @click="goSignUp">{{ $t('header.sign_up') }}</button>
-      <VueLadda type="submit" class="btn btn-primary" :loading="loginLoading">{{ $t('header.login') }}</VueLadda>
+      <LoadingButton type="submit" class="btn btn-primary" :loading="loginLoading">{{ $t('header.login') }}</LoadingButton>
     </div>
 
   </ModalDialog>

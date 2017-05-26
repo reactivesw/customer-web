@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import VueLadda from 'src/components/utility/VueLadda'
 import { mapActions, mapGetters } from 'vuex'
 
 import CategoriesMenu from 'src/components/category/CategoriesMenu'
 import Gallery from 'src/components/product/Gallery'
 import ProductInfo from 'src/components/product/ProductInfo'
 import VariantSelector from 'src/components/product/VariantSelector'
+import LoadingButton from 'src/components/utility/LoadingButton'
 
 import { ADD_TO_CART } from 'src/infrastructure/store/modules/carts/actions'
 import { GET_CATEGORIES } from 'src/infrastructure/store/modules/categories/getters'
@@ -33,7 +33,7 @@ const noImagePlaceHolder = require('src/assets/images/no_image_placeholder.png')
     Gallery,
     ProductInfo,
     VariantSelector,
-    VueLadda
+    LoadingButton
   }
 })
 export default class Product extends Vue {
