@@ -5,6 +5,7 @@ import LanguageSelector from 'src/components/TheHeader/LanguageSelector'
 import { GET_CUSTOMER, GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 import { GET_CART } from 'src/infrastructure/store/modules/carts/getters'
 import { SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
+import { SEARCH_PRODUCT } from 'src/infrastructure/store/modules/products/actions'
 
 @Component({
   components: {
@@ -12,6 +13,7 @@ import { SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actio
   }
 })
 export default class TheHeader extends Vue {
+  searchKey = ''
 
   get customer() {
     return this.$store.getters[GET_CUSTOMER]
@@ -52,5 +54,9 @@ export default class TheHeader extends Vue {
 
   showLogin() {
     this.$store.dispatch(SHOW_LOGIN)
+  }
+
+  submitSearch() {
+    this.$router.push({ name: 'search', params: { searchKey: this.searchKey } })
   }
 }

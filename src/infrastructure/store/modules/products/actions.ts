@@ -1,9 +1,13 @@
 import { products as productApi } from 'src/infrastructure/api_client'
-import { SET_CURRENT_CATEGORY_PRODUCTS, SET_CURRENT_PRODUCT } from 'src/infrastructure/store/modules/products/mutations'
+import {
+  SET_CURRENT_CATEGORY_PRODUCTS, SET_CURRENT_PRODUCT,
+  SET_SEARCH_RESULT
+} from 'src/infrastructure/store/modules/products/mutations'
 import { FETCH_CATEGORIES } from 'src/infrastructure/store/modules/categories/actions'
 
 export const FETCH_CURRENT_CATEGORY_PRODUCTS = 'products/FETCH_CURRENT_CATEGORY_PRODUCTS'
 export const FETCH_CURRENT_PRODUCT = 'products/FETCH_CURRENT_PRODUCT'
+export const SEARCH_PRODUCT = 'products/SEARCH_PRODUCT'
 
 const actions = {
 
@@ -39,6 +43,17 @@ const actions = {
     const sku = rootState.route.params.sku
     const product = await productApi.getProduct(sku)
     commit(SET_CURRENT_PRODUCT, { product, productType: product.productType })
+  },
+
+  /**
+   * Search product
+   * @param rootState
+   * @param commit
+   * @returns {Promise<void>}
+   */
+  async [SEARCH_PRODUCT]({ rootState, commit }, searchKey) {
+    const searchResult = await productApi.search(searchKey)
+    commit(SET_SEARCH_RESULT, searchResult)
   }
 }
 

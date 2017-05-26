@@ -1,0 +1,7 @@
+<div>
+  <div class="container">
+    <a href="javascript:void(0)" @click="$router.go(-1)">&lt; {{$t('cart.back_to_shopping')}}</a>
+    <hr>
+    <ProductCardList :products="searchResult"></ProductCardList>
+  </div>
+</div>

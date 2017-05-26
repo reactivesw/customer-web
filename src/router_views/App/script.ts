@@ -6,7 +6,6 @@ import TheHeader from 'src/components/TheHeader'
 import TheFooter from 'src/components/TheFooter'
 import Login from 'src/components/TheHeader/Login'
 import SignUp from 'src/components/TheHeader/SignUp'
-import SearchResult from 'src/components/TheHeader/SearchResult'
 
 import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
 import { SHOW_LOGIN } from 'src/infrastructure/store/modules/modal_dialogs/actions'
@@ -17,8 +16,7 @@ import { LOGOUT } from 'src/infrastructure/store/modules/auth/actions'
     TheHeader,
     TheFooter,
     Login,
-    SignUp,
-    SearchResult
+    SignUp
   }
 })
 export default class App extends Vue {
