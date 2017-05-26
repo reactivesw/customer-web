@@ -52,6 +52,7 @@ const actions = {
    * @returns {Promise<void>}
    */
   async [SEARCH_PRODUCT]({ rootState, commit }, searchKey) {
+    commit(SET_SEARCH_RESULT) // clean previous search results first
     const searchResult = await productApi.search(searchKey)
     commit(SET_SEARCH_RESULT, searchResult)
   }
