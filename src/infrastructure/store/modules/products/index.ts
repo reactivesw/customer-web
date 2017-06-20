@@ -5,7 +5,8 @@ import actions from './actions'
 const initialState = {
   currentCategoryProducts: [],
   currentProduct: undefined,
-  currentProductType: undefined
+  currentProductType: undefined,
+  searchResult: undefined
 }
 
 export default {

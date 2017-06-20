@@ -6,6 +6,7 @@ import store from 'src/infrastructure/store'
 import Category from 'src/router_views/Category'
 import Product from 'src/router_views/Product'
 import Cart from 'src/router_views/Cart'
+import Search from 'src/router_views/Search'
 import customer from './customer'
 import chekcout from './checkout'
 import { GET_IS_LOGGED_IN } from 'src/infrastructure/store/modules/auth/getters'
@@ -34,6 +35,12 @@ const routes = [
     name: 'products',
     path: '/products/:sku',
     component: Product
+  },
+  {
+    name: 'search',
+    path: '/search/:searchKey',
+    component: Search,
+    props: true
   },
   {
     name: 'cart',

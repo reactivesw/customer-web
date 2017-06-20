@@ -4,6 +4,7 @@ const PRODUCTS = '/products'
 const PRODUCT_TYPES = '/product-types'
 const CATEGORY_PRODUCT_VIEW_API_URL = PRODUCTS + '/CategoryProducts'
 const DETAIL_PRODUCT_VIEW_API_URL = PRODUCTS + '/DetailProducts'
+const SEARCH_URL = PRODUCTS + '/search'
 
 /**
  * fetch product by product slug
@@ -40,5 +41,18 @@ export async function getProductProjections(categoryId: string) {
     categoryId: `${categoryId}`
   }
   const response = await http.get(CATEGORY_PRODUCT_VIEW_API_URL, { params })
+  return response && response.data.results
+}
+
+/**
+ * Search products
+ * @param searchKey
+ * @returns {Promise<AxiosPromise|(()=>NestedResults)|(()=>any)|IConfigurationFile|{[p: string]: {errorsFromLinter: LintError[], errorsFromMarkup: LintError[], fixesFromLinter: string, fixesFromMarkup: string, markupFromLinter: string, markupFromMarkup: string}}>}
+ */
+export async function search(searchKey: string) {
+  const params = {
+    searchWords: searchKey
+  }
+  const response = await http.get(SEARCH_URL, { params })
   return response && response.data.results
 }
